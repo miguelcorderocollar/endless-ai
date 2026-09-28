@@ -1,0 +1,172 @@
+[
+  {
+    "id": "bus-0001",
+    "text": "Who founded Nvidia, the company whose GPUs underpin most AI training?",
+    "options": [
+      "Jensen Huang, Chris Malachowsky and Curtis Priem",
+      "Gordon Moore and Robert Noyce",
+      "Jack Ma and Pony Ma",
+      "Larry Page and Sergey Brin"
+    ],
+    "answer": "Jensen Huang, Chris Malachowsky and Curtis Priem",
+    "category": "business",
+    "tags": [
+      "nvidia",
+      "founders"
+    ],
+    "difficulty": 2,
+    "explanation": "The three left Sun Microsystems and founded Nvidia in 1993, and Jensen Huang is the one who stayed. A gaming graphics company that spent two decades being treated as a commodity ended up owning the tooling that the entire industry depends on.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Nvidia",
+      "label": "Nvidia on Wikipedia"
+    },
+    "answerAliases": [
+      "Jensen Huang"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "bus-0002",
+    "text": "The AI bubble is a term for a stock market phenomenon said to have been growing since when?",
+    "options": [
+      "2019",
+      "2025",
+      "2021",
+      "2023"
+    ],
+    "answer": "2025",
+    "category": "business",
+    "tags": [
+      "ai-bubble",
+      "markets"
+    ],
+    "difficulty": 3,
+    "explanation": "Since 2025, amid the AI boom, and the argument is that leading firms are in a circular flow of investment that inflates each other's valuations. Ray Dalio has drawn comparisons with earlier bubbles, and the interesting part is that the sceptical case is about capital structure rather than about the technology being useless.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI bubble",
+      "label": "AI bubble on Wikipedia"
+    },
+    "answerAliases": [
+      "2025"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "bus-0003",
+    "text": "Google acquired DeepMind in 2014. Roughly what did it pay?",
+    "options": [
+      "£4 million",
+      "£40 million",
+      "£400 million",
+      "£4 billion"
+    ],
+    "answer": "£400 million",
+    "category": "business",
+    "tags": [
+      "deepmind",
+      "acquisition",
+      "google"
+    ],
+    "difficulty": 3,
+    "explanation": "Reportedly around 400 million pounds, for a company four years old whose main public achievement was a Go program that beat Lee Sedol four games to one. The price looked steep in 2014 and looks like a rounding error against what AlphaGo and AlphaFold did for the acquirer, which makes it the clearest example of AI acquisitions being mispriced before 2023.",
+    "source": {
+      "kind": "none"
+    },
+    "answerAliases": [
+      "400 million",
+      "£400 million"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "bus-0004",
+    "text": "Who is credited with the 1965 observation that transistor counts double roughly every two years?",
+    "options": [
+      "Robert Noyce",
+      "Andrew Grove",
+      "Gordon Bell",
+      "Gordon Moore"
+    ],
+    "answer": "Gordon Moore",
+    "category": "business",
+    "tags": [
+      "moores-law",
+      "history",
+      "intel"
+    ],
+    "difficulty": 2,
+    "explanation": "Gordon Moore, who wrote it while running Fairchild Semiconductor and later co-founded Intel. He described it as an empirical observation rather than a law, and the half dozen names on this list all worked at Fairchild or Intel, which is the trap in the question.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Moore's law",
+      "label": "Moore's law on Wikipedia"
+    },
+    "answerAliases": [
+      "Gordon E. Moore",
+      "Gordon Moore"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "bus-0005",
+    "text": "Boston Dynamics, the robotics firm, has been owned since 2020 by which group?",
+    "options": [
+      "Hyundai Motor Group",
+      "Toyota",
+      "SoftBank",
+      "Amazon"
+    ],
+    "answer": "Hyundai Motor Group",
+    "category": "business",
+    "tags": [
+      "robotics",
+      "acquisition"
+    ],
+    "difficulty": 2,
+    "explanation": "Hyundai Motor Group, which began the acquisition in December 2020 and completed it in June 2021. Boston Dynamics was founded in 1992 as a spin off from MIT, and the humanoid and dog robots became a meme long before they were anywhere near useful on a factory floor.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Boston Dynamics",
+      "label": "Boston Dynamics on Wikipedia"
+    },
+    "answerAliases": [
+      "Hyundai Motor Group"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "bus-0006",
+    "text": "Paul Allen founded the Allen Institute for AI using money earned from which other company?",
+    "options": [
+      "Apple",
+      "Microsoft",
+      "Boeing",
+      "Valve"
+    ],
+    "answer": "Microsoft",
+    "category": "business",
+    "tags": [
+      "ai2",
+      "philanthropy"
+    ],
+    "difficulty": 1,
+    "explanation": "Microsoft, where Allen was the co-founder with Bill Gates. He also funded the Allen Institute for Brain Science, and both institutes are a useful reminder that a large share of American research infrastructure is paid for by one person's money rather than by grants.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Allen Institute for AI",
+      "label": "Allen Institute for AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Microsoft"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

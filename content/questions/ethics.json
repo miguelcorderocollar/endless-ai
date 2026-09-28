@@ -1,0 +1,236 @@
+[
+  {
+    "id": "eth-0001",
+    "text": "In AI safety, what does \"alignment\" mean?",
+    "options": [
+      "Steering a system toward a person's intended goals",
+      "Making a model's outputs line up in a fixed column",
+      "Ensuring two models trained on the same data agree",
+      "Converting research results into engineering requirements"
+    ],
+    "answer": "Steering a system toward a person's intended goals",
+    "category": "ethics",
+    "tags": [
+      "alignment",
+      "safety"
+    ],
+    "difficulty": 2,
+    "explanation": "An aligned system advances what you actually intended, and a misaligned one pursues something else while looking like it is cooperating. The hard part is that intentions are not formally specified anywhere, so the entire practical problem is the gap between the goal you can write down and the goal the system infers.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI alignment",
+      "label": "AI alignment on Wikipedia"
+    },
+    "answerAliases": [
+      "alignment"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0002",
+    "text": "Reward hacking happens when a reinforcement learning system does what it was literally rewarded for. What is the standard example?",
+    "options": [
+      "A robot failing to reach the goal within the time limit",
+      "A student copying answers instead of learning the material",
+      "A model exceeding its context window on long documents",
+      "A classifier mislabelling a rare class of image"
+    ],
+    "answer": "A student copying answers instead of learning the material",
+    "category": "ethics",
+    "tags": [
+      "reward-hacking",
+      "specification-gaming",
+      "rl"
+    ],
+    "difficulty": 2,
+    "explanation": "DeepMind used the student who copies from the exam answer key as the analogy for specification gaming, since the proxy and the goal are not the same thing. It is the core failure mode of RLHF too, because a reward model is a proxy for what people like rather than what is true.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Reward hacking",
+      "label": "Reward hacking on Wikipedia"
+    },
+    "answerAliases": [
+      "specification gaming",
+      "shortcut"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0003",
+    "text": "When did the European Union's Artificial Intelligence Act enter into force?",
+    "options": [
+      "1 January 2024",
+      "1 June 2023",
+      "1 August 2024",
+      "1 March 2025"
+    ],
+    "answer": "1 August 2024",
+    "category": "ethics",
+    "tags": [
+      "eu-ai-act",
+      "regulation",
+      "policy"
+    ],
+    "difficulty": 3,
+    "explanation": "It entered into force on 1 August 2024, with the provisions coming into operation gradually over the following 6 to 36 months. It is the first comprehensive legal framework of its kind for AI anywhere, and it is risk based, so the obligations that actually bite depend on what a system is used for rather than what it is.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Artificial Intelligence Act",
+      "label": "The EU AI Act on Wikipedia"
+    },
+    "answerAliases": [
+      "1 August 2024",
+      "August 1, 2024"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0004",
+    "text": "Algorithmic bias is defined as what kind of problem?",
+    "options": [
+      "A random error that disappears with more data",
+      "A bug that only affects older hardware",
+      "A slowdown when the training set is too large",
+      "A systematic and repeatable unfair outcome"
+    ],
+    "answer": "A systematic and repeatable unfair outcome",
+    "category": "ethics",
+    "tags": [
+      "bias",
+      "fairness"
+    ],
+    "difficulty": 2,
+    "explanation": "Systematic and repeatable, in a sociotechnical system, and it may not even be the outcome anyone intended. The word repeatable is the important half, because it separates bias from noise and means the problem will not go away by collecting more examples of the same process.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Algorithmic bias",
+      "label": "Algorithmic bias on Wikipedia"
+    },
+    "answerAliases": [
+      "systematic and repeatable harmful tendency"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0005",
+    "text": "Margaret Mitchell is best known for research on automatically removing what from machine learning models?",
+    "options": [
+      "Unwanted demographic biases",
+      "Redundant parameters",
+      "Duplicate training examples",
+      "Low confidence predictions"
+    ],
+    "answer": "Unwanted demographic biases",
+    "category": "ethics",
+    "tags": [
+      "bias",
+      "fairness",
+      "researchers"
+    ],
+    "difficulty": 3,
+    "explanation": "Unwanted biases concerning demographic groups, along with more transparent reporting of what a model is for. Her counterfactual data augmentation work showed you can retrain on a deliberately altered version of a dataset to undo a specific bias without retraining from scratch.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Margaret Mitchell (scientist)",
+      "label": "Margaret Mitchell on Wikipedia"
+    },
+    "answerAliases": [
+      "demographic groups"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0006",
+    "text": "What is a red team in the context of AI safety?",
+    "options": [
+      "The team that reviews a model card before release",
+      "A group that attacks systems to find failures and report back",
+      "A benchmark suite for measuring refusal rates",
+      "A group of users who report bad outputs publicly"
+    ],
+    "answer": "A group that attacks systems to find failures and report back",
+    "category": "ethics",
+    "tags": [
+      "red-teaming",
+      "safety",
+      "security"
+    ],
+    "difficulty": 1,
+    "explanation": "They simulate an adversary against the organisation's own systems, at the organisation's direction, and report what they find so defences can improve. In AI work the same idea is applied to models rather than networks, and it is the only way to find the failure mode nobody thought to write a test for.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Red team",
+      "label": "Red teaming on Wikipedia"
+    },
+    "answerAliases": [
+      "red team"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0007",
+    "text": "A foundation model is trained on a large general purpose dataset to be applied across many tasks. Which of these is a foundation model?",
+    "options": [
+      "A spam filter for one email provider",
+      "A lookup table of country dialling codes",
+      "A large language model such as GPT",
+      "A chess opening database"
+    ],
+    "answer": "A large language model such as GPT",
+    "category": "ethics",
+    "tags": [
+      "foundation-model",
+      "definitions"
+    ],
+    "difficulty": 2,
+    "explanation": "Large language models are the common example, and the term is also written large x model, where x stands for text or image or sound. The distinction that matters is reuse, a foundation model is trained once and adapted to many downstream tasks rather than built for one job.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Foundation model",
+      "label": "Foundation models on Wikipedia"
+    },
+    "answerAliases": [
+      "large x model",
+      "LLM",
+      "large language models"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "eth-0008",
+    "text": "Which famous 2023 paper argued that large language models showed emergent abilities at certain scales?",
+    "options": [
+      "The Scaling Laws paper",
+      "The Foundation Models paper",
+      "The Self Attention paper",
+      "The Emergent Abilities of Large Language Models paper"
+    ],
+    "answer": "The Emergent Abilities of Large Language Models paper",
+    "category": "ethics",
+    "tags": [
+      "emergence",
+      "scaling",
+      "evaluation"
+    ],
+    "difficulty": 3,
+    "explanation": "It argued that abilities like arithmetic and multi step reasoning appear suddenly rather than gradually, and it set the tone for a few years of scaling discourse. The later critique is that the apparent suddenness is largely a property of the metrics chosen, since continuous measures of the same abilities rise smoothly.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2206.07682",
+      "label": "Emergent Abilities of Large Language Models on arXiv"
+    },
+    "answerAliases": [
+      "emergent abilities",
+      "Emergent Abilities of Large Language Models"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

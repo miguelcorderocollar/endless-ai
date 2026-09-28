@@ -1,0 +1,233 @@
+[
+  {
+    "id": "pap-0001",
+    "text": "How many authors are credited on the 2017 paper \"Attention Is All You Need\"?",
+    "options": [
+      "Eight",
+      "Four",
+      "Six",
+      "Eleven"
+    ],
+    "answer": "Eight",
+    "category": "papers",
+    "tags": [
+      "transformer",
+      "attention",
+      "foundational"
+    ],
+    "difficulty": 2,
+    "explanation": "Eight scientists and engineers at Google, led by Ashish Vaswani, and it is one of the most cited papers in computer science. Every large language model in production today is a direct descendant of the architecture it introduced.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Attention Is All You Need",
+      "label": "Attention Is All You Need on Wikipedia"
+    },
+    "answerAliases": [
+      "eight"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0002",
+    "text": "AlexNet is often called the paper that started the deep learning revolution in computer vision. What competition did it win?",
+    "options": [
+      "The Microsoft COCO detection benchmark",
+      "The ImageNet Large Scale Visual Recognition Challenge",
+      "The Pascal VOC image classification task",
+      "The Stanford Visual Geometry Group challenge"
+    ],
+    "answer": "The ImageNet Large Scale Visual Recognition Challenge",
+    "category": "papers",
+    "tags": [
+      "alexnet",
+      "imagenet",
+      "cnn"
+    ],
+    "difficulty": 2,
+    "explanation": "AlexNet classified images into 1,000 categories and cut the ImageNet error rate by a margin nobody had seen before, in 2012. Before it the best entries used hand engineered features, and after it essentially everyone used convolutional neural networks.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlexNet",
+      "label": "AlexNet on Wikipedia"
+    },
+    "answerAliases": [
+      "ImageNet Large Scale Visual Recognition Challenge",
+      "ILSVRC"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0003",
+    "text": "AlexNet classifies images into how many distinct object categories?",
+    "options": [
+      "10,000",
+      "20,000",
+      "1,000",
+      "100,000"
+    ],
+    "answer": "1,000",
+    "category": "papers",
+    "tags": [
+      "alexnet",
+      "imagenet"
+    ],
+    "difficulty": 3,
+    "explanation": "1,000, and it is worth keeping the three numbers on this list apart. ImageNet itself has more than 20,000 categories, one million of the images have bounding boxes, and the whole database has over 14 million hand annotated images.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlexNet",
+      "label": "AlexNet on Wikipedia"
+    },
+    "answerAliases": [
+      "1,000",
+      "1000"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0004",
+    "text": "The transformer paper was written at which company?",
+    "options": [
+      "DeepMind",
+      "Facebook",
+      "Microsoft",
+      "Google"
+    ],
+    "answer": "Google",
+    "category": "papers",
+    "tags": [
+      "transformer",
+      "google",
+      "attention"
+    ],
+    "difficulty": 1,
+    "explanation": "Google, in 2017, which surprises people who assume it came out of DeepMind since that is where the successor models live. DeepMind was still running as a separate company acquired by Google in 2014, and the two did not merge until 2023.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Attention Is All You Need",
+      "label": "Attention Is All You Need on Wikipedia"
+    },
+    "answerAliases": [
+      "Google"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0005",
+    "text": "Word2Vec represents words as vectors using what principle?",
+    "options": [
+      "Using the surrounding words to capture its meaning",
+      "Counting how often a word appears in each document",
+      "Sorting words by the first letter of their definition",
+      "Assigning each word a random position in space"
+    ],
+    "answer": "Using the surrounding words to capture its meaning",
+    "category": "papers",
+    "tags": [
+      "word2vec",
+      "embeddings",
+      "nlp"
+    ],
+    "difficulty": 2,
+    "explanation": "Distributional semantics, meaning is defined by context, so words that appear in similar places end up near each other in the vector space. That idea is the direct ancestor of every embedding in a modern language model and it is why king minus man plus woman lands somewhere sensible.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Word2Vec",
+      "label": "Word2Vec on Wikipedia"
+    },
+    "answerAliases": [
+      "distributional semantics"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0006",
+    "text": "BERT was introduced in 2018 by researchers at which company?",
+    "options": [
+      "Meta",
+      "Google",
+      "OpenAI",
+      "Microsoft"
+    ],
+    "answer": "Google",
+    "category": "papers",
+    "tags": [
+      "bert",
+      "google",
+      "nlp"
+    ],
+    "difficulty": 2,
+    "explanation": "Google, in October 2018, and it was introduced with a paper whose full title is the acronym. It improved the state of the art for large language models immediately and is still, as of 2026, a common methodological component in NLP research.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "BERT (language model)",
+      "label": "BERT on Wikipedia"
+    },
+    "answerAliases": [
+      "Google"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0007",
+    "text": "The ImageNet project, without which the AlexNet moment could not have happened, was led by which researcher?",
+    "options": [
+      "Yann LeCun",
+      "Jitendra Malik",
+      "Fei-Fei Li",
+      "Alex Krizhevsky"
+    ],
+    "answer": "Fei-Fei Li",
+    "category": "papers",
+    "tags": [
+      "imagenet",
+      "datasets"
+    ],
+    "difficulty": 2,
+    "explanation": "Fei-Fei Li built it starting in 2007 with a team of Stanford students, and it took years of manual labelling by undergraduate workers. She has said the data was the actual contribution and the models were the easy part, which is roughly the consensus of everyone who has tried to reproduce an ImageNet result.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ImageNet",
+      "label": "ImageNet on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0008",
+    "text": "The 2015 paper that introduced residual networks won which competition that same year?",
+    "options": [
+      "The Pascal VOC detection task",
+      "The COCO keypoint benchmark",
+      "The ILSVRC segmentation track",
+      "The ImageNet challenge"
+    ],
+    "answer": "The ImageNet challenge",
+    "category": "papers",
+    "tags": [
+      "resnet",
+      "imagenet",
+      "residual"
+    ],
+    "difficulty": 3,
+    "explanation": "The ImageNet challenge, in the ILSVRC series, with a network roughly twenty times deeper than the 2012 winner. The title of the paper is literally the explanation of why that was possible, since learning a residual correction is easier than learning a full mapping.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Residual neural network",
+      "label": "Residual neural networks on Wikipedia"
+    },
+    "answerAliases": [
+      "ImageNet Large Scale Visual Recognition Challenge",
+      "ILSVRC"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

@@ -1,0 +1,294 @@
+[
+  {
+    "id": "mod-0001",
+    "text": "GPT stands for generative pre-trained transformer. What does the transformer part refer to?",
+    "options": [
+      "A neural network architecture based on attention",
+      "A chip designed for running neural networks",
+      "The database the model was trained on",
+      "The tokenizer that splits text into pieces"
+    ],
+    "answer": "A neural network architecture based on attention",
+    "category": "models",
+    "tags": [
+      "gpt",
+      "transformer",
+      "attention"
+    ],
+    "difficulty": 1,
+    "explanation": "The transformer is a family of network architectures built on the multi-head attention mechanism, published by Google in 2017. GPT is an instantiation of it, which is why the two terms get used interchangeably even though one is a building block and the other is a product line.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Transformer (deep learning architecture)",
+      "label": "The transformer architecture on Wikipedia"
+    },
+    "answerAliases": [
+      "transformer",
+      "multi-head attention mechanism"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0002",
+    "text": "OpenAI released GPT-3 in 2020. Roughly how many parameters did it have?",
+    "options": [
+      "1.5 billion",
+      "175 billion",
+      "7 billion",
+      "1 trillion"
+    ],
+    "answer": "175 billion",
+    "category": "models",
+    "tags": [
+      "gpt-3",
+      "scaling"
+    ],
+    "difficulty": 2,
+    "explanation": "175 billion parameters, which was a hundred times larger than GPT-2 and made few shot prompting suddenly look like a new capability. It also produced the paper on emergent behaviour, the zero shot examples, that launched most of the prompt engineering discourse.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-3",
+      "label": "GPT-3 on Wikipedia"
+    },
+    "answerAliases": [
+      "175 billion"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0003",
+    "text": "Google's Gemini family of models took its name partly from NASA's Project Gemini. Why?",
+    "options": [
+      "Because the models run on lunar hardware",
+      "Because the models were trained on space imagery",
+      "Because the models are named after twins",
+      "Because the models replaced the Gemini constellation"
+    ],
+    "answer": "Because the models are named after twins",
+    "category": "models",
+    "tags": [
+      "gemini",
+      "naming"
+    ],
+    "difficulty": 3,
+    "explanation": "Gemini is Latin for twins, chosen to mark the merger of Google Brain and DeepMind, and it is also a nod to Project Gemini. Two unrelated reasons for one name is about usual for Google, and it is a good trick for asking what a model name is actually referring to.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini (language model)",
+      "label": "Gemini on Wikipedia"
+    },
+    "answerAliases": [
+      "twins",
+      "Latin word for \"twins\"",
+      "latin word for \"twins\""
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0004",
+    "text": "Meta's Llama series expands its own name into a backronym. What does L stand for?",
+    "options": [
+      "Layered Language Model Assistant",
+      "Learned Latent Model Architecture",
+      "Lightweight LLM Meta Application",
+      "Large Language Model Meta AI"
+    ],
+    "answer": "Large Language Model Meta AI",
+    "category": "models",
+    "tags": [
+      "llama",
+      "meta",
+      "naming"
+    ],
+    "difficulty": 2,
+    "explanation": "Large Language Model Meta AI, which is a backronym because Llama already existed as a word. The name was chosen partly because the animal is unlikely to be trademarked, and the release in February 2023 was the moment open weight models became genuinely competitive with the closed ones.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Llama (language model)",
+      "label": "Llama on Wikipedia"
+    },
+    "answerAliases": [
+      "Large Language Model Meta AI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0005",
+    "text": "Stable Diffusion, released in 2022, generates images using which broad technique?",
+    "options": [
+      "Diffusion",
+      "Recurrent neural networks",
+      "Generative adversarial networks",
+      "Variational autoencoders"
+    ],
+    "answer": "Diffusion",
+    "category": "models",
+    "tags": [
+      "stable-diffusion",
+      "images",
+      "diffusion"
+    ],
+    "difficulty": 1,
+    "explanation": "A diffusion model learns to reverse a process that destroys structure, so generation runs backwards from noise. Because that gives a much larger space to interpolate in, diffusion models largely displaced GANs for image generation within a couple of years of Stable Diffusion's release.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Stable Diffusion",
+      "label": "Stable Diffusion on Wikipedia"
+    },
+    "answerAliases": [
+      "diffusion techniques"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0006",
+    "text": "DALL-E, DALL-E 2 and DALL-E 3 are all text to image models from which company?",
+    "options": [
+      "Stability AI",
+      "OpenAI",
+      "Midjourney",
+      "Runway"
+    ],
+    "answer": "OpenAI",
+    "category": "models",
+    "tags": [
+      "dall-e",
+      "openai",
+      "images"
+    ],
+    "difficulty": 1,
+    "explanation": "All three come from OpenAI, and the name is a homage to Salvador Dali with the hyphen changed to a middle dot. The confusing part is that Midjourney, Stability AI and Runway are all independent competitors doing the same job, so the four names on this list get confused constantly.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DALL-E",
+      "label": "DALL-E on Wikipedia"
+    },
+    "answerAliases": [
+      "OpenAI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0007",
+    "text": "BERT differs from GPT in one architectural way that changed the field. What is it?",
+    "options": [
+      "It is decoder only and generates text one token at a time",
+      "It is trained from scratch on raw unlabeled video",
+      "It is encoder only and reads text in both directions",
+      "It uses a mixture of experts to route each token"
+    ],
+    "answer": "It is encoder only and reads text in both directions",
+    "category": "models",
+    "tags": [
+      "bert",
+      "encoder",
+      "bidirectional"
+    ],
+    "difficulty": 2,
+    "explanation": "BERT masks tokens and predicts them from context on both sides, so it produces representations rather than continuations. That encoder only design is why BERT rewrote search and sentiment analysis overnight and why every later model describes itself as a BERT variant, for better or worse.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "BERT (language model)",
+      "label": "BERT on Wikipedia"
+    },
+    "answerAliases": [
+      "encoder-only transformer architecture",
+      "encoder-only"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0008",
+    "text": "GPT-2 was pre-trained on a dataset of how many web pages?",
+    "options": [
+      "2 million",
+      "20 million",
+      "80 million",
+      "8 million"
+    ],
+    "answer": "8 million",
+    "category": "models",
+    "tags": [
+      "gpt-2",
+      "training-data"
+    ],
+    "difficulty": 2,
+    "explanation": "8 million pages, and the more interesting part is what happened next. OpenAI released a 124 million parameter version in February 2019 and held the 1.5 billion parameter one back until November, saying a model that good could be used to generate convincing fake text.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-2",
+      "label": "GPT-2 on Wikipedia"
+    },
+    "answerAliases": [
+      "8 million web pages",
+      "8 million"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0009",
+    "text": "ChatGPT was first released on which date?",
+    "options": [
+      "November 30, 2022",
+      "March 14, 2023",
+      "February 1, 2023",
+      "June 20, 2023"
+    ],
+    "answer": "November 30, 2022",
+    "category": "models",
+    "tags": [
+      "chatgpt",
+      "release-date"
+    ],
+    "difficulty": 1,
+    "explanation": "November 30, 2022, which is the date most people mean when they say generative AI went mainstream. It is usually credited with catalysing the AI boom, and the model underneath was a GPT-3.5 fine-tune, not a new frontier model.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ChatGPT",
+      "label": "ChatGPT on Wikipedia"
+    },
+    "answerAliases": [
+      "November 30, 2022",
+      "30 November 2022"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0010",
+    "text": "AlphaGo Zero differed from earlier AlphaGo versions in one important way. What was it?",
+    "options": [
+      "It ran on mobile hardware rather than servers",
+      "It learned entirely from self play with no human games",
+      "It played a different board size than its predecessors",
+      "It used a different search algorithm for the opening"
+    ],
+    "answer": "It learned entirely from self play with no human games",
+    "category": "models",
+    "tags": [
+      "alphago",
+      "self-play",
+      "reinforcement-learning"
+    ],
+    "difficulty": 3,
+    "explanation": "Earlier versions learned from human games, while AlphaGo Zero started from random play and reached superhuman strength on its own. The original AlphaGo was defeated by Lee Sedol in 2016 because of move 37, a move so strange that it had been dismissed as an error, and Zero then beat the version that beat him.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlphaGo",
+      "label": "AlphaGo on Wikipedia"
+    },
+    "answerAliases": [
+      "AlphaGo Zero"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

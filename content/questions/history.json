@@ -1,0 +1,273 @@
+[
+  {
+    "id": "hst-0001",
+    "text": "Which 1956 summer workshop is widely considered the founding event of artificial intelligence as a field?",
+    "options": [
+      "The Dartmouth workshop",
+      "The Stanford Reasoning Workshop",
+      "The Cambridge Machine Intelligence Seminar",
+      "The Berkeley Logic Project"
+    ],
+    "answer": "The Dartmouth workshop",
+    "category": "history",
+    "tags": [
+      "foundational",
+      "symbolic"
+    ],
+    "difficulty": 1,
+    "explanation": "John McCarthy, Marvin Minsky, Nathaniel Rochester and Claude Shannon wrote the proposal that started it, and McCarthy picked the name artificial intelligence while doing so. The workshop is often called the constitutional convention of AI, and the 1956 date is the field's accepted starting line.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Dartmouth workshop",
+      "label": "Dartmouth workshop on Wikipedia"
+    },
+    "answerAliases": [
+      "Dartmouth Summer Research Project",
+      "Dartmouth Summer Research Project on Artificial Intelligence"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0002",
+    "text": "Which researcher coined the term \"artificial intelligence\" while writing the proposal for the 1956 workshop?",
+    "options": [
+      "Marvin Minsky",
+      "John McCarthy",
+      "Claude Shannon",
+      "Nathaniel Rochester"
+    ],
+    "answer": "John McCarthy",
+    "category": "history",
+    "tags": [
+      "foundational",
+      "symbolic",
+      "lisp"
+    ],
+    "difficulty": 1,
+    "explanation": "McCarthy (1927 to 2011) is usually given the credit, on the grounds that he chose the name to avoid the baggage of cybernetics. He also led the development of Lisp, which became the working language of AI research for two decades.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "John McCarthy (computer scientist)",
+      "label": "John McCarthy on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0003",
+    "text": "Which American psychologist built the perceptron, the first trainable artificial neural network?",
+    "options": [
+      "Warren McCulloch",
+      "Walter Pitts",
+      "Frank Rosenblatt",
+      "Marvin Minsky"
+    ],
+    "answer": "Frank Rosenblatt",
+    "category": "history",
+    "tags": [
+      "neural-networks",
+      "perceptron"
+    ],
+    "difficulty": 2,
+    "explanation": "Rosenblatt built it at Cornell in the late 1950s and described it in 1958, and the idea was simple enough that IBM built a machine to run it. He was killed in a boating accident in 1971, a few years before the field's second winter had finished.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Frank Rosenblatt",
+      "label": "Frank Rosenblatt on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0004",
+    "text": "Which MIT researcher wrote ELIZA between 1964 and 1967, the program most often credited as the first chatbot?",
+    "options": [
+      "Kenneth Colby",
+      "Terry Winograd",
+      "Victor Lesser",
+      "Joseph Weizenbaum"
+    ],
+    "answer": "Joseph Weizenbaum",
+    "category": "history",
+    "tags": [
+      "nlp",
+      "chatbot"
+    ],
+    "difficulty": 2,
+    "explanation": "ELIZA matched patterns and substituted phrases, with no understanding of what was said underneath. Weizenbaum was disturbed by how much his colleagues opened up to it, which turned into an influential argument that the illusion of understanding is not the same thing as understanding.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ELIZA",
+      "label": "ELIZA on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0005",
+    "text": "Which IBM researcher coined the term \"machine learning\" in 1959?",
+    "options": [
+      "Arthur Samuel",
+      "Donald Hebb",
+      "Warren McCulloch",
+      "Walter Pitts"
+    ],
+    "answer": "Arthur Samuel",
+    "category": "history",
+    "tags": [
+      "foundational",
+      "checkers"
+    ],
+    "difficulty": 2,
+    "explanation": "Samuel was writing a checkers program and defined learning as getting better at a task without being explicitly programmed to. The checkers player was among the first self-improving programs, and the definition has aged extremely well.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Arthur Samuel (computer scientist)",
+      "label": "Arthur Samuel on Wikipedia"
+    },
+    "answerAliases": [
+      "Arthur Lee Samuel"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0006",
+    "text": "In the history of AI, what does the term \"AI winter\" refer to?",
+    "options": [
+      "A period when datasets were withdrawn from public use",
+      "A period when funding and interest in AI research collapsed",
+      "A period when neural networks replaced symbolic systems",
+      "A period when computers became too small to train models"
+    ],
+    "answer": "A period when funding and interest in AI research collapsed",
+    "category": "history",
+    "tags": [
+      "ai-winter",
+      "funding"
+    ],
+    "difficulty": 1,
+    "explanation": "The field has gone through several hype cycles, each one followed by disappointment, criticism and funding cuts, and then a revival years later. There were two major winters, roughly in the mid 1970s and again after the expert systems bust in the late 1980s.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI winter",
+      "label": "AI winter on Wikipedia"
+    },
+    "answerAliases": [
+      "a period of reduced funding and interest in AI research"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0007",
+    "text": "Which long-running project set out to encode common sense knowledge as an explicit ontology?",
+    "options": [
+      "MYCIN",
+      "SHRDLU",
+      "Cyc",
+      "XCON"
+    ],
+    "answer": "Cyc",
+    "category": "history",
+    "tags": [
+      "symbolic",
+      "knowledge-base",
+      "commonsense"
+    ],
+    "difficulty": 3,
+    "explanation": "Cyc started at MCC in July 1984 and later became Cycorp, and it is still running. The bet was that a machine needs hand-encoded facts about how the world works before it can reason at all, which is a much larger bet than the one deep learning eventually won.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Cyc",
+      "label": "Cyc on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0008",
+    "text": "Which programming language did John McCarthy develop, and did it become the standard language of early AI research?",
+    "options": [
+      "Fortran",
+      "Prolog",
+      "Smalltalk",
+      "Lisp"
+    ],
+    "answer": "Lisp",
+    "category": "history",
+    "tags": [
+      "lisp",
+      "symbolic"
+    ],
+    "difficulty": 2,
+    "explanation": "McCarthy designed Lisp at MIT in the late 1950s and it became the lingua franca of AI for about twenty years. Its garbage collector, its trees and its interactive REPL all existed for the convenience of people experimenting with symbolic programs, and most of what feels modern about Lisp tooling descends from it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "John McCarthy (computer scientist)",
+      "label": "John McCarthy on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0009",
+    "text": "MYCIN diagnosed blood infections and recommended antibiotics. What kind of system was it?",
+    "options": [
+      "An early backward chaining expert system",
+      "An early recurrent neural network",
+      "An early case based reasoning shell",
+      "An early logic programming interpreter"
+    ],
+    "answer": "An early backward chaining expert system",
+    "category": "history",
+    "tags": [
+      "expert-systems",
+      "symbolic"
+    ],
+    "difficulty": 3,
+    "explanation": "MYCIN worked backward from a suspected infection through rules of the form if this, then that, using a small weighted certainty scheme rather than probabilities. It was genuinely good, the name comes from the -mycin suffix on the antibiotics it recommended, and it never shipped because nobody could work out who was liable when it was wrong.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mycin",
+      "label": "MYCIN on Wikipedia"
+    },
+    "answerAliases": [
+      "MYCIN"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hst-0010",
+    "text": "In 1997, Deep Blue became the first computer to win a match against a reigning world champion. Who was the champion?",
+    "options": [
+      "Vladimir Kramnik",
+      "Garry Kasparov",
+      "Anatoly Karpov",
+      "Viswanathan Anand"
+    ],
+    "answer": "Garry Kasparov",
+    "category": "history",
+    "tags": [
+      "chess",
+      "brute-force"
+    ],
+    "difficulty": 2,
+    "explanation": "Kasparov had held the title since 1985 and had a peak rating of 2851, the highest ever recorded at the time. Deep Blue won a six game match in three and a half hours, and the rematch the following year ended in a draw, which is the fairest summary of how close it actually was.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Deep Blue (chess computer)",
+      "label": "Deep Blue on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

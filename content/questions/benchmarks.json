@@ -1,0 +1,181 @@
+[
+  {
+    "id": "ben-0001",
+    "text": "MMLU, a benchmark of multiple choice questions across many subjects, was designed to measure what?",
+    "options": [
+      "How much a model has learned from academic subjects",
+      "How fast a model can generate tokens",
+      "How well a model handles multi step reasoning",
+      "How safely a model refuses harmful requests"
+    ],
+    "answer": "How much a model has learned from academic subjects",
+    "category": "benchmarks",
+    "tags": [
+      "mmlu",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "Measuring Massive Multitask Language Understanding, which is 57 subjects from elementary maths to professional law. The design assumes the model absorbed the material somewhere in training, which is exactly the assumption that makes it a bad measure of reasoning and a decent measure of knowledge.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "MMLU",
+      "label": "MMLU on Wikipedia"
+    },
+    "answerAliases": [
+      "Measuring Massive Multitask Language Understanding"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ben-0002",
+    "text": "Chatbot Arena, now called Arena, has users do what to compare two anonymous models?",
+    "options": [
+      "Rate both models on a one to five star scale",
+      "Write a prompt, get both replies, and vote on the better one",
+      "Run both models on MMLU and compare accuracy",
+      "Measure the latency of each model's response"
+    ],
+    "answer": "Write a prompt, get both replies, and vote on the better one",
+    "category": "benchmarks",
+    "tags": [
+      "arena",
+      "human-preference",
+      "evaluation"
+    ],
+    "difficulty": 1,
+    "explanation": "Pairwise blind voting, and the models are revealed only after the vote. That makes it a crowdsourced preference leaderboard rather than a test, which is precisely why it correlates well with what people enjoy using and poorly with what is true.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Arena.ai",
+      "label": "Arena on Wikipedia"
+    },
+    "answerAliases": [
+      "LMArena",
+      "Chatbot Arena",
+      "vote on the model that gave the better response"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ben-0003",
+    "text": "Benchmark contamination means a model has seen the test data. What is the usual consequence?",
+    "options": [
+      "The reported score understates real ability",
+      "Training becomes slower but more stable",
+      "The reported score overstates real ability",
+      "The model's context window shrinks"
+    ],
+    "answer": "The reported score overstates real ability",
+    "category": "benchmarks",
+    "tags": [
+      "contamination",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "The model recognises the item and retrieves the answer rather than working it out, so the number stops meaning what it claims to. It is the central methodological problem in benchmarking and it is hard to rule out, since a benchmark is by definition public text that also ends up in web scrapes.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2310.06825",
+      "label": "MMLU-Redux on arXiv"
+    },
+    "answerAliases": [
+      "contamination",
+      "benchmark contamination",
+      "data contamination"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ben-0004",
+    "text": "GPQA was built as a deliberately hard replacement for which kind of benchmark question?",
+    "options": [
+      "Elementary mathematics word problems",
+      "Multiple choice questions about world capitals",
+      "Handwritten questions from a single textbook",
+      "PhD level science questions written to be hard"
+    ],
+    "answer": "PhD level science questions written to be hard",
+    "category": "benchmarks",
+    "tags": [
+      "gpqa",
+      "reasoning",
+      "evaluation"
+    ],
+    "difficulty": 3,
+    "explanation": "Graduate level physics, chemistry and biology, written by domain experts and filtered so that non experts in the field answer worse than chance. Google built it after finding that frontier models cleared the existing science benchmarks, and the whole point was to find a ceiling that had not already been reached.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2311.12022",
+      "label": "GPQA on arXiv"
+    },
+    "answerAliases": [
+      "GPQA",
+      "Graduate-level Google-Proof Q&A"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ben-0005",
+    "text": "Which of these is a benchmark for measuring an AI system's ability to fix real software issues?",
+    "options": [
+      "SWE-bench",
+      "MMLU",
+      "Chatbot Arena",
+      "ImageNet"
+    ],
+    "answer": "SWE-bench",
+    "category": "benchmarks",
+    "tags": [
+      "swe-bench",
+      "coding",
+      "agents"
+    ],
+    "difficulty": 1,
+    "explanation": "SWE-bench, which takes real issues from real repositories and scores whether a system produces a patch that passes the tests. That is a much harder bar than HumanEval style function writing, because the model has to understand a codebase it has never seen and not break anything else.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2310.06770",
+      "label": "SWE-bench on arXiv"
+    },
+    "answerAliases": [
+      "SWE-bench",
+      "SWE-bench Verified"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ben-0006",
+    "text": "Why do benchmark scores stop being useful as the frontier moves?",
+    "options": [
+      "Because the models are trained directly on the scores",
+      "Because public benchmarks become saturated and memorised",
+      "Because the scoring scripts are no longer open source",
+      "Because hardware limits make runs unreproducible"
+    ],
+    "answer": "Because public benchmarks become saturated and memorised",
+    "category": "benchmarks",
+    "tags": [
+      "saturation",
+      "evaluation"
+    ],
+    "difficulty": 3,
+    "explanation": "Every benchmark starts life as a proxy for something real and ends as a target, and once the gap closes the number stops separating models. MMLU has spawned MMLU-Pro, MMLU-Redux and others for exactly that reason, and the churn of successor benchmarks is a good signal that a metric has died.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "MMLU",
+      "label": "MMLU on Wikipedia"
+    },
+    "answerAliases": [
+      "saturation",
+      "saturated",
+      "data contamination"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

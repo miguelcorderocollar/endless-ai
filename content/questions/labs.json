@@ -1,0 +1,232 @@
+[
+  {
+    "id": "lab-0001",
+    "text": "Which series of models is OpenAI best known for developing?",
+    "options": [
+      "The GPT series of large language models",
+      "The Claude series of large language models",
+      "The Gemini series of large language models",
+      "The Llama series of large language models"
+    ],
+    "answer": "The GPT series of large language models",
+    "category": "labs",
+    "tags": [
+      "openai",
+      "gpt"
+    ],
+    "difficulty": 1,
+    "explanation": "GPT stands for generative pre-trained transformer, and the name has been carried through the whole line since the original 2018 model. The other three series on this list belong to Anthropic, Google and Meta, which is a quick way to rule three options out and check the fourth.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "OpenAI",
+      "label": "OpenAI on Wikipedia"
+    },
+    "answerAliases": [
+      "generative pre-trained transformer (GPT) series of large language models",
+      "GPT"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0002",
+    "text": "Anthropic and OpenAI are both headquartered in the same American city. Which city?",
+    "options": [
+      "Seattle",
+      "San Francisco",
+      "New York City",
+      "Boston"
+    ],
+    "answer": "San Francisco",
+    "category": "labs",
+    "tags": [
+      "openai",
+      "anthropic"
+    ],
+    "difficulty": 1,
+    "explanation": "Both are public benefit corporations registered and based in San Francisco, and both were founded by people who had just left the same organisation. The overlap in people, funding and hiring is the single largest structural fact about the frontier lab industry.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Anthropic",
+      "label": "Anthropic on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0003",
+    "text": "Which French AI company, founded in 2023 and based in Paris, is known for open weight language models?",
+    "options": [
+      "Scale AI",
+      "Hugging Face",
+      "Mistral AI",
+      "EleutherAI"
+    ],
+    "answer": "Mistral AI",
+    "category": "labs",
+    "tags": [
+      "mistral",
+      "europe",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "Mistral released the Mixtral mixture of experts model under an Apache licence, which was the first genuinely competitive open weight model from a European lab. The valuation above 14 billion dollars makes it the most valuable European AI company.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mistral AI",
+      "label": "Mistral AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Mistral AI SAS",
+      "Mistral"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0004",
+    "text": "Which Hangzhou based AI company develops open weight models and is owned and funded by a hedge fund?",
+    "options": [
+      "Zhipu AI",
+      "Moonshot AI",
+      "Baichuan AI",
+      "DeepSeek"
+    ],
+    "answer": "DeepSeek",
+    "category": "labs",
+    "tags": [
+      "deepseek",
+      "china",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "DeepSeek is funded by High-Flyer, which is unusual, since it means the research is not being driven by outside investors looking for a return. Their reasoning models made strong performance on math and code benchmarks at unusually low cost, and the models were released with open weights.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DeepSeek",
+      "label": "DeepSeek on Wikipedia"
+    },
+    "answerAliases": [
+      "Hangzhou DeepSeek Artificial Intelligence Basic Technology Research Co., Ltd."
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0005",
+    "text": "Which Seattle based non-profit research institute was founded in 2014 by Microsoft co-founder Paul Allen?",
+    "options": [
+      "Allen Institute for AI",
+      "Allen Institute for Brain Science",
+      "Santa Fe Institute",
+      "SRI International"
+    ],
+    "answer": "Allen Institute for AI",
+    "category": "labs",
+    "tags": [
+      "ai2",
+      "nonprofit"
+    ],
+    "difficulty": 3,
+    "explanation": "Ai2, as it styles itself, was built to do open research rather than to ship products, and the distinction matters. The Allen Institute for Brain Science is a separate organisation in Seattle that studies neural tissue, and the two are easy to mix up because they share a name and a benefactor.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Allen Institute for AI",
+      "label": "Allen Institute for AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Ai2"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0006",
+    "text": "Which lab was founded in 2010, acquired by Google in 2014, and later merged with Google Brain in 2023?",
+    "options": [
+      "OpenAI",
+      "DeepMind",
+      "Anthropic",
+      "Cohere"
+    ],
+    "answer": "DeepMind",
+    "category": "labs",
+    "tags": [
+      "deepmind",
+      "alphago",
+      "acquisition"
+    ],
+    "difficulty": 1,
+    "explanation": "DeepMind was founded in London and became the company behind AlphaGo, AlphaFold and Gemini. Google paid a reported 400 million pounds for it, and the merge with Google Brain in April 2023 is what created the awkward situation of two research groups with the same name inside one company.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Google DeepMind",
+      "label": "Google DeepMind on Wikipedia"
+    },
+    "answerAliases": [
+      "DeepMind Technologies Limited",
+      "Google DeepMind"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0007",
+    "text": "Which Toronto based company focuses on large language models for regulated industries such as banking and healthcare?",
+    "options": [
+      "Mistral AI",
+      "Databricks",
+      "Cohere",
+      "Snowflake"
+    ],
+    "answer": "Cohere",
+    "category": "labs",
+    "tags": [
+      "cohere",
+      "enterprise"
+    ],
+    "difficulty": 2,
+    "explanation": "Aidan Gomez, Ivan Zhang and Nick Frosst founded Cohere in 2019, and Gomez was also the first author of the transformer paper that everything modern is built on. The pitch is deployment inside regulated companies rather than a consumer chatbot, which is a slower business with far fewer users.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Cohere",
+      "label": "Cohere on Wikipedia"
+    },
+    "answerAliases": [
+      "Cohere Inc."
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0008",
+    "text": "In which year did Google merge DeepMind with its Google Brain division to form Google DeepMind?",
+    "options": [
+      "2014",
+      "2020",
+      "2022",
+      "2023"
+    ],
+    "answer": "2023",
+    "category": "labs",
+    "tags": [
+      "deepmind",
+      "google-brain",
+      "history"
+    ],
+    "difficulty": 2,
+    "explanation": "Google had already bought DeepMind in 2014, and for nine years it and Google Brain ran as separate organisations with overlapping goals. The 2023 merge left one research lab with a duplicated name inside it, which is a fairly ordinary outcome of acquisitions and an unusually visible one here.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Google DeepMind",
+      "label": "Google DeepMind on Wikipedia"
+    },
+    "answerAliases": [
+      "2023",
+      "April 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

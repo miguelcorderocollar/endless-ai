@@ -1,0 +1,283 @@
+[
+  {
+    "id": "ppl-0001",
+    "text": "Which researcher has earned the title \"the Godfather of AI\"?",
+    "options": [
+      "Geoffrey Hinton",
+      "Yann LeCun",
+      "Yoshua Bengio",
+      "John McCarthy"
+    ],
+    "answer": "Geoffrey Hinton",
+    "category": "people",
+    "tags": [
+      "neural-networks",
+      "pioneer"
+    ],
+    "difficulty": 1,
+    "explanation": "Hinton spent decades on neural networks while almost nobody else did, including through both of the field's winters, and then supervised the work that produced AlexNet in 2012. He shared the 2024 Nobel Prize in Physics with John Hopfield, and he has been blunt about the safety risks ever since.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Geoffrey Hinton",
+      "label": "Geoffrey Hinton on Wikipedia"
+    },
+    "answerAliases": [
+      "Geoffrey Everest Hinton"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0002",
+    "text": "Which researcher built the ImageNet dataset and has been called the Godmother of AI?",
+    "options": [
+      "Kaiming He",
+      "Fei-Fei Li",
+      "Yoshua Bengio",
+      "Andrej Karpathy"
+    ],
+    "answer": "Fei-Fei Li",
+    "category": "people",
+    "tags": [
+      "imagenet",
+      "datasets",
+      "pioneer"
+    ],
+    "difficulty": 1,
+    "explanation": "Li started building ImageNet in 2007 and it is hard to overstate what it did, because most of modern computer vision only became possible once the data existed. She has spent the last several years arguing that the bottleneck has moved from algorithms to data quality, and that the next ImageNet has not been built yet.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Fei-Fei Li",
+      "label": "Fei-Fei Li on Wikipedia"
+    },
+    "answerAliases": [
+      "Li Fēifēi"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0003",
+    "text": "In 2024, which AI researcher shared the Nobel Prize in Chemistry for work on protein structure prediction?",
+    "options": [
+      "David Baker",
+      "Yann LeCun",
+      "Demis Hassabis",
+      "Yoshua Bengio"
+    ],
+    "answer": "Demis Hassabis",
+    "category": "people",
+    "tags": [
+      "alphafold",
+      "nobel",
+      "deepmind"
+    ],
+    "difficulty": 2,
+    "explanation": "In 2024 Hassabis and John Jumper shared half the Nobel Prize in Chemistry, and David Baker took the other half for computational protein design. AlphaFold had already predicted the structure of over 200 million proteins by then, which is close to every protein catalogued by hand.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Demis Hassabis",
+      "label": "Demis Hassabis on Wikipedia"
+    },
+    "answerAliases": [
+      "Sir Demis Hassabis"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0004",
+    "text": "Which researcher co-created AlexNet alongside Alex Krizhevsky and Geoffrey Hinton?",
+    "options": [
+      "Yann LeCun",
+      "Andrej Karpathy",
+      "Alex Krizhevsky",
+      "Ilya Sutskever"
+    ],
+    "answer": "Ilya Sutskever",
+    "category": "people",
+    "tags": [
+      "alexnet",
+      "imagenet"
+    ],
+    "difficulty": 2,
+    "explanation": "Sutskever was a graduate student at Toronto at the time, and AlexNet is one of the most cited papers in the whole field. He went on to co-found OpenAI, lead the company that made the GPT models, and spend a decade convinced that scaling alone would get to something extraordinary.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Ilya Sutskever",
+      "label": "Ilya Sutskever on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0005",
+    "text": "Which researcher founded DAIR, the Distributed AI Research Institute, and is known for work on algorithmic bias?",
+    "options": [
+      "Timnit Gebru",
+      "Margaret Mitchell",
+      "Safiya Umoja Noble",
+      "Shakir Lee"
+    ],
+    "answer": "Timnit Gebru",
+    "category": "people",
+    "tags": [
+      "bias",
+      "fairness",
+      "activism"
+    ],
+    "difficulty": 3,
+    "explanation": "Gebru co-founded Black in AI and led a research team at Google that was pushed out over a paper about the risks of large language models. DAIR came out of that, and the firing became the most public argument anyone in the field has had about what research is allowed to say out loud.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Timnit Gebru",
+      "label": "Timnit Gebru on Wikipedia"
+    },
+    "answerAliases": [
+      "Timnit W. Gebru"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0006",
+    "text": "Which scholar won the 1978 Nobel Memorial Prize in Economic Sciences and is known for bounded rationality?",
+    "options": [
+      "Kenneth Arrow",
+      "Herbert Simon",
+      "Daniel Kahneman",
+      "John Nash"
+    ],
+    "answer": "Herbert Simon",
+    "category": "people",
+    "tags": [
+      "bounded-rationality",
+      "ai-history"
+    ],
+    "difficulty": 2,
+    "explanation": "Simon argued that people satisfice, they look for good enough rather than optimal, and he said the same thing about machines. He and Allen Newell built the Logic Theorist and GPS, and both of them are on the short list of anyone trying to explain where the idea of a thinking machine came from.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Herbert A. Simon",
+      "label": "Herbert A. Simon on Wikipedia"
+    },
+    "answerAliases": [
+      "Herbert Alexander Simon",
+      "Herbert A. Simon"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0007",
+    "text": "Who has been the chief executive officer of OpenAI since 2019?",
+    "options": [
+      "Dario Amodei",
+      "Demis Hassabis",
+      "Sam Altman",
+      "Sundar Pichai"
+    ],
+    "answer": "Sam Altman",
+    "category": "people",
+    "tags": [
+      "openai",
+      "leadership"
+    ],
+    "difficulty": 1,
+    "explanation": "Altman became CEO in 2019, a year after OpenAI was founded as a nonprofit research lab with the explicit goal of not pursuing profit. That structure has been rewritten twice since, and the board upheaval in November 2023 was the loudest argument anybody has had about who actually controls the company.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Sam Altman",
+      "label": "Sam Altman on Wikipedia"
+    },
+    "answerAliases": [
+      "Samuel Harris Altman",
+      "Samuel Altman"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0008",
+    "text": "Which English mathematician designed the Turing test and is regarded as the father of theoretical computer science?",
+    "options": [
+      "John von Neumann",
+      "Claude Shannon",
+      "Alonzo Church",
+      "Alan Turing"
+    ],
+    "answer": "Alan Turing",
+    "category": "people",
+    "tags": [
+      "turing-test",
+      "foundational"
+    ],
+    "difficulty": 1,
+    "explanation": "Turing formalized the idea of a general purpose computing machine and helped break the Enigma code at Bletchley Park. He proposed the imitation game in 1950, and six years later he wrote a paper on machine learning that is the reason the term exists at all.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Alan Turing",
+      "label": "Alan Turing on Wikipedia"
+    },
+    "answerAliases": [
+      "Alan Mathison Turing"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0009",
+    "text": "Which researcher was a cofounder and head of Google Brain, and later served as Chief Scientist at Baidu?",
+    "options": [
+      "Andrew Ng",
+      "Jeff Dean",
+      "Sanjay Ghemawat",
+      "Greg Corrado"
+    ],
+    "answer": "Andrew Ng",
+    "category": "people",
+    "tags": [
+      "google-brain",
+      "education"
+    ],
+    "difficulty": 2,
+    "explanation": "Ng ran Google Brain when the company was largely still using speech and ads research, then spent three years at Baidu before leaving to work on education. He also co-founded Coursera and Deeplearning.ai, which is why his name shows up in far more machine learning course syllabuses than research papers.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Andrew Ng",
+      "label": "Andrew Ng on Wikipedia"
+    },
+    "answerAliases": [
+      "Andrew Yan-Tak Ng"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0010",
+    "text": "Which researcher co-founded Anthropic with his sister, and had previously been vice president of research at OpenAI?",
+    "options": [
+      "Jack Clark",
+      "Dario Amodei",
+      "Shane Legg",
+      "Alex Cardos"
+    ],
+    "answer": "Dario Amodei",
+    "category": "people",
+    "tags": [
+      "anthropic",
+      "alignment"
+    ],
+    "difficulty": 2,
+    "explanation": "Dario and Daniela Amodei founded Anthropic in January 2021 with the stated goal of promoting AI safety, and he ran research at OpenAI first. Their publishing agenda, Constitutional AI in particular, has been the most sustained public attempt so far to write alignment research down instead of only doing it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Dario Amodei",
+      "label": "Dario Amodei on Wikipedia"
+    },
+    "answerAliases": [],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

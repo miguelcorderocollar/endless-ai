@@ -1,0 +1,288 @@
+[
+  {
+    "id": "con-0001",
+    "text": "In information theory, what does a low perplexity indicate?",
+    "options": [
+      "The model is good at predicting the sample",
+      "The model has few parameters to train",
+      "The training data was collected recently",
+      "The model runs slowly at inference time"
+    ],
+    "answer": "The model is good at predicting the sample",
+    "category": "concepts",
+    "tags": [
+      "perplexity",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "It measures how well a probability distribution predicts a sample, and lower means better. The intuitive version is that perplexity is roughly how many options the model feels it has at each step, so 2 means it is usually confident between two choices.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Perplexity",
+      "label": "Perplexity on Wikipedia"
+    },
+    "answerAliases": [
+      "perplexity"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0002",
+    "text": "A model is overfitting when it does what?",
+    "options": [
+      "Has too few parameters to learn the pattern",
+      "Fits the training data too closely to generalise",
+      "Runs out of memory during training",
+      "Produces the same output for every input"
+    ],
+    "answer": "Fits the training data too closely to generalise",
+    "category": "concepts",
+    "tags": [
+      "overfitting",
+      "generalisation"
+    ],
+    "difficulty": 1,
+    "explanation": "It corresponds too closely to one particular set of data and then fails on anything new, and an overfitted model has more parameters than the data can justify. Every regularisation technique, dropout included, exists to stop this, and large language models are trained in a regime where it is deliberately taken to the extreme.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Overfitting",
+      "label": "Overfitting on Wikipedia"
+    },
+    "answerAliases": [
+      "overfitting",
+      "overfitted model"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0003",
+    "text": "Gradient descent is what kind of method?",
+    "options": [
+      "A stochastic sampling algorithm",
+      "A method for compressing model weights",
+      "An iterative optimisation method for differentiable functions",
+      "A procedure for splitting a dataset into batches"
+    ],
+    "answer": "An iterative optimisation method for differentiable functions",
+    "category": "concepts",
+    "tags": [
+      "gradient-descent",
+      "optimisation"
+    ],
+    "difficulty": 2,
+    "explanation": "A first order iterative algorithm for minimising a differentiable function, which means it follows the slope downhill in small steps. The batch size and learning rate are the two hyperparameters everyone tunes first, and the reason the loss curve is noisy rather than smooth is that each step uses a different sample of the data.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gradient descent",
+      "label": "Gradient descent on Wikipedia"
+    },
+    "answerAliases": [
+      "first-order iterative algorithm"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0004",
+    "text": "Dropout is a technique for reducing what problem in neural networks?",
+    "options": [
+      "Vanishing gradients",
+      "Class imbalance",
+      "Slow convergence",
+      "Overfitting"
+    ],
+    "answer": "Overfitting",
+    "category": "concepts",
+    "tags": [
+      "dropout",
+      "regularisation"
+    ],
+    "difficulty": 1,
+    "explanation": "Overfitting, by randomly zeroing inputs and outputs during training so neurons cannot co-adapt to each other. It is only applied while training and never at inference, which is the detail that trips people up when they first see it in code.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Dropout (neural networks)",
+      "label": "Dropout on Wikipedia"
+    },
+    "answerAliases": [
+      "overfitting",
+      "regularization"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0005",
+    "text": "What does backpropagation compute?",
+    "options": [
+      "The gradient of the loss with respect to parameters",
+      "The next token in the output sequence",
+      "The attention weights between two tokens",
+      "The size of the model's parameter count"
+    ],
+    "answer": "The gradient of the loss with respect to parameters",
+    "category": "concepts",
+    "tags": [
+      "backpropagation",
+      "training"
+    ],
+    "difficulty": 2,
+    "explanation": "Gradient computation for the parameter updates, by working backwards through the network and applying the chain rule. It is the reason training is not guesswork, and the reason the transformer abandoned backpropagation through time, since the whole sequence is processed in one forward pass instead.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Backpropagation",
+      "label": "Backpropagation on Wikipedia"
+    },
+    "answerAliases": [
+      "gradient computation method",
+      "parameter updates"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0006",
+    "text": "A latent space is best described as what?",
+    "options": [
+      "A physical region where models are stored on disk",
+      "A space where similar items sit close together",
+      "A list of tokens the model has never seen",
+      "The gap between training and inference"
+    ],
+    "answer": "A space where similar items sit close together",
+    "category": "concepts",
+    "tags": [
+      "latent-space",
+      "embeddings"
+    ],
+    "difficulty": 2,
+    "explanation": "An embedding space defined by a set of latent variables that emerge from how similar items resemble each other. The geometry is the point, because it is what makes nearest neighbour search, clustering and the whole idea of interpolating between two images work.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Latent space",
+      "label": "Latent space on Wikipedia"
+    },
+    "answerAliases": [
+      "embedding space",
+      "latent feature space"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0007",
+    "text": "Zero-shot learning is a setup where the learner sees what during training?",
+    "options": [
+      "Only unlabelled images of the target classes",
+      "One labelled example of every class",
+      "No examples at all of the test time classes",
+      "Labels provided only at test time"
+    ],
+    "answer": "No examples at all of the test time classes",
+    "category": "concepts",
+    "tags": [
+      "zero-shot",
+      "transfer-learning"
+    ],
+    "difficulty": 2,
+    "explanation": "Nothing of the kind, and at test time it has to predict a class it has never seen, which is the name. It is a play on one-shot learning from computer vision, and it is the mechanism behind a large share of what people call a language model doing a task nobody trained it on.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Zero-shot learning",
+      "label": "Zero-shot learning on Wikipedia"
+    },
+    "answerAliases": [
+      "zero-shot"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0008",
+    "text": "What does the ReLU activation function do?",
+    "options": [
+      "Squashes its input between zero and one",
+      "Halves its input when it is negative",
+      "Converts its input to a probability",
+      "Outputs the non negative part of its input"
+    ],
+    "answer": "Outputs the non negative part of its input",
+    "category": "concepts",
+    "tags": [
+      "relu",
+      "activation"
+    ],
+    "difficulty": 1,
+    "explanation": "It is the ramp function, zero below zero and linear above, and being non linear is what lets a network of them solve non trivial problems. It replaced the sigmoid in hidden layers because it does not saturate on the positive side and it is far cheaper to compute.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Rectified linear unit",
+      "label": "Rectified linear units on Wikipedia"
+    },
+    "answerAliases": [
+      "ramp function",
+      "non-negative part of its argument"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0009",
+    "text": "What does the softmax function convert a tuple of numbers into?",
+    "options": [
+      "A probability distribution over the possible outcomes",
+      "A single averaged value",
+      "A sorted list in descending order",
+      "A gradient for each input weight"
+    ],
+    "answer": "A probability distribution over the possible outcomes",
+    "category": "concepts",
+    "tags": [
+      "softmax",
+      "output-layer"
+    ],
+    "difficulty": 2,
+    "explanation": "A probability distribution over K outcomes, and it is almost always the last activation function in a classifier or language model. It is a generalisation of the logistic function to multiple dimensions, which is why you see the same function doing both binary and 50,000 way classification.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Softmax function",
+      "label": "The softmax function on Wikipedia"
+    },
+    "answerAliases": [
+      "probability distribution",
+      "normalized exponential function"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0010",
+    "text": "What is an epoch in neural network training?",
+    "options": [
+      "One batch of data processed by the model",
+      "One full pass through the entire training dataset",
+      "One full pass of the loss function over the weights",
+      "One forward pass through a single layer"
+    ],
+    "answer": "One full pass through the entire training dataset",
+    "category": "concepts",
+    "tags": [
+      "epoch",
+      "training"
+    ],
+    "difficulty": 1,
+    "explanation": "A full pass over the training data, after which the batch count resets. People say one epoch on a frontier model almost in the abstract, because the dataset is so large that nobody sees a second one, which is a good way to notice that the word is doing less work than people assume.",
+    "source": {
+      "kind": "url",
+      "url": "https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.OneCycleLR.html",
+      "label": "The PyTorch documentation on training loops"
+    },
+    "answerAliases": [
+      "one epoch"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

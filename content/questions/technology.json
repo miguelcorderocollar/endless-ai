@@ -1,0 +1,292 @@
+[
+  {
+    "id": "tec-0001",
+    "text": "The 2017 paper \"Attention Is All You Need\" described a model architecture that removed which component from earlier sequence to sequence systems?",
+    "options": [
+      "The recurrent or convolutional stack",
+      "The word embedding layer",
+      "The output softmax",
+      "The positional encoding"
+    ],
+    "answer": "The recurrent or convolutional stack",
+    "category": "technology",
+    "tags": [
+      "transformer",
+      "rnn",
+      "attention"
+    ],
+    "difficulty": 2,
+    "explanation": "Eight Google authors dropped recurrence and convolution entirely and built the whole sequence model out of attention and feedforward layers. That is what made training parallel across the sequence, which is the property everything about scaling depends on.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Attention Is All You Need",
+      "label": "Attention Is All You Need on Wikipedia"
+    },
+    "answerAliases": [
+      "transformer",
+      "the transformer"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0002",
+    "text": "Attention had already been used in sequence models before the transformer. Which 2014 work introduced the variant the transformer builds on?",
+    "options": [
+      "The seq2seq paper",
+      "The Bahdanau attention paper",
+      "The LSTM sequence to sequence paper",
+      "The byte pair encoding paper"
+    ],
+    "answer": "The Bahdanau attention paper",
+    "category": "technology",
+    "tags": [
+      "attention",
+      "bahdanau",
+      "nmt"
+    ],
+    "difficulty": 3,
+    "explanation": "Dzmitry Bahdanau and colleagues proposed additive attention in 2014 so a decoder could look at every part of the input rather than one fixed vector. The transformer paper credits them directly and then shows you can throw the recurrence away and keep the attention.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Attention Is All You Need",
+      "label": "Attention Is All You Need on Wikipedia"
+    },
+    "answerAliases": [
+      "Bahdanau",
+      "Bahdanau et al."
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0003",
+    "text": "What does RAG stand for in the context of large language models?",
+    "options": [
+      "Recurrent architecture generation",
+      "Reinforcement augmented generation",
+      "Retrieval augmented generation",
+      "Recursive attention grouping"
+    ],
+    "answer": "Retrieval augmented generation",
+    "category": "technology",
+    "tags": [
+      "rag",
+      "retrieval"
+    ],
+    "difficulty": 1,
+    "explanation": "Retrieval augmented generation, where the model looks up documents first and then answers using them alongside what it already knows. It is the standard fix for giving a model private or recent information without retraining it, and it is why most enterprise chat assistants are really a search engine with a language model in front.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Retrieval-augmented generation",
+      "label": "Retrieval augmented generation on Wikipedia"
+    },
+    "answerAliases": [
+      "Retrieval-augmented generation"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0004",
+    "text": "In RLHF, what is trained first and then used to score model outputs?",
+    "options": [
+      "A separate copy of the base model",
+      "A tokenizer on the preference dataset",
+      "A retrieval index over the prompts",
+      "A reward model from human preference data"
+    ],
+    "answer": "A reward model from human preference data",
+    "category": "technology",
+    "tags": [
+      "rlhf",
+      "alignment",
+      "reward-model"
+    ],
+    "difficulty": 2,
+    "explanation": "Humans rank model outputs, those rankings train a reward model, and the reward model then supplies the signal for reinforcement learning against the policy. The cost is that you have compressed a squishy human judgement into a single number, and every known failure of the approach comes from that step.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Reinforcement learning from human feedback",
+      "label": "RLHF on Wikipedia"
+    },
+    "answerAliases": [
+      "reward model"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0005",
+    "text": "In a mixture of experts model, what happens to the tokens that are routed to any given expert?",
+    "options": [
+      "They are processed by only a subset of experts",
+      "They are processed by every expert in parallel",
+      "They are dropped to keep the model small",
+      "They are sent to a separate copy of the model"
+    ],
+    "answer": "They are processed by only a subset of experts",
+    "category": "technology",
+    "tags": [
+      "moe",
+      "sparsity",
+      "routing"
+    ],
+    "difficulty": 2,
+    "explanation": "A router picks which experts see which tokens, so the total parameter count goes up while the compute per token stays roughly flat. Mixtral was the first widely deployed example and it made open weight models competitive partly for exactly that reason.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mixture of experts",
+      "label": "Mixture of experts on Wikipedia"
+    },
+    "answerAliases": [
+      "Mixture of experts"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0006",
+    "text": "Knowledge distillation transfers capability from a large model to a smaller one. What is the aim of the transfer?",
+    "options": [
+      "To make the small model identical to the large one",
+      "To let the small model run faster with similar behaviour",
+      "To increase the small model parameter count",
+      "To remove the need for training data"
+    ],
+    "answer": "To let the small model run faster with similar behaviour",
+    "category": "technology",
+    "tags": [
+      "distillation",
+      "compression"
+    ],
+    "difficulty": 2,
+    "explanation": "The large model's knowledge often sits in behaviour that can be imitated rather than copied, so the student gets closer to the teacher than training from scratch would allow. The gap between teacher and student performance is the whole research problem, and it is where most of the effort in small model work goes.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Knowledge distillation",
+      "label": "Knowledge distillation on Wikipedia"
+    },
+    "answerAliases": [
+      "model distillation"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0007",
+    "text": "The two networks in a generative adversarial network are trained to do what to each other?",
+    "options": [
+      "Agree on the same output distribution",
+      "Predict the next token in a sequence",
+      "Classify real images from generated ones",
+      "Reconstruct the input from a compressed code"
+    ],
+    "answer": "Classify real images from generated ones",
+    "category": "technology",
+    "tags": [
+      "gan",
+      "generative",
+      "adversarial"
+    ],
+    "difficulty": 2,
+    "explanation": "One network generates and the other tries to tell its output from real data, which Ian Goodfellow and colleagues at Montreal described in 2014 as a zero sum game. Training is notoriously unstable, and that instability is the main practical reason diffusion models took over image generation.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Generative adversarial network",
+      "label": "Generative adversarial networks on Wikipedia"
+    },
+    "answerAliases": [
+      "GAN",
+      "generator and discriminator"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0008",
+    "text": "LSTM networks were designed to solve which problem in recurrent networks?",
+    "options": [
+      "The overfitting problem",
+      "The class imbalance problem",
+      "The data parallelism problem",
+      "The vanishing gradient problem"
+    ],
+    "answer": "The vanishing gradient problem",
+    "category": "technology",
+    "tags": [
+      "lstm",
+      "rnn",
+      "gradients"
+    ],
+    "difficulty": 2,
+    "explanation": "Gradients going back through many timesteps decay to nothing, so an RNN forgets anything long before the start of the sequence. LSTMs add gated cell states that hold information across thousands of timesteps, and they were the dominant sequence model until attention made them largely unnecessary.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Long short-term memory",
+      "label": "Long short-term memory on Wikipedia"
+    },
+    "answerAliases": [
+      "vanishing gradient"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0009",
+    "text": "ResNet won the 2015 ImageNet challenge by introducing a specific change. What was it?",
+    "options": [
+      "Learning residual functions with reference to the inputs",
+      "Using a mixture of experts per layer",
+      "Replacing convolution with attention",
+      "Training on much larger image crops"
+    ],
+    "answer": "Learning residual functions with reference to the inputs",
+    "category": "technology",
+    "tags": [
+      "resnet",
+      "residual",
+      "imagenet"
+    ],
+    "difficulty": 3,
+    "explanation": "Each block learns to add a correction to its input rather than to replace it, which gives gradients a short path back. That is what made networks hundreds of layers deep trainable at all, and it is the same skip connection idea the transformer uses between its layers.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Residual neural network",
+      "label": "Residual neural networks on Wikipedia"
+    },
+    "answerAliases": [
+      "residual functions"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0010",
+    "text": "Prompt engineering refers to what exactly?",
+    "options": [
+      "Tuning the weights of an existing model",
+      "Structuring natural language inputs to shape outputs",
+      "Building the retrieval index for a RAG system",
+      "Compressing a model to run on smaller hardware"
+    ],
+    "answer": "Structuring natural language inputs to shape outputs",
+    "category": "technology",
+    "tags": [
+      "prompting",
+      "inference"
+    ],
+    "difficulty": 1,
+    "explanation": "It is writing the input text so the model produces what you wanted, with no change to the model itself. The term has aged a bit, since the more interesting version of the work is now called context engineering and covers tools, metadata and system instructions as well as the prompt.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Prompt engineering",
+      "label": "Prompt engineering on Wikipedia"
+    },
+    "answerAliases": [
+      "context engineering"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

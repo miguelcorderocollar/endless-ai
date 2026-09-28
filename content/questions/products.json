@@ -1,0 +1,178 @@
+[
+  {
+    "id": "pro-0001",
+    "text": "GitHub Copilot was first announced on what date?",
+    "options": [
+      "June 29, 2021",
+      "March 14, 2023",
+      "November 30, 2022",
+      "February 1, 2022"
+    ],
+    "answer": "June 29, 2021",
+    "category": "products",
+    "tags": [
+      "copilot",
+      "coding",
+      "release-date"
+    ],
+    "difficulty": 2,
+    "explanation": "It is a code completion assistant for Visual Studio Code, Visual Studio, Neovim, Eclipse and the JetBrains IDEs, built by GitHub with OpenAI. It shipped two years before ChatGPT, which makes it a useful reminder that coding assistants were quietly the first mainstream AI product.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GitHub Copilot",
+      "label": "GitHub Copilot on Wikipedia"
+    },
+    "answerAliases": [
+      "29 June 2021",
+      "June 29, 2021"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pro-0002",
+    "text": "Runway AI is a New York company best known for which product category?",
+    "options": [
+      "Text to speech synthesis",
+      "Text to video generation",
+      "Code autocompletion",
+      "Chip design software"
+    ],
+    "answer": "Text to video generation",
+    "category": "products",
+    "tags": [
+      "runway",
+      "video",
+      "creative-tools"
+    ],
+    "difficulty": 1,
+    "explanation": "Video, images and other multimedia, through commercial text to video and video generative models. It is one of a cluster of companies, along with Stability AI and Midjourney, that turned generative research into tools filmmakers and designers actually pay for.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Runway (company)",
+      "label": "Runway AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Runway ML",
+      "Runway"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pro-0003",
+    "text": "ElevenLabs, founded in 2022, specialises in which area of AI?",
+    "options": [
+      "Text to image generation",
+      "Autonomous driving",
+      "Natural sounding speech synthesis",
+      "Protein structure prediction"
+    ],
+    "answer": "Natural sounding speech synthesis",
+    "category": "products",
+    "tags": [
+      "elevenlabs",
+      "speech",
+      "audio"
+    ],
+    "difficulty": 1,
+    "explanation": "Speech, and it was founded by Piotr Dąbkowski and Mateusz Staniszewski, who both worked on speech at Google. The company is based in London with offices in New York, Warsaw and San Francisco, which is an unusual arrangement for a company founded by two Polish entrepreneurs and incorporated in the US.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ElevenLabs",
+      "label": "ElevenLabs on Wikipedia"
+    },
+    "answerAliases": [
+      "ElevenLabs Inc."
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pro-0004",
+    "text": "Sora, previewed by OpenAI in February 2024, is what kind of model?",
+    "options": [
+      "A speech to text model",
+      "A protein folding model",
+      "A reinforcement learning agent",
+      "A text to video model"
+    ],
+    "answer": "A text to video model",
+    "category": "products",
+    "tags": [
+      "sora",
+      "openai",
+      "video"
+    ],
+    "difficulty": 1,
+    "explanation": "Text to video, and it also came as a social media app. The first public generation was for ChatGPT Plus and Pro users in the United States and Canada in December 2024, after a long preview period that generated an enormous amount of speculation.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Sora (text-to-video model)",
+      "label": "Sora on Wikipedia"
+    },
+    "answerAliases": [
+      "Sora"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pro-0005",
+    "text": "Google's NotebookLM was renamed in 2025. What is it now called?",
+    "options": [
+      "Gemini Notebook",
+      "Google Studio",
+      "Deep Research",
+      "Bard Workspace"
+    ],
+    "answer": "Gemini Notebook",
+    "category": "products",
+    "tags": [
+      "notebooklm",
+      "google",
+      "rag"
+    ],
+    "difficulty": 2,
+    "explanation": "Gemini Notebook, with LM standing for Language Model, and it is a retrieval augmented research and note taking tool. It answers only from documents you give it and cites them, which is the product form that RAG actually looks like when it is aimed at people rather than engineers.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini Notebook",
+      "label": "Gemini Notebook on Wikipedia"
+    },
+    "answerAliases": [
+      "NotebookLM",
+      "Google NotebookLM"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pro-0006",
+    "text": "What does the LM in the name NotebookLM stand for?",
+    "options": [
+      "Language Machine",
+      "Language Model",
+      "Learning Module",
+      "Logical Method"
+    ],
+    "answer": "Language Model",
+    "category": "products",
+    "tags": [
+      "notebooklm",
+      "naming"
+    ],
+    "difficulty": 3,
+    "explanation": "Language Model, which is the only technical term in the product name. The rest of the name describes what the tool does, which is reading your notes back to you with citations, and the abbreviation is a small joke aimed at people who would recognise it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini Notebook",
+      "label": "Gemini Notebook on Wikipedia"
+    },
+    "answerAliases": [
+      "Language Model"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

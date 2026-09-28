@@ -1,0 +1,177 @@
+[
+  {
+    "id": "oss-0001",
+    "text": "What is Hugging Face best known for?",
+    "options": [
+      "A repository for sharing models and datasets",
+      "A GPU architecture sold to data centres",
+      "A web browser used to scrape training data",
+      "A cloud provider for GPU workloads"
+    ],
+    "answer": "A repository for sharing models and datasets",
+    "category": "open-source",
+    "tags": [
+      "hugging-face",
+      "hub",
+      "transformers"
+    ],
+    "difficulty": 1,
+    "explanation": "The Hub, plus the Transformers library, which is the default way most people load a pretrained model. It is the closest thing the field has to a package registry for weights, and its acquisition by Nvidia in August 2026 made the governance of open model infrastructure a much bigger conversation than it was.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hugging Face",
+      "label": "Hugging Face on Wikipedia"
+    },
+    "answerAliases": [
+      "Transformers library",
+      "Hugging Face platform"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "oss-0002",
+    "text": "Open weights means what exactly?",
+    "options": [
+      "The training data is published alongside the model",
+      "The learned parameters are publicly released",
+      "The model code is released without a licence",
+      "The model may be used without attribution"
+    ],
+    "answer": "The learned parameters are publicly released",
+    "category": "open-source",
+    "tags": [
+      "open-weights",
+      "licensing"
+    ],
+    "difficulty": 2,
+    "explanation": "The weights and biases, so anyone can download and run them, and whether you can modify, fine tune or redistribute them depends on the licence. That last clause is the whole argument, since a model with open weights and a restrictive licence is not open source by anyone's definition.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Open weights",
+      "label": "Open weights on Wikipedia"
+    },
+    "answerAliases": [
+      "publicly released learned parameters"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "oss-0003",
+    "text": "PyTorch was originally developed at which company?",
+    "options": [
+      "Google",
+      "Microsoft",
+      "Meta",
+      "Apple"
+    ],
+    "answer": "Meta",
+    "category": "open-source",
+    "tags": [
+      "pytorch",
+      "framework"
+    ],
+    "difficulty": 1,
+    "explanation": "Meta, as a successor to Torch, and it is now developed with support from the Linux Foundation. The defining design choice is autograd, where you write forward code and the backward pass is derived for you, which is why PyTorch won over TensorFlow for research work despite TensorFlow arriving first.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "PyTorch",
+      "label": "PyTorch on Wikipedia"
+    },
+    "answerAliases": [
+      "Meta Platforms",
+      "Facebook"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "oss-0004",
+    "text": "Under which licence is TensorFlow released?",
+    "options": [
+      "The MIT Licence",
+      "The GPL version 3",
+      "The BSD 3 Clause Licence",
+      "The Apache Licence 2.0"
+    ],
+    "answer": "The Apache Licence 2.0",
+    "category": "open-source",
+    "tags": [
+      "tensorflow",
+      "licensing"
+    ],
+    "difficulty": 2,
+    "explanation": "The Apache Licence 2.0, which allows commercial use and includes an explicit patent grant. PyTorch uses a similarly permissive BSD style licence, and the permissive choice is the norm for deep learning frameworks because companies want to build on them without a legal review slowing them down.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "TensorFlow",
+      "label": "TensorFlow on Wikipedia"
+    },
+    "answerAliases": [
+      "Apache License 2.0",
+      "Apache 2.0"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "oss-0005",
+    "text": "EleutherAI was formed in 2020 with a specific goal. What was it?",
+    "options": [
+      "To create an open source version of GPT-3",
+      "To build a public search index for AI papers",
+      "To standardise neural network benchmarks",
+      "To run a public cloud GPU cluster"
+    ],
+    "answer": "To create an open source version of GPT-3",
+    "category": "open-source",
+    "tags": [
+      "eleutherai",
+      "open-science",
+      "gpt-3"
+    ],
+    "difficulty": 2,
+    "explanation": "To open source GPT-3, and it started as a Discord server in 2020 before formally incorporating as a non profit institute in early 2023. It is often described as an open source version of OpenAI, which is a nice phrase and also slightly unfair to both organisations.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "EleutherAI",
+      "label": "EleutherAI on Wikipedia"
+    },
+    "answerAliases": [
+      "open-source version of GPT-3",
+      "open source version of GPT-3"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "oss-0006",
+    "text": "Common Crawl is best known in AI for what?",
+    "options": [
+      "Hosting an open source large language model",
+      "Publishing a large public web archive used as training data",
+      "Maintaining a registry of AI model licences",
+      "Running a public benchmark for code generation"
+    ],
+    "answer": "Publishing a large public web archive used as training data",
+    "category": "open-source",
+    "tags": [
+      "common-crawl",
+      "datasets",
+      "training-data"
+    ],
+    "difficulty": 2,
+    "explanation": "A non profit that crawls the web and gives away its archives and datasets, free on AWS if you can pay the storage and compute. It is the backbone of an enormous share of web scale pretraining corpora, and it is also why the copyright questions in this field are as hard as they are.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Common Crawl",
+      "label": "Common Crawl on Wikipedia"
+    },
+    "answerAliases": [
+      "Common Crawl Foundation"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

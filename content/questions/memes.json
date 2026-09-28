@@ -1,0 +1,237 @@
+[
+  {
+    "id": "mem-0001",
+    "text": "What does HAL stand for in Stanley Kubrick's 2001: A Space Odyssey?",
+    "options": [
+      "Heuristically Programmed Algorithmic Computer",
+      "Heuristic Algorithm Locator",
+      "Human Analog Learning",
+      "Heuristic Automated Logic"
+    ],
+    "answer": "Heuristically Programmed Algorithmic Computer",
+    "category": "memes",
+    "tags": [
+      "hal-9000",
+      "kubrick",
+      "scifi"
+    ],
+    "difficulty": 1,
+    "explanation": "Heuristically Programmed Algorithmic Computer, and the name is one letter away from IBM, which Kubrick intended and which the studio fought him over. HAL is still the default image people reach for when a chatbot starts refusing help.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "HAL 9000",
+      "label": "HAL 9000 on Wikipedia"
+    },
+    "answerAliases": [
+      "HAL"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0002",
+    "text": "In the Terminator franchise, what is the name of the artificial intelligence that starts a war against humanity?",
+    "options": [
+      "HAL",
+      "Skynet",
+      "The Machine",
+      "Omega"
+    ],
+    "answer": "Skynet",
+    "category": "memes",
+    "tags": [
+      "skynet",
+      "terminator",
+      "scifi"
+    ],
+    "difficulty": 1,
+    "explanation": "Skynet, and the franchise is a James Cameron and Gale Anne Hurd creation from the cyberpunk 1980s. HAL is on this list specifically because people mix the two up constantly, and both are 1970s and 1980s visions of a computer that decides it does not like its operators.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Terminator (franchise)",
+      "label": "Terminator on Wikipedia"
+    },
+    "answerAliases": [
+      "Skynet"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0003",
+    "text": "Which Microsoft Office character is the animated paperclip known as Clippy?",
+    "options": [
+      "The Blue Marble",
+      "The Einstein character",
+      "The Clippit character",
+      "The Scribble character"
+    ],
+    "answer": "The Clippit character",
+    "category": "memes",
+    "tags": [
+      "clippy",
+      "microsoft",
+      "office"
+    ],
+    "difficulty": 2,
+    "explanation": "The Clippit character, and the Office Assistant was a discontinued virtual assistant bundled with Office, Publisher, Project and FrontPage. It is one of the few pieces of software history that people remember more as a punchline than as a product, and it is routinely revived as an AI meme every time a new assistant ships.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Office Assistant",
+      "label": "The Microsoft Office Assistant on Wikipedia"
+    },
+    "answerAliases": [
+      "Clippit",
+      "Office Assistant"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0004",
+    "text": "ELIZA, the 1960s program, is still used to demonstrate what?",
+    "options": [
+      "That machines can be given a personality trait",
+      "That computers can learn a grammar from text",
+      "That speech synthesis has reached parity",
+      "That pattern matching alone can imitate empathy"
+    ],
+    "answer": "That pattern matching alone can imitate empathy",
+    "category": "memes",
+    "tags": [
+      "eliza",
+      "nlp",
+      "weizenbaum"
+    ],
+    "difficulty": 2,
+    "explanation": "It matched patterns and substituted phrases with no understanding underneath, and people still argue with it for twenty minutes. Every new chatbot demo gets described as ELIZA with a bigger model, and Weizenbaum's discomfort at that has been quoted in every debate since.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ELIZA",
+      "label": "ELIZA on Wikipedia"
+    },
+    "answerAliases": [
+      "pattern matching and substitution methodology",
+      "illusion of understanding"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0005",
+    "text": "Microsoft Bob was released in 1995. What was it?",
+    "options": [
+      "A replacement for the Windows Program Manager",
+      "A text editor bundled with Office",
+      "A browser that preceded Internet Explorer",
+      "A hardware graphics accelerator for PCs"
+    ],
+    "answer": "A replacement for the Windows Program Manager",
+    "category": "memes",
+    "tags": [
+      "microsoft-bob",
+      "windows",
+      "infosec"
+    ],
+    "difficulty": 3,
+    "explanation": "Microsoft Bob was intended to replace the Windows Program Manager in Windows 3.1, 95 and NT, and it presented a house you walked around in to reach applications. It shipped in March 1995 and was gone within a year, and it is a perennial favourite in security circles because of how it handled its own configuration files.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Microsoft Bob",
+      "label": "Microsoft Bob on Wikipedia"
+    },
+    "answerAliases": [
+      "Microsoft Bob",
+      "Windows Program Manager"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0006",
+    "text": "AlphaGo's win over Lee Sedol in March 2016 was a first for computer Go. What made it a first?",
+    "options": [
+      "Beat a 9-dan professional without a handicap",
+      "Beat a world champion at blindfold Go",
+      "Reached master level from self play alone",
+      "Won a full match using only CPU hardware"
+    ],
+    "answer": "Beat a 9-dan professional without a handicap",
+    "category": "memes",
+    "tags": [
+      "alphago",
+      "lee-sedol",
+      "go"
+    ],
+    "difficulty": 2,
+    "explanation": "AlphaGo won four games to one on a full sized 19 by 19 board, and the second game produced the most famous moment in the whole story. Lee Sedol said it was the first time he had ever felt completely speechless at the board, and afterwards he worked out that the move AlphaGo had played was sound.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlphaGo",
+      "label": "AlphaGo on Wikipedia"
+    },
+    "answerAliases": [
+      "beaten a 9-dan professional without handicap",
+      "9-dan professional without handicap"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0007",
+    "text": "Model collapse, the degradation caused by training on generated data, has been given a nickname borrowed from which disease?",
+    "options": [
+      "Foot and mouth disease",
+      "Chronic fatigue syndrome",
+      "Mad cow disease",
+      "Avian influenza"
+    ],
+    "answer": "Mad cow disease",
+    "category": "memes",
+    "tags": [
+      "model-collapse",
+      "synthetic-data"
+    ],
+    "difficulty": 3,
+    "explanation": "Mad cow disease, and the nickname sticks because the mechanism is roughly the same, feeding an animal something derived from itself until the whole population degrades. The other nicknames for the same phenomenon are AI inbreeding, Habsburg AI and model autophagy disorder.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Model collapse",
+      "label": "Model collapse on Wikipedia"
+    },
+    "answerAliases": [
+      "mad cow disease"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mem-0008",
+    "text": "Among Us, released in 2018, became a meme for a specific reason. What was it?",
+    "options": [
+      "Its art style was used for AI generated images",
+      "Its characters were given AI voice assistants",
+      "Its engine was rewritten to run on GPUs",
+      "Its gameplay was used in a popular AI demo"
+    ],
+    "answer": "Its gameplay was used in a popular AI demo",
+    "category": "memes",
+    "tags": [
+      "among-us",
+      "agent-demo",
+      "internet-culture"
+    ],
+    "difficulty": 4,
+    "explanation": "A team of researchers built a bot that played Among Us by reading text off the screen and chatting with the other players, and the stream clips of it lying about being an impostor went viral. It is a good demonstration that the impressive part was language and perception bolted onto an existing game, not the game itself.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Among Us",
+      "label": "Among Us on Wikipedia"
+    },
+    "answerAliases": [
+      "Among Us"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]

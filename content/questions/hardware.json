@@ -1,0 +1,293 @@
+[
+  {
+    "id": "hwr-0001",
+    "text": "Why are GPUs the default hardware for training large neural networks, even though they were built for graphics?",
+    "options": [
+      "Because they accelerate the linear algebra involved",
+      "Because they have fast serial integer arithmetic",
+      "Because they use very little power per computation",
+      "Because they have large caches for text corpora"
+    ],
+    "answer": "Because they accelerate the linear algebra involved",
+    "category": "hardware",
+    "tags": [
+      "gpu",
+      "linear-algebra",
+      "parallelism"
+    ],
+    "difficulty": 1,
+    "explanation": "Every layer of a neural network is a matrix multiply, and GPUs are thousands of cores doing the same operation on thousands of elements at once. Drawing triangles turned out to be the same shape of problem, which is one of the luckiest accidents in the history of computing.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Graphics processing unit",
+      "label": "Graphics processing units on Wikipedia"
+    },
+    "answerAliases": [
+      "linear algebra acceleration"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0002",
+    "text": "Which Google chip is an application specific integrated circuit built specifically for neural network workloads?",
+    "options": [
+      "The Neural Processing Unit",
+      "The Tensor Processing Unit",
+      "The Tensor Core",
+      "The Field Programmable Gate Array"
+    ],
+    "answer": "The Tensor Processing Unit",
+    "category": "hardware",
+    "tags": [
+      "tpu",
+      "google",
+      "asic"
+    ],
+    "difficulty": 1,
+    "explanation": "Google started using TPUs internally in 2015 and opened them to third parties through its cloud in 2018. TensorFlow, JAX and PyTorch all support them, and the distinction from an NPU is mostly that Google calls its own product a TPU.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Tensor Processing Unit",
+      "label": "Tensor Processing Units on Wikipedia"
+    },
+    "answerAliases": [
+      "TPU"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0003",
+    "text": "What does CUDA stand for?",
+    "options": [
+      "Central Unified Data Access Unit",
+      "Common Universal Deep Architecture",
+      "Compute Unified Device Architecture",
+      "Compiled Universal Device Accelerator"
+    ],
+    "answer": "Compute Unified Device Architecture",
+    "category": "hardware",
+    "tags": [
+      "cuda",
+      "nvidia",
+      "software"
+    ],
+    "difficulty": 1,
+    "explanation": "Nvidia created it in 2004 and released it in 2007, and it is a platform and API rather than a chip. It is also the reason Nvidia is hard to displace, since the software ecosystem built on it is decades deep and a competitor has to beat the hardware and the tooling at once.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "CUDA",
+      "label": "CUDA on Wikipedia"
+    },
+    "answerAliases": [
+      "Compute Unified Device Architecture"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0004",
+    "text": "High Bandwidth Memory stacks DRAM dies vertically. Which three companies first developed the standard?",
+    "options": [
+      "Intel, AMD and Nvidia",
+      "TSMC, Samsung and Micron",
+      "Nvidia, Google and Samsung",
+      "Samsung, AMD and SK Hynix"
+    ],
+    "answer": "Samsung, AMD and SK Hynix",
+    "category": "hardware",
+    "tags": [
+      "hbm",
+      "memory",
+      "bandwidth"
+    ],
+    "difficulty": 3,
+    "explanation": "It is a 3D stacked SDRAM interface, and the first HBM chip came from SK Hynix in 2013. Training is frequently memory bandwidth bound rather than compute bound, which is why the HBM supply chain became a chokepoint for the whole industry within about two years.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "High Bandwidth Memory",
+      "label": "High Bandwidth Memory on Wikipedia"
+    },
+    "answerAliases": [
+      "Samsung, AMD and SK Hynix",
+      "SK Hynix"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0005",
+    "text": "Nvidia's Hopper microarchitecture is designed primarily for which workload?",
+    "options": [
+      "Datacenter workloads",
+      "Smartphone inference",
+      "Consumer graphics cards",
+      "Automotive navigation"
+    ],
+    "answer": "Datacenter workloads",
+    "category": "hardware",
+    "tags": [
+      "nvidia",
+      "hopper",
+      "datacenter"
+    ],
+    "difficulty": 3,
+    "explanation": "Hopper is a datacenter part and sits alongside Lovelace, which is the consumer line. The name comes from Grace Hopper, the naval rear admiral, and the H100 built on it is the chip most of the 2023 to 2025 training runs were done on.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hopper (microarchitecture)",
+      "label": "The Hopper architecture on Wikipedia"
+    },
+    "answerAliases": [
+      "Hopper"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0006",
+    "text": "Nvidia's Ampere GPU microarchitecture is named after which person?",
+    "options": [
+      "Grace Hopper",
+      "Andre-Marie Ampere",
+      "Marie Curie",
+      "John von Neumann"
+    ],
+    "answer": "Andre-Marie Ampere",
+    "category": "hardware",
+    "tags": [
+      "nvidia",
+      "ampere",
+      "naming"
+    ],
+    "difficulty": 2,
+    "explanation": "The French physicist and mathematician after whom the ampere is named, and Nvidia announced Ampere in May 2020. Nvidia does this consistently, since Blackwell, Hopper and Ampere are all people, and the convention is one of the easier ways to place a card in a timeline.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Ampere (microarchitecture)",
+      "label": "The Ampere architecture on Wikipedia"
+    },
+    "answerAliases": [
+      "Andre-Marie Ampere",
+      "André-Marie Ampère"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0007",
+    "text": "Which company builds the wafer scale engine, a processor built by linking many dies across a single silicon wafer?",
+    "options": [
+      "Graphcore",
+      "SambaNova",
+      "Cerebras Systems",
+      "Groq"
+    ],
+    "answer": "Cerebras Systems",
+    "category": "hardware",
+    "tags": [
+      "wafer-scale",
+      "cerebras"
+    ],
+    "difficulty": 3,
+    "explanation": "Cerebras in Sunnyvale, California builds a processor the size of a wafer and the CS-3 supercomputers around it, and sells access by API as well. The bet is that model parallelism beats the difficulty of getting a single enormous chip manufactured reliably.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Cerebras Systems",
+      "label": "Cerebras Systems on Wikipedia"
+    },
+    "answerAliases": [
+      "Cerebras Systems Inc."
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0008",
+    "text": "An NPU, also called an AI accelerator, is best described as what?",
+    "options": [
+      "A general purpose CPU with a wider instruction set",
+      "A type of DRAM stacked in three dimensions",
+      "A compiler that targets GPUs instead of CPUs",
+      "A specialised hardware accelerator for AI workloads"
+    ],
+    "answer": "A specialised hardware accelerator for AI workloads",
+    "category": "hardware",
+    "tags": [
+      "npu",
+      "accelerator"
+    ],
+    "difficulty": 1,
+    "explanation": "It can be standalone, part of a CPU or part of a GPU, and the term is a category rather than a product. The whole category grew out of the observation that neural network inference does a small number of operations very many times, which is a different shape of problem from general purpose computing.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Neural processing unit",
+      "label": "Neural processing units on Wikipedia"
+    },
+    "answerAliases": [
+      "AI accelerator",
+      "deep learning processor"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0009",
+    "text": "Moore's law says the number of transistors on an integrated circuit does what over time?",
+    "options": [
+      "Doubles roughly every two years at near constant cost",
+      "Halves roughly every five years at rising cost",
+      "Triples every decade at falling cost",
+      "Doubles every decade at constant cost"
+    ],
+    "answer": "Doubles roughly every two years at near constant cost",
+    "category": "hardware",
+    "tags": [
+      "moores-law",
+      "transistors"
+    ],
+    "difficulty": 1,
+    "explanation": "Moore published it as an observation in 1965, not a law, and it described an empirical relationship rather than a physical necessity. It is also the reason people believed AI scaling would be affordable, since compute was on an exponential curve even when the models were not yet good enough to use.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Moore's law",
+      "label": "Moore's law on Wikipedia"
+    },
+    "answerAliases": [
+      "doubles about every two years"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0010",
+    "text": "Nvidia was founded in 1993 by Jensen Huang and two co-founders. What were the other two names?",
+    "options": [
+      "Jackie Hu and Morris Chang",
+      "Chris Malachowsky and Curtis Priem",
+      "Gordon Moore and Robert Noyce",
+      "Marc Andreessen and Andy Bechtolsheim"
+    ],
+    "answer": "Chris Malachowsky and Curtis Priem",
+    "category": "hardware",
+    "tags": [
+      "nvidia",
+      "founders",
+      "history"
+    ],
+    "difficulty": 4,
+    "explanation": "The three founded Nvidia after leaving Sun Microsystems, and the company nearly ran out of money in its first few years. Jensen Huang is the one who stayed famous enough to be the answer to a different question, which is the last question on the founders list.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Nvidia",
+      "label": "Nvidia on Wikipedia"
+    },
+    "answerAliases": [
+      "Chris Malachowsky",
+      "Curtis Priem"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-28"
+  }
+]
