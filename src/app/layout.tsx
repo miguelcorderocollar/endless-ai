@@ -38,7 +38,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${instrument.variable}`}>
+      <html lang="en" suppressHydrationWarning className={`${plexSans.variable} ${plexMono.variable} ${instrument.variable}`}>
       <body className="min-h-dvh antialiased">
         <AmbientBackground />
         <div className="relative z-2">{children}</div>
