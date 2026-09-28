@@ -2,7 +2,6 @@ node_modules/
 .next/
 out/
 build/
-.vercel/
 .DS_Store
 *.pem
 npm-debug.log*
@@ -13,3 +12,4 @@ tsconfig.tsbuildinfo
 
 # validator cache
 scripts/.cache/
+.vercel/

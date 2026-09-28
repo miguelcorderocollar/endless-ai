@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Instrument_Serif } from "next/font/google";
 
+import { AmbientBackground } from "@/components/AmbientBackground";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${instrument.variable}`}>
       <body className="min-h-dvh antialiased">
+        <AmbientBackground />
         <div className="relative z-2">{children}</div>
       </body>
     </html>
