@@ -7,14 +7,12 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "dark",
-    "newArchEnabled": true,
     "ios": {
       "bundleIdentifier": "com.endlessai.quiz",
       "supportsTablet": false
     },
     "android": {
       "package": "com.endlessai.quiz",
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "adaptiveIcon": {
         "backgroundColor": "#0a0b0d",
@@ -42,7 +40,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": ""
+        "projectId": "131e7ccb-c6f5-47cd-89eb-4cdf7115cb33"
       }
     }
   }

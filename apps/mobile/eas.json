@@ -1,0 +1,39 @@
+{
+  // EAS Build profiles. The command is `eas build --platform android --profile <name>`.
+  // Nothing here is a secret; the backend URL is an EAS environment variable, not
+  // a field in this file. See the "native build" section of docs/deployment.md.
+  "cli": {
+    "version": ">= 16.0.0",
+    // EAS owns the Android versionCode from the remote build records, so two
+    // local branches can never ship the same one. Set it in app.json instead
+    // and the store rejects the second upload for duplicate versionCode.
+    "appVersionSource": "remote"
+  },
+  "build": {
+    // What you install on your own phone to develop against. `.apk` rather than
+    // `.aab` because a development build is installed by sideloading, and a
+    // bundle cannot be. This is a replacement for Expo Go, not a store build.
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    // A release-mode build for sharing with someone who is not developing it.
+    // No dev tools, but still an installable file.
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    // What Google Play receives. Android App Bundle, not apk: the store splits
+    // it per device and a plain apk cannot be uploaded. Must be installed
+    // through the store, so it cannot be side-loaded for testing.
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  }
+}
