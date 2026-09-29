@@ -39,14 +39,24 @@ export const metadata: Metadata = {
     icon: [{ url: isDev ? "/icon-dev.svg" : "/icon.svg", type: "image/svg+xml" }],
     apple: "/icons/apple-touch-icon.png",
   },
-  // iOS has no install prompt and no install API. These three tags are the
-  // entire install path there, and they only take effect once the app has been
-  // added to the home screen, so browser mode pays nothing for them.
+  // iOS has no install prompt and no install API. These tags are the whole
+  // install path there, and they only take effect once the app has been added
+  // to the home screen, so browser mode pays nothing for them.
   appleWebApp: {
     capable: true,
     title: "Endless AI",
     // A dark room with one bright accent: black bars, light text.
     statusBarStyle: "black-translucent",
+  },
+  // Next emits only the standard `mobile-web-app-capable` for `capable` above
+  // (PR vercel/next.js#70363 replaced Apple's tag with it because Chrome warns
+  // about the old one), and dropped it in a release where splash images on
+  // iPhone stopped working for people relying on it (vercel/next.js#74524,
+  // closed as not planned). iOS standalone mode comes from the manifest's
+  // `display`, but the launch image and `navigator.standalone` still want the
+  // Apple spelling, and iOS is the one platform we cannot verify from here.
+  other: {
+    "apple-mobile-web-app-capable": "yes",
   },
 };
 

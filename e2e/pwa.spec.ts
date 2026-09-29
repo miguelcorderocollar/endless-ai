@@ -34,6 +34,20 @@ test.describe("pwa", () => {
       "href",
       "/manifest.webmanifest",
     );
+    // Next emits only the standard spelling for `appleWebApp.capable` (see the
+    // comment in src/app/layout.tsx); iOS also wants Apple's. Both, or an
+    // install on an iPhone behaves differently from the one we can test.
+    await expect(page.locator('meta[name="mobile-web-app-capable"]')).toHaveAttribute(
+      "content",
+      "yes",
+    );
+    await expect(
+      page.locator('meta[name="apple-mobile-web-app-capable"]'),
+    ).toHaveAttribute("content", "yes");
+    await expect(page.locator('meta[name="apple-mobile-web-app-status-bar-style"]')).toHaveAttribute(
+      "content",
+      "black-translucent",
+    );
   });
 
   test("registers a service worker that takes control and precaches the shell", async ({ page }) => {

@@ -13,13 +13,39 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run test:e2e` runs the browser tests (Playwright). It builds the app and starts it on port 3210, so it needs no dev server running.
 - `npm run test:all` runs both suites.
 - `npm run build` builds the Next.js production app.
-- `npm run verify` runs validate, typecheck, lint, unit tests, and build.
+- `npm run verify` runs validate, typecheck, lint, unit tests, build, and the browser suite.
 - `npm run rebalance` reports answer-slot balance; add `--write` only after reviewing the diff.
 - `npm run probe -- "Title" ...` inspects Wikipedia lead sections before authoring.
 - `npm run review` builds `review/review.html`, a self-contained page for human review of draft questions (search, filter, per-ID verdicts).
 - `npm run review:serve` builds it and serves it at `http://localhost:8901/review.html`.
 - `npx convex dev` syncs the backend to your dev deployment (watch mode); `npm run dev` is the frontend.
 - `npx tsx scripts/publish.mts` syncs the validated bank to dev (`--prod` for prod).
+
+## Before you commit
+
+`npm run verify` is the gate: validate, typecheck, lint, unit tests, build, then
+the browser suite. Run it whole rather than the parts you remember, so nothing
+lands on `main` untested. A push to `main` deploys to production, so this is the
+only check between the two.
+
+First time on a machine, and after Playwright upgrades:
+
+```bash
+npx playwright install chromium   # browsers are not in the repo
+```
+
+Keep the browser suite worth running:
+
+- Specs assert the shipped UI, so a change to markup is a change to the spec.
+  The suite builds a production app itself and needs no dev server.
+- Specs must never depend on dev or prod Convex, or on `content/questions`.
+  They seed a local draw cache and cut the network on purpose, so the degraded
+  path is what runs on every pass. If a spec starts passing for the wrong
+  reason — for instance the real deployment answers a query — fix the fixture,
+  not the assertion.
+- `manifest.shortcuts` and the worker's `ROUTES` must agree; the PWA spec fails
+  if they drift, because a shortcut to an un-cached route 404s offline.
+- Bump `VERSION` in `public/sw.js` when the shell changes shape.
 
 ## Deployment
 
