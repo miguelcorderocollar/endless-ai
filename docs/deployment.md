@@ -113,6 +113,38 @@ Do not set `NEXT_PUBLIC_CONVEX_URL` manually in Vercel for production —
 `convex deploy` provides it to the build. If the frontend ever needs a
 differently named var, pass `--cmd-url-env-var-name <NAME>`.
 
+## Skipping builds for non-app pushes (`ignoreCommand`)
+
+`vercel.json` sets an `ignoreCommand`, so a push that only touches `docs/`,
+`data/`, or any `*.md` cancels instead of building:
+
+```
+git diff --quiet "${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}" HEAD -- . \
+    ':(exclude)docs' ':(exclude)data' ':(exclude)*.md'
+```
+
+Exit-code semantics are inverted from intuition: **exit 0 skips the build**
+(the deployment ends as `CANCELED`), **exit 1 builds**. The diff anchor is
+`VERCEL_GIT_PREVIOUS_SHA`, the last *successful* deployment for this branch —
+Vercel exposes that variable only because an ignore step is set — so a push of
+several commits is judged against the last shipped state instead of only the
+tip commit's own diff. On a branch's first deployment the variable is empty and
+the command falls back to `HEAD^`; if git itself errors, the exit code is ≥1,
+which builds. Every failure mode builds rather than skips.
+
+Two things to know:
+
+- **Canceled builds still count** against the deployment quota and concurrent
+  build slots. This saves the `convex deploy` + Next build time, not quota.
+- **`content/` is deliberately not excluded.** Nothing in the build reads it on
+  `main` today — the bank reaches Convex through `scripts/publish.mts`, not
+  Vercel — but the offline bank bundle on the `pwa-offline-outbox` branch
+  (`src/lib/questions/bankBundle.ts`, generated from `content/` inside
+  `next.config.ts`) makes `content/` a build input: skipping a content-only
+  push there would ship a stale offline fallback. If that stops being true,
+  change the pathspec in `vercel.json`, not the dashboard — the file is the
+  reviewed source of truth for this command.
+
 ## Preview builds without a preview backend
 
 `buildCommand` in `vercel.json` is a three-way branch, because the two Vercel
