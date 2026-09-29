@@ -353,6 +353,19 @@ async function main() {
     console.log(`cached ${fresh.length} verdict(s) -> data/dupe/verdicts.json`);
   }
 
+  /* ---- review flags ---- */
+  // A small side file so `npm run review` can show duplicate candidates as
+  // flags without re-running the model or needing a key. The review page is
+  // otherwise offline, and it should stay that way.
+  const pairsOut = pairs
+    .map((p) => ({ ...p, key: pairKey(p, byId), noul: cache.get(pairKey(p, byId))?.noul }))
+    .filter((x): x is Pair & { key: string; noul: number } => x.noul !== undefined)
+    .sort((a, b) => b.noul - a.noul);
+  writeFileSync(
+    join(DATA_DIR, "pairs.json"),
+    `${JSON.stringify({ generatedAt: new Date().toISOString(), model: JEV_MODEL, pairs: pairsOut }, null, 2)}\n`,
+  );
+
   /* ---- report ---- */
   const flagged = pairs
     .map((p) => ({ ...p, v: cache.get(pairKey(p, byId)) }))

@@ -1,6 +1,6 @@
 {
   "000671d15416e206": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -12,31 +12,31 @@
     "runs": 2
   },
   "02f909092acfb997": {
-    "noul": 0.085,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "03205f1349503669": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "034f9dfac2e51462": {
-    "noul": 0.075,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "03d0cf6634c5813c": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "0404599d680c581e": {
-    "noul": 0.13,
+    "noul": 0.115,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -60,13 +60,13 @@
     "runs": 2
   },
   "057d6bd7c9ed89c5": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "05d403ec8faed3e0": {
-    "noul": 0.105,
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -78,49 +78,43 @@
     "runs": 2
   },
   "0686fede449a6055": {
-    "noul": 0.085,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "080552cf6d0dbdcd": {
-    "noul": 0.875,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "0895e268384089d2": {
-    "noul": 0.35,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "08a96213f8fd10f8": {
-    "noul": 0.78,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "08d551d69d088aa5": {
     "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "0895e268384089d2": {
+    "noul": 0.365,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "08a96213f8fd10f8": {
+    "noul": 0.735,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "08d551d69d088aa5": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "0992ec069ffba2a2": {
-    "noul": 0.075,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "0ad9577733e6cfed": {
-    "noul": 0.13,
+    "noul": 0.145,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "0b151afae24afb96": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -132,13 +126,13 @@
     "runs": 2
   },
   "0b31759328dd63e9": {
-    "noul": 0.075,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "0bbc779b7fdbfc61": {
-    "noul": 0.08,
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -150,37 +144,37 @@
     "runs": 2
   },
   "0c6c10dcf40ba55d": {
-    "noul": 0.085,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "0d04ca0d3bb95a90": {
-    "noul": 0.165,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "0d708b728ecf7788": {
-    "noul": 0.12,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "0df246e2a3aba107": {
     "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "0d04ca0d3bb95a90": {
+    "noul": 0.14,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "0d708b728ecf7788": {
+    "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "0df246e2a3aba107": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "1133de3cf2c668ec": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "113cd987a6533cbc": {
-    "noul": 0.52,
+    "noul": 0.42,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -192,31 +186,25 @@
     "runs": 2
   },
   "1353cbc2035eb434": {
-    "noul": 0.065,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "147c622bd9b0c4f0": {
     "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "147c622bd9b0c4f0": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "14ed29c70baccf79": {
-    "noul": 0.09,
+    "noul": 0.1,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "14ed8442688fd35c": {
-    "noul": 0.11,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "18fa377d0df1bfca": {
-    "noul": 0.765,
+    "noul": 0.1,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -228,7 +216,7 @@
     "runs": 2
   },
   "1aec0d23aa2a9faa": {
-    "noul": 0.115,
+    "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -245,12 +233,6 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
-  "1bc8438cd2e4cfde": {
-    "noul": 0.1,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
   "1c4f00f7800903f3": {
     "noul": 0.07,
     "model": "jev-1.13",
@@ -258,19 +240,25 @@
     "runs": 2
   },
   "1db898ced7713498": {
-    "noul": 0.105,
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "1e6649214f4e571c": {
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "1e9c8895e5b19c1b": {
-    "noul": 0.105,
+    "noul": 0.115,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "200983bc46460c88": {
-    "noul": 0.115,
+    "noul": 0.125,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -282,7 +270,7 @@
     "runs": 2
   },
   "21a9bc14c5859d73": {
-    "noul": 0.095,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -294,7 +282,7 @@
     "runs": 2
   },
   "23d1cffdfe0b9832": {
-    "noul": 0.425,
+    "noul": 0.325,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -306,7 +294,7 @@
     "runs": 2
   },
   "24b616db4fbceca6": {
-    "noul": 0.29,
+    "noul": 0.275,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -324,31 +312,25 @@
     "runs": 2
   },
   "26314885137d7c5d": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "2673ac15833f5e3c": {
-    "noul": 0.06,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "268ff5294fc5fb39": {
-    "noul": 0.07,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "279ce5aff5a23801": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "28331049fb1b2264": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -360,13 +342,13 @@
     "runs": 2
   },
   "2924912b6dabf8be": {
-    "noul": 0.055,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "293d9f24476a66a9": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -384,7 +366,7 @@
     "runs": 2
   },
   "2b1fba8fd4e8457a": {
-    "noul": 0.105,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -395,20 +377,14 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
-  "2bd1434f706004fc": {
-    "noul": 0.095,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
   "2c05dff7b362b6bc": {
-    "noul": 0.075,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "2c7d06a7bece3f2c": {
-    "noul": 0.085,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -420,7 +396,13 @@
     "runs": 2
   },
   "2e4bf3e346962112": {
-    "noul": 0.08,
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "2f5d8ca90adb7c4a": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -432,61 +414,61 @@
     "runs": 2
   },
   "315107ef4511d979": {
-    "noul": 0.165,
+    "noul": 0.145,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "31a818a29c4cf2dd": {
-    "noul": 0.065,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "31f47f741003edad": {
-    "noul": 0.155,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "3349ef6a8b92a0f5": {
-    "noul": 0.12,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "3545be41f892ff3f": {
-    "noul": 0.04,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "361212a39297a0b5": {
-    "noul": 0.12,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "36e1b3e5e1b77df5": {
     "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "31f47f741003edad": {
+    "noul": 0.135,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "3349ef6a8b92a0f5": {
+    "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "3545be41f892ff3f": {
+    "noul": 0.045,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "361212a39297a0b5": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "36e1b3e5e1b77df5": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "36e71f481b81e850": {
-    "noul": 0.27,
+    "noul": 0.31,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "38eae96faf265212": {
-    "noul": 0.055,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "3909ce4205ac03c1": {
-    "noul": 0.065,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -498,19 +480,19 @@
     "runs": 2
   },
   "3a0a9995872292ec": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "3a17fa675b29d72c": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "3aadf77fecadd7e9": {
-    "noul": 0.105,
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -522,13 +504,13 @@
     "runs": 2
   },
   "3bb2c132d9589603": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "3dc7ae66703a6352": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -540,37 +522,31 @@
     "runs": 2
   },
   "3fd494abba3a438b": {
-    "noul": 0.06,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "4113319eda8b1df4": {
-    "noul": 0.07,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "42831dc1926e60a4": {
-    "noul": 0.105,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "44ff1a4e873226e5": {
     "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "42831dc1926e60a4": {
+    "noul": 0.1,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "44ff1a4e873226e5": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "451f203f4574b3da": {
-    "noul": 0.19,
+    "noul": 0.195,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "452f271344d9b675": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -588,13 +564,13 @@
     "runs": 2
   },
   "48d3f8be0d455638": {
-    "noul": 0.075,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "48ffe28ae410c1c3": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -618,7 +594,7 @@
     "runs": 2
   },
   "49ea956bdcc525b0": {
-    "noul": 0.165,
+    "noul": 0.195,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -630,7 +606,7 @@
     "runs": 2
   },
   "4b06264908487bb7": {
-    "noul": 0.06,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -648,19 +624,13 @@
     "runs": 2
   },
   "4f3304a0893c5fdb": {
-    "noul": 0.085,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "4faf58df48baff36": {
-    "noul": 0.09,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "4fcf3df93561092e": {
-    "noul": 0.5,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -672,7 +642,7 @@
     "runs": 2
   },
   "50d67580548f3db9": {
-    "noul": 0.24,
+    "noul": 0.205,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -684,13 +654,13 @@
     "runs": 2
   },
   "53679c88aa538926": {
-    "noul": 0.06,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "53fde49dfb883621": {
-    "noul": 0.075,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -702,19 +672,19 @@
     "runs": 2
   },
   "5478ed37add140d8": {
-    "noul": 0.065,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "556df2a98ef83ae9": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "56bf1a4f9738e377": {
-    "noul": 0.08,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -726,7 +696,7 @@
     "runs": 2
   },
   "589568c1c38f749e": {
-    "noul": 0.49,
+    "noul": 0.16,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -744,19 +714,19 @@
     "runs": 2
   },
   "5b6b21b311515a33": {
-    "noul": 0.075,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "5bf796b81c0224de": {
-    "noul": 0.11,
+    "noul": 0.12,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "5c9f1b23f11430e7": {
-    "noul": 0.07,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -768,13 +738,13 @@
     "runs": 2
   },
   "5cd4c398d7a40249": {
-    "noul": 0.075,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "5d5ea8bb98795d52": {
-    "noul": 0.07,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -786,19 +756,19 @@
     "runs": 2
   },
   "5f8be6f61cf1bee7": {
-    "noul": 0.16,
+    "noul": 0.18,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "5f99d08395462319": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "600d162c7cdff98a": {
-    "noul": 0.1,
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -810,31 +780,31 @@
     "runs": 2
   },
   "63cf66f2796aa871": {
-    "noul": 0.075,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "64969e99413c0ad6": {
-    "noul": 0.09,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "669a949383e99988": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "66d573abeba6283d": {
-    "noul": 0.055,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "678ddbe871489cfd": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -852,73 +822,73 @@
     "runs": 2
   },
   "6b44674cbeb6dfc5": {
-    "noul": 0.115,
+    "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "6b96ed88e3d6c4cf": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "6bd1f8d1c732e067": {
-    "noul": 0.06,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "6c0312b9c4cc7a4f": {
-    "noul": 0.215,
+    "noul": 0.185,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "6c0f60b72a6ae021": {
-    "noul": 0.08,
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "6c11ff6bfbb594b0": {
-    "noul": 0.1,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "6c467a42a10f1bdc": {
-    "noul": 0.06,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "6ca52c5fe7c3d99e": {
-    "noul": 0.06,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "6dbb033dfacc3dad": {
-    "noul": 0.08,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "6dc1c7205412ebd6": {
     "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "6c467a42a10f1bdc": {
+    "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6ca52c5fe7c3d99e": {
+    "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6dbb033dfacc3dad": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6dc1c7205412ebd6": {
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "6e1c422494e36784": {
-    "noul": 0.435,
+    "noul": 0.38,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "6f38076027e6cfbf": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -930,31 +900,25 @@
     "runs": 2
   },
   "6fc60e2b139be74c": {
-    "noul": 0.095,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "700f6dd6ef356e21": {
-    "noul": 0.06,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "71511d016d4e65b5": {
-    "noul": 0.11,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "723da5aebe2f69fa": {
-    "noul": 0.305,
+    "noul": 0.395,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "7251b4ac9768c1ce": {
-    "noul": 0.125,
+    "noul": 0.135,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -966,7 +930,7 @@
     "runs": 2
   },
   "74276ab4d39318b5": {
-    "noul": 0.08,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -978,7 +942,7 @@
     "runs": 2
   },
   "764b14ebd3ff6531": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -996,7 +960,7 @@
     "runs": 2
   },
   "78d0319d2ee712b7": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1007,32 +971,38 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
-  "7b6b9677d031452e": {
-    "noul": 0.085,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "7bacb78273417535": {
-    "noul": 0.1,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "7c04fd0b6e309b5e": {
+  "7b1df6fdc31966be": {
     "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "7b6b9677d031452e": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "7bacb78273417535": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "7c04fd0b6e309b5e": {
+    "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "7cc5e718ef99f0dc": {
-    "noul": 0.125,
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "7e67cd9b69e73993": {
-    "noul": 0.065,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1043,14 +1013,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "7f5d99f284a22575": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "82834e6a82673eb9": {
-    "noul": 0.08,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "82c21e37a4b2bc4a": {
-    "noul": 0.475,
+    "noul": 0.62,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1062,13 +1038,13 @@
     "runs": 2
   },
   "837f9e4fea54af0b": {
-    "noul": 0.085,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "83bffe7d726d7bff": {
-    "noul": 0.54,
+    "noul": 0.555,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1080,7 +1056,7 @@
     "runs": 2
   },
   "85111803a4811e8c": {
-    "noul": 0.135,
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1098,13 +1074,13 @@
     "runs": 2
   },
   "88f82489c87677dd": {
-    "noul": 0.075,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "896f9cfdbcf64c21": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1116,31 +1092,37 @@
     "runs": 2
   },
   "8a4805db15788349": {
-    "noul": 0.09,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "8a72b90ce5a5bb2f": {
-    "noul": 0.295,
+    "noul": 0.32,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
-  "8cba1fe303d84a5b": {
-    "noul": 0.055,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "8d404519696fb2fc": {
+  "8be633cadf8e4c28": {
     "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "8cc5ba12611b0ebe": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "8d404519696fb2fc": {
+    "noul": 0.1,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "8e9bf7aa4eb1f7d9": {
-    "noul": 0.08,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1158,13 +1140,13 @@
     "runs": 2
   },
   "9130a21b18e55378": {
-    "noul": 0.095,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "916905a1d9f1e305": {
-    "noul": 0.095,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1176,25 +1158,25 @@
     "runs": 2
   },
   "91ab4bffeeb8a116": {
-    "noul": 0.16,
+    "noul": 0.13,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "91f86e53d11036ab": {
-    "noul": 0.08,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "94673a5e7e61b9de": {
-    "noul": 0.06,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "952927ace108a677": {
-    "noul": 0.125,
+    "noul": 0.12,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1212,7 +1194,7 @@
     "runs": 2
   },
   "990958821a262509": {
-    "noul": 0.095,
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1230,7 +1212,7 @@
     "runs": 2
   },
   "9b7656a37a2fd145": {
-    "noul": 0.105,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1248,49 +1230,55 @@
     "runs": 2
   },
   "9ed55250421eb8fa": {
-    "noul": 0.155,
+    "noul": 0.14,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "a0894b7faf6d6dc2": {
-    "noul": 0.085,
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "a0f26b5483f4b2b3": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "a13c4916e99e7dc7": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
-  "a49787978ea50088": {
+  "a45348a968f5d55a": {
     "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "a49787978ea50088": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "a6f557323237af63": {
-    "noul": 0.04,
+    "noul": 0.035,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "a72dd2378c486ca8": {
-    "noul": 0.09,
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "a7df161ff1c390bb": {
-    "noul": 0.195,
+    "noul": 0.225,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1308,13 +1296,13 @@
     "runs": 2
   },
   "aaf3485ed7dca36c": {
-    "noul": 0.135,
+    "noul": 0.145,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "ab0225347a0b9eb4": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1326,31 +1314,31 @@
     "runs": 2
   },
   "ac229a878b73937a": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "acb7e29d7cf53e85": {
-    "noul": 0.07,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "ae164c57f87e42e7": {
-    "noul": 0.135,
+    "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "ae3731d74523a171": {
-    "noul": 0.1,
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "aeb0350acaa1f6a8": {
-    "noul": 0.095,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1362,25 +1350,25 @@
     "runs": 2
   },
   "afbcfa9da0e4c52a": {
-    "noul": 0.12,
+    "noul": 0.145,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b260785dac4c6e79": {
-    "noul": 0.165,
+    "noul": 0.145,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b306b1e7b5330175": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b4172798e618d164": {
-    "noul": 0.075,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1392,19 +1380,19 @@
     "runs": 2
   },
   "b5ada0fe7f81b688": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b62b9c9735789410": {
-    "noul": 0.17,
+    "noul": 0.13,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b64a43729233aaee": {
-    "noul": 0.065,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1416,25 +1404,25 @@
     "runs": 2
   },
   "b7f13df6863e66fc": {
-    "noul": 0.285,
+    "noul": 0.23,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b80a83049bfeb48e": {
-    "noul": 0.06,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b8892f7f933ee756": {
-    "noul": 0.09,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "b923da8bfd27d262": {
-    "noul": 0.09,
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1446,7 +1434,7 @@
     "runs": 2
   },
   "bd7821d3477697e8": {
-    "noul": 0.545,
+    "noul": 0.13,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1458,13 +1446,13 @@
     "runs": 2
   },
   "be642e9b015ef7c0": {
-    "noul": 0.105,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "bea30048a4c63cae": {
-    "noul": 0.095,
+    "noul": 0.1,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1494,43 +1482,37 @@
     "runs": 2
   },
   "c29180d39ea51d92": {
-    "noul": 0.06,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "c2d5695190aaa8ff": {
-    "noul": 0.09,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "c311bd2b22ed1888": {
-    "noul": 0.105,
+    "noul": 0.1,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "c35347b6fcde93cf": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "c461f1f08c846de1": {
-    "noul": 0.075,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "c561225db54338bf": {
     "noul": 0.07,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "c69116b581ed6a07": {
-    "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1542,19 +1524,25 @@
     "runs": 2
   },
   "c80bb1c5ccc29d7a": {
-    "noul": 0.1,
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "c8562abfeffe71e5": {
-    "noul": 0.105,
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "ca8e9e4b0a3ea056": {
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "cb9cd362950396f8": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1565,8 +1553,14 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "ce967069ef83054e": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "cfe200e3a9751376": {
-    "noul": 0.08,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1578,13 +1572,13 @@
     "runs": 2
   },
   "d19f4fe64c211252": {
-    "noul": 0.07,
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "d256b5a9be45167d": {
-    "noul": 0.08,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1602,13 +1596,13 @@
     "runs": 2
   },
   "d61bfcaaebc2e18f": {
-    "noul": 0.06,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "d63ec765ad5fac5c": {
-    "noul": 0.385,
+    "noul": 0.48,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1620,7 +1614,7 @@
     "runs": 2
   },
   "d8c63e13480822ca": {
-    "noul": 0.095,
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1632,7 +1626,7 @@
     "runs": 2
   },
   "da0634870bb1fb5f": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1645,12 +1639,6 @@
   },
   "db36817cb381f57b": {
     "noul": 0.075,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "dbcb8b1aa33de1ba": {
-    "noul": 0.79,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1668,7 +1656,7 @@
     "runs": 2
   },
   "dea94cc6d543cf42": {
-    "noul": 0.14,
+    "noul": 0.145,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1680,49 +1668,49 @@
     "runs": 2
   },
   "df656afc559f41bc": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "df7a0ce79a7ded1b": {
-    "noul": 0.1,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "e069e90f5aecd71d": {
-    "noul": 0.175,
+    "noul": 0.16,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "e07a0b1348460836": {
-    "noul": 0.07,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "e0a7aaf89a6dc792": {
-    "noul": 0.075,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "e0fd16b19ee68870": {
-    "noul": 0.08,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "e11bce08073bc24b": {
     "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "e0a7aaf89a6dc792": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "e0fd16b19ee68870": {
+    "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "e11bce08073bc24b": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "e20ef902625f2def": {
-    "noul": 0.15,
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1734,19 +1722,25 @@
     "runs": 2
   },
   "e483dfcf630b8342": {
-    "noul": 0.08,
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "e48777895228b246": {
-    "noul": 0.09,
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "e52a9bd0c22723a1": {
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "e6317ec79e2be708": {
-    "noul": 0.08,
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1758,49 +1752,49 @@
     "runs": 2
   },
   "e88f678a4de46a09": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "e914c443a6076a08": {
-    "noul": 0.07,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "ea0583c5c2aa24e3": {
-    "noul": 0.07,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "ea3d096b3c4ed4aa": {
-    "noul": 0.095,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "ea4a1b48a0a5f4ff": {
     "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "ea0583c5c2aa24e3": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "ea3d096b3c4ed4aa": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "ea4a1b48a0a5f4ff": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "ebdb8f93c69dca55": {
-    "noul": 0.1,
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "ec37a2f1483d4287": {
-    "noul": 0.11,
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "ec42b0c3b5130b60": {
-    "noul": 0.085,
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1812,19 +1806,25 @@
     "runs": 2
   },
   "edafd202473e49a2": {
-    "noul": 0.06,
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "eee2239401db5a93": {
-    "noul": 0.06,
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "ef15278458a51671": {
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "f071bbf95bd74ea5": {
-    "noul": 0.13,
+    "noul": 0.125,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1842,13 +1842,13 @@
     "runs": 2
   },
   "f4f54c6e66fb30c6": {
-    "noul": 0.13,
+    "noul": 0.12,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "f63e2bda859f613d": {
-    "noul": 0.065,
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1860,7 +1860,7 @@
     "runs": 2
   },
   "f7b5251873f2d48c": {
-    "noul": 0.685,
+    "noul": 0.675,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1872,19 +1872,19 @@
     "runs": 2
   },
   "f805df29baa658f4": {
-    "noul": 0.08,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "f87c8a7e7b91474c": {
     "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "f87c8a7e7b91474c": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "f8855534f40ef2a2": {
-    "noul": 0.085,
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1896,49 +1896,49 @@
     "runs": 2
   },
   "fb3ac5f90f379103": {
-    "noul": 0.215,
+    "noul": 0.205,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "fba82a6e64b3c29a": {
-    "noul": 0.075,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "fc7501af2799d7dc": {
-    "noul": 0.06,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "fd0d888007c19e9c": {
-    "noul": 0.21,
-    "model": "jev-1.13",
-    "definitionHash": "d2627a3baeca883f",
-    "runs": 2
-  },
-  "fdd1f7bfc40fa9b3": {
     "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "fc7501af2799d7dc": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "fd0d888007c19e9c": {
+    "noul": 0.225,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "fdd1f7bfc40fa9b3": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "fe160fc5edb05268": {
-    "noul": 0.055,
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "fe7e399ddacb4426": {
-    "noul": 0.74,
+    "noul": 0.77,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
   "fe8d7088794aef12": {
-    "noul": 0.56,
+    "noul": 0.535,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2

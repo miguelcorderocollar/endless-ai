@@ -302,8 +302,24 @@ ranges that do not overlap anything in `content/questions/`.
 
 `npm run dupe` embeds every question, shortlists the closest pairs, and asks a
 calibrated model whether each pair tests the same fact. It writes
-`data/dupe/report.md`. Run it before shipping a batch. It is a suggestion list, not
-a verdict: adjudicate each pair and record the outcome in `data/dupe/labelled.json`.
+`data/dupe/report.md`, and its pairs surface as `near-duplicate` flags in
+`npm run review`. It costs nothing to re-run: verdicts are cached by question
+content, so only new or edited questions are adjudicated.
+
+It is a suggestion list, not a verdict. Read each pair and decide. Adjudicating
+does not have to be human: the pairs are unambiguous once read side by side, and
+an agent can make the call and record it. Two failure modes to watch for, both
+seen in this bank:
+
+- **A shared answer is not a shared fact.** Two questions can both answer
+  `OpenAI` and ask about different releases. Rewording is usually the right fix,
+  since the fact is often distinct even when the wording is not.
+- **A different fact in near-identical wording still reads as one question.** Two
+  people who both "co-founded Google Brain" are not duplicates, but a player who
+  sees both questions back to back will think the bank is repeating itself.
+
+Record every decision in `data/dupe/labelled.json`, including the ones you left
+alone, so `npm run dupe:score` can measure the threshold honestly.
 
 Report at the end, as plain text after the JSON: how many questions per category, the
 difficulty spread, how many have a `wikipedia` source, how many have a `url` source, and how

@@ -20,7 +20,7 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run dupe:score` scores the reporting threshold against the hand-labelled pairs in `data/dupe/labelled.json`.
 - `npm run dupe -- --offline` runs the embedding shortlist only, no network.
 - `npm run probe -- "Title" ...` inspects Wikipedia lead sections before authoring.
-- `npm run review` builds `review/review.html`, a self-contained page for human review of draft questions (search, filter, per-ID verdicts).
+- `npm run review` builds `review/review.html`, a self-contained page for human review of draft questions (search, filter, per-ID verdicts). It also shows a `near-duplicate` flag when `npm run dupe` has run, read from `data/dupe/pairs.json`. It stays offline and keyless: the flags are whatever dupe already decided, never a fresh model call.
 - `npm run review:serve` builds it and serves it at `http://localhost:8901/review.html`.
 - `npx convex dev` syncs the backend to your dev deployment (watch mode); `npm run dev` is the frontend.
 - `npx tsx scripts/publish.mts` syncs the validated bank to dev (`--prod` for prod).

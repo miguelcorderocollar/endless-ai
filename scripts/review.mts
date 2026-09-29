@@ -9,7 +9,7 @@
  * Flags: --status=draft,review (default) | --all | --no-validate
  */
 import { execFileSync } from "child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { createServer } from "http";
 import { join } from "path";
 
@@ -68,6 +68,41 @@ function runValidator(): Map<string, Flag[]> {
   }
   return flags;
 }
+
+/**
+ * Duplicate candidates from `npm run dupe` (issue #38), read from the side file
+ * it writes. The review page must stay offline and keyless, so this never calls
+ * the model: it only reports what dupe.mts already decided. Missing file simply
+ * means dupe has not been run, which is not an error.
+ */
+function dupeFlags(): Map<string, Flag[]> {
+  const flags = new Map<string, Flag[]>();
+  const file = join(process.cwd(), "data", "dupe", "pairs.json");
+  if (!existsSync(file)) return flags;
+  let pairs: { a: string; b: string; noul: number }[];
+  try {
+    const parsed = JSON.parse(readFileSync(file, "utf8")) as {
+      pairs: { a: string; b: string; noul: number }[];
+    };
+    pairs = parsed.pairs ?? [];
+  } catch {
+    return flags;
+  }
+  for (const p of pairs) {
+    if (p.noul < REPORT_AT) continue;
+    for (const id of [p.a, p.b]) {
+      // Name the *other* question, so the flag reads correctly from both sides.
+      const msg = `noul ${p.noul.toFixed(2)} with ${id === p.a ? p.b : p.a}`;
+      const list = flags.get(id) ?? [];
+      list.push({ level: "warn", rule: "near-duplicate", message: msg });
+      flags.set(id, list);
+    }
+  }
+  return flags;
+}
+
+/** Same threshold dupe.mts reports at, so the flag matches the report. */
+const REPORT_AT = 0.7;
 
 function localFlags(q: Question): Flag[] {
   const flags: Flag[] = [];
@@ -290,10 +325,16 @@ async function main() {
   console.log(`review: ${queue.length} questions (status: ${ALL ? "all" : STATUSES.join(",")})`);
 
   const flagMap = runValidator();
+  const dupes = dupeFlags();
+  const dupeCount = [...dupes.values()].filter((f) => f.some((x) => x.rule === "near-duplicate")).length;
 
   const items = queue.map((q) => {
     const answerIndex = q.options.indexOf(q.answer);
-    const flags: Flag[] = [...(flagMap.get(q.id) ?? []), ...localFlags(q)];
+    const flags: Flag[] = [
+      ...(flagMap.get(q.id) ?? []),
+      ...localFlags(q),
+      ...(dupes.get(q.id) ?? []),
+    ];
     flagMap.delete(q.id);
     return { ...q, answerIndex, flags };
   });
@@ -307,6 +348,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     bankTotal: questions.length,
     queueStatuses: ALL ? ["all"] : STATUSES,
+    nearDuplicates: dupeCount,
     items,
     unmatched: leftover.flatMap(({ id, flags }) => flags.map((f) => ({ id, ...f }))),
   };
@@ -316,6 +358,11 @@ async function main() {
   writeFileSync(join(OUT_DIR, "review.html"), renderHtml(payload));
   const flagged = items.filter((i) => i.flags.length > 0).length;
   console.log(`review: wrote review/review.json + review/review.html (${flagged}/${items.length} flagged)`);
+  console.log(
+    dupeCount
+      ? `review: ${dupeCount} question(s) carry a near-duplicate flag from data/dupe (run \`npm run dupe\` to refresh)`
+      : "review: no near-duplicate flags (no data/dupe/pairs.json, or nothing above threshold)",
+  );
 
   if (SERVE) {
     const server = createServer((req, res) => {

@@ -1173,33 +1173,30 @@
   },
   {
     "id": "mod-0040",
-    "text": "The Gemini family of large language models, announced in December 2023, comes from which company?",
+    "text": "Google's Gemini family of models, announced in December 2023, directly succeeded which two earlier model lines?",
     "options": [
-      "xAI",
-      "Google",
-      "Mistral AI",
-      "Anthropic"
+      "LaMDA and PaLM 2",
+      "GPT-3 and GPT-4",
+      "Llama 2 and Mistral 7B",
+      "Grok and Claude"
     ],
-    "answer": "Google",
+    "answer": "LaMDA and PaLM 2",
     "category": "models",
     "tags": [
       "google",
       "gemini",
       "lineage"
     ],
-    "difficulty": 1,
-    "explanation": "Gemini is Google's model family, built by Google DeepMind after the merger with Google Brain, and the same name was given to the assistant that replaced Bard. Anthropic is the closest wrong answer because it ships a competing family called Claude, but Claude is a separate lab's model.",
+    "difficulty": 2,
+    "explanation": "Gemini replaced LaMDA, the conversational model behind Bard, and PaLM 2, the dense model behind the text-only Bard. Both were Google products that had already shipped publicly, which is why Gemini was framed as a consolidation rather than a first attempt.",
     "source": {
       "kind": "wikipedia",
       "title": "Gemini (language model)",
       "label": "Gemini (language model) on Wikipedia"
     },
     "answerAliases": [
-      "Google",
-      "Google DeepMind",
-      "Google Brain",
-      "Gemini",
-      "December 2023"
+      "LaMDA and PaLM 2",
+      "successor to LaMDA and PaLM 2"
     ],
     "status": "published",
     "addedAt": "2026-09-29"

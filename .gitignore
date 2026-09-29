@@ -29,3 +29,6 @@ blob-report/
 # duplicate-detection embeddings (issue #38): ~40MB at 10k questions,
 # regenerable with `npm run dupe` for a fraction of a cent
 data/dupe/embeddings.jsonl
+
+# regenerable by `npm run dupe`; review.mts falls back to no flags without it
+data/dupe/pairs.json

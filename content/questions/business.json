@@ -1,28 +1,32 @@
 [
   {
     "id": "bus-0001",
-    "text": "Who founded Nvidia, the company whose GPUs underpin most AI training?",
+    "text": "Before Nvidia became the company that supplies most AI training hardware, what did it originally sell?",
     "options": [
-      "Jensen Huang, Chris Malachowsky and Curtis Priem",
-      "Gordon Moore and Robert Noyce",
-      "Jack Ma and Pony Ma",
-      "Larry Page and Sergey Brin"
+      "Graphics cards for personal computers",
+      "Mainframe computers for banks",
+      "Network routers for telecoms",
+      "Memory chips for servers"
     ],
-    "answer": "Jensen Huang, Chris Malachowsky and Curtis Priem",
+    "answer": "Graphics cards for personal computers",
     "category": "business",
     "tags": [
       "nvidia",
-      "founders"
+      "history",
+      "hardware"
     ],
     "difficulty": 2,
-    "explanation": "The three left Sun Microsystems and founded Nvidia in 1993, and Jensen Huang is the one who stayed. A gaming graphics company that spent two decades being treated as a commodity ended up owning the tooling that the entire industry depends on.",
+    "explanation": "Nvidia started in 1993 selling graphics chips for PCs, and the near-bankruptcy of 1996 over a failed product line is the turning point most people miss. The CUDA bet that followed is what turned a gaming hardware firm into the supplier of the AI industry.",
     "source": {
       "kind": "wikipedia",
-      "title": "Nvidia",
-      "label": "Nvidia on Wikipedia"
+      "title": "Graphics processing unit",
+      "label": "Graphics processing unit on Wikipedia"
     },
     "answerAliases": [
-      "Jensen Huang"
+      "Graphics cards for personal computers",
+      "graphics card",
+      "graphics processing unit",
+      "GPU"
     ],
     "status": "published",
     "addedAt": "2026-09-28"

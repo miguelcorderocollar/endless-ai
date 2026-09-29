@@ -757,31 +757,29 @@
   },
   {
     "id": "ppl-0027",
-    "text": "Who co-founded Google Brain and later became Google's chief scientist?",
+    "text": "Before co-founding Google Brain, Jeff Dean had already helped build which Google system for processing data at a scale nobody had attempted?",
     "options": [
-      "Jeff Dean",
-      "Andrew Ng",
-      "Geoffrey Hinton",
-      "Yann LeCun"
+      "MapReduce",
+      "PageRank",
+      "Spanner",
+      "Borg"
     ],
-    "answer": "Jeff Dean",
+    "answer": "MapReduce",
     "category": "people",
     "tags": [
       "google",
-      "brain",
-      "leadership"
+      "mapreduce",
+      "jeff-dean"
     ],
     "difficulty": 3,
-    "explanation": "Dean co-founded Brain in 2011 and became chief scientist in 2023 when Brain merged with DeepMind. Andrew Ng is the tempting miss because he also co-founded Brain, but he left for Baidu and Coursera while Dean stayed to lead.",
+    "explanation": "MapReduce, with Jeffrey Dean and Sanjay Ghemawat, is the distributed computation technique that let Google index the web by splitting work across thousands of machines. He then co-founded Google Brain in 2011 and became Google's chief scientist, so he shows up twice in AI history for two unrelated reasons.",
     "source": {
       "kind": "wikipedia",
-      "title": "Jeff Dean",
-      "label": "Jeff Dean on Wikipedia"
+      "title": "MapReduce",
+      "label": "MapReduce on Wikipedia"
     },
     "answerAliases": [
-      "Jeff Dean",
-      "Jeffrey Dean",
-      "Jeffrey Adgate Dean"
+      "MapReduce"
     ],
     "status": "published",
     "addedAt": "2026-09-29"
