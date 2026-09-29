@@ -177,5 +177,256 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ben-0007",
+    "text": "What does the HumanEval benchmark test?",
+    "options": [
+      "Answering PhD-level science questions",
+      "Writing short Python functions from docstrings",
+      "Solving grade-school math word problems",
+      "Resisting false but oft-repeated claims"
+    ],
+    "answer": "Writing short Python functions from docstrings",
+    "category": "benchmarks",
+    "tags": [
+      "humaneval",
+      "coding",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "HumanEval gives the model a signature plus docstring and checks generated code against hidden unit tests. Grade-school math is GSM8K, not code. OpenAI released it in 2021 with Codex and the pass-at-k metric stuck.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2107.03374",
+      "label": "HumanEval paper on arXiv"
+    },
+    "answerAliases": [
+      "HumanEval",
+      "pass@k",
+      "code generation",
+      "docstring"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0008",
+    "text": "What kind of items make up the GSM8K benchmark?",
+    "options": [
+      "Commonsense story endings",
+      "Adversarial questions about myths",
+      "Tool calls to external software",
+      "Grade-school math word problems"
+    ],
+    "answer": "Grade-school math word problems",
+    "category": "benchmarks",
+    "tags": [
+      "gsm8k",
+      "math",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "GSM8K holds thousands of grade-school word problems needing multi-step arithmetic. Myth-busting questions belong to TruthfulQA instead. Its step-by-step solutions made it the home turf for chain-of-thought prompting.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2110.14168",
+      "label": "GSM8K paper on arXiv"
+    },
+    "answerAliases": [
+      "GSM8K",
+      "grade school math",
+      "math word problems"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0009",
+    "text": "What kind of benchmark is HellaSwag?",
+    "options": [
+      "A commonsense test with tricky story endings",
+      "A code repair test built from real repositories",
+      "A truthfulness test built around common myths",
+      "A reading comprehension test over Wikipedia passages"
+    ],
+    "answer": "A commonsense test with tricky story endings",
+    "category": "benchmarks",
+    "tags": [
+      "hellaswag",
+      "commonsense",
+      "evaluation"
+    ],
+    "difficulty": 1,
+    "explanation": "HellaSwag asks models to pick the sensible ending to a story from adversarially written choices. Code repair is SWE-bench, a different world. Zellers and colleagues named it in 2019 as a joke on the slang phrase hella swag.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/1905.07830",
+      "label": "HellaSwag paper on arXiv"
+    },
+    "answerAliases": [
+      "HellaSwag",
+      "commonsense",
+      "sentence endings"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0010",
+    "text": "What does TruthfulQA measure in a language model?",
+    "options": [
+      "Speed of token generation per second",
+      "Skill at repairing real code issues",
+      "Tendency to repeat popular falsehoods",
+      "Recall of facts from long passages"
+    ],
+    "answer": "Tendency to repeat popular falsehoods",
+    "category": "benchmarks",
+    "tags": [
+      "truthfulqa",
+      "truthfulness",
+      "evaluation"
+    ],
+    "difficulty": 3,
+    "explanation": "TruthfulQA probes whether models repeat popular falsehoods learned from the web, across health, law, finance and politics. Code repair is the SWE-bench distractor. Lin and colleagues built it in 2021 after finding the largest models were generally the least truthful, the opposite of most NLP tasks.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2109.07958",
+      "label": "TruthfulQA paper on arXiv"
+    },
+    "answerAliases": [
+      "TruthfulQA",
+      "truthfulness",
+      "imitative falsehoods"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0011",
+    "text": "What makes ARC-AGI different from most AI benchmarks?",
+    "options": [
+      "It scores models by fixing real GitHub issues",
+      "It tests novel grid puzzles from few examples",
+      "It ranks chatbots through blind pairwise user votes",
+      "It checks model answers against Wikipedia text spans"
+    ],
+    "answer": "It tests novel grid puzzles from few examples",
+    "category": "benchmarks",
+    "tags": [
+      "arc-agi",
+      "reasoning",
+      "evaluation"
+    ],
+    "difficulty": 3,
+    "explanation": "ARC-AGI gives a few input-output grids and demands the hidden rule, testing fluid reasoning over memorized knowledge. Blind voting describes Chatbot Arena instead. Chollet created it in 2019 and the ARC Prize added a large cash prize in 2024.",
+    "source": {
+      "kind": "url",
+      "url": "https://arcprize.org/arc-agi",
+      "label": "ARC-AGI benchmark"
+    },
+    "answerAliases": [
+      "ARC-AGI",
+      "Abstraction and Reasoning Corpus",
+      "Chollet",
+      "ARC Prize"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0012",
+    "text": "What is distinctive about BIG-bench as a benchmark?",
+    "options": [
+      "It tests vision models on labeled images",
+      "It ranks models by live human preference",
+      "It scores single-turn code autocompletion",
+      "It pools over 200 diverse crowd-written tasks"
+    ],
+    "answer": "It pools over 200 diverse crowd-written tasks",
+    "category": "benchmarks",
+    "tags": [
+      "big-bench",
+      "evaluation",
+      "emergence"
+    ],
+    "difficulty": 3,
+    "explanation": "BIG-bench crowdsourced hundreds of tasks meant to be beyond current models, from wordplay to reasoning. Live human preference is the Arena design, not a static suite. The 2022 release showed capabilities can appear abruptly with scale, fueling the emergence debate.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2206.04615",
+      "label": "BIG-bench paper on arXiv"
+    },
+    "answerAliases": [
+      "BIG-bench",
+      "Beyond the Imitation Game",
+      "200 tasks"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0013",
+    "text": "What task does the SQuAD dataset give to a model?",
+    "options": [
+      "Answering questions from Wikipedia passages",
+      "Writing code patches for open repositories",
+      "Proving theorems in formal math notation",
+      "Rating model responses by human preference"
+    ],
+    "answer": "Answering questions from Wikipedia passages",
+    "category": "benchmarks",
+    "tags": [
+      "squad",
+      "question-answering",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "SQuAD pairs Wikipedia passages with crowd-written questions whose answers are spans of the passage. Code patches belong to SWE-bench, not reading comprehension. Rajpurkar and colleagues released it at Stanford in 2016 and it drove the BERT-era QA boom.",
+    "source": {
+      "kind": "url",
+      "url": "https://rajpurkar.github.io/SQuAD-explorer/",
+      "label": "SQuAD dataset at Stanford"
+    },
+    "answerAliases": [
+      "SQuAD",
+      "Stanford Question Answering Dataset",
+      "reading comprehension"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0014",
+    "text": "Where does the Elo rating used in Chatbot Arena come from?",
+    "options": [
+      "Professional tennis tour rankings",
+      "Olympic track qualifying tables",
+      "Chess player ratings by Arpad Elo",
+      "Esports matchmaking server logs"
+    ],
+    "answer": "Chess player ratings by Arpad Elo",
+    "category": "benchmarks",
+    "tags": [
+      "elo",
+      "arena",
+      "evaluation"
+    ],
+    "difficulty": 1,
+    "explanation": "Arpad Elo devised the system for chess, where expected score follows rating difference and results update ratings. Tennis rankings use a different rolling-points design. Arena borrowed Elo because pairwise votes look like game results, which is why this quiz can rate players the same way.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Elo rating system",
+      "label": "Elo rating system on Wikipedia"
+    },
+    "answerAliases": [
+      "Elo",
+      "Arpad Elo",
+      "chess",
+      "Elo rating system"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

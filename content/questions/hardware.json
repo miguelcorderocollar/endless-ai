@@ -289,5 +289,185 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "hwr-0011",
+    "text": "Which foundry manufactures most of Nvidia's AI chips and was founded in 1987 by Morris Chang?",
+    "options": [
+      "Samsung",
+      "Intel",
+      "GlobalFoundries",
+      "TSMC"
+    ],
+    "answer": "TSMC",
+    "category": "hardware",
+    "tags": [
+      "tsmc",
+      "foundry",
+      "nvidia"
+    ],
+    "difficulty": 2,
+    "explanation": "TSMC pioneered the pure-play foundry model and fabs Nvidia's datacenter GPUs, including Blackwell on its 4NP process. Samsung is the tempting miss because it also fabs advanced chips, but Nvidia's AI lineup runs overwhelmingly through TSMC.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "TSMC",
+      "label": "TSMC on Wikipedia"
+    },
+    "answerAliases": [
+      "TSMC",
+      "Taiwan Semiconductor Manufacturing Company"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "hwr-0012",
+    "text": "Which company is the sole supplier of extreme ultraviolet lithography machines for advanced chips?",
+    "options": [
+      "Nikon",
+      "ASML",
+      "Canon",
+      "Applied Materials"
+    ],
+    "answer": "ASML",
+    "category": "hardware",
+    "tags": [
+      "asml",
+      "lithography",
+      "euv"
+    ],
+    "difficulty": 2,
+    "explanation": "The Dutch firm ASML holds a near-monopoly on EUV systems printing 5 nm and 3 nm layers at 13.5 nm wavelength. Nikon is the tempting miss because it once led lithography with Canon, but neither ships EUV machines today.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ASML",
+      "label": "ASML on Wikipedia"
+    },
+    "answerAliases": [
+      "ASML",
+      "ASML Holding"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "hwr-0013",
+    "text": "Nvidia's Blackwell architecture is named after which person?",
+    "options": [
+      "David Blackwell",
+      "Grace Hopper",
+      "Andre-Marie Ampere",
+      "Ada Lovelace"
+    ],
+    "answer": "David Blackwell",
+    "category": "hardware",
+    "tags": [
+      "blackwell",
+      "nvidia",
+      "naming"
+    ],
+    "difficulty": 3,
+    "explanation": "David Blackwell was the statistician behind game theory and probability work that underpins modern ML, honored at GTC 2024 with the B200 datacenter accelerators. Grace Hopper is the tempting miss because Hopper is the preceding Nvidia architecture, also named for a person.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Blackwell (microarchitecture)",
+      "label": "Blackwell (microarchitecture) on Wikipedia"
+    },
+    "answerAliases": [
+      "David Blackwell",
+      "David Harold Blackwell"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "hwr-0014",
+    "text": "Which Nvidia chip became the workhorse of AI training during the 2022 to 2024 boom?",
+    "options": [
+      "A100",
+      "V100",
+      "H100",
+      "B200"
+    ],
+    "answer": "H100",
+    "category": "hardware",
+    "tags": [
+      "h100",
+      "nvidia",
+      "training"
+    ],
+    "difficulty": 1,
+    "explanation": "The Hopper-based H100 powered most frontier training runs of the boom, succeeding the Ampere A100. The A100 is the tempting miss because it was the previous workhorse, but by 2023 waitlists and headlines all pointed at H100 supply.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hopper (microarchitecture)",
+      "label": "Hopper (microarchitecture) on Wikipedia"
+    },
+    "answerAliases": [
+      "H100",
+      "Nvidia H100"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "hwr-0015",
+    "text": "How many GPUs did Nvidia's DGX-1 contain, the system whose first unit was delivered to OpenAI in 2016?",
+    "options": [
+      "4",
+      "8",
+      "16",
+      "32"
+    ],
+    "answer": "8",
+    "category": "hardware",
+    "tags": [
+      "dgx",
+      "nvidia",
+      "openai"
+    ],
+    "difficulty": 3,
+    "explanation": "The DGX-1 packed 8 Pascal P100 GPUs linked by NVLink, and Jensen Huang hand-delivered the first box to OpenAI. Sixteen is the tempting miss because later DGX generations scaled up, but the original 2016 box held eight.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Nvidia DGX",
+      "label": "Nvidia DGX on Wikipedia"
+    },
+    "answerAliases": [
+      "8 GPUs",
+      "eight GPUs"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "hwr-0016",
+    "text": "What does the LPU in Groq's chip name stand for?",
+    "options": [
+      "Linear Processing Unit",
+      "Logic Propagation Unit",
+      "Latency Prediction Unit",
+      "Language Processing Unit"
+    ],
+    "answer": "Language Processing Unit",
+    "category": "hardware",
+    "tags": [
+      "groq",
+      "inference",
+      "lpu"
+    ],
+    "difficulty": 3,
+    "explanation": "Groq rebranded its tensor streaming chip as the Language Processing Unit for LLM inference, and its 2024 speed demos went viral. Linear Processing Unit is the tempting miss because it sounds like standard hardware jargon, but the official expansion is Language, which also fueled confusion with xAI's Grok chatbot.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Groq",
+      "label": "Groq on Wikipedia"
+    },
+    "answerAliases": [
+      "Language Processing Unit",
+      "LPU"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

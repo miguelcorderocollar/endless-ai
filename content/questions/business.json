@@ -168,5 +168,251 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "bus-0007",
+    "text": "After Microsoft's 2019 investment, which cloud platform became OpenAI's exclusive provider for a time?",
+    "options": [
+      "Amazon Web Services",
+      "Azure",
+      "Google Cloud",
+      "Oracle Cloud"
+    ],
+    "answer": "Azure",
+    "category": "business",
+    "tags": [
+      "openai",
+      "microsoft",
+      "cloud"
+    ],
+    "difficulty": 3,
+    "explanation": "Microsoft put in $1 billion in 2019 and Azure became OpenAI's exclusive cloud for a time. Amazon Web Services is the tempting miss because it is the largest cloud overall, but it never held the OpenAI exclusivity. OpenAI has since spread compute across more partners, including the Stargate venture, so the exclusivity belongs to that 2019 era.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "OpenAI",
+      "label": "OpenAI on Wikipedia"
+    },
+    "answerAliases": [
+      "Microsoft Azure",
+      "Azure"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0008",
+    "text": "Bard's February 2023 demo error wrongly credited which telescope with taking the first pictures of exoplanets?",
+    "options": [
+      "Hubble Space Telescope",
+      "Spitzer Space Telescope",
+      "Kepler Space Telescope",
+      "James Webb Space Telescope"
+    ],
+    "answer": "James Webb Space Telescope",
+    "category": "business",
+    "tags": [
+      "google",
+      "bard",
+      "failure"
+    ],
+    "difficulty": 1,
+    "explanation": "The Bard promo claimed the Webb telescope took the very first exoplanet images, wiping about $100 billion off Alphabet's value in a day. Hubble is the tempting miss because it is the famous space telescope, but the actual first images came from the Very Large Telescope in 2004.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini (chatbot)",
+      "label": "Gemini (chatbot) on Wikipedia"
+    },
+    "answerAliases": [
+      "James Webb Space Telescope",
+      "JWST",
+      "Bard"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0009",
+    "text": "Which startup did Databricks agree to acquire for about $1.3 billion in June 2023?",
+    "options": [
+      "MosaicML",
+      "Anthropic",
+      "Cohere",
+      "Scale AI"
+    ],
+    "answer": "MosaicML",
+    "category": "business",
+    "tags": [
+      "databricks",
+      "acquisition",
+      "open-models"
+    ],
+    "difficulty": 3,
+    "explanation": "Databricks bought MosaicML for its MPT models and efficient training stack so enterprises could build models on their own data. Anthropic is the tempting miss because it also raised billions in 2023, but its backers were Amazon and Google, not Databricks.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Databricks",
+      "label": "Databricks on Wikipedia"
+    },
+    "answerAliases": [
+      "MosaicML",
+      "Mosaic ML"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0010",
+    "text": "Which company hired most of Inflection AI's team and licensed its technology in March 2024?",
+    "options": [
+      "Google",
+      "Amazon",
+      "Microsoft",
+      "Meta"
+    ],
+    "answer": "Microsoft",
+    "category": "business",
+    "tags": [
+      "inflection",
+      "acquihire",
+      "microsoft"
+    ],
+    "difficulty": 3,
+    "explanation": "Mustafa Suleyman and Karen Simonyan moved to lead Microsoft AI, taking most of the Inflection staff with them in a deal that drew regulator scrutiny. Google is the tempting miss because Suleyman co-founded DeepMind there, but the 2024 acquihire went to Microsoft.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Inflection AI",
+      "label": "Inflection AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Microsoft"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0011",
+    "text": "Which trio of companies created the Stargate venture announced in January 2025?",
+    "options": [
+      "Google, Amazon and Anthropic",
+      "OpenAI, SoftBank and Oracle",
+      "Microsoft, Nvidia and xAI",
+      "Meta, Intel and AMD"
+    ],
+    "answer": "OpenAI, SoftBank and Oracle",
+    "category": "business",
+    "tags": [
+      "stargate",
+      "infrastructure",
+      "openai"
+    ],
+    "difficulty": 1,
+    "explanation": "Stargate was announced at the White House as a $500 billion, four-year AI infrastructure buildout starting in Texas. The Microsoft, Nvidia and xAI trio is the tempting miss because all three are key technology partners, but the equity founders were OpenAI, SoftBank and Oracle plus MGX.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Stargate LLC",
+      "label": "Stargate LLC on Wikipedia"
+    },
+    "answerAliases": [
+      "OpenAI",
+      "SoftBank",
+      "Oracle",
+      "Stargate"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0012",
+    "text": "Whom did Elon Musk sue in early 2024 over OpenAI allegedly abandoning its founding mission?",
+    "options": [
+      "Sundar Pichai and Google",
+      "Dario Amodei and Anthropic",
+      "Jensen Huang and Nvidia",
+      "Sam Altman and OpenAI"
+    ],
+    "answer": "Sam Altman and OpenAI",
+    "category": "business",
+    "tags": [
+      "lawsuit",
+      "openai",
+      "musk"
+    ],
+    "difficulty": 2,
+    "explanation": "Musk filed in February 2024 claiming OpenAI betrayed its nonprofit charter by chasing profit and keeping models closed under Microsoft's influence. The Amodei and Anthropic pairing is the tempting miss because Anthropic is also an OpenAI splinter, but Musk sued Altman, Brockman and OpenAI.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Musk v. Altman",
+      "label": "Musk v. Altman on Wikipedia"
+    },
+    "answerAliases": [
+      "Sam Altman",
+      "OpenAI",
+      "Altman"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0013",
+    "text": "Which company announced a $6 billion Series B funding round in May 2024?",
+    "options": [
+      "xAI",
+      "Mistral AI",
+      "Inflection AI",
+      "Character.ai"
+    ],
+    "answer": "xAI",
+    "category": "business",
+    "tags": [
+      "xai",
+      "funding",
+      "musk"
+    ],
+    "difficulty": 2,
+    "explanation": "Musk's xAI raised the $6 billion from Valor, Andreessen Horowitz and Sequoia to build Grok products and compute capacity. Mistral AI is the tempting miss because it also raised a huge 2024 round in Europe, but the May 2024 $6 billion Series B was xAI's.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "SpaceXAI",
+      "label": "SpaceXAI on Wikipedia"
+    },
+    "answerAliases": [
+      "xAI",
+      "X.AI",
+      "X AI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0014",
+    "text": "Which biometric does the Orb built for World scan to issue a World ID?",
+    "options": [
+      "Fingerprint",
+      "Voice",
+      "Iris",
+      "Face"
+    ],
+    "answer": "Iris",
+    "category": "business",
+    "tags": [
+      "worldcoin",
+      "identity",
+      "biometrics"
+    ],
+    "difficulty": 3,
+    "explanation": "The chrome Orb photographs irises to prove unique personhood without storing who you are, the core of Sam Altman's Tools for Humanity project. Face is the tempting miss because the Orb looks like a Face ID camera, but the identifier it derives is an iris code.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "World (blockchain)",
+      "label": "World (blockchain) on Wikipedia"
+    },
+    "answerAliases": [
+      "Iris",
+      "iris scan",
+      "Orb",
+      "World ID"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

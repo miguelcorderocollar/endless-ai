@@ -173,5 +173,126 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "oss-0007",
+    "text": "Which organization published the Open Source AI Definition 1.0 in October 2024?",
+    "options": [
+      "Open Source Initiative",
+      "Free Software Foundation",
+      "Linux Foundation",
+      "Apache Software Foundation"
+    ],
+    "answer": "Open Source Initiative",
+    "category": "open-source",
+    "tags": [
+      "osi",
+      "definition",
+      "licensing"
+    ],
+    "difficulty": 3,
+    "explanation": "The OSI released version 1.0 requiring use, study, modify and share freedoms plus disclosure of training-data information. The Free Software Foundation is the tempting miss because it defines free software, but the AI definition process was run by the OSI.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Open-source artificial intelligence",
+      "label": "Open-source artificial intelligence on Wikipedia"
+    },
+    "answerAliases": [
+      "Open Source Initiative",
+      "OSI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "oss-0008",
+    "text": "Under which license were the BLOOM model weights released in 2022?",
+    "options": [
+      "MIT License",
+      "Apache License 2.0",
+      "Responsible AI License (RAIL)",
+      "GNU General Public License"
+    ],
+    "answer": "Responsible AI License (RAIL)",
+    "category": "open-source",
+    "tags": [
+      "bloom",
+      "licensing",
+      "bigscience"
+    ],
+    "difficulty": 3,
+    "explanation": "The 176B-parameter BigScience model used RAIL, which grants open access but restricts harmful uses. Apache 2.0 is the tempting miss because BLOOM's source code is Apache-licensed, but the weights themselves sit under RAIL.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "BLOOM (language model)",
+      "label": "BLOOM (language model) on Wikipedia"
+    },
+    "answerAliases": [
+      "Responsible AI License",
+      "RAIL",
+      "BigScience RAIL",
+      "BigScience Responsible AI License"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "oss-0009",
+    "text": "Which organization created The Pile dataset used to train many open models?",
+    "options": [
+      "OpenAI",
+      "EleutherAI",
+      "Meta AI",
+      "Google DeepMind"
+    ],
+    "answer": "EleutherAI",
+    "category": "open-source",
+    "tags": [
+      "pile",
+      "datasets",
+      "eleutherai"
+    ],
+    "difficulty": 2,
+    "explanation": "EleutherAI assembled the 825 GB, 22-subset Pile in 2020 and released it publicly at the end of that year. OpenAI is the tempting miss because GPT models dominate the era, but The Pile was the open community's answer for training GPT-Neo and GPT-J.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "The Pile (dataset)",
+      "label": "The Pile (dataset) on Wikipedia"
+    },
+    "answerAliases": [
+      "EleutherAI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "oss-0010",
+    "text": "Who started the llama.cpp project for running large language models locally?",
+    "options": [
+      "Andrej Karpathy",
+      "Jeremy Howard",
+      "Simon Willison",
+      "Georgi Gerganov"
+    ],
+    "answer": "Georgi Gerganov",
+    "category": "open-source",
+    "tags": [
+      "llamacpp",
+      "local-llm",
+      "gguf"
+    ],
+    "difficulty": 2,
+    "explanation": "Gerganov began llama.cpp in March 2023 as pure C and C++ inference, later introducing the GGUF format that Ollama and others built on. Karpathy is the tempting miss because his llama2.c also brought local LLM inference to fame, but it is a separate project.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Llama.cpp",
+      "label": "Llama.cpp on Wikipedia"
+    },
+    "answerAliases": [
+      "Georgi Gerganov",
+      "Gerganov"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

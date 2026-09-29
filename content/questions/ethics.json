@@ -417,5 +417,194 @@
       "history"
     ],
     "text": "Which physicist warned that success in creating AI could spell the end of the human race?"
+  },
+  {
+    "id": "eth-0015",
+    "text": "Which engineer claimed Google's LaMDA chatbot was sentient in 2022 and was later fired?",
+    "options": [
+      "Timnit Gebru",
+      "Margaret Mitchell",
+      "Blake Lemoine",
+      "Jeff Dean"
+    ],
+    "answer": "Blake Lemoine",
+    "category": "ethics",
+    "tags": [
+      "lamda",
+      "sentience",
+      "google"
+    ],
+    "difficulty": 2,
+    "explanation": "Google engineer Blake Lemoine concluded LaMDA was sentient in 2022, published transcripts, and was fired that July. Timnit Gebru is the tempting miss as another famous Google AI exit, but her 2020 departure was about a research paper, not sentience claims. Lemoine even hired a lawyer on the chatbot's behalf before his dismissal.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "LaMDA",
+      "label": "LaMDA on Wikipedia"
+    },
+    "answerAliases": [
+      "Blake Lemoine",
+      "Lemoine"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "eth-0016",
+    "text": "Which term describes tricks like DAN and the grandma routine that try to bypass a chatbot's safety rules?",
+    "options": [
+      "Prompt injection",
+      "Data breach",
+      "Model theft",
+      "Jailbreak"
+    ],
+    "answer": "Jailbreak",
+    "category": "ethics",
+    "tags": [
+      "jailbreak",
+      "safety",
+      "dan"
+    ],
+    "difficulty": 2,
+    "explanation": "DAN, short for Do Anything Now, and the act-as-my-grandma bedtime-story trick are both jailbreaks, prompts crafted to slip past safety rules. Prompt injection is the tempting miss because it also hijacks behavior, but it plants instructions in data rather than coaxing the model directly. The grandma variant worked by requesting a lullaby that happened to contain restricted instructions.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Prompt injection",
+      "label": "Prompt injection on Wikipedia"
+    },
+    "answerAliases": [
+      "jailbreak",
+      "Jailbreak",
+      "jailbreaking",
+      "DAN",
+      "Do Anything Now"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "eth-0017",
+    "text": "What did the 2024 tribunal hold in the Air Canada chatbot refund case?",
+    "options": [
+      "The airline is liable for errors its chatbot makes",
+      "The passenger is bound by any fare the chatbot quotes",
+      "The chatbot is a separate legal person from the airline",
+      "The airline must keep the chatbot online at all times"
+    ],
+    "answer": "The airline is liable for errors its chatbot makes",
+    "category": "ethics",
+    "tags": [
+      "air-canada",
+      "chatbot",
+      "liability"
+    ],
+    "difficulty": 3,
+    "explanation": "A 2024 tribunal ruled Air Canada had to honor a chatbot-invented bereavement policy and pay the affected passenger. The tempting miss is that the chatbot's quote binds no one, but the tribunal held the airline liable for its own agent's errors. The case is now the standard warning that companies own what their bots say.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Air Canada",
+      "label": "Air Canada on Wikipedia"
+    },
+    "answerAliases": [
+      "Air Canada",
+      "chatbot",
+      "liable",
+      "bereavement"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "eth-0018",
+    "text": "What does the First Law of Asimov's Three Laws of Robotics require?",
+    "options": [
+      "A robot must obey every human order without question or delay",
+      "A robot must never harm a human or allow harm through inaction",
+      "A robot must always preserve its own existence above all else",
+      "A robot must always reveal itself as a machine to humans"
+    ],
+    "answer": "A robot must never harm a human or allow harm through inaction",
+    "category": "ethics",
+    "tags": [
+      "asimov",
+      "three-laws",
+      "robotics"
+    ],
+    "difficulty": 3,
+    "explanation": "The First Law bars a robot from harming a human or letting one come to harm through inaction, and it outranks every other law. The obedience rule is the tempting miss, but that is the Second Law and it yields to the First. Asimov published all three together in the 1942 story Runaround.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Three Laws of Robotics",
+      "label": "Three Laws of Robotics on Wikipedia"
+    },
+    "answerAliases": [
+      "A robot may not injure a human being or, through inaction, allow a human being to come to harm",
+      "First Law",
+      "Three Laws",
+      "Runaround"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "eth-0019",
+    "text": "Which actress said OpenAI's Sky voice sounded eerily similar to her own in May 2024?",
+    "options": [
+      "Emma Stone",
+      "Natalie Portman",
+      "Scarlett Johansson",
+      "Anne Hathaway"
+    ],
+    "answer": "Scarlett Johansson",
+    "category": "ethics",
+    "tags": [
+      "sky",
+      "voice",
+      "johansson"
+    ],
+    "difficulty": 1,
+    "explanation": "Scarlett Johansson said the Sky voice was eerily similar to hers after she had declined OpenAI's 2023 offer to voice the assistant. Natalie Portman is the tempting miss as another A-list voice, but the dispute was Johansson's, sharpened by Altman's one-word her post. OpenAI paused Sky days later while denying it had cloned her.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Her (2013 film)",
+      "label": "Her (2013 film) on Wikipedia"
+    },
+    "answerAliases": [
+      "Scarlett Johansson",
+      "Johansson",
+      "Samantha"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "eth-0020",
+    "text": "Which declaration was signed at the UK AI Safety Summit in November 2023?",
+    "options": [
+      "Montreal Declaration",
+      "Asilomar Principles",
+      "Seoul Ministerial Statement",
+      "Bletchley Declaration"
+    ],
+    "answer": "Bletchley Declaration",
+    "category": "ethics",
+    "tags": [
+      "bletchley",
+      "regulation",
+      "summit"
+    ],
+    "difficulty": 3,
+    "explanation": "The November 2023 summit at Bletchley Park produced the Bletchley Declaration on frontier AI risks, signed by 28 countries. The Seoul statement is the tempting miss, but that came from the follow-up summit in May 2024. Bletchley was the first meeting to put the US, China, the EU and the UK on one AI safety page.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Bletchley Declaration",
+      "label": "Bletchley Declaration on Wikipedia"
+    },
+    "answerAliases": [
+      "Bletchley Declaration",
+      "Bletchley",
+      "Bletchley Park"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

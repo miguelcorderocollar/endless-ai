@@ -484,5 +484,309 @@
       "llm-critique"
     ],
     "text": "Which researcher co-authored the 2021 paper On the Dangers of Stochastic Parrots?"
+  },
+  {
+    "id": "mem-0017",
+    "text": "Which company's chatbot Tay posted offensive tweets and was taken offline in March 2016 within about a day of launch?",
+    "options": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Apple"
+    ],
+    "answer": "Microsoft",
+    "category": "memes",
+    "tags": [
+      "tay",
+      "chatbot",
+      "microsoft"
+    ],
+    "difficulty": 1,
+    "explanation": "Microsoft launched Tay on Twitter on March 23, 2016, and pulled it within about 16 hours after users goaded it into posting slurs. Google is the tempting miss because its later LaMDA episode also ended in a firing, but Tay was a Microsoft Research and Bing project. Tay's name is an acronym for thinking about you, and its successor Zo arrived that December.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Tay (chatbot)",
+      "label": "Tay (chatbot) on Wikipedia"
+    },
+    "answerAliases": [
+      "Microsoft",
+      "Microsoft Corporation",
+      "Tay"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0018",
+    "text": "Which image generator produced the viral 2023 picture of the Pope in a white puffer jacket?",
+    "options": [
+      "DALL-E",
+      "Midjourney",
+      "Stable Diffusion",
+      "Imagen"
+    ],
+    "answer": "Midjourney",
+    "category": "memes",
+    "tags": [
+      "pope",
+      "midjourney",
+      "viral-image"
+    ],
+    "difficulty": 2,
+    "explanation": "The March 2023 image of Pope Francis in a white puffer jacket was rendered in Midjourney and fooled millions of viewers. DALL-E is the tempting miss as the other famous generator of 2023, but this particular fake came from a Midjourney user. Its maker Pablo Xavier said he dashed it off in minutes and was stunned when it passed as a paparazzi shot.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Midjourney",
+      "label": "Midjourney on Wikipedia"
+    },
+    "answerAliases": [
+      "Midjourney"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0019",
+    "text": "Which actor is shown eating spaghetti in the viral 2023 AI video clip that became a benchmark for video models?",
+    "options": [
+      "Tom Cruise",
+      "Keanu Reeves",
+      "Will Smith",
+      "Brad Pitt"
+    ],
+    "answer": "Will Smith",
+    "category": "memes",
+    "tags": [
+      "video",
+      "meme",
+      "benchmark"
+    ],
+    "difficulty": 1,
+    "explanation": "The grotesque 2023 clip of Will Smith eating spaghetti was an early text-to-video output that became the before picture for video-model progress. Tom Cruise is the tempting miss because his deepfakes were the era's other viral face-swap, but the spaghetti benchmark is Smith. Years later labs re-rendered the same prompt to show how far generation had come.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Will Smith",
+      "label": "Will Smith on Wikipedia"
+    },
+    "answerAliases": [
+      "Will Smith",
+      "Smith"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0020",
+    "text": "Which fashion house titles the viral 2023 AI-generated Harry Potter trailer meme?",
+    "options": [
+      "Gucci",
+      "Prada",
+      "Dior",
+      "Balenciaga"
+    ],
+    "answer": "Balenciaga",
+    "category": "memes",
+    "tags": [
+      "balenciaga",
+      "video",
+      "meme"
+    ],
+    "difficulty": 2,
+    "explanation": "The 2023 meme recast Harry Potter characters in a Balenciaga runway show, with AI voices narrating the fake trailer. Gucci is the tempting miss as another luxury house, but the viral video by demonflyingfox is specifically Balenciaga. The voices were cloned with ElevenLabs, which is why the cast sounds eerily on-model.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Balenciaga",
+      "label": "Balenciaga on Wikipedia"
+    },
+    "answerAliases": [
+      "Balenciaga"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0021",
+    "text": "Which technique surfaced Loab, the 2022 AI-generated cryptid, by asking the model for the opposite of a prompt?",
+    "options": [
+      "Negative prompt weighting",
+      "Temperature sampling",
+      "Beam search decoding",
+      "Gradient checkpointing"
+    ],
+    "answer": "Negative prompt weighting",
+    "category": "memes",
+    "tags": [
+      "loab",
+      "cryptid",
+      "image-models"
+    ],
+    "difficulty": 4,
+    "explanation": "Artist Steph Swanson, posting as Supercomposite, found Loab by weighting a prompt toward its opposite and getting the same staring woman back. Temperature sampling is the tempting miss because it also reshapes outputs, but Loab came from negative prompt weights. The April 2022 images went viral that September as the first cryptid of latent space.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Loab",
+      "label": "Loab on Wikipedia"
+    },
+    "answerAliases": [
+      "negative prompt",
+      "negatively weighted prompts",
+      "negative prompt weights",
+      "Loab"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0022",
+    "text": "Which phrase became shorthand for low-quality AI content after Shrimp Jesus images flooded Facebook in 2024?",
+    "options": [
+      "Doomscrolling",
+      "AI slop",
+      "Context rot",
+      "Prompt injection"
+    ],
+    "answer": "AI slop",
+    "category": "memes",
+    "tags": [
+      "slop",
+      "facebook",
+      "shrimp-jesus"
+    ],
+    "difficulty": 2,
+    "explanation": "Surreal images of Jesus fused with shrimp flooded Facebook in 2024, and AI slop became the blanket term for such engagement-farming junk. Prompt injection is the tempting miss as another 2024 AI buzzword, but it means tricking a chatbot, not farming likes. Reporters traced much of the flood to click-farms feeding prompts into Midjourney.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Slop (artificial intelligence)",
+      "label": "AI slop on Wikipedia"
+    },
+    "answerAliases": [
+      "AI slop",
+      "slop",
+      "Shrimp Jesus"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0023",
+    "text": "On which forum was the dead Internet theory first popularized in a 2021 thread?",
+    "options": [
+      "LessWrong",
+      "Reddit",
+      "Agora Road",
+      "4chan"
+    ],
+    "answer": "Agora Road",
+    "category": "memes",
+    "tags": [
+      "dead-internet",
+      "bots",
+      "culture"
+    ],
+    "difficulty": 3,
+    "explanation": "The theory first took shape in a 2021 thread on Agora Road's Macintosh Cafe, arguing the web was already mostly bots talking to bots. Reddit is the tempting miss because the idea exploded there later, but the founding post was on Agora Road. The 2020s AI boom revived it, since chatbots and image models can now flood feeds with synthetic posts.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Dead Internet theory",
+      "label": "Dead Internet theory on Wikipedia"
+    },
+    "answerAliases": [
+      "Agora Road",
+      "Macintosh Cafe",
+      "IlluminatiPirate"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0024",
+    "text": "Which product's AI Overviews told users to add glue to pizza in May 2024?",
+    "options": [
+      "Bing Search",
+      "DuckDuckGo",
+      "Yandex Search",
+      "Google Search"
+    ],
+    "answer": "Google Search",
+    "category": "memes",
+    "tags": [
+      "google",
+      "hallucination",
+      "search"
+    ],
+    "difficulty": 1,
+    "explanation": "In May 2024 users found Google Search AI Overviews advising a pizza recipe with one-eighth cup of non-toxic glue. Bing is the tempting miss as the other AI-augmented search engine, but the glue answer was Google's. The advice traced to a decade-old Reddit joke, and Google scaled the feature back within weeks.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Google Search",
+      "label": "Google Search on Wikipedia"
+    },
+    "answerAliases": [
+      "Google Search",
+      "Google",
+      "AI Overviews"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0025",
+    "text": "Who coined the term vibe coding in February 2025?",
+    "options": [
+      "Andrej Karpathy",
+      "Sam Altman",
+      "Demis Hassabis",
+      "Yann LeCun"
+    ],
+    "answer": "Andrej Karpathy",
+    "category": "memes",
+    "tags": [
+      "vibe-coding",
+      "karpathy",
+      "culture"
+    ],
+    "difficulty": 1,
+    "explanation": "Andrej Karpathy, the OpenAI co-founder and former Tesla AI lead, coined vibe coding in a February 2025 post. Sam Altman is the tempting miss as the more quoted OpenAI figure, but the tweet was Karpathy's. His definition stuck: fully giving in to the vibes and forgetting the code even exists.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Vibe coding",
+      "label": "Vibe coding on Wikipedia"
+    },
+    "answerAliases": [
+      "Andrej Karpathy",
+      "Karpathy"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0026",
+    "text": "Which film depicts humans living in a simulated reality built by machines?",
+    "options": [
+      "Blade Runner",
+      "The Matrix",
+      "Inception",
+      "Interstellar"
+    ],
+    "answer": "The Matrix",
+    "category": "memes",
+    "tags": [
+      "matrix",
+      "simulation",
+      "scifi"
+    ],
+    "difficulty": 2,
+    "explanation": "The Matrix from 1999 shows humans unknowingly living in a machine-built simulation while their bodies are harvested. Inception is the tempting miss as another reality-bending film, but its shared world is a dream, not a machine simulation. The red-pill versus blue-pill choice became the internet's shorthand for waking up.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "The Matrix",
+      "label": "The Matrix on Wikipedia"
+    },
+    "answerAliases": [
+      "The Matrix",
+      "Matrix"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

@@ -634,5 +634,186 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0023",
+    "text": "Which leather-jacketed executive has led Nvidia as CEO since co-founding it in 1993?",
+    "options": [
+      "Jensen Huang",
+      "Lisa Su",
+      "Pat Gelsinger",
+      "Morris Chang"
+    ],
+    "answer": "Jensen Huang",
+    "category": "people",
+    "tags": [
+      "nvidia",
+      "ceo",
+      "founders"
+    ],
+    "difficulty": 1,
+    "explanation": "Huang founded Nvidia with two Sun colleagues and never left, riding gaming graphics into the AI boom in his trademark leather jacket. Morris Chang is the tempting miss because TSMC fabs Nvidia's chips, but he never ran Nvidia.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Jensen Huang",
+      "label": "Jensen Huang on Wikipedia"
+    },
+    "answerAliases": [
+      "Jensen Huang",
+      "Jen-Hsun Huang",
+      "Huang"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0024",
+    "text": "Who became CEO of AMD in 2014 and led its turnaround?",
+    "options": [
+      "Rory Read",
+      "Dirk Meyer",
+      "Lisa Su",
+      "Hector Ruiz"
+    ],
+    "answer": "Lisa Su",
+    "category": "people",
+    "tags": [
+      "amd",
+      "ceo",
+      "turnaround"
+    ],
+    "difficulty": 2,
+    "explanation": "Su bet AMD on Zen and high-performance chiplets, taking it from near-bankruptcy to datacenter contender. Rory Read is the tempting miss because he was her immediate predecessor as CEO, but the turnaround belongs to Su.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Lisa Su",
+      "label": "Lisa Su on Wikipedia"
+    },
+    "answerAliases": [
+      "Lisa Su"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0025",
+    "text": "Who became CEO of Microsoft in 2014 and backed OpenAI with billions?",
+    "options": [
+      "Steve Ballmer",
+      "Satya Nadella",
+      "Bill Gates",
+      "Brad Smith"
+    ],
+    "answer": "Satya Nadella",
+    "category": "people",
+    "tags": [
+      "microsoft",
+      "ceo",
+      "openai"
+    ],
+    "difficulty": 1,
+    "explanation": "Nadella pivoted Microsoft to cloud-first and placed the $1 billion 2019 bet on OpenAI that grew into the defining AI partnership. Steve Ballmer is the tempting miss because he was the previous CEO, but the OpenAI deal is Nadella's era.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Satya Nadella",
+      "label": "Satya Nadella on Wikipedia"
+    },
+    "answerAliases": [
+      "Satya Nadella",
+      "Nadella"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0026",
+    "text": "Which OpenAI co-founder left the lab and founded xAI in 2023?",
+    "options": [
+      "Sam Altman",
+      "Ilya Sutskever",
+      "Greg Brockman",
+      "Elon Musk"
+    ],
+    "answer": "Elon Musk",
+    "category": "people",
+    "tags": [
+      "musk",
+      "openai",
+      "xai"
+    ],
+    "difficulty": 1,
+    "explanation": "Musk co-founded OpenAI in 2015, departed in 2018, and launched xAI with its Grok chatbot in 2023. Sam Altman is the tempting miss because he is the famous OpenAI face, but he stayed as CEO while Musk left and competed.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Elon Musk",
+      "label": "Elon Musk on Wikipedia"
+    },
+    "answerAliases": [
+      "Elon Musk",
+      "Musk"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0027",
+    "text": "Who co-founded Google Brain and later became Google's chief scientist?",
+    "options": [
+      "Jeff Dean",
+      "Andrew Ng",
+      "Geoffrey Hinton",
+      "Yann LeCun"
+    ],
+    "answer": "Jeff Dean",
+    "category": "people",
+    "tags": [
+      "google",
+      "brain",
+      "leadership"
+    ],
+    "difficulty": 3,
+    "explanation": "Dean co-founded Brain in 2011 and became chief scientist in 2023 when Brain merged with DeepMind. Andrew Ng is the tempting miss because he also co-founded Brain, but he left for Baidu and Coursera while Dean stayed to lead.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Jeff Dean",
+      "label": "Jeff Dean on Wikipedia"
+    },
+    "answerAliases": [
+      "Jeff Dean",
+      "Jeffrey Dean",
+      "Jeffrey Adgate Dean"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0028",
+    "text": "Who is the first author of the 2015 ResNet paper on deep residual learning?",
+    "options": [
+      "Xiangyu Zhang",
+      "Shaoqing Ren",
+      "Kaiming He",
+      "Jian Sun"
+    ],
+    "answer": "Kaiming He",
+    "category": "people",
+    "tags": [
+      "resnet",
+      "vision",
+      "papers"
+    ],
+    "difficulty": 4,
+    "explanation": "He led the Microsoft Research Asia team whose skip connections let networks train hundreds of layers deep. Xiangyu Zhang is the tempting miss because he is the second author, but the paper opens with He, Zhang, Ren and Sun in that order.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Kaiming He",
+      "label": "Kaiming He on Wikipedia"
+    },
+    "answerAliases": [
+      "Kaiming He",
+      "He Kaiming"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

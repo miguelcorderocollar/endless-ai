@@ -288,5 +288,257 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "tec-0011",
+    "text": "What distinguishes an AI agent from a plain chatbot in current usage?",
+    "options": [
+      "It answers single questions with no follow-up steps",
+      "It generates images from short text prompts",
+      "It pursues goals by using tools and taking actions",
+      "It compresses models to run on smaller devices"
+    ],
+    "answer": "It pursues goals by using tools and taking actions",
+    "category": "technology",
+    "tags": [
+      "agents",
+      "tools",
+      "fundamentals"
+    ],
+    "difficulty": 1,
+    "explanation": "An agent loops through tools toward a goal, like booking travel, rather than returning one reply. A chatbot that only answers one question is the contrast the article draws. The word agentic only spread widely in 2024, partly through researcher Andrew Ng.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI agent",
+      "label": "AI agent on Wikipedia"
+    },
+    "answerAliases": [
+      "pursue goals",
+      "use tools",
+      "take actions",
+      "agentic AI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0012",
+    "text": "What does the ReAct method combine in an AI agent?",
+    "options": [
+      "Reasoning traces and acting with tools",
+      "Ranking outputs and editing with humans",
+      "Retrieval indexes and caching with memory",
+      "Reward models and auditing with critics"
+    ],
+    "answer": "Reasoning traces and acting with tools",
+    "category": "technology",
+    "tags": [
+      "agents",
+      "react",
+      "reasoning"
+    ],
+    "difficulty": 3,
+    "explanation": "ReAct prompts the model to interleave thought steps with tool calls, so reasoning guides what to do next. Ranking outputs is the RLHF-flavored distractor, but no separate reward model is involved here. Yao and colleagues released it in 2022 and it became the template for agent harnesses.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "label": "ReAct paper on arXiv"
+    },
+    "answerAliases": [
+      "ReAct",
+      "reason and act",
+      "reasoning and acting",
+      "Yao et al."
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0013",
+    "text": "When did OpenAI introduce function calling for its chat models?",
+    "options": [
+      "November 2022",
+      "March 2023",
+      "November 2023",
+      "June 2023"
+    ],
+    "answer": "June 2023",
+    "category": "technology",
+    "tags": [
+      "agents",
+      "function-calling",
+      "openai"
+    ],
+    "difficulty": 2,
+    "explanation": "OpenAI added a function-calling API in June 2023 so models could emit structured calls to developer-defined tools. March 2023 is the tempting miss because GPT-4 launched then. ChatGPT plugins came from the same era but needed vendor-specific connectors, which MCP later replaced.",
+    "source": {
+      "kind": "url",
+      "url": "https://github.com/openai/openai-cookbook/blob/main/examples/How_to_call_functions_with_chat_models.ipynb",
+      "label": "OpenAI cookbook: calling functions with chat models"
+    },
+    "answerAliases": [
+      "function calling",
+      "function call",
+      "June 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0014",
+    "text": "What is the Model Context Protocol introduced by Anthropic in November 2024?",
+    "options": [
+      "A benchmark scoring coding agents on real GitHub issues",
+      "An open standard connecting models to tools and data",
+      "A fine-tuning method using low-rank weight updates",
+      "A scaling rule relating loss to model and data size"
+    ],
+    "answer": "An open standard connecting models to tools and data",
+    "category": "technology",
+    "tags": [
+      "agents",
+      "mcp",
+      "protocols"
+    ],
+    "difficulty": 2,
+    "explanation": "MCP defines hosts, clients and servers so a model can list tools and call them through JSON-RPC. The coding benchmark distractor describes SWE-bench, not a protocol. Anthropic framed it as fixing the N-by-M integration problem and OpenAI adopted it in March 2025.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Model Context Protocol",
+      "label": "Model Context Protocol on Wikipedia"
+    },
+    "answerAliases": [
+      "MCP",
+      "Model Context Protocol",
+      "open standard"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0015",
+    "text": "What problem does FlashAttention solve?",
+    "options": [
+      "It aligns model outputs with human preferences",
+      "It retrieves documents to ground model answers",
+      "It computes exact attention with far less memory",
+      "It compresses weights with low-rank adapter layers"
+    ],
+    "answer": "It computes exact attention with far less memory",
+    "category": "technology",
+    "tags": [
+      "attention",
+      "flashattention",
+      "efficiency"
+    ],
+    "difficulty": 3,
+    "explanation": "FlashAttention tiles the attention computation into fast on-chip memory so results stay exact while memory drops. Retrieval grounding is RAG, a different fix for a different bottleneck. Tri Dao released it in 2022 and it quickly became the default attention kernel.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2205.14135",
+      "label": "FlashAttention on arXiv"
+    },
+    "answerAliases": [
+      "FlashAttention",
+      "Flash Attention",
+      "IO-aware",
+      "Tri Dao"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0016",
+    "text": "What does grouped-query attention change compared with standard multi-head attention?",
+    "options": [
+      "It shares key and value heads across groups of query heads",
+      "It removes attention layers from the model entirely",
+      "It trains a reward model inside each attention block",
+      "It retrieves passages before computing attention scores"
+    ],
+    "answer": "It shares key and value heads across groups of query heads",
+    "category": "technology",
+    "tags": [
+      "attention",
+      "gqa",
+      "efficiency"
+    ],
+    "difficulty": 3,
+    "explanation": "GQA keeps many query heads but shares fewer key-value heads between them, cutting the KV cache at inference. Removing attention entirely is the confusion with state-space models like Mamba. Llama 2's largest model adopted GQA, which is why the technique moved from paper to default.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2305.13245",
+      "label": "Grouped-query attention paper on arXiv"
+    },
+    "answerAliases": [
+      "grouped-query attention",
+      "GQA",
+      "multi-query",
+      "Llama 2"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0017",
+    "text": "How does LoRA adapt a large model to a new task?",
+    "options": [
+      "It prunes most weights and then retrains the remainder",
+      "It reranks candidate outputs with a separate reward model",
+      "It retrieves task examples to prepend to every prompt",
+      "It trains low-rank matrices while freezing base weights"
+    ],
+    "answer": "It trains low-rank matrices while freezing base weights",
+    "category": "technology",
+    "tags": [
+      "lora",
+      "fine-tuning",
+      "efficiency"
+    ],
+    "difficulty": 3,
+    "explanation": "LoRA freezes the pretrained weights and learns a small pair of rank-decomposed update matrices. Pruning plus retraining is classic compression, not adaptation. Hu and colleagues introduced it in 2021 and QLoRA later combined it with quantization.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2106.09685",
+      "label": "LoRA paper on arXiv"
+    },
+    "answerAliases": [
+      "LoRA",
+      "low-rank adaptation",
+      "low rank adaptation"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "tec-0018",
+    "text": "How does direct preference optimization differ from RLHF?",
+    "options": [
+      "It scales context windows with sparser attention",
+      "It tunes on preferences with no separate reward model",
+      "It distills a large teacher into a smaller student",
+      "It grounds answers with retrieved source passages"
+    ],
+    "answer": "It tunes on preferences with no separate reward model",
+    "category": "technology",
+    "tags": [
+      "dpo",
+      "rlhf",
+      "post-training"
+    ],
+    "difficulty": 4,
+    "explanation": "DPO rewrites the preference objective so the policy itself learns from pairwise choices, skipping the reward-model plus RL step. Distillation is the teacher-student distractor and needs a teacher, not preference pairs. Rafailov and colleagues published it in 2023 and labs adopted it for simpler post-training.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2305.18290",
+      "label": "DPO paper on arXiv"
+    },
+    "answerAliases": [
+      "Direct Preference Optimization",
+      "DPO",
+      "reward model"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

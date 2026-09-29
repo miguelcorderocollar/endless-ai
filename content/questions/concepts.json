@@ -460,5 +460,196 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0017",
+    "text": "What is the core training objective of a GPT-style large language model?",
+    "options": [
+      "Predicting the next token from prior tokens",
+      "Labeling each input image with bounding boxes",
+      "Scoring each reply with a learned reward model",
+      "Clustering input documents by shared topic labels"
+    ],
+    "answer": "Predicting the next token from prior tokens",
+    "category": "concepts",
+    "tags": [
+      "pretraining",
+      "language-modeling",
+      "fundamentals"
+    ],
+    "difficulty": 2,
+    "explanation": "Pretraining teaches the model the most likely next piece of text given everything before it. Reward scoring belongs to the later RLHF stage, not pretraining. That single objective at web scale is what produces few-shot abilities nobody explicitly programmed.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Large language model",
+      "label": "Large language model on Wikipedia"
+    },
+    "answerAliases": [
+      "next-token prediction",
+      "next token prediction",
+      "predict the next token",
+      "language modeling"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0018",
+    "text": "What makes text generation by most large language models autoregressive?",
+    "options": [
+      "It samples all tokens in parallel in one step",
+      "It retrieves the answer verbatim from training data",
+      "It emits one token at a time conditioned on prior ones",
+      "It reranks completions with a separate reward signal"
+    ],
+    "answer": "It emits one token at a time conditioned on prior ones",
+    "category": "concepts",
+    "tags": [
+      "autoregressive",
+      "generation",
+      "fundamentals"
+    ],
+    "difficulty": 2,
+    "explanation": "Each new token joins the context for the next step, so output grows left to right. Parallel one-shot emission describes diffusion-style text models, not standard decoders. That is why generation cost grows with length and why KV caching matters.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Large language model",
+      "label": "Large language model on Wikipedia"
+    },
+    "answerAliases": [
+      "autoregressive",
+      "left-to-right",
+      "one token at a time"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0019",
+    "text": "What did the GPT-3 paper show about few-shot prompting?",
+    "options": [
+      "It removes the need for any training data at all",
+      "It lets a model do tasks from examples in the prompt",
+      "It proves longer training always beats larger models",
+      "It guarantees cited answers from retrieved sources"
+    ],
+    "answer": "It lets a model do tasks from examples in the prompt",
+    "category": "concepts",
+    "tags": [
+      "few-shot",
+      "in-context-learning",
+      "gpt-3"
+    ],
+    "difficulty": 3,
+    "explanation": "Brown and colleagues showed GPT-3 could perform unseen tasks when the prompt contained a few demonstrations and no weight updates. Zero-data learning is the stronger claim the paper never makes. That in-context ability, scaling with size, is what shocked the field in 2020.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-3",
+      "label": "GPT-3 on Wikipedia"
+    },
+    "answerAliases": [
+      "few-shot",
+      "few-shot learning",
+      "in-context learning",
+      "GPT-3"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0020",
+    "text": "What do query, key and value vectors do in attention?",
+    "options": [
+      "They prune weak connections after training ends",
+      "They quantize weights for faster device inference",
+      "They label which data center served each request",
+      "They weight every token by relevance to each other one"
+    ],
+    "answer": "They weight every token by relevance to each other one",
+    "category": "concepts",
+    "tags": [
+      "attention",
+      "qkv",
+      "fundamentals"
+    ],
+    "difficulty": 3,
+    "explanation": "Queries score against keys and the resulting weights mix the values, so each position gathers context from the whole sequence. Quantization is the inference-speed distractor and touches weights, not token relevance. The scaled dot-product formula from 2017 is the version every transformer uses.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Attention (machine learning)",
+      "label": "Attention (machine learning) on Wikipedia"
+    },
+    "answerAliases": [
+      "query",
+      "key",
+      "value",
+      "QKV",
+      "scaled dot-product attention"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0021",
+    "text": "How does a vector database help a language model use stored knowledge?",
+    "options": [
+      "By retrieving texts whose embeddings match the query",
+      "By retraining all model weights on each new document",
+      "By ranking candidate outputs with human preference scores",
+      "By compressing long prompts into fewer learned tokens"
+    ],
+    "answer": "By retrieving texts whose embeddings match the query",
+    "category": "concepts",
+    "tags": [
+      "embeddings",
+      "vector-database",
+      "retrieval"
+    ],
+    "difficulty": 2,
+    "explanation": "Documents are stored as embedding vectors and nearest-neighbor search returns the closest ones to the query embedding. Retraining on each document would be slow and destroy prior knowledge. That retrieval step is the R in RAG systems.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Vector database",
+      "label": "Vector database on Wikipedia"
+    },
+    "answerAliases": [
+      "vector database",
+      "embeddings",
+      "similarity search",
+      "nearest neighbor"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0022",
+    "text": "Which cost recurs every time a deployed model answers a query?",
+    "options": [
+      "Dataset collection",
+      "Pretraining compute",
+      "Inference compute",
+      "Architecture design"
+    ],
+    "answer": "Inference compute",
+    "category": "concepts",
+    "tags": [
+      "inference",
+      "training",
+      "fundamentals"
+    ],
+    "difficulty": 1,
+    "explanation": "Training is paid once while each answer burns fresh inference compute on GPUs serving tokens. Pretraining is the big one-time bill people confuse with serving cost. That per-query cost is why distillation, quantization and efficient attention matter commercially.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Machine learning",
+      "label": "Machine learning on Wikipedia"
+    },
+    "answerAliases": [
+      "inference",
+      "training",
+      "pretraining"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

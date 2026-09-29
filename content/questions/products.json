@@ -174,5 +174,194 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pro-0007",
+    "text": "Which startup launched the screenless AI Pin wearable that flopped in 2024?",
+    "options": [
+      "Humane",
+      "Rabbit",
+      "xAI",
+      "Anthropic"
+    ],
+    "answer": "Humane",
+    "category": "products",
+    "tags": [
+      "humane",
+      "wearable",
+      "flop"
+    ],
+    "difficulty": 1,
+    "explanation": "Humane, founded by ex-Apple staffers, shipped the screenless AI Pin in 2024 to dismal reviews over heat, battery and hallucinations. Rabbit is the tempting miss because its R1 flopped the same year, but the pin was Humane's. HP bought most of the company in early 2025 and shut the device down.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Humane Inc.",
+      "label": "Humane Inc. on Wikipedia"
+    },
+    "answerAliases": [
+      "Humane",
+      "Humane AI Pin",
+      "Ai Pin"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "pro-0008",
+    "text": "Which device unveiled at CES in January 2024 promised a large action model that operates apps for you?",
+    "options": [
+      "Apple Vision Pro",
+      "Rabbit R1",
+      "Meta Quest 3",
+      "Amazon Echo"
+    ],
+    "answer": "Rabbit R1",
+    "category": "products",
+    "tags": [
+      "rabbit",
+      "ces",
+      "agent"
+    ],
+    "difficulty": 2,
+    "explanation": "Rabbit unveiled the 199-dollar R1 at CES in January 2024, promising a large action model that clicks through apps for you. The Apple Vision Pro is the tempting miss as the other hyped early-2024 gadget, but the action-model pitch was Rabbit's. Reviewers found a half-baked assistant and called it barely reviewable.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Rabbit r1",
+      "label": "Rabbit r1 on Wikipedia"
+    },
+    "answerAliases": [
+      "Rabbit r1",
+      "Rabbit R1",
+      "r1",
+      "large action model"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "pro-0009",
+    "text": "Which image service runs through Discord after entering open beta in July 2022?",
+    "options": [
+      "DALL-E 2",
+      "Stable Diffusion",
+      "Midjourney",
+      "Adobe Firefly"
+    ],
+    "answer": "Midjourney",
+    "category": "products",
+    "tags": [
+      "midjourney",
+      "discord",
+      "image"
+    ],
+    "difficulty": 2,
+    "explanation": "Midjourney entered open beta in July 2022 as a bot living entirely inside Discord. Stable Diffusion is the tempting miss because it also arrived that summer, but it runs anywhere while Midjourney stayed Discord-only. Founder David Holz had previously built the Leap Motion controller.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Midjourney",
+      "label": "Midjourney on Wikipedia"
+    },
+    "answerAliases": [
+      "Midjourney"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "pro-0010",
+    "text": "Which NotebookLM feature that turns documents into podcast-style chats went viral in September 2024?",
+    "options": [
+      "Video Previews",
+      "Slide Decks",
+      "Mind Maps",
+      "Audio Overviews"
+    ],
+    "answer": "Audio Overviews",
+    "category": "products",
+    "tags": [
+      "notebooklm",
+      "audio",
+      "rag"
+    ],
+    "difficulty": 2,
+    "explanation": "NotebookLM's Audio Overviews, which turn uploaded documents into a two-host podcast chat, went viral in September 2024. Mind Maps is the tempting miss as another NotebookLM view, but the 2024 sensation was audio. Fans shared clips of synthetic hosts bantering over meeting notes and syllabi.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini Notebook",
+      "label": "Gemini Notebook on Wikipedia"
+    },
+    "answerAliases": [
+      "Audio Overviews",
+      "Audio Overview",
+      "NotebookLM"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "pro-0011",
+    "text": "Which label had the AI track Heart on My Sleeve pulled from streaming in April 2023?",
+    "options": [
+      "Universal Music Group",
+      "Sony Music",
+      "Warner Records",
+      "Atlantic Records"
+    ],
+    "answer": "Universal Music Group",
+    "category": "products",
+    "tags": [
+      "ghostwriter",
+      "music",
+      "takedown"
+    ],
+    "difficulty": 3,
+    "explanation": "The April 2023 track Heart on My Sleeve used AI-cloned vocals of Drake and The Weeknd, and Universal Music Group had it pulled from streaming. Sony Music is the tempting miss as another major label, but UMG acted because both mimicked artists sit on its roster. The anonymous maker ghostwriter still submitted the track for Grammy consideration.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Heart on My Sleeve (Ghostwriter song)",
+      "label": "Heart on My Sleeve (Ghostwriter song) on Wikipedia"
+    },
+    "answerAliases": [
+      "Universal Music Group",
+      "UMG",
+      "Ghostwriter",
+      "Heart on My Sleeve",
+      "Drake",
+      "The Weeknd"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "pro-0012",
+    "text": "How many users did ChatGPT gain in its first two months after launching in November 2022?",
+    "options": [
+      "10 million users",
+      "100 million users",
+      "500 million users",
+      "1 billion users"
+    ],
+    "answer": "100 million users",
+    "category": "products",
+    "tags": [
+      "chatgpt",
+      "growth",
+      "launch"
+    ],
+    "difficulty": 2,
+    "explanation": "ChatGPT reached about 100 million users within two months of its November 2022 launch, the fastest consumer ramp on record then. Fifty million is the tempting undercount, but outside trackers put the two-month figure at 100 million. UBS analysts called it the fastest-growing consumer app in history.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ChatGPT",
+      "label": "ChatGPT on Wikipedia"
+    },
+    "answerAliases": [
+      "100 million",
+      "100 million users",
+      "two months",
+      "fastest-growing"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]
