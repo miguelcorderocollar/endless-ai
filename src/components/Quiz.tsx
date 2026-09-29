@@ -10,25 +10,12 @@ import {
   subscribeProgress,
   updateProgress,
 } from "@/lib/progress";
-import { accuracy, categoryBreakdown, pickNext } from "@/lib/quiz/engine";
-import { scoreAnswer, tierFor } from "@/lib/quiz/elo";
-import {
-  type CategoryKey,
-  categoryLabel,
-  sourceHref,
-  sourceLabel,
-} from "@/lib/questions/schema";
+import { pickNext } from "@/lib/quiz/engine";
+import { scoreAnswer } from "@/lib/quiz/elo";
+import { sourceHref, sourceLabel } from "@/lib/questions/schema";
 import type { Question } from "@/lib/questions/schema";
 
-type Phase = "question" | "revealed" | "finished";
-
-type Answer = {
-  questionId: string;
-  category: CategoryKey;
-  difficulty: number;
-  correct: boolean;
-  picked: string;
-};
+type Phase = "question" | "revealed";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
@@ -42,18 +29,24 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
   const [current, setCurrent] = useState<Question | null>(initial);
   const [picked, setPicked] = useState<string | null>(null);
   const [seen, setSeen] = useState<Set<string>>(() => new Set([initial.id]));
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [view, setView] = useState<"quiz" | "done">("quiz");
+  const [exhausted, setExhausted] = useState(false);
 
   useEffect(() => {
     hydrateProgress();
   }, []);
 
   const nextQuestion = useCallback(() => {
-    const next = pickNext(bank, seen, new Set<CategoryKey>());
-    setSeen((prev) => new Set(prev).add(next?.id ?? ""));
+    const next = pickNext(bank, seen, new Set<Question["category"]>());
+    if (!next) {
+      setExhausted(true);
+      setView("done");
+      return;
+    }
+    setSeen((prev) => new Set(prev).add(next.id));
     setCurrent(next);
     setPicked(null);
-    setPhase(next ? "question" : "finished");
+    setPhase("question");
   }, [bank, seen]);
 
   const answer = useCallback(
@@ -64,63 +57,43 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
 
       setPicked(option);
       setPhase("revealed");
-      setAnswers((prev) => [
-        ...prev,
-        {
-          questionId: current.id,
-          category: current.category,
-          difficulty: current.difficulty,
-          correct,
-          picked: option,
-        },
-      ]);
 
-      const updated = {
+      updateProgress({
         ...progress,
         rating: nextRating,
         answered: progress.answered + 1,
         correct: progress.correct + (correct ? 1 : 0),
+        completed:
+          correct && !progress.completed.includes(current.id)
+            ? [...progress.completed, current.id]
+            : progress.completed,
         lastPlayed: new Date().toISOString().slice(0, 10),
-      };
-      updateProgress(updated);
+      });
     },
     [current, phase, progress],
   );
 
-  const reset = useCallback(() => {
-    const fresh = pickNext(bank, new Set(), new Set<CategoryKey>()) ?? initial;
-    setSeen(new Set([fresh.id]));
-    setAnswers([]);
-    setPicked(null);
-    setPhase("question");
-    setCurrent(fresh);
-  }, [bank, initial]);
-
-  const correctCount = answers.filter((a) => a.correct).length;
-  const endRun = useCallback(() => setPhase("finished"), []);
-
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
-      <Masthead progress={progress} onReset={reset} />
+      <Masthead
+        progress={progress}
+        view={view}
+        onShowDone={() => setView("done")}
+        onShowQuiz={() => setView("quiz")}
+      />
 
-      {phase === "finished" ? (
-        <Summary
-          answers={answers}
-          correct={correctCount}
-          rating={progress.rating}
-          bankSize={bank.length}
-          seen={seen.size}
-          bankTotal={bank.length}
-          onRestart={reset}
+      {view === "done" ? (
+        <DoneView
+          bank={bank}
+          completedIds={progress.completed}
+          exhausted={exhausted}
+          onBack={() => setView("quiz")}
         />
       ) : (
         <main className="flex flex-1 flex-col pt-8">
           {current ? (
             <>
               <div key={current.id} className="stagger pt-9">
-                <p className="label text-muted">
-                  {categoryLabel(current.category)} · difficulty {current.difficulty}
-                </p>
                 <h1 className="mt-3 font-display text-[1.75rem] leading-[1.25] text-balance sm:text-4xl">
                   {current.text}
                 </h1>
@@ -163,35 +136,26 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
                   correct={picked === current.answer}
                   onNext={nextQuestion}
                 />
-              ) : (
-                <div className="mt-8 flex items-center justify-between">
-                  <p className="label text-muted/70">
-                    question {seen.size} · {bank.length} in the bank
-                  </p>
-                  {seen.size > 1 ? (
-                    <button
-                      type="button"
-                      onClick={endRun}
-                      className="label cursor-pointer text-muted/70 underline underline-offset-4 transition-colors hover:text-signal"
-                    >
-                      end run
-                    </button>
-                  ) : null}
-                </div>
-              )}
+              ) : null}
             </>
           ) : null}
         </main>
       )}
-
-      <footer className="label mt-10 border-t border-ink-line pt-4 text-muted/60">
-        Prototype · progress saved on this device only
-      </footer>
     </div>
   );
 }
 
-function Masthead({ progress, onReset }: { progress: SavedProgress; onReset: () => void }) {
+function Masthead({
+  progress,
+  view,
+  onShowDone,
+  onShowQuiz,
+}: {
+  progress: SavedProgress;
+  view: "quiz" | "done";
+  onShowDone: () => void;
+  onShowQuiz: () => void;
+}) {
   return (
     <header className="flex items-baseline justify-between border-b border-ink-line py-5">
       <span className="font-display text-2xl tracking-tight">
@@ -201,13 +165,23 @@ function Masthead({ progress, onReset }: { progress: SavedProgress; onReset: () 
         <span className="label text-muted">
           elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
         </span>
-        <button
-          type="button"
-          onClick={onReset}
-          className="label cursor-pointer text-muted transition-colors hover:text-signal"
-        >
-          reset
-        </button>
+        {view === "quiz" ? (
+          <button
+            type="button"
+            onClick={onShowDone}
+            className="label cursor-pointer text-muted transition-colors hover:text-signal"
+          >
+            done {progress.completed.length}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={onShowQuiz}
+            className="label cursor-pointer text-muted transition-colors hover:text-signal"
+          >
+            ← play
+          </button>
+        )}
       </div>
     </header>
   );
@@ -255,70 +229,74 @@ function Reveal({
   );
 }
 
-function Summary({
-  answers,
-  correct,
-  rating,
-  seen,
-  bankTotal,
-  onRestart,
+function DoneView({
+  bank,
+  completedIds,
+  exhausted,
+  onBack,
 }: {
-  answers: Answer[];
-  correct: number;
-  rating: number;
-  bankSize: number;
-  seen: number;
-  bankTotal: number;
-  onRestart: () => void;
+  bank: Question[];
+  completedIds: string[];
+  exhausted: boolean;
+  onBack: () => void;
 }) {
-  const breakdown = useMemo(() => categoryBreakdown(answers), [answers]);
-  const overall = Math.round(accuracy(answers) * 100);
+  const done = useMemo(() => {
+    const byId = new Map(bank.map((q) => [q.id, q]));
+    return completedIds.flatMap((id) => {
+      const q = byId.get(id);
+      return q ? [q] : [];
+    });
+  }, [bank, completedIds]);
 
   return (
     <main className="flex flex-1 flex-col pt-14">
-      <p className="label text-muted">run complete</p>
-      <p className="mt-2 font-display text-7xl leading-none tracking-tight">
-        {correct}
-        <span className="text-3xl text-muted">/{answers.length}</span>
+      <p className="label text-muted">
+        {exhausted ? "bank complete" : `done · ${done.length}`}
       </p>
+      <p className="mt-2 font-display text-7xl leading-none tracking-tight">{done.length}</p>
       <p className="label mt-4 text-muted">
-        {overall}% accuracy · elo {rating} · {tierFor(rating)}
+        {exhausted
+          ? `every question in the bank, answered right`
+          : "questions answered right · misses come back"}
       </p>
 
-      {breakdown.length > 1 ? (
-        <ul className="mt-10 flex flex-col gap-3">
-          {breakdown.map((row) => {
-            const pct = Math.round((row.correct / row.total) * 100);
+      {done.length > 0 ? (
+        <ul className="mt-10 flex flex-col gap-5">
+          {done.map((q) => {
+            const href = sourceHref(q.source);
+            const label = sourceLabel(q.source);
             return (
-              <li key={row.category} className="flex items-center gap-4">
-                <span className="label w-32 shrink-0 text-muted">{categoryLabel(row.category)}</span>
-                <span className="h-1 flex-1 bg-ink-line">
-                  <span
-                    className={`block h-full ${pct >= 50 ? "bg-signal" : "bg-fail"}`}
-                    style={{ width: `${Math.max(3, pct)}%` }}
-                  />
-                </span>
-                <span className="label w-14 shrink-0 text-right text-muted">
-                  {pct}%
-                </span>
+              <li key={q.id} className="border-t border-ink-line pt-4">
+                <p className="text-[0.95rem] leading-snug text-paper/90">{q.text}</p>
+                <p className="label mt-2 text-signal">{q.answer}</p>
+                {href && label ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="label group mt-2 inline-flex items-center gap-2 text-muted transition-colors hover:text-signal"
+                  >
+                    learn
+                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </a>
+                ) : null}
               </li>
             );
           })}
         </ul>
-      ) : null}
-
-      <p className="mt-10 max-w-sm text-sm leading-relaxed text-muted">
-        {seen >= bankTotal
-          ? `You have been through all ${bankTotal} questions. That is the whole prototype bank.`
-          : `You stopped with ${bankTotal - seen} questions still in the bank. The stream refills once it runs dry, and it is not close to dry yet.`}
-      </p>
+      ) : (
+        <p className="mt-10 max-w-sm text-sm leading-relaxed text-muted">
+          Nothing here yet. Answer a question right and it lands on this list — get one
+          wrong and it comes back for another try.
+        </p>
+      )}
 
       <button
         type="button"
-        onClick={onRestart}
+        onClick={onBack}
         className="label mt-8 w-fit cursor-pointer border border-signal bg-signal px-6 py-3 text-ink transition-colors hover:bg-paper hover:border-paper"
       >
-        play again
+        keep playing
       </button>
     </main>
   );

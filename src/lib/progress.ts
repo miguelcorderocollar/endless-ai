@@ -4,6 +4,8 @@ export type SavedProgress = {
   correct: number;
   streak: number;
   lastPlayed: string;
+  /** Question ids answered correctly. Failed ones reappear, so this is the done list. */
+  completed: string[];
 };
 
 /**
@@ -18,6 +20,7 @@ export const EMPTY_PROGRESS: SavedProgress = {
   correct: 0,
   streak: 1,
   lastPlayed: "",
+  completed: [],
 };
 
 export function readProgress(): SavedProgress {
