@@ -67,22 +67,35 @@ Keep the browser suite worth running:
 - Prefer Wikipedia or primary sources. Use `"kind": "none"` only when no source exists, and make the explanation carry the teaching.
 - Do not ship generated questions without `npm run validate` and a human read.
 - `npm run validate` cannot see a reworded or cross-category repeat. Run
-  `npm run dupe` before shipping a batch, and adjudicate every pair by hand: Jev is
-  calibrated, not correct. A shared answer is not a shared fact, which is the most
-  common false positive. Record the outcome in `data/dupe/labelled.json` so the
-  threshold stays honest.
+  `npm run dupe` before shipping a batch, then decide each pair it flags. Jev is
+  calibrated, not correct, and a decision does not have to be human: the pairs are
+  unambiguous once read side by side, so an agent can adjudicate and record the
+  outcome. Two traps, both seen in this bank: a shared answer is not a shared fact,
+  and a different fact in near-identical wording still reads as one question.
+  Record every decision in `data/dupe/labelled.json` so `npm run dupe:score`
+  keeps measuring the threshold honestly.
+- **Deleting a question does not remove it from play.** Editing git is not a
+  deploy. The pruned id stays `published` in Convex until you run
+  `npx tsx scripts/publish.mts`, which is what calls `questions:prune`. Always
+  run the publish step after a deletion, and confirm the row is `archived` before
+  assuming the deletion shipped.
 
 ## Removing a duplicate
 
 No Convex change is needed. Delete the question from
-`content/questions/*.json` and run `npx tsx scripts/publish.mts`: `questions:prune`
-archives any published row whose id is no longer in the bank, and every read path
-filters on `status === "published"`, so it leaves the playable set immediately.
-IDs are never reused, so the pruned id stays retired.
+`content/questions/*.json`, then run `npx tsx scripts/publish.mts` (`--prod` for
+prod). That step does two things: `questions:sync` upserts the current bank, then
+`questions:prune` archives every published row whose id is no longer in it. Every
+read path filters on `status === "published"`, so an archived row leaves the
+playable set immediately. Ids are never reused, so the pruned id stays retired.
+
+Pruning is a status change, not a delete. The row and its answer history stay in
+the table, which is what you want if answers were recorded against that id.
 
 Prefer rewording over deleting when one side carries more value (a better hook, a
 harder difficulty, a category that needs the coverage). Delete when the two are
-genuinely interchangeable.
+genuinely interchangeable. Of seven duplicates fixed in #38, three were deleted and
+four reworded, so check both options before removing an id.
 
 ## Code rules
 

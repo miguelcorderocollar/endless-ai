@@ -45,6 +45,13 @@ npx tsx scripts/publish.mts --prod  # syncs the bank to prod
 
 Rules:
 
+- **A deletion is not live until you publish.** Removing an id from
+  `content/questions/*.json` leaves it `published` in Convex, so it stays in the
+  playable set. `questions:prune` (which `publish.mts` calls after `questions:sync`)
+  is what archives it. Always publish after deleting, then confirm the row reads
+  `archived`.
+- Prune is a status change, not a delete: the row and its answer history stay, so
+  answers already recorded against a retired id are not orphaned.
 - Publish only from a clean tree (`git status` clean).
 - Sync is idempotent per `questionId`: inserts new rows, patches changed ones,
   archives published rows removed from git. Adding one question costs one write.

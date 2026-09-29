@@ -321,6 +321,12 @@ seen in this bank:
 Record every decision in `data/dupe/labelled.json`, including the ones you left
 alone, so `npm run dupe:score` can measure the threshold honestly.
 
+**Deleting is not a deploy.** After removing a question from
+`content/questions/*.json`, run `npx tsx scripts/publish.mts`. Until you do, the
+id is still `published` in Convex and still in play. `questions:prune` archives
+it, which is a status change rather than a delete, so the row and any answer
+history against it survive.
+
 Report at the end, as plain text after the JSON: how many questions per category, the
 difficulty spread, how many have a `wikipedia` source, how many have a `url` source, and how
 many are `none`. Be honest about the `none` count. Do not claim grounding you did not do.
