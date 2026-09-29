@@ -17,6 +17,20 @@ export const list = query({
 const sameStrings = (a: string[], b: string[]) =>
   a.length === b.length && a.every((s, i) => s === b[i]);
 
+type Source = {
+  kind: string;
+  title?: string;
+  url?: string;
+  label?: string;
+};
+
+/** Key-order-insensitive: Convex may re-serialize object keys on write. */
+const sameSource = (a: Source, b: Source) =>
+  a.kind === b.kind &&
+  (a as { title?: string }).title === (b as { title?: string }).title &&
+  (a as { url?: string }).url === (b as { url?: string }).url &&
+  (a as { label?: string }).label === (b as { label?: string }).label;
+
 /**
  * Upsert one batch of the validated bank. Internal on purpose: publish via
  * authenticated `npx convex run` (see `scripts/publish.mts`), never from the
@@ -56,7 +70,10 @@ export const sync = internalMutation({
         doc.category !== q.category ||
         doc.difficulty !== q.difficulty ||
         doc.explanation !== q.explanation ||
-        JSON.stringify(doc.source) !== JSON.stringify(q.source) ||
+        !sameSource(
+          doc.source as Source,
+          q.source as unknown as Source,
+        ) ||
         !sameStrings(doc.tags, q.tags) ||
         doc.addedAt !== q.addedAt
       ) {

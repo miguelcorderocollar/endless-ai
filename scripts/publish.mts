@@ -34,13 +34,19 @@ function convexRun(fn: string, payload: unknown): string {
   );
 }
 
-/** Canonical form: full content, sorted, fixed key order. */
+/** Canonical form: full content, sorted, source keys normalized. */
+function normSource(s: unknown): unknown {
+  if (typeof s !== "object" || s === null) return s;
+  const o = s as Record<string, unknown>;
+  return { kind: o.kind, title: o.title, url: o.url, label: o.label };
+}
+
 function fingerprint(
-  rows: { questionId: string; text: string; rest: unknown }[],
+  rows: { questionId: string; text: string; rest: { source: unknown } & Record<string, unknown> }[],
 ): string {
-  const sorted = [...rows].sort((a, b) =>
-    a.questionId < b.questionId ? -1 : 1,
-  );
+  const sorted = [...rows]
+    .map((r) => ({ ...r, rest: { ...r.rest, source: normSource(r.rest.source) } }))
+    .sort((a, b) => (a.questionId < b.questionId ? -1 : 1));
   return createHash("sha1").update(JSON.stringify(sorted)).digest("hex");
 }
 
