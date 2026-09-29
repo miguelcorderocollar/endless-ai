@@ -219,7 +219,7 @@ export function QuizFromConvex() {
     const completed = readProgress().completed.length;
     return (
       <Shell>
-        <main className="flex flex-1 flex-col pt-14">
+        <main className="flex flex-1 flex-col pt-6">
           <p className="label text-muted">
             {completed > 0 ? "bank complete" : "empty bank"}
           </p>

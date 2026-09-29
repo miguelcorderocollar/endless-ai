@@ -208,7 +208,7 @@ export default function ProfilePage() {
 
   return (
     <Shell showElo={false}>
-      <main className="flex flex-1 flex-col pt-14">
+      <main className="flex flex-1 flex-col pt-6">
         <p className="label text-muted">profile</p>
 
         {headerPending ? (

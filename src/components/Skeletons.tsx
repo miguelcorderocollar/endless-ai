@@ -40,7 +40,7 @@ export function Shell({
   );
   return (
     <div className="frame-x frame-t frame-b mx-auto flex min-h-dvh w-full max-w-2xl flex-col">
-      <header className="flex items-center justify-between border-b border-ink-line py-5">
+      <header className="flex items-center justify-between border-b border-ink-line py-4">
         <span className="font-display text-2xl tracking-tight">
           <Link href="/" aria-label="back to the game">
             Endless <span className="text-signal">AI</span>
@@ -89,9 +89,9 @@ export function Shell({
 export function QuizSkeleton() {
   return (
     <Shell>
-      <main className="flex flex-1 flex-col pt-8" role="status" aria-busy="true">
+      <main className="flex flex-1 flex-col pt-4" role="status" aria-busy="true">
         <span className="sr-only">Loading questions…</span>
-        <div className="stagger pt-9" aria-hidden="true">
+        <div className="stagger pt-3" aria-hidden="true">
           <div className="mt-3 flex flex-col gap-3">
             <span className="block h-9 w-full bg-paper/[0.07] motion-safe:animate-pulse" />
             <span

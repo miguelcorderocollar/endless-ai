@@ -27,6 +27,24 @@ type Phase = "question" | "revealed";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
+/**
+ * Live session: keeps the current question across client-side navigation
+ * (profile → main) so returning doesn't swap it. Module-level survives App
+ * Router navigations but resets on full reload: refresh may draw anew,
+ * back-navigation must not. Keyed by filter so picking new categories still
+ * starts fresh.
+ */
+type QuizSession = {
+  filterKey: string;
+  currentId: string;
+  seenIds: string[];
+  phase: Phase;
+  picked: string | null;
+  exhausted: boolean;
+};
+
+let quizSession: QuizSession | null = null;
+
 export function Quiz({
   bank,
   initial,
@@ -44,11 +62,47 @@ export function Quiz({
     getProgressSnapshot,
     getProgressServerSnapshot,
   );
-  const [phase, setPhase] = useState<Phase>("question");
-  const [current, setCurrent] = useState<Question | null>(initial);
-  const [picked, setPicked] = useState<string | null>(null);
-  const [seen, setSeen] = useState<Set<string>>(() => new Set([initial.id]));
-  const [exhausted, setExhausted] = useState(false);
+  // Restored when returning via client-side navigation with the same filter
+  // and the retained question still in the bank. Null on first visit, reload,
+  // or filter change — then `initial` wins as before.
+  const filterKey = [...categories].sort().join(",");
+  const session = quizSession;
+  let restoredQuestion: Question | null = null;
+  let restoredSession: QuizSession | null = null;
+  if (session !== null && session.filterKey === filterKey) {
+    const found = bank.find((q) => q.id === session.currentId) ?? null;
+    if (found !== null && (categories.size === 0 || categories.has(found.category))) {
+      restoredQuestion = found;
+      restoredSession = session;
+    }
+  }
+  // A revealed screen without its pick is unresumable (it would mislabel the
+  // verdict), so it restarts as unanswered rather than showing a wrong banner.
+  const restoredPicked =
+    restoredQuestion !== null &&
+    restoredSession !== null &&
+    restoredSession.picked !== null &&
+    restoredQuestion.options.includes(restoredSession.picked)
+      ? restoredSession.picked
+      : null;
+  const restoredPhase: Phase =
+    restoredQuestion !== null &&
+    restoredSession !== null &&
+    restoredSession.phase === "revealed" &&
+    restoredPicked !== null
+      ? "revealed"
+      : "question";
+  const [phase, setPhase] = useState<Phase>(() => restoredPhase);
+  const [current, setCurrent] = useState<Question | null>(() => restoredQuestion ?? initial);
+  const [picked, setPicked] = useState<string | null>(() => restoredPicked);
+  const [seen, setSeen] = useState<Set<string>>(
+    () =>
+      new Set([
+        ...(restoredSession?.seenIds ?? [initial.id]),
+        (restoredQuestion ?? initial).id,
+      ]),
+  );
+  const [exhausted, setExhausted] = useState(() => restoredSession?.exhausted ?? false);
   const { isAuthenticated } = useConvexAuth();
   const recordAnswer = useMutation(api.answers.answer);
   const nextRef = useRef<HTMLButtonElement | null>(null);
@@ -57,6 +111,18 @@ export function Quiz({
   useEffect(() => {
     hydrateProgress();
   }, []);
+
+  // Remember the live spot so client-side navigation back to `/` resumes it.
+  useEffect(() => {
+    quizSession = {
+      filterKey,
+      currentId: current?.id ?? initial.id,
+      seenIds: [...seen],
+      phase,
+      picked,
+      exhausted,
+    };
+  }, [filterKey, current, seen, phase, picked, exhausted, initial.id]);
 
   const nextQuestion = useCallback(() => {
     const next = pickNext(bank, seen, categories, Math.random, progress.rating);
@@ -217,7 +283,7 @@ export function Quiz({
       <Masthead progress={progress} />
 
       {exhausted ? (
-        <main className="flex flex-1 flex-col pt-14">
+        <main className="flex flex-1 flex-col pt-6">
           <p className="label text-muted">bank complete</p>
           <h1 className="mt-3 font-display text-3xl">Every question, answered right</h1>
           <Link
@@ -228,10 +294,10 @@ export function Quiz({
           </Link>
         </main>
       ) : (
-        <main className="flex flex-1 flex-col pt-8">
+        <main className="flex flex-1 flex-col pt-4">
           {current ? (
             <>
-              <div key={current.id} className="stagger pt-9">
+              <div key={current.id} className="stagger pt-3">
                 <h1 className="mt-3 font-display text-[1.75rem] leading-[1.25] text-balance sm:text-4xl">
                   {current.text}
                 </h1>
@@ -297,7 +363,7 @@ export function Quiz({
 
 function Masthead({ progress }: { progress: SavedProgress }) {
   return (
-    <header className="flex items-center justify-between border-b border-ink-line py-5">
+    <header className="flex items-center justify-between border-b border-ink-line py-4">
       <span className="font-display text-2xl tracking-tight">
         <Link href="/" aria-label="back to the game">
           Endless <span className="text-signal">AI</span>

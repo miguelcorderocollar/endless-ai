@@ -70,7 +70,7 @@ export default function CategoriesPage() {
 
   return (
     <Shell showElo={false}>
-      <main className="flex flex-1 flex-col pt-14">
+      <main className="flex flex-1 flex-col pt-6">
         <p className="label text-muted">choose a category</p>
         <h1 className="mt-3 font-display text-3xl">
           {selected.length === 0 ? "Everything" : `${selected.length} selected`}
