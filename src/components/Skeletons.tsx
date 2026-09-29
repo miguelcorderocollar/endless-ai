@@ -1,5 +1,14 @@
 "use client";
 
+import Link from "next/link";
+import { useSyncExternalStore } from "react";
+
+import {
+  getProgressServerSnapshot,
+  getProgressSnapshot,
+  subscribeProgress,
+} from "@/lib/progress";
+
 const LETTERS = ["A", "B", "C", "D"] as const;
 
 /**
@@ -22,26 +31,33 @@ export function Shell({
   children: React.ReactNode;
   showElo?: boolean;
 }) {
+  // Instant Elo (#31): the loading frame already knows the local rating, so
+  // the masthead never flashes a dash while questions load.
+  const progress = useSyncExternalStore(
+    subscribeProgress,
+    getProgressSnapshot,
+    getProgressServerSnapshot,
+  );
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
       <header className="flex items-center justify-between border-b border-ink-line py-5">
         <span className="font-display text-2xl tracking-tight">
-          <a href="/" aria-label="back to the game">
+          <Link href="/" aria-label="back to the game">
             Endless <span className="text-signal">AI</span>
-          </a>
+          </Link>
         </span>
         {showElo ? (
           <div className="flex items-center gap-5">
             <span className="label text-muted">
-              elo <span className="ml-1.5 font-mono text-sm text-paper">—</span>
+              elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
             </span>
-            <a
+            <Link
               href="/categories"
               className="label cursor-pointer text-muted transition-colors hover:text-signal"
             >
               cats
-            </a>
-            <a
+            </Link>
+            <Link
               href="/profile"
               aria-label="profile and settings"
               className="text-muted transition-colors hover:text-signal"
@@ -60,7 +76,7 @@ export function Shell({
                 <circle cx="12" cy="12" r="3" />
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
               </svg>
-            </a>
+            </Link>
           </div>
         ) : null}
       </header>
@@ -107,30 +123,52 @@ export function QuizSkeleton() {
   );
 }
 
-/** Profile header while auth resolves: matches the `text-3xl` name/guest line. */
+/**
+ * Profile header while auth resolves on a true first run (returning users
+ * paint the cached name instead, so this is rarely seen). Mirrors the
+ * signed-in header exactly: name row with action icons + handle line, so the
+ * swap-in doesn't jump.
+ */
 export function ProfileHeaderSkeleton() {
   return (
-    <span className="mt-3 block" role="status" aria-busy="true">
+    <div role="status" aria-busy="true">
       <span className="sr-only">Loading profile…</span>
-      <span aria-hidden="true" className="flex flex-col gap-3">
-        <span className="block h-9 w-52 bg-paper/[0.07] motion-safe:animate-pulse" />
+      <div aria-hidden="true">
+        <div className="mt-3 flex items-center justify-between gap-4">
+          <span className="block h-[30px] w-52 bg-paper/[0.07] motion-safe:animate-pulse" />
+          <span className="flex items-center gap-4">
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="block size-4 bg-paper/[0.07] motion-safe:animate-pulse"
+                style={{ animationDelay: `${i * 0.12}s` }}
+              />
+            ))}
+          </span>
+        </div>
         <span
-          className="block h-4 w-72 max-w-full bg-paper/[0.07] motion-safe:animate-pulse"
+          className="mt-2 block h-3 w-40 bg-paper/[0.07] motion-safe:animate-pulse"
           style={{ animationDelay: "0.15s" }}
         />
-      </span>
-    </span>
+      </div>
+    </div>
   );
 }
+
+/**
+ * Chart + distribution share one fixed visual height (h-60) inside a
+ * min-height tab panel (see profile page): switching tabs or resolving
+ * skeletons never moves the done section below.
+ */
 
 /** Profile "you" tab while history loads: matches the EloChart frame. */
 export function ChartSkeleton() {
   return (
-    <div className="mt-3" role="status" aria-busy="true">
+    <div role="status" aria-busy="true">
       <span className="sr-only">Loading your chart…</span>
       <div
         aria-hidden="true"
-        className="flex h-44 w-full flex-col justify-between border border-ink-line p-4"
+        className="flex h-60 w-full flex-col justify-between border border-ink-line p-4"
       >
         {[88, 64, 76, 42].map((w, i) => (
           <span
@@ -152,10 +190,10 @@ export function ChartSkeleton() {
 export function DistributionSkeleton() {
   const bars = [34, 52, 44, 66, 58, 78, 70, 92, 84, 62, 48, 40, 30, 26, 20, 16, 12, 10, 8, 6];
   return (
-    <div className="mt-3" role="status" aria-busy="true">
+    <div role="status" aria-busy="true">
       <span className="sr-only">Loading the field…</span>
       <div aria-hidden="true">
-        <div className="flex h-28 items-end gap-[3px]">
+        <div className="flex h-60 items-end gap-[3px]">
           {bars.map((h, i) => (
             <span
               key={i}
@@ -163,6 +201,11 @@ export function DistributionSkeleton() {
               style={{ height: `${h}%`, animationDelay: `${(i % 5) * 0.1}s` }}
             />
           ))}
+        </div>
+        <div className="label mt-2 flex justify-between text-muted/40">
+          <span>800</span>
+          <span>1600</span>
+          <span>2400</span>
         </div>
         <span
           className="mt-4 block h-4 w-3/4 bg-paper/[0.07] motion-safe:animate-pulse"
@@ -184,7 +227,11 @@ export function DoneListSkeleton() {
           className="mt-4 block h-3 w-56 max-w-full bg-paper/[0.07] motion-safe:animate-pulse"
           style={{ animationDelay: "0.15s" }}
         />
-        <ul className="mt-10 flex flex-col gap-5">
+        <span
+          className="mt-10 block h-3 w-32 bg-paper/[0.07] motion-safe:animate-pulse"
+          style={{ animationDelay: "0.2s" }}
+        />
+        <ul className="flex flex-col gap-5">
           {[92, 78, 85].map((w, i) => (
             <li key={i} className="border-t border-ink-line pt-4">
               <span

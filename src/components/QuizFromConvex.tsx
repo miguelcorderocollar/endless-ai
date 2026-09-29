@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useConvex, useConvexAuth, useQuery } from "convex/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
 import type { Question } from "@/lib/questions/schema";
+import { readDrawCache, writeDrawCache } from "@/lib/quiz/bankCache";
 import { readFilter } from "@/lib/quiz/filter";
 import { readProgress } from "@/lib/progress";
+import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import { Quiz } from "./Quiz";
 import { QuizSkeleton, Shell } from "./Skeletons";
 
@@ -50,6 +53,11 @@ function toQuestion(q: DrawRow): Question {
  * in, so an existing account never replays its history on a fresh device);
  * top-ups exclude everything seen so far. Page loads transfer O(1) questions
  * regardless of bank size.
+ *
+ * Stale-while-revalidate (#31): the last draw snapshot is cached locally per
+ * filter. Repeat visits paint the cached questions instantly (no skeleton),
+ * then revalidate in the background and merge fresh rows. Only a true first
+ * run with an empty cache blocks on the network.
  */
 export function QuizFromConvex() {
   const client = useConvex();
@@ -58,13 +66,26 @@ export function QuizFromConvex() {
     api.answers.myCompleted,
     isAuthenticated ? {} : "skip",
   );
+  const [filter] = useState<string[]>(() => readFilter());
+  // Null through hydration (matches the SSR skeleton), then painted from the
+  // local snapshot in a layout effect: before paint, so repeat visits never
+  // see the skeleton and never mismatch hydration.
   const [bank, setBank] = useState<Question[] | null>(null);
   const [initial, setInitial] = useState<Question | null>(null);
-  const [filter] = useState<string[]>(() => readFilter());
+  const hadCache = useRef(false);
   const categories = useMemo(
     () => new Set(filter as Question["category"][]),
     [filter],
   );
+
+  useIsomorphicLayoutEffect(() => {
+    const cached = readDrawCache(filter);
+    if (cached && cached.length > 0) {
+      hadCache.current = true;
+      setBank(cached);
+      setInitial(cached[Math.floor(Math.random() * cached.length)] ?? null);
+    }
+  }, [filter]);
 
   useEffect(() => {
     if (isAuthenticated && serverCompleted === undefined) return;
@@ -81,13 +102,37 @@ export function QuizFromConvex() {
       .then((rows) => {
         if (cancelled) return;
         const questions = rows.map(toQuestion);
-        setBank(questions);
-        setInitial(
-          questions[Math.floor(Math.random() * questions.length)] ?? null,
-        );
+        if (questions.length === 0) {
+          // Empty draw with a painted cache means the player is mid-game on
+          // stale questions (done list grew since the snapshot): keep playing
+          // the cache, the top-up path will page past it. Only an uncached
+          // first run is truly empty.
+          if (!hadCache.current) {
+            setBank([]);
+            setInitial(null);
+          }
+          return;
+        }
+        writeDrawCache(filter, questions);
+        if (hadCache.current) {
+          // Background revalidate: merge without swapping the live question.
+          setBank((prev) => {
+            if (!prev) return questions;
+            const known = new Set(prev.map((q) => q.id));
+            const fresh = questions.filter((q) => !known.has(q.id));
+            return fresh.length > 0 ? [...prev, ...fresh] : prev;
+          });
+        } else {
+          setBank(questions);
+          setInitial(
+            questions[Math.floor(Math.random() * questions.length)] ?? null,
+          );
+        }
       })
       .catch(() => {
-        if (!cancelled) setBank([]);
+        // Offline with no cache: surface the empty-bank frame, not a hang.
+        // Offline with cache: keep playing stale, the error is invisible.
+        if (!cancelled && !hadCache.current) setBank([]);
       });
     return () => {
       cancelled = true;
@@ -106,16 +151,19 @@ export function QuizFromConvex() {
       });
       const fresh = rows.map(toQuestion);
       setBank((prev) => {
-        if (!prev) return fresh;
-        const known = new Set(prev.map((q) => q.id));
-        return [...prev, ...fresh.filter((q) => !known.has(q.id))];
+        const next = !prev
+          ? fresh
+          : [...prev, ...fresh.filter((q) => !new Set(prev.map((p) => p.id)).has(q.id))];
+        writeDrawCache(filter, next.slice(-60));
+        return next;
       });
       return fresh;
     },
     [client, serverCompleted, filter],
   );
 
-  // The filter is fixed per page load: changing it reloads the game.
+  // The filter is fixed per mount: picking categories navigates client-side
+  // back to `/`, which remounts with the fresh filter (no full reload).
 
   if (bank === null || initial === null) return <QuizSkeleton />;
 
@@ -134,12 +182,12 @@ export function QuizFromConvex() {
           </h1>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
             {completed > 0 ? (
-              <a
+              <Link
                 href="/profile"
                 className="label cursor-pointer text-muted transition-colors hover:text-signal"
               >
                 see your done list →
-              </a>
+              </Link>
             ) : (
               <>
                 Run <span className="font-mono">npx convex dev</span> and then{" "}

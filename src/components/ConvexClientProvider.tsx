@@ -6,9 +6,24 @@ import { useMemo } from "react";
 
 import { Shell } from "./QuizFromConvex";
 
+// Module-level singleton (#31): one client across client-side navigations so
+// the Convex query cache survives quiz <-> profile <-> categories moves.
+// A per-layout useMemo(new ConvexReactClient) recreates the client on every
+// full reload; combined with <a href> nav that meant refetch + skeleton each
+// screen change. With next/link nav this instance (and its cache) persists.
+let cachedClient: ConvexReactClient | null = null;
+let cachedUrl: string | null = null;
+
+function getClient(url: string): ConvexReactClient {
+  if (cachedClient && cachedUrl === url) return cachedClient;
+  cachedClient = new ConvexReactClient(url);
+  cachedUrl = url;
+  return cachedClient;
+}
+
 export function ConvexClientProvider({ children }: { children: React.ReactNode }) {
   const url = process.env.NEXT_PUBLIC_CONVEX_URL;
-  const client = useMemo(() => (url ? new ConvexReactClient(url) : null), [url]);
+  const client = useMemo(() => (url ? getClient(url) : null), [url]);
 
   if (!client) {
     return (

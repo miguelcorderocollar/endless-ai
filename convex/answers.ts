@@ -214,6 +214,37 @@ export const myCompleted = query({
 type CategoryCount = { category: string; answered: number; correct: number };
 
 /**
+ * The caller's most recent attempts, newest first (both verdicts, capped).
+ * Tiny docs, single bounded take. The profile derives its misses list from
+ * this: most-recent verdict per question wins, so a later correct clears the
+ * miss. Guests use the device-local recent ring instead.
+ */
+export const myRecent = query({
+  args: {
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return [];
+    const n = Math.min(Math.max(args.limit ?? 100, 1), 200);
+    const events = await ctx.db
+      .query("answerEvents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .order("desc")
+      .take(n);
+    const questions = await Promise.all(
+      events.map((e) => ctx.db.get(e.questionId)),
+    );
+    return events.flatMap((e, i) => {
+      const publicId = questions[i]?.questionId;
+      return publicId
+        ? [{ questionId: publicId, correct: e.correct, createdAt: e.createdAt }]
+        : [];
+    });
+  },
+});
+
+/**
  * Maintains the per-user rollup transactionally with the event insert.
  * First call for a pre-stats user folds their existing events once (bounded
  * paginated scan, then every later answer is O(1)). Streak counts the current

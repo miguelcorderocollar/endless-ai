@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 
 import {
   type SavedProgress,
+  RECENT_CAP,
   getProgressServerSnapshot,
   getProgressSnapshot,
   hydrateProgress,
@@ -94,6 +96,10 @@ export function Quiz({
           correct && !progress.completed.includes(current.id)
             ? [...progress.completed, current.id]
             : progress.completed,
+        recent: [
+          ...progress.recent,
+          { id: current.id, correct, at: Date.now() },
+        ].slice(-RECENT_CAP),
         lastPlayed: new Date().toISOString().slice(0, 10),
       });
 
@@ -123,12 +129,12 @@ export function Quiz({
         <main className="flex flex-1 flex-col pt-14">
           <p className="label text-muted">bank complete</p>
           <h1 className="mt-3 font-display text-3xl">Every question, answered right</h1>
-          <a
+          <Link
             href="/profile"
             className="label mt-8 w-fit cursor-pointer border border-signal bg-signal px-6 py-3 text-ink transition-colors hover:bg-paper hover:border-paper"
           >
             see your done list
-          </a>
+          </Link>
         </main>
       ) : (
         <main className="flex flex-1 flex-col pt-8">
@@ -190,21 +196,21 @@ function Masthead({ progress }: { progress: SavedProgress }) {
   return (
     <header className="flex items-center justify-between border-b border-ink-line py-5">
       <span className="font-display text-2xl tracking-tight">
-        <a href="/" aria-label="back to the game">
+        <Link href="/" aria-label="back to the game">
           Endless <span className="text-signal">AI</span>
-        </a>
+        </Link>
       </span>
       <div className="flex items-center gap-5">
         <span className="label text-muted">
           elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
         </span>
-        <a
+        <Link
           href="/categories"
           className="label cursor-pointer text-muted transition-colors hover:text-signal"
         >
           cats
-        </a>
-        <a
+        </Link>
+        <Link
           href="/profile"
           aria-label="profile and settings"
           className="text-muted transition-colors hover:text-signal"
@@ -223,7 +229,7 @@ function Masthead({ progress }: { progress: SavedProgress }) {
             <circle cx="12" cy="12" r="3" />
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
           </svg>
-        </a>
+        </Link>
       </div>
     </header>
   );

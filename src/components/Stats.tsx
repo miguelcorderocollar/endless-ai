@@ -21,7 +21,7 @@ export function EloChart({
 }) {
   if (points.length < 2) {
     return (
-      <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
+      <p className="max-w-sm text-sm leading-relaxed text-muted">
         Answer more questions and your line draws itself here.
       </p>
     );
@@ -36,8 +36,14 @@ export function EloChart({
   const line = points.map((p, i) => `${x(i).toFixed(1)},${y(p.r).toFixed(1)}`).join(" ");
 
   return (
-    <figure className="mt-3">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Elo over time">
+    <figure>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        preserveAspectRatio="none"
+        className="block h-60 w-full"
+        role="img"
+        aria-label="Elo over time"
+      >
         {[0.15, 0.4, 0.65, 0.9].map((f) => {
           const v = Math.round(lo + span * f);
           return (
@@ -85,7 +91,7 @@ export function Distribution({
 }) {
   if (count === 0) {
     return (
-      <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
+      <p className="max-w-sm text-sm leading-relaxed text-muted">
         No rated players yet — play and you set the curve.
       </p>
     );
@@ -94,8 +100,8 @@ export function Distribution({
   const marker = rating !== null ? Math.min(19, Math.max(0, Math.floor((rating - 600) / 80))) : null;
 
   return (
-    <div className="mt-3">
-      <div className="flex h-28 items-end gap-[3px]" aria-hidden="true">
+    <div>
+      <div className="flex h-60 items-end gap-[3px]" aria-hidden="true">
         {buckets.map((b, i) => (
           <span
             key={i}

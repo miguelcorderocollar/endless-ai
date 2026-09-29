@@ -1,13 +1,19 @@
 "use client";
 
 import { useQuery, useConvexAuth, useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { api } from "../../../convex/_generated/api";
 import { CATEGORIES } from "@/lib/questions/schema";
+import {
+  type CategoryCount,
+  readCountsCache,
+  writeCountsCache,
+} from "@/lib/quiz/bankCache";
 import { readFilter, writeFilter } from "@/lib/quiz/filter";
+import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import { Shell } from "@/components/QuizFromConvex";
-import { CategoriesSkeleton } from "@/components/Skeletons";
 
 /**
  * Fun-mode filter (#12): pick 1+ categories, the stream stays inside them.
@@ -15,15 +21,29 @@ import { CategoriesSkeleton } from "@/components/Skeletons";
  * you're strong and where you're not.
  */
 export default function CategoriesPage() {
+  const router = useRouter();
   const { isAuthenticated } = useConvexAuth();
   const counts = useQuery(api.questions.counts, {});
   const stats = useQuery(api.answers.myStats, isAuthenticated ? {} : "skip");
   const ensureStats = useMutation(api.answers.ensureStats);
-  const [selected, setSelected] = useState<string[]>(() => readFilter());
+  const [selected, setSelected] = useState<string[]>([]);
+  // Stale-while-revalidate (#31): filter + bracket numbers paint from cache
+  // pre-paint. Null/empty through hydration to match SSR — reading
+  // localStorage in the initializer would mismatch hydration.
+  const [cachedCounts, setCachedCounts] = useState<CategoryCount[] | null>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    setSelected(readFilter());
+    setCachedCounts(readCountsCache());
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated && stats === null) void ensureStats();
   }, [isAuthenticated, stats, ensureStats]);
+
+  useEffect(() => {
+    if (counts && counts.length > 0) writeCountsCache(counts);
+  }, [counts]);
 
   const byCategory = new Map<string, { answered: number; correct: number }>(
     (stats?.byCategory ?? []).map((c) => [
@@ -32,7 +52,7 @@ export default function CategoriesPage() {
     ]),
   );
   const countByCategory = new Map(
-    (counts ?? []).map((c) => [c.category, c.count]),
+    ((counts ?? cachedCounts) ?? []).map((c) => [c.category, c.count]),
   );
 
   const toggle = (key: string) => {
@@ -43,8 +63,9 @@ export default function CategoriesPage() {
 
   const play = () => {
     writeFilter(selected);
-    // Full reload: the quiz reads the filter once per page load.
-    window.location.assign("/");
+    // Client navigation (#31): `/` remounts QuizFromConvex, which reads the
+    // fresh filter in its state initializer. No full reload, no asset reparse.
+    router.push("/");
   };
 
   return (
@@ -60,12 +81,14 @@ export default function CategoriesPage() {
           category. A dash means you have not answered it yet.
         </p>
 
-        {counts === undefined ? (
-          <CategoriesSkeleton />
-        ) : (
-          <ul className="stagger mt-8 flex flex-col gap-2">
-            {CATEGORIES.map((cat) => {
-              const count = countByCategory.get(cat.key) ?? 0;
+        {/* Instant paint (#31): the category list is static (CATEGORIES), so it
+            renders on first paint. Only the bracket counts and accuracy bars
+            fill in when their queries land — `…` while loading, cached numbers
+            meanwhile. The numbers taking a beat is fine; the list blocking is
+            what felt slow. */}
+        <ul className="stagger mt-8 flex flex-col gap-2">
+          {CATEGORIES.map((cat) => {
+            const count = countByCategory.get(cat.key);
               const perf = byCategory.get(cat.key);
               const pct =
                 perf && perf.answered > 0
@@ -87,7 +110,7 @@ export default function CategoriesPage() {
                     <span className="flex w-44 shrink-0 items-baseline gap-2">
                       <span className="text-[0.95rem] leading-snug">{cat.label}</span>
                       <span className={`label ${active ? "text-ink/60" : "text-muted/60"}`}>
-                        [{count}]
+                        [{count ?? "…"}]
                       </span>
                     </span>
                     <span
@@ -113,8 +136,7 @@ export default function CategoriesPage() {
                 </li>
               );
             })}
-          </ul>
-        )}
+        </ul>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <button

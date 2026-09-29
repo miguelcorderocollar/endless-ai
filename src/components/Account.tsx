@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useConvex, useConvexAuth, useMutation, useQuery } from "convex/react";
 import { useEffect, useRef, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
 import { readProgress, updateProgress } from "@/lib/progress";
+import { clearProfileCache } from "@/lib/quiz/bankCache";
 import { AccountSlotSkeleton } from "./Skeletons";
 
 /**
@@ -78,12 +80,12 @@ export function Account() {
 
   if (!isAuthenticated || !me || me.isAnonymous) {
     return (
-      <a
+      <Link
         href="/signin"
         className="label cursor-pointer text-muted transition-colors hover:text-signal"
       >
         sign in
-      </a>
+      </Link>
     );
   }
 
@@ -92,7 +94,10 @@ export function Account() {
       <span className="label text-paper">{me.displayName ?? me.handle ?? "player"}</span>
       <button
         type="button"
-        onClick={() => void signOut()}
+        onClick={() => {
+          clearProfileCache();
+          void signOut();
+        }}
         className="label cursor-pointer text-muted transition-colors hover:text-signal"
       >
         out

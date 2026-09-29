@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { useConvexAuth, useMutation, useQuery } from "convex/react";
+import { useConvexAuth, useConvex, useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
 import { api } from "../../../convex/_generated/api";
 import {
@@ -14,6 +15,15 @@ import {
   subscribeProgress,
   updateProgress,
 } from "@/lib/progress";
+import {
+  type CachedProfile,
+  clearProfileCache,
+  readListCache,
+  readProfileCache,
+  writeListCache,
+  writeProfileCache,
+} from "@/lib/quiz/bankCache";
+import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import type { Question } from "@/lib/questions/schema";
 import { DoneList } from "@/components/DoneList";
 import { Popup } from "@/components/Popup";
@@ -69,6 +79,39 @@ export default function ProfilePage() {
     api.answers.myCompleted,
     isAuthenticated ? {} : "skip",
   );
+  // Defensive fetch, not useQuery: if the backend predates myRecent (npx
+  // convex dev not run since it was added), a missing function would throw
+  // during render and crash the page. Manual fetch lets us fall back to the
+  // device-local recent ring. Sync the backend for cross-device misses.
+  const convex = useConvex();
+  const [serverRecent, setServerRecent] = useState<
+    { questionId: string; correct: boolean; createdAt: number }[] | undefined
+  >(undefined);
+  const [recentUnsupported, setRecentUnsupported] = useState(false);
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect -- logout reset runs on auth transition only, cannot cascade */
+    if (!isAuthenticated) {
+      setServerRecent(undefined);
+      setRecentUnsupported(false);
+      return;
+    }
+    /* eslint-enable react-hooks/set-state-in-effect */
+    let cancelled = false;
+    void convex.query(api.answers.myRecent, {}).then(
+      (rows) => {
+        if (!cancelled) setServerRecent(rows);
+      },
+      () => {
+        if (!cancelled) {
+          setServerRecent([]);
+          setRecentUnsupported(true);
+        }
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [convex, isAuthenticated]);
   const progress = useSyncExternalStore(
     subscribeProgress,
     getProgressSnapshot,
@@ -77,6 +120,24 @@ export default function ProfilePage() {
 
   const [popup, setPopup] = useState<"signin" | "name" | "reset" | null>(null);
   const [tab, setTab] = useState<"you" | "all">("you");
+  // Stale-while-revalidate (#31): paint the last published-list snapshot
+  // instantly so the done list never flashes a skeleton on repeat visits.
+  // Null through hydration (matches SSR), populated pre-paint — same for the
+  // cached profile name below. Reading localStorage in a state initializer
+  // would mismatch hydration (server has no cache).
+  const [cachedList, setCachedList] = useState<Question[] | null>(null);
+  // Known name, no loading flash: the last signed-in header paints instantly
+  // while `users.me` revalidates. Cleared on sign-out.
+  const [cachedProfile, setCachedProfile] = useState<CachedProfile | null>(null);
+
+  useIsomorphicLayoutEffect(() => {
+    setCachedList(readListCache());
+    setCachedProfile(readProfileCache());
+  }, []);
+
+  useEffect(() => {
+    if (me) writeProfileCache(me);
+  }, [me]);
 
   useEffect(() => {
     hydrateProgress();
@@ -102,16 +163,46 @@ export default function ProfilePage() {
       answerAliases: [],
       status: "published" as const,
       addedAt: q.addedAt,
-    })) ?? [];
+    })) ?? cachedList ?? [];
+  const bankReady = bank !== undefined || cachedList !== null;
 
-  const guest = !isAuthenticated || !me || me.isAnonymous;
+  useEffect(() => {
+    if (bank && bank.length > 0) writeListCache(questions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bank]);
+
+  const displayMe = me ?? cachedProfile;
+  const guest = !isAuthenticated || !displayMe || displayMe.isAnonymous;
+
+  /**
+   * Misses: most-recent verdict per question wins, so a later correct clears
+   * the miss. Signed in: server event stream (cross-device truth). Guest: the
+   * device-local recent ring. Capped for a cheap render.
+   */
+  const missedIds = useMemo(() => {
+    const attempts: { id: string; correct: boolean }[] =
+      isAuthenticated && !recentUnsupported
+        ? (serverRecent ?? []).map((r) => ({ id: r.questionId, correct: r.correct }))
+        : progress.recent
+            .slice()
+            .reverse()
+            .map((r) => ({ id: r.id, correct: r.correct }));
+    const seen = new Set<string>();
+    const missed: string[] = [];
+    for (const a of attempts) {
+      if (seen.has(a.id)) continue;
+      seen.add(a.id);
+      if (!a.correct) missed.push(a.id);
+    }
+    return missed.slice(0, 30);
+  }, [isAuthenticated, recentUnsupported, serverRecent, progress.recent]);
 
   return (
     <Shell showElo={false}>
       <main className="flex flex-1 flex-col pt-14">
         <p className="label text-muted">profile</p>
 
-        {isLoading || (isAuthenticated && me === undefined) ? (
+        {isLoading && !displayMe ? (
           <ProfileHeaderSkeleton />
         ) : guest ? (
           <>
@@ -132,7 +223,7 @@ export default function ProfilePage() {
           <>
             <div className="mt-3 flex items-center justify-between gap-4">
               <h1 className="font-display text-3xl leading-none">
-                {me.displayName ?? me.handle ?? "player"}
+                {displayMe.displayName ?? displayMe.handle ?? "player"}
               </h1>
               <div className="flex items-center gap-4">
                 <button
@@ -154,6 +245,7 @@ export default function ProfilePage() {
                 <button
                   type="button"
                   onClick={() => {
+                    clearProfileCache();
                     void signOut();
                     router.push("/");
                   }}
@@ -165,8 +257,8 @@ export default function ProfilePage() {
               </div>
             </div>
             <p className="label mt-2 text-muted">
-              {me.handle ?? ""}
-              {me.role === "admin" ? (
+              {displayMe.handle ?? ""}
+              {displayMe.role === "admin" ? (
                 <span className="ml-2 text-signal">admin</span>
               ) : null}
             </p>
@@ -205,31 +297,37 @@ export default function ProfilePage() {
           </div>
 
           {tab === "you" ? (
-            history === undefined ? (
-              isAuthenticated ? (
-                <ChartSkeleton />
+            <div className="mt-3 min-h-[340px]">
+              {history === undefined ? (
+                isAuthenticated ? (
+                  <ChartSkeleton />
+                ) : (
+                  <EloChart points={[]} median={population?.median ?? null} />
+                )
               ) : (
-                <EloChart points={[]} median={population?.median ?? null} />
-              )
-            ) : (
-              <EloChart points={history} median={population?.median ?? null} />
-            )
-          ) : population === undefined ? (
-            <DistributionSkeleton />
+                <EloChart points={history} median={population?.median ?? null} />
+              )}
+            </div>
           ) : (
-            <Distribution
-              buckets={population.buckets}
-              count={population.count}
-              median={population.median}
-              percentile={population.percentile}
-              rating={stats?.rating ?? null}
-            />
+            <div className="mt-3 min-h-[340px]">
+              {population === undefined ? (
+                <DistributionSkeleton />
+              ) : (
+                <Distribution
+                  buckets={population.buckets}
+                  count={population.count}
+                  median={population.median}
+                  percentile={population.percentile}
+                  rating={stats?.rating ?? null}
+                />
+              )}
+            </div>
           )}
         </div>
 
         <div className="mt-8 border-t border-ink-line pt-6">
           <p className="label text-muted">done</p>
-          {bank === undefined ? (
+          {!bankReady ? (
             <DoneListSkeleton />
           ) : (
             <div className="mt-2">
@@ -240,6 +338,7 @@ export default function ProfilePage() {
                     ? (serverCompleted ?? progress.completed)
                     : progress.completed
                 }
+                missedIds={missedIds}
                 correct={stats?.correct ?? progress.correct}
                 answered={stats?.answered ?? progress.answered}
                 total={questions.length}
@@ -248,12 +347,12 @@ export default function ProfilePage() {
           )}
         </div>
 
-        <a
+        <Link
           href="/"
           className="label mt-10 w-fit cursor-pointer text-muted transition-colors hover:text-signal"
         >
           ← keep playing
-        </a>
+        </Link>
       </main>
 
       {popup === "signin" ? (
@@ -262,6 +361,7 @@ export default function ProfilePage() {
             layout="dialog"
             onDone={() => setPopup(null)}
             onSignOut={() => {
+              clearProfileCache();
               void signOut();
               setPopup(null);
             }}
@@ -269,10 +369,10 @@ export default function ProfilePage() {
         </Popup>
       ) : null}
 
-      {popup === "name" && !guest && me ? (
+      {popup === "name" && !guest && displayMe ? (
         <Popup label="profile" title="Display name" onClose={() => setPopup(null)}>
           <DisplayNameForm
-            current={me.displayName ?? ""}
+            current={displayMe.displayName ?? ""}
             onSaved={() => setPopup(null)}
           />
         </Popup>
@@ -284,7 +384,7 @@ export default function ProfilePage() {
             onCancel={() => setPopup(null)}
             onDone={() => {
               updateProgress({ ...EMPTY_PROGRESS });
-              window.location.href = "/";
+              router.push("/");
             }}
           />
         </Popup>

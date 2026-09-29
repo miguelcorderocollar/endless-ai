@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { SignInForm } from "@/components/Account";
 import { Shell } from "@/components/QuizFromConvex";
+import { clearProfileCache } from "@/lib/quiz/bankCache";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -23,7 +24,10 @@ export default function SignInPage() {
           <SignInForm
             layout="page"
             onDone={() => router.push("/")}
-            onSignOut={() => void signOut()}
+            onSignOut={() => {
+              clearProfileCache();
+              void signOut();
+            }}
           />
         </div>
       </main>
