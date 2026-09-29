@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 
 import {
   type SavedProgress,
@@ -29,7 +29,6 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
   const [current, setCurrent] = useState<Question | null>(initial);
   const [picked, setPicked] = useState<string | null>(null);
   const [seen, setSeen] = useState<Set<string>>(() => new Set([initial.id]));
-  const [view, setView] = useState<"quiz" | "done">("quiz");
   const [exhausted, setExhausted] = useState(false);
 
   useEffect(() => {
@@ -40,7 +39,6 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
     const next = pickNext(bank, seen, new Set<Question["category"]>());
     if (!next) {
       setExhausted(true);
-      setView("done");
       return;
     }
     setSeen((prev) => new Set(prev).add(next.id));
@@ -75,20 +73,19 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
 
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
-      <Masthead
-        progress={progress}
-        view={view}
-        onShowDone={() => setView("done")}
-        onShowQuiz={() => setView("quiz")}
-      />
+      <Masthead progress={progress} />
 
-      {view === "done" ? (
-        <DoneView
-          bank={bank}
-          completedIds={progress.completed}
-          exhausted={exhausted}
-          onBack={() => setView("quiz")}
-        />
+      {exhausted ? (
+        <main className="flex flex-1 flex-col pt-14">
+          <p className="label text-muted">bank complete</p>
+          <h1 className="mt-3 font-display text-3xl">Every question, answered right</h1>
+          <a
+            href="/profile"
+            className="label mt-8 w-fit cursor-pointer border border-signal bg-signal px-6 py-3 text-ink transition-colors hover:bg-paper hover:border-paper"
+          >
+            see your done list
+          </a>
+        </main>
       ) : (
         <main className="flex flex-1 flex-col pt-8">
           {current ? (
@@ -145,43 +142,36 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
   );
 }
 
-function Masthead({
-  progress,
-  view,
-  onShowDone,
-  onShowQuiz,
-}: {
-  progress: SavedProgress;
-  view: "quiz" | "done";
-  onShowDone: () => void;
-  onShowQuiz: () => void;
-}) {
+function Masthead({ progress }: { progress: SavedProgress }) {
   return (
-    <header className="flex items-baseline justify-between border-b border-ink-line py-5">
+    <header className="flex items-center justify-between border-b border-ink-line py-5">
       <span className="font-display text-2xl tracking-tight">
         Endless <span className="text-signal">AI</span>
       </span>
-      <div className="flex items-baseline gap-5">
+      <div className="flex items-center gap-5">
         <span className="label text-muted">
           elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
         </span>
-        {view === "quiz" ? (
-          <button
-            type="button"
-            onClick={onShowDone}
-            className="label cursor-pointer text-muted transition-colors hover:text-signal"
+        <a
+          href="/profile"
+          aria-label="profile and settings"
+          className="text-muted transition-colors hover:text-signal"
+        >
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
           >
-            done {progress.completed.length}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={onShowQuiz}
-            className="label cursor-pointer text-muted transition-colors hover:text-signal"
-          >
-            ← play
-          </button>
-        )}
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </a>
       </div>
     </header>
   );
@@ -226,78 +216,5 @@ function Reveal({
         ) : null}
       </div>
     </div>
-  );
-}
-
-function DoneView({
-  bank,
-  completedIds,
-  exhausted,
-  onBack,
-}: {
-  bank: Question[];
-  completedIds: string[];
-  exhausted: boolean;
-  onBack: () => void;
-}) {
-  const done = useMemo(() => {
-    const byId = new Map(bank.map((q) => [q.id, q]));
-    return completedIds.flatMap((id) => {
-      const q = byId.get(id);
-      return q ? [q] : [];
-    });
-  }, [bank, completedIds]);
-
-  return (
-    <main className="flex flex-1 flex-col pt-14">
-      <p className="label text-muted">
-        {exhausted ? "bank complete" : `done · ${done.length}`}
-      </p>
-      <p className="mt-2 font-display text-7xl leading-none tracking-tight">{done.length}</p>
-      <p className="label mt-4 text-muted">
-        {exhausted
-          ? `every question in the bank, answered right`
-          : "questions answered right · misses come back"}
-      </p>
-
-      {done.length > 0 ? (
-        <ul className="mt-10 flex flex-col gap-5">
-          {done.map((q) => {
-            const href = sourceHref(q.source);
-            const label = sourceLabel(q.source);
-            return (
-              <li key={q.id} className="border-t border-ink-line pt-4">
-                <p className="text-[0.95rem] leading-snug text-paper/90">{q.text}</p>
-                <p className="label mt-2 text-signal">{q.answer}</p>
-                {href && label ? (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="label group mt-2 inline-flex items-center gap-2 text-muted transition-colors hover:text-signal"
-                  >
-                    learn
-                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </a>
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <p className="mt-10 max-w-sm text-sm leading-relaxed text-muted">
-          Nothing here yet. Answer a question right and it lands on this list — get one
-          wrong and it comes back for another try.
-        </p>
-      )}
-
-      <button
-        type="button"
-        onClick={onBack}
-        className="label mt-8 w-fit cursor-pointer border border-signal bg-signal px-6 py-3 text-ink transition-colors hover:bg-paper hover:border-paper"
-      >
-        keep playing
-      </button>
-    </main>
   );
 }

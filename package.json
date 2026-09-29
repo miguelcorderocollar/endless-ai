@@ -15,9 +15,13 @@
     "validate:offline": "tsx scripts/validate.mts --offline",
     "test": "vitest run",
     "rebalance": "tsx scripts/rebalance.mts",
-    "probe": "tsx scripts/probe.mts"
+    "probe": "tsx scripts/probe.mts",
+    "review": "tsx scripts/review.mts",
+    "review:serve": "tsx scripts/review.mts --serve"
   },
   "dependencies": {
+    "@auth/core": "^0.41.1",
+    "@convex-dev/auth": "^0.0.95",
     "clsx": "2.1.1",
     "convex": "1.46.0",
     "next": "16.3.6",

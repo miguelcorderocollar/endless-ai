@@ -1,6 +1,7 @@
 "use client";
 
-import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
+import { ConvexReactClient } from "convex/react";
 import { useMemo } from "react";
 
 import { Shell } from "./QuizFromConvex";
@@ -24,5 +25,5 @@ export function ConvexClientProvider({ children }: { children: React.ReactNode }
       </Shell>
     );
   }
-  return <ConvexProvider client={client}>{children}</ConvexProvider>;
+  return <ConvexAuthProvider client={client}>{children}</ConvexAuthProvider>;
 }
