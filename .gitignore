@@ -13,3 +13,6 @@ tsconfig.tsbuildinfo
 # validator cache
 scripts/.cache/
 .vercel/
+
+# local convex backend state (sqlite + storage)
+.convex/

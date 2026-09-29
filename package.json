@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "validate": "tsx scripts/validate.mts",
+    "publish": "tsx scripts/publish.mts",
     "validate:offline": "tsx scripts/validate.mts --offline",
     "test": "vitest run",
     "rebalance": "tsx scripts/rebalance.mts",
