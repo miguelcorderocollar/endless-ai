@@ -4,6 +4,27 @@ Source: [Convex Vercel hosting](https://docs.convex.dev/production/hosting/verce
 [Multiple deployments](https://docs.convex.dev/production/multiple-deployments.md).
 Convex CLI `1.46.0`, Vercel project `endless-ai` (`https://endless-ai-quiz.vercel.app`).
 
+## Deployment identities
+
+Name the targets before running a command against one. Most incident reports
+here are a command aimed at the wrong backend, and both backends answer.
+
+| Target | Name | How it is selected |
+| --- | --- | --- |
+| Convex dev | `careful-salmon-552` | `CONVEX_DEPLOYMENT` in `.env.local` |
+| Convex production | `moonlit-blackbird-812` | `--prod`, or the `CONVEX_DEPLOY_KEY` in Vercel |
+| Vercel production | `endless-ai` at `https://endless-ai-quiz.vercel.app` | builds `main` |
+| Convex project | `mikelon797:ai-endless-quiz` | `npx convex login` |
+
+`npx convex run ... --prod` resolves the production deployment from your CLI
+login, not from `.env.local`, which only ever points at dev. There is no
+read-only command that lists deployments, so confirm with a harmless call before
+acting:
+
+```bash
+npx convex run questions:list '{}' --prod   # read-only
+```
+
 ## Mental model
 
 | Piece | What it is | Command |
@@ -49,7 +70,7 @@ Rules:
   `content/questions/*.json` leaves it `published` in Convex, so it stays in the
   playable set. `questions:prune` (which `publish.mts` calls after `questions:sync`)
   is what archives it. Always publish after deleting, then confirm the row reads
-  `archived`.
+  `archived`. Git looking correct proves nothing here.
 - Prune is a status change, not a delete: the row and its answer history stay, so
   answers already recorded against a retired id are not orphaned.
 - Hard delete is opt-in and two-step: `questions:purgeArchived` refuses anything not
@@ -130,6 +151,26 @@ vercel env ls                                 # frontend env vars
 vercel ls                                     # recent deployments
 gh issue list --repo miguelcorderocollar/endless-ai --state open
 ```
+
+## What a push actually ships
+
+`git push` to `main` sends **every** file under `convex/` to production, because
+Vercel's build command is `npx convex deploy --cmd 'npm run build'`. It does not
+push uncommitted work, so a half-finished function only reaches prod if it was
+committed. Conversely, `npx convex dev --once` and `npx convex deploy` both send
+the whole directory, so stray staged changes in other `convex/` files ride along
+with the one you meant to ship.
+
+Two consequences worth remembering:
+
+- A new mutation is available on prod as soon as a commit that adds it lands on
+  `main`. You do not need a separate deploy step, and you cannot deploy it alone.
+- `npx convex deploy` prompts before pushing to production. In a non-interactive
+  shell it refuses rather than guessing, which is the behaviour you want. Run it
+  from a terminal when you mean it.
+
+`publish.mts` is content only. It never calls `convex deploy`, so publishing the
+bank does not move backend code.
 
 ## Deploy checklist (before `git push`)
 

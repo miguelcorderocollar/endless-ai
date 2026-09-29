@@ -54,6 +54,11 @@ Keep the browser suite worth running:
 ## Deployment
 
 - Read `docs/deployment.md` before touching Convex, Vercel env vars, or the build command.
+- Name the deployment before acting on it. Dev is `careful-salmon-552`, production is
+  `moonlit-blackbird-812`, and `--prod` resolves from your CLI login rather than
+  `.env.local`. Both answer, so say which one you mean.
+- A push to `main` ships the whole `convex/` directory to production, so a staged change
+  in any function file rides along with the one you meant to push.
 - `content/questions/*.json` is the source of truth; Convex holds the published questions (one doc per questionId).
 - Never commit `.env.local` (`CONVEX_DEPLOYMENT`, `NEXT_PUBLIC_CONVEX_URL`) or any deploy key.
 
