@@ -172,7 +172,15 @@ export default function ProfilePage() {
   }, [bank]);
 
   const displayMe = me ?? cachedProfile;
-  const guest = !isAuthenticated || !displayMe || displayMe.isAnonymous;
+  // Refresh race: while auth resolves isAuthenticated is false, so a cached
+  // name would briefly render the guest CTA before flipping to the profile.
+  // Treat a cached non-anonymous identity as signed-in until auth settles,
+  // and keep the skeleton while the identity is still unknown.
+  const mePending = isAuthenticated && me === undefined;
+  const headerPending = (isLoading || mePending) && !displayMe;
+  const guest = isLoading
+    ? !displayMe || displayMe.isAnonymous
+    : !isAuthenticated || !displayMe || displayMe.isAnonymous;
 
   /**
    * Misses: most-recent verdict per question wins, so a later correct clears
@@ -202,7 +210,7 @@ export default function ProfilePage() {
       <main className="flex flex-1 flex-col pt-14">
         <p className="label text-muted">profile</p>
 
-        {isLoading && !displayMe ? (
+        {headerPending ? (
           <ProfileHeaderSkeleton />
         ) : guest ? (
           <>
@@ -223,7 +231,7 @@ export default function ProfilePage() {
           <>
             <div className="mt-3 flex items-center justify-between gap-4">
               <h1 className="font-display text-3xl leading-none">
-                {displayMe.displayName ?? displayMe.handle ?? "player"}
+                {displayMe?.displayName ?? displayMe?.handle ?? "player"}
               </h1>
               <div className="flex items-center gap-4">
                 <button
@@ -257,8 +265,8 @@ export default function ProfilePage() {
               </div>
             </div>
             <p className="label mt-2 text-muted">
-              {displayMe.handle ?? ""}
-              {displayMe.role === "admin" ? (
+              {displayMe?.handle ?? ""}
+              {displayMe?.role === "admin" ? (
                 <span className="ml-2 text-signal">admin</span>
               ) : null}
             </p>
