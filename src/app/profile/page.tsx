@@ -165,7 +165,8 @@ export default function ProfilePage() {
       status: "published" as const,
       addedAt: q.addedAt,
     })) ?? cachedList ?? [];
-  const bankReady = bank !== undefined || cachedList !== null;
+  const offline = typeof navigator !== "undefined" && !navigator.onLine;
+  const bankReady = bank !== undefined || cachedList !== null || offline;
 
   useEffect(() => {
     if (bank && bank.length > 0) writeListCache(questions);
@@ -173,12 +174,17 @@ export default function ProfilePage() {
   }, [bank]);
 
   const displayMe = me ?? cachedProfile;
+  // Offline, Convex auth and every query hang instead of failing — auth never
+  // settles and the query hooks stay `undefined` until the socket connects.
+  // An unsettled page would park on skeletons forever, so everything below
+  // treats offline as settled and lets the guest frame plus the device-local
+  // progress carry the page until the connection returns.
   // Refresh race: while auth resolves isAuthenticated is false, so a cached
   // name would briefly render the guest CTA before flipping to the profile.
   // Treat a cached non-anonymous identity as signed-in until auth settles,
   // and keep the skeleton while the identity is still unknown.
   const mePending = isAuthenticated && me === undefined;
-  const headerPending = (isLoading || mePending) && !displayMe;
+  const headerPending = !offline && (isLoading || mePending) && !displayMe;
   const guest = isLoading
     ? !displayMe || displayMe.isAnonymous
     : !isAuthenticated || !displayMe || displayMe.isAnonymous;
@@ -319,14 +325,14 @@ export default function ProfilePage() {
             </div>
           ) : (
             <div className="mt-3 min-h-[340px]">
-              {population === undefined ? (
+              {population === undefined && !offline ? (
                 <DistributionSkeleton />
               ) : (
                 <Distribution
-                  buckets={population.buckets}
-                  count={population.count}
-                  median={population.median}
-                  percentile={population.percentile}
+                  buckets={population?.buckets ?? []}
+                  count={population?.count ?? 0}
+                  median={population?.median ?? null}
+                  percentile={population?.percentile ?? null}
                   rating={stats?.rating ?? null}
                 />
               )}

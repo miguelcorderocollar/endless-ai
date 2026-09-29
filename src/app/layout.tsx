@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, Instrument_Serif } from "next/font/google
 
 import { AmbientBackground } from "@/components/AmbientBackground";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+import { OutboxFlusher } from "@/components/SyncStatus";
 import { ServiceWorker } from "@/components/ServiceWorker";
 import "./globals.css";
 
@@ -73,7 +74,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-dvh antialiased">
         <AmbientBackground />
         <div className="relative z-2">
-          <ConvexClientProvider>{children}</ConvexClientProvider>
+          {/* The flusher reads auth state and sends mutations, so it lives
+              inside the provider, not next to it. */}
+          <ConvexClientProvider>
+            {children}
+            <OutboxFlusher />
+          </ConvexClientProvider>
         </div>
         <ServiceWorker />
       </body>

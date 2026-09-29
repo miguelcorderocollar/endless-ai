@@ -20,6 +20,9 @@ scripts/.cache/
 # generated human-review bundle (npm run review)
 review/
 
+# generated offline bank (next.config.ts, every build and dev boot)
+public/bank.json
+
 # playwright output (npm run test:e2e)
 test-results/
 playwright-report/

@@ -18,10 +18,18 @@ import { pickNext } from "@/lib/quiz/engine";
 import { scoreAnswer } from "@/lib/quiz/elo";
 import { sourceHref, sourceLabel } from "@/lib/questions/schema";
 import type { Question } from "@/lib/questions/schema";
-import { useConvexAuth, useMutation } from "convex/react";
+import { useConvexAuth, useMutation, useConvex } from "convex/react";
 
 import { api } from "../../convex/_generated/api";
 import { InstallBanner } from "./InstallPrompt";
+import { SyncStatus } from "./SyncStatus";
+import { UpdatePrompt } from "./UpdatePrompt";
+import {
+  drainOutbox,
+  enqueueAnswer,
+  newEventId,
+} from "@/lib/answers/outbox";
+import { readProfileCache } from "@/lib/quiz/bankCache";
 
 type Phase = "question" | "revealed";
 
@@ -182,14 +190,29 @@ export function Quiz({
       // Server is truth for Elo and owns the event log. Optimistic local
       // update above keeps feedback instant; reconcile to the server rating
       // when it lands. Guests without a session stay local-only.
+      //
+      // Every signed-in answer travels through the outbox (#17), even the live
+      // ones: a mutation that fails is indistinguishable from one whose
+      // response was lost, and only the outbox's exact `eventId` dedupe tells
+      // them apart on replay. The drain sends in record order and stops at the
+      // first failure, so an offline answer parks instead of vanishing.
       if (isAuthenticated) {
-        const questionId = current.id;
-        void recordAnswer({ questionId, picked: option }).then(
-          (result) => {
-            updateProgress({ ...readProgress(), rating: result.ratingAfter });
-          },
-          () => {
-            /* offline or backend hiccup: the local update stands */
+        // The handle is the attribution guard (see outbox.ts): display names
+        // are editable and non-unique, so a queued event without a handle
+        // parks until one exists rather than risking another player's history.
+        const account = readProfileCache()?.handle ?? null;
+        enqueueAnswer({
+          eventId: newEventId(),
+          questionId: current.id,
+          picked: option,
+          account,
+          at: Date.now(),
+        });
+        void drainOutbox(recordAnswer, account).then(
+          ({ sent, lastRating }) => {
+            if (sent > 0 && lastRating !== null) {
+              updateProgress({ ...readProgress(), rating: lastRating });
+            }
           },
         );
       }
@@ -357,6 +380,7 @@ export function Quiz({
       )}
 
       <InstallBanner />
+      <UpdatePrompt />
     </div>
   );
 }
@@ -370,6 +394,7 @@ function Masthead({ progress }: { progress: SavedProgress }) {
         </Link>
       </span>
       <div className="flex items-center gap-5">
+        <SyncStatus />
         <span className="label text-muted">
           elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
         </span>

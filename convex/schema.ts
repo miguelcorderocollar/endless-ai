@@ -73,9 +73,19 @@ export default defineSchema({
     ratingBefore: v.number(),
     ratingAfter: v.number(),
     createdAt: v.number(),
+    /**
+     * Client-generated UUID for answers that traveled through the offline
+     * outbox (#17). A mutation that succeeded on the server but whose response
+     * never reached the phone would otherwise be recorded twice on replay —
+     * Elo, streaks and counts would all fork. With this, replay is an exact
+     * lookup first, insert second. Optional so older clients (which keep the
+     * 5s retry window below) write events the same shape as before.
+     */
+    eventId: v.optional(v.string()),
   })
     .index("by_user", ["userId", "createdAt"])
-    .index("by_user_question", ["userId", "questionId"]),
+    .index("by_user_question", ["userId", "questionId"])
+    .index("by_user_event", ["userId", "eventId"]),
 
   /**
    * Materialized per-user rollup (#34). The event log is write-only at scale;
