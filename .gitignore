@@ -19,3 +19,9 @@ scripts/.cache/
 
 # generated human-review bundle (npm run review)
 review/
+
+# playwright output (npm run test:e2e)
+test-results/
+playwright-report/
+blob-report/
+.playwright/

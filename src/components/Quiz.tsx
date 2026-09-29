@@ -21,6 +21,7 @@ import type { Question } from "@/lib/questions/schema";
 import { useConvexAuth, useMutation } from "convex/react";
 
 import { api } from "../../convex/_generated/api";
+import { InstallBanner } from "./InstallPrompt";
 
 type Phase = "question" | "revealed";
 
@@ -61,18 +62,24 @@ export function Quiz({
     const next = pickNext(bank, seen, categories, Math.random, progress.rating);
     if (!next) {
       // Current page exhausted: ask the server for more unseen questions.
-      // Empty twice in a row means the bank is truly done.
-      void onNeedMore(seen).then((fresh) => {
-        const retry = pickNext([...bank, ...fresh], seen, categories, Math.random, progress.rating);
-        if (!retry) {
-          setExhausted(true);
-          return;
-        }
-        setSeen((prev) => new Set(prev).add(retry.id));
-        setCurrent(retry);
-        setPicked(null);
-        setPhase("question");
-      });
+      // Empty twice in a row means the bank is truly done. A failed top-up
+      // means the same thing by another route: offline with a spent local
+      // bank. Either way the run ends, rather than hanging on a question that
+      // is never coming.
+      void onNeedMore(seen).then(
+        (fresh) => {
+          const retry = pickNext([...bank, ...fresh], seen, categories, Math.random, progress.rating);
+          if (!retry) {
+            setExhausted(true);
+            return;
+          }
+          setSeen((prev) => new Set(prev).add(retry.id));
+          setCurrent(retry);
+          setPicked(null);
+          setPhase("question");
+        },
+        () => setExhausted(true),
+      );
       return;
     }
     setSeen((prev) => new Set(prev).add(next.id));
@@ -206,7 +213,7 @@ export function Quiz({
   }, [phase, current, answer, nextQuestion]);
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
+    <div className="frame-x frame-t frame-b mx-auto flex min-h-dvh w-full max-w-2xl flex-col">
       <Masthead progress={progress} />
 
       {exhausted ? (
@@ -282,6 +289,8 @@ export function Quiz({
           ) : null}
         </main>
       )}
+
+      <InstallBanner />
     </div>
   );
 }

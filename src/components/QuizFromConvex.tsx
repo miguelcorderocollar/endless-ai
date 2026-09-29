@@ -182,6 +182,12 @@ export function QuizFromConvex() {
 
   const topUp = useCallback(
     async (seen: Set<string>): Promise<Question[]> => {
+      // Offline with the local bank spent: a disconnected Convex client does
+      // not reject a query, it parks it and retries the connection forever, so
+      // waiting on it means the player sits on "next" indefinitely. Report an
+      // empty page instead and let the quiz end the run.
+      if (typeof navigator !== "undefined" && !navigator.onLine) return [];
+
       const excludeIds = [
         ...new Set([...(serverCompleted ?? []), ...seen]),
       ].slice(-1000);

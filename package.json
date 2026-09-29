@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "verify": "npm run validate && npm run typecheck && npm run lint && npm run build",
+    "verify": "npm run validate && npm run typecheck && npm run lint && npm run test && npm run build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -14,6 +14,8 @@
     "publish": "tsx scripts/publish.mts",
     "validate:offline": "tsx scripts/validate.mts --offline",
     "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:all": "npm run test && npm run test:e2e",
     "rebalance": "tsx scripts/rebalance.mts",
     "probe": "tsx scripts/probe.mts",
     "review": "tsx scripts/review.mts",
@@ -30,6 +32,7 @@
     "zod": "4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "26.6.3",
     "@types/react": "19.3.0",

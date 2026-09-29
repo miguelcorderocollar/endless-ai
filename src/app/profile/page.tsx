@@ -26,6 +26,7 @@ import {
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import type { Question } from "@/lib/questions/schema";
 import { DoneList } from "@/components/DoneList";
+import { InstallRow } from "@/components/InstallPrompt";
 import { Popup } from "@/components/Popup";
 import { Shell } from "@/components/QuizFromConvex";
 import { SignInForm } from "@/components/Account";
@@ -354,6 +355,8 @@ export default function ProfilePage() {
             </div>
           )}
         </div>
+
+        <InstallRow />
 
         <Link
           href="/"

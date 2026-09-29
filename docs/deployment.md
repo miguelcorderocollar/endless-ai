@@ -73,9 +73,40 @@ Preview (per PR):
 2. Vercel → `CONVEX_DEPLOY_KEY` = that key, **Preview only**.
 3. Optional: append `--preview-run '<fn>'` to seed fresh preview backends.
 
-Do not set `NEXT_PUBLIC_CONVEX_URL` manually in Vercel — `convex deploy`
-provides it to the build. If the frontend ever needs a differently named var,
-pass `--cmd-url-env-var-name <NAME>`.
+Steps 1-2 are not done yet. Until they are, previews fall back to the dev
+backend (see below) rather than failing to build, which is enough to test a
+frontend change from a phone.
+
+Do not set `NEXT_PUBLIC_CONVEX_URL` manually in Vercel for production —
+`convex deploy` provides it to the build. If the frontend ever needs a
+differently named var, pass `--cmd-url-env-var-name <NAME>`.
+
+## Preview builds without a preview backend
+
+`buildCommand` in `vercel.json` is a three-way branch, because the two Vercel
+environments have different jobs:
+
+| Environment | `CONVEX_DEPLOY_KEY` | What builds |
+| --- | --- | --- |
+| Production | set (prod key) | `convex deploy` then Next.js, against the prod backend |
+| Production | **missing** | build fails on purpose, rather than shipping a frontend with no backend |
+| Preview | set (preview key) | `convex deploy` mints a throwaway preview backend per branch |
+| Preview | **missing** | plain `npm run build` against `NEXT_PUBLIC_CONVEX_URL` from the environment, which points at **dev** |
+
+That last row is the useful one. It means any PR gets a buildable, phone-
+testable URL with no dashboard work, against the dev backend where the bank is
+already published. The trade-off is that a preview writes to dev: signups,
+answer events and profile edits from preview testing land in the dev backend
+rather than a throwaway. Fine for a prototype, worth revisiting when previews
+need to be isolated or seeded (`--preview-run`).
+
+Setting the Preview env var:
+
+```bash
+vercel env add NEXT_PUBLIC_CONVEX_URL preview "" --value <dev convex url>
+vercel env ls    # confirm which environment each key is scoped to
+```
+
 
 ## Useful commands
 
