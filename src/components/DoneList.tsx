@@ -37,7 +37,7 @@ export function DoneList({
         <span className="text-3xl text-muted">/{answered}</span>
       </p>
       <p className="label mt-4 text-muted">
-        answered correctly · {total} in the bank
+        answered correctly · {total} in the training set
       </p>
 
       {done.length > 0 ? (
