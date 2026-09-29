@@ -1,4 +1,4 @@
-import type { Question } from "./schema";
+import { questionSchema, type Question } from "./schema";
 
 /**
  * The bundled fallback bank (#17): `public/bank.json`, a stable-URL snapshot
@@ -35,16 +35,17 @@ export async function loadFallbackBank(): Promise<Question[]> {
     if (!response.ok) return [];
     const file = (await response.json()) as BankFile;
     if (!Array.isArray(file.questions)) return [];
-    cached = file.questions.filter(
-      (row): row is Question =>
-        typeof row === "object" &&
-        row !== null &&
-        (row as { status?: unknown }).status === "published" &&
-        Array.isArray((row as { options?: unknown }).options) &&
-        typeof (row as { id?: unknown }).id === "string" &&
-        typeof (row as { text?: unknown }).text === "string" &&
-        typeof (row as { answer?: unknown }).answer === "string",
-    );
+    // Full schema parse, not a shape check: a corrupt row (wrong option
+    // count, answer outside the options, non-numeric difficulty) would crash
+    // `Quiz` or poison Elo math downstream. Skipped rows are simply absent;
+    // the bank is hundreds of questions, so losing a broken one is invisible.
+    cached = [];
+    for (const row of file.questions) {
+      const parsed = questionSchema.safeParse(row);
+      if (parsed.success && parsed.data.status === "published") {
+        cached.push(parsed.data);
+      }
+    }
     return cached;
   } catch {
     return [];

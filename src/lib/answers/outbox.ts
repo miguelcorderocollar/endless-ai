@@ -15,9 +15,11 @@
  * Guests never enqueue: there is no account for the server to attribute the
  * events to, and a later sign-in deliberately does not backfill them. Queued
  * events carry the signed-in handle they were recorded under, and the drain
- * only sends events for the current account — signing out with pending events
- * parks them until that account signs back in, instead of forging another
- * player's history.
+ * only sends another account's events for that account — signing out with
+ * pending events parks them until that account signs back in, instead of
+ * forging another player's history. Untagged events (no handle was known when
+ * recorded) drain under whoever is signed in; the server attributes by auth
+ * identity regardless.
  */
 
 const KEY = "endless-ai:answer-outbox:v1";
@@ -116,6 +118,31 @@ export function subscribeOutbox(listener: () => void): () => void {
   };
 }
 
+let syncing = false;
+
+/**
+ * Cross-tab sync. Each tab keeps its own snapshot; without this, a second
+ * tab's enqueues are invisible to the first until it writes something
+ * itself, and its drains iterate a stale list. The writing tab's own drains
+ * self-heal most of this, but a `storage` listener is one line per tab and
+ * makes every tab's chip and drain current.
+ */
+export function startOutboxSync(): void {
+  if (syncing || typeof window === "undefined") return;
+  syncing = true;
+  window.addEventListener("storage", (event) => {
+    if (event.key !== KEY) return;
+    const pending = readOutbox();
+    const known = new Set(getOutboxSnapshot().pending.map((e) => e.eventId));
+    if (
+      pending.length !== getOutboxSnapshot().pending.length ||
+      pending.some((e) => !known.has(e.eventId))
+    ) {
+      set(pending);
+    }
+  });
+}
+
 export function getOutboxSnapshot(): OutboxState {
   if (typeof window !== "undefined" && current === EMPTY) {
     // Lazy-read localStorage on first render (#31), same as progress.ts: no
@@ -150,19 +177,28 @@ export type SendAnswer = (args: {
 }) => Promise<{ ratingAfter: number }>;
 
 /**
- * Sends the queue head-first for the given account and stops at the first
- * failure, leaving the rest — and everything behind it — parked. Returns how
- * many left the device and the server's rating after the last one, so the
- * caller can reconcile the local Elo to truth.
+ * Sends the queue for the given account, head-first per account, and stops at
+ * the first failure, leaving the rest — and everything behind it — parked.
+ * Returns how many left the device, the server's rating after the last one,
+ * and the newest record time sent, so the caller can reconcile the local Elo
+ * to truth (see `shouldReconcile` — concurrent drains resolve in any order).
+ *
+ * Events tagged with another account are skipped, never sent: signing out
+ * with pending events parks them until that account signs back in. Events
+ * with no tag (`account: null`, recorded before any handle was known) are
+ * always sendable — stranding them would be silent permanent loss, and the
+ * server attributes by auth identity regardless, so there is no forgery in
+ * sending them under whoever is signed in.
  */
 export async function drainOutbox(
   send: SendAnswer,
   account: string | null,
-): Promise<{ sent: number; lastRating: number | null }> {
+): Promise<{ sent: number; lastRating: number | null; maxAt: number | null }> {
   const sent = new Set<string>();
   let lastRating: number | null = null;
+  let maxAt: number | null = null;
   for (const event of getOutboxSnapshot().pending) {
-    if (event.account !== account) continue;
+    if (event.account !== null && event.account !== account) continue;
     try {
       const result = await send({
         questionId: event.questionId,
@@ -170,11 +206,27 @@ export async function drainOutbox(
         eventId: event.eventId,
       });
       lastRating = result.ratingAfter;
+      maxAt = maxAt === null ? event.at : Math.max(maxAt, event.at);
       sent.add(event.eventId);
     } catch {
       break;
     }
   }
   if (sent.size > 0) dropSent(sent);
-  return { sent: sent.size, lastRating };
+  return { sent: sent.size, lastRating, maxAt };
+}
+
+/**
+ * Guards the Elo reconcile against overlapping drains. Two drains in flight
+ * resolve in arbitrary order; without this, an older drain resolving last
+ * regresses the local rating and nothing re-triggers to repair it. The
+ * newest-sent event wins; ties (`>=`) reconcile, last-writer-wins within a
+ * millisecond, which is below the resolution anything here can order by.
+ */
+let reconciledAt = -1;
+
+export function shouldReconcile(at: number | null): boolean {
+  if (at === null || at < reconciledAt) return false;
+  reconciledAt = at;
+  return true;
 }

@@ -8,6 +8,8 @@ import {
   drainOutbox,
   getOutboxServerSnapshot,
   getOutboxSnapshot,
+  shouldReconcile,
+  startOutboxSync,
   subscribeOutbox,
 } from "@/lib/answers/outbox";
 import { readProgress, updateProgress } from "@/lib/progress";
@@ -35,12 +37,13 @@ export function OutboxFlusher() {
   );
 
   useEffect(startNetworkListener, []);
+  useEffect(startOutboxSync, []);
 
   useEffect(() => {
     if (!isAuthenticated || !network.online) return;
     const account = readProfileCache()?.handle ?? null;
-    void drainOutbox(recordAnswer, account).then(({ sent, lastRating }) => {
-      if (sent > 0 && lastRating !== null) {
+    void drainOutbox(recordAnswer, account).then(({ sent, lastRating, maxAt }) => {
+      if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
         updateProgress({ ...readProgress(), rating: lastRating });
       }
     });

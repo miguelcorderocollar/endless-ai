@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useConvex, useConvexAuth, useQuery } from "convex/react";
 import type { ConvexReactClient } from "convex/react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 import { api } from "../../convex/_generated/api";
 import type { Question } from "@/lib/questions/schema";
@@ -11,6 +11,11 @@ import { loadFallbackBank } from "@/lib/questions/fallback";
 import { readDrawCache, writeDrawCache } from "@/lib/quiz/bankCache";
 import { readFilter } from "@/lib/quiz/filter";
 import { readProgress } from "@/lib/progress";
+import {
+  getNetworkServerSnapshot,
+  getNetworkSnapshot,
+  subscribeNetwork,
+} from "@/lib/pwa/network";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import { Quiz } from "./Quiz";
 import { QuizSkeleton, Shell } from "./Skeletons";
@@ -109,6 +114,16 @@ export function QuizFromConvex() {
     isAuthenticated ? {} : "skip",
   );
   const [filter] = useState<string[]>(() => readFilter());
+  // Subscribed, not read once: a mid-session disconnect re-renders into the
+  // fallback path, and a reconnect re-renders back into the live draw (which
+  // then revalidates in the background). Server snapshot is always online, so
+  // hydration matches by construction.
+  const network = useSyncExternalStore(
+    subscribeNetwork,
+    getNetworkSnapshot,
+    getNetworkServerSnapshot,
+  );
+  const offline = !network.online;
   // Null through hydration (matches the SSR skeleton), then painted from the
   // local snapshot in a layout effect: before paint, so repeat visits never
   // see the skeleton and never mismatch hydration.
@@ -139,17 +154,16 @@ export function QuizFromConvex() {
     // portal, in which case the draw hangs exactly like any networked app.
     // No timer: inventing our own notion of "too slow" would race the real
     // response on a merely bad connection.)
-    const draw =
-      typeof navigator !== "undefined" && !navigator.onLine
-        ? Promise.reject(new Error("offline"))
-        : drawPage(client, {
-            excludeIds: [
-              ...new Set([...readProgress().completed, ...(serverCompleted ?? [])]),
-            ],
-            count: PAGE,
-            categories: filter,
-            ratingHint: readProgress().rating,
-          });
+    const draw = offline
+      ? Promise.reject(new Error("offline"))
+      : drawPage(client, {
+          excludeIds: [
+            ...new Set([...readProgress().completed, ...(serverCompleted ?? [])]),
+          ],
+          count: PAGE,
+          categories: filter,
+          ratingHint: readProgress().rating,
+        });
     void draw
       .then((rows) => {
         if (cancelled) return;
@@ -207,7 +221,7 @@ export function QuizFromConvex() {
     return () => {
       cancelled = true;
     };
-  }, [client, isAuthenticated, serverCompleted, filter]);
+  }, [client, isAuthenticated, serverCompleted, filter, offline]);
 
   const topUp = useCallback(
     async (seen: Set<string>): Promise<Question[]> => {
@@ -215,7 +229,7 @@ export function QuizFromConvex() {
       // not reject a query, it parks it and retries the connection forever, so
       // waiting on it means the player sits on "next" indefinitely. Report an
       // empty page instead and let the quiz end the run.
-      if (typeof navigator !== "undefined" && !navigator.onLine) return [];
+      if (offline) return [];
 
       const excludeIds = [
         ...new Set([...(serverCompleted ?? []), ...seen]),
@@ -236,7 +250,7 @@ export function QuizFromConvex() {
       });
       return fresh;
     },
-    [client, serverCompleted, filter],
+    [client, serverCompleted, filter, offline],
   );
 
   // The filter is fixed per mount: picking categories navigates client-side
@@ -250,8 +264,6 @@ export function QuizFromConvex() {
     // bundled snapshot. The standard copy below assumes an unpublished backend
     // ("run npx convex dev"), which is what a developer needs to hear — but a
     // player on a plane needs to hear that the app itself is fine.
-    const offline =
-      typeof navigator !== "undefined" && !navigator.onLine;
     if (offline && completed === 0) {
       return (
         <Shell>

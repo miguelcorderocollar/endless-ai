@@ -171,6 +171,29 @@ async function handleAsset(request) {
 }
 
 /**
+ * The bundled bank is the one asset whose content changes without the shell
+ * changing: a content-only deploy leaves `sw.js` byte-identical, so no
+ * reinstall happens and a cache-first read would serve the old bank
+ * indefinitely — on exactly the path that serves content directly (offline
+ * first run). Network-first with cache fallback: online players always get
+ * the fresh bank, offline players get the last precached one, and a device
+ * that never cached it gets a network error the client already handles as an
+ * empty bank.
+ */
+async function handleBankJson(request) {
+  const cache = await caches.open(SHELL_CACHE);
+  try {
+    const response = await fetchWithTimeout(request, NAV_TIMEOUT_MS);
+    if (response.ok) await cache.put(request, response.clone());
+    return response;
+  } catch {
+    const hit = await cache.match(request);
+    if (hit) return hit;
+    return Response.error();
+  }
+}
+
+/**
  * Warms the asset cache from the precached HTML.
  *
  * Without this there is a one-visit hole. The worker installs and precaches
@@ -252,6 +275,10 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate") {
     event.respondWith(handleDocument(request));
+    return;
+  }
+  if (url.pathname === "/bank.json") {
+    event.respondWith(handleBankJson(request));
     return;
   }
   if (isStaticAsset(url)) {

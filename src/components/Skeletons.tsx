@@ -9,6 +9,7 @@ import {
   subscribeProgress,
 } from "@/lib/progress";
 import { SyncStatus } from "./SyncStatus";
+import { UpdatePrompt } from "./UpdatePrompt";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
@@ -85,6 +86,9 @@ export function Shell({
         </div>
       </header>
       {children}
+      {/* Every route, not just the quiz: a long-lived profile tab deserves
+          the update prompt as much as a long-lived game. */}
+      <UpdatePrompt />
     </div>
   );
 }

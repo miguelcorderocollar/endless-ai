@@ -26,6 +26,12 @@ export function subscribeNetwork(listener: () => void): () => void {
 }
 
 export function getNetworkSnapshot(): NetworkState {
+  // Read the real value on first contact, not just in the effect: a cold
+  // offline boot would otherwise draw once as online — and a parked Convex
+  // query never comes back to correct it. Idempotent; duplicate listener
+  // registration is a no-op by DOM contract, and `sync` only notifies on
+  // change, so repeated reads during render are free.
+  if (typeof window !== "undefined" && !started) startNetworkListener();
   return current;
 }
 

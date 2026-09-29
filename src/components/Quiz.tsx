@@ -18,7 +18,7 @@ import { pickNext } from "@/lib/quiz/engine";
 import { scoreAnswer } from "@/lib/quiz/elo";
 import { sourceHref, sourceLabel } from "@/lib/questions/schema";
 import type { Question } from "@/lib/questions/schema";
-import { useConvexAuth, useMutation, useConvex } from "convex/react";
+import { useConvexAuth, useMutation } from "convex/react";
 
 import { api } from "../../convex/_generated/api";
 import { InstallBanner } from "./InstallPrompt";
@@ -28,6 +28,7 @@ import {
   drainOutbox,
   enqueueAnswer,
   newEventId,
+  shouldReconcile,
 } from "@/lib/answers/outbox";
 import { readProfileCache } from "@/lib/quiz/bankCache";
 
@@ -197,9 +198,10 @@ export function Quiz({
       // them apart on replay. The drain sends in record order and stops at the
       // first failure, so an offline answer parks instead of vanishing.
       if (isAuthenticated) {
-        // The handle is the attribution guard (see outbox.ts): display names
-        // are editable and non-unique, so a queued event without a handle
-        // parks until one exists rather than risking another player's history.
+        // The handle tags the event for per-account drain attribution (see
+        // outbox.ts). Display names are editable and non-unique, so they are
+        // not identity. A missing handle tags null, which drains under
+        // whoever is signed in — the server attributes by auth identity.
         const account = readProfileCache()?.handle ?? null;
         enqueueAnswer({
           eventId: newEventId(),
@@ -209,8 +211,8 @@ export function Quiz({
           at: Date.now(),
         });
         void drainOutbox(recordAnswer, account).then(
-          ({ sent, lastRating }) => {
-            if (sent > 0 && lastRating !== null) {
+          ({ sent, lastRating, maxAt }) => {
+            if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
               updateProgress({ ...readProgress(), rating: lastRating });
             }
           },

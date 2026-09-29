@@ -47,14 +47,27 @@ export function markUpdateReady(): void {
  * it does. The navigation state is client-side and worthless to preserve
  * across a shell swap — the quiz resumes from the local bank, not from a
  * particular question, so a plain reload is the correct resume.
+ *
+ * If the worker activated between prompt display and click there is no
+ * `waiting` left to message and no `controllerchange` coming: reload anyway
+ * after a beat rather than dead-clicking. Either way the player asked for the
+ * new version and gets it.
  */
 export function applyUpdate(): void {
   if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
-  const reload = () => window.location.reload();
+  let takenOver = false;
+  const reload = () => {
+    if (takenOver) return;
+    takenOver = true;
+    window.location.reload();
+  };
   navigator.serviceWorker.addEventListener("controllerchange", reload, {
     once: true,
   });
   void navigator.serviceWorker.ready.then((registration) => {
-    registration.waiting?.postMessage({ type: "SKIP_WAITING" });
+    if (registration.waiting) {
+      registration.waiting.postMessage({ type: "SKIP_WAITING" });
+    }
+    window.setTimeout(reload, 2000);
   });
 }
