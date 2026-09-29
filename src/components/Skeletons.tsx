@@ -8,6 +8,8 @@ import {
   getProgressSnapshot,
   subscribeProgress,
 } from "@/lib/progress";
+import { SyncStatus } from "./SyncStatus";
+import { UpdatePrompt } from "./UpdatePrompt";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
@@ -40,14 +42,16 @@ export function Shell({
   );
   return (
     <div className="frame-x frame-t frame-b mx-auto flex min-h-dvh w-full max-w-2xl flex-col">
-      <header className="flex items-center justify-between border-b border-ink-line py-4">
+      <header className="flex items-center justify-between border-b border-ink-line py-5">
         <span className="font-display text-2xl tracking-tight">
           <Link href="/" aria-label="back to the game">
             Endless <span className="text-signal">AI</span>
           </Link>
         </span>
-        {showElo ? (
-          <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5">
+          <SyncStatus />
+          {showElo ? (
+            <div className="flex items-center gap-5">
             <span className="label text-muted">
               elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
             </span>
@@ -78,9 +82,13 @@ export function Shell({
               </svg>
             </Link>
           </div>
-        ) : null}
+          ) : null}
+        </div>
       </header>
       {children}
+      {/* Every route, not just the quiz: a long-lived profile tab deserves
+          the update prompt as much as a long-lived game. */}
+      <UpdatePrompt />
     </div>
   );
 }

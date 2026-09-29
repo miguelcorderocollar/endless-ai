@@ -3,13 +3,19 @@
 import Link from "next/link";
 import { useConvex, useConvexAuth, useQuery } from "convex/react";
 import type { ConvexReactClient } from "convex/react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 import { api } from "../../convex/_generated/api";
 import type { Question } from "@/lib/questions/schema";
+import { loadFallbackBank } from "@/lib/questions/fallback";
 import { readDrawCache, writeDrawCache } from "@/lib/quiz/bankCache";
 import { readFilter } from "@/lib/quiz/filter";
 import { readProgress } from "@/lib/progress";
+import {
+  getNetworkServerSnapshot,
+  getNetworkSnapshot,
+  subscribeNetwork,
+} from "@/lib/pwa/network";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import { Quiz } from "./Quiz";
 import { QuizSkeleton, Shell } from "./Skeletons";
@@ -108,6 +114,16 @@ export function QuizFromConvex() {
     isAuthenticated ? {} : "skip",
   );
   const [filter] = useState<string[]>(() => readFilter());
+  // Subscribed, not read once: a mid-session disconnect re-renders into the
+  // fallback path, and a reconnect re-renders back into the live draw (which
+  // then revalidates in the background). Server snapshot is always online, so
+  // hydration matches by construction.
+  const network = useSyncExternalStore(
+    subscribeNetwork,
+    getNetworkSnapshot,
+    getNetworkServerSnapshot,
+  );
+  const offline = !network.online;
   // Null through hydration (matches the SSR skeleton), then painted from the
   // local snapshot in a layout effect: before paint, so repeat visits never
   // see the skeleton and never mismatch hydration.
@@ -131,15 +147,24 @@ export function QuizFromConvex() {
   useEffect(() => {
     if (isAuthenticated && serverCompleted === undefined) return;
     let cancelled = false;
-    const excludeIds = [
-      ...new Set([...readProgress().completed, ...(serverCompleted ?? [])]),
-    ];
-    void drawPage(client, {
-      excludeIds,
-      count: PAGE,
-      categories: filter,
-      ratingHint: readProgress().rating,
-    })
+    // A disconnected Convex client does not reject a query, it parks it and
+    // retries the connection forever — same trap as the top-up below. So an
+    // offline boot must not even attempt the draw; it goes straight to the
+    // cache-or-fallback path. (`navigator.onLine` can lie behind a captive
+    // portal, in which case the draw hangs exactly like any networked app.
+    // No timer: inventing our own notion of "too slow" would race the real
+    // response on a merely bad connection.)
+    const draw = offline
+      ? Promise.reject(new Error("offline"))
+      : drawPage(client, {
+          excludeIds: [
+            ...new Set([...readProgress().completed, ...(serverCompleted ?? [])]),
+          ],
+          count: PAGE,
+          categories: filter,
+          ratingHint: readProgress().rating,
+        });
+    void draw
       .then((rows) => {
         if (cancelled) return;
         const questions = rows.map(toQuestion);
@@ -171,14 +196,32 @@ export function QuizFromConvex() {
         }
       })
       .catch(() => {
-        // Offline with no cache: surface the empty-bank frame, not a hang.
         // Offline with cache: keep playing stale, the error is invisible.
-        if (!cancelled && !hadCache.current) setBank([]);
+        if (cancelled || hadCache.current) return;
+        // Offline with no cache: the bundled content bank (#17) is the last
+        // resort before the empty-bank frame. It answers from the same content
+        // the server publishes from, filtered to the player's categories, and
+        // the first chunk is written into the draw cache so the next cold boot
+        // paints instantly and revalidates like any other cached draw.
+        void loadFallbackBank().then((fallback) => {
+          if (cancelled) return;
+          const playable =
+            filter.length === 0
+              ? fallback
+              : fallback.filter((q) => filter.includes(q.category));
+          if (playable.length === 0) {
+            setBank([]);
+            return;
+          }
+          writeDrawCache(filter, playable.slice(0, 60));
+          setBank(playable);
+          setInitial(playable[Math.floor(Math.random() * playable.length)] ?? null);
+        });
       });
     return () => {
       cancelled = true;
     };
-  }, [client, isAuthenticated, serverCompleted, filter]);
+  }, [client, isAuthenticated, serverCompleted, filter, offline]);
 
   const topUp = useCallback(
     async (seen: Set<string>): Promise<Question[]> => {
@@ -186,7 +229,7 @@ export function QuizFromConvex() {
       // not reject a query, it parks it and retries the connection forever, so
       // waiting on it means the player sits on "next" indefinitely. Report an
       // empty page instead and let the quiz end the run.
-      if (typeof navigator !== "undefined" && !navigator.onLine) return [];
+      if (offline) return [];
 
       const excludeIds = [
         ...new Set([...(serverCompleted ?? []), ...seen]),
@@ -207,7 +250,7 @@ export function QuizFromConvex() {
       });
       return fresh;
     },
-    [client, serverCompleted, filter],
+    [client, serverCompleted, filter, offline],
   );
 
   // The filter is fixed per mount: picking categories navigates client-side
@@ -217,9 +260,27 @@ export function QuizFromConvex() {
 
   if (bank.length === 0) {
     const completed = readProgress().completed.length;
+    // First run with no connection: the draw failed and there is no cached or
+    // bundled snapshot. The standard copy below assumes an unpublished backend
+    // ("run npx convex dev"), which is what a developer needs to hear — but a
+    // player on a plane needs to hear that the app itself is fine.
+    if (offline && completed === 0) {
+      return (
+        <Shell>
+          <main className="flex flex-1 flex-col pt-14">
+            <p className="label text-muted">no connection</p>
+            <h1 className="mt-3 font-display text-3xl">Nothing saved here yet</h1>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+              The quiz lives on this device after one visit with a connection.
+              Connect once and it keeps working without one.
+            </p>
+          </main>
+        </Shell>
+      );
+    }
     return (
       <Shell>
-        <main className="flex flex-1 flex-col pt-6">
+        <main className="flex flex-1 flex-col pt-14">
           <p className="label text-muted">
             {completed > 0 ? "bank complete" : "empty bank"}
           </p>

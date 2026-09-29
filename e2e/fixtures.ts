@@ -92,8 +92,16 @@ function question(row: SeedQuestion) {
 }
 
 type Options = {
-  questions?: SeedQuestion[];
+  /**
+   * The draw cache to seed. `null` writes nothing, which is how the
+   * first-run-offline specs get an empty device. Defaults to one question so
+   * specs are deterministic — `QuizFromConvex` opens on a random cached
+   * question, and two seeded questions make half the runs flip.
+   */
+  questions?: SeedQuestion[] | null;
   answered?: number;
+  /** Raw outbox rows, for the sync chip and drain specs. */
+  outbox?: { questionId: string; picked: string; account: string | null; at: number }[];
 };
 
 /**
@@ -107,7 +115,7 @@ type Options = {
  * just about the wrong questions.
  */
 export async function seed(page: Page, options: Options = {}): Promise<void> {
-  const { questions = DEFAULT_BANK, answered = 0 } = options;
+  const { questions = DEFAULT_BANK, answered = 0, outbox = [] } = options;
 
   await page.route(CONVEX_URL_GLOB, async (route) => {
     if (route.request().url().includes("convex")) return route.abort("failed");
@@ -116,11 +124,13 @@ export async function seed(page: Page, options: Options = {}): Promise<void> {
   await page.routeWebSocket(/convex/, (socket) => socket.close());
 
   await page.addInitScript(
-    ({ bank, answeredCount }) => {
-      window.localStorage.setItem(
-        "endless-ai:draw-cache:v1:all",
-        JSON.stringify({ questions: bank, at: Date.now() }),
-      );
+    ({ bank, answeredCount, outboxRows }) => {
+      if (bank !== null) {
+        window.localStorage.setItem(
+          "endless-ai:draw-cache:v1:all",
+          JSON.stringify({ questions: bank, at: Date.now() }),
+        );
+      }
       if (answeredCount > 0) {
         window.localStorage.setItem(
           "endless-ai:progress:v1",
@@ -130,13 +140,25 @@ export async function seed(page: Page, options: Options = {}): Promise<void> {
             correct: Math.floor(answeredCount / 2),
             streak: 3,
             lastPlayed: new Date().toISOString(),
-            completed: bank.map((q) => q.id),
+            completed: (bank ?? []).map((q) => q.id),
             recent: [],
           }),
         );
       }
+      if (outboxRows.length > 0) {
+        window.localStorage.setItem(
+          "endless-ai:answer-outbox:v1",
+          JSON.stringify(
+            outboxRows.map((row, i) => ({ eventId: `e2e-${i}`, ...row })),
+          ),
+        );
+      }
     },
-    { bank: questions.map(question), answeredCount: answered },
+    {
+      bank: questions === null ? null : questions.map(question),
+      answeredCount: answered,
+      outboxRows: outbox,
+    },
   );
 }
 

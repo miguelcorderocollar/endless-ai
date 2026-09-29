@@ -15,6 +15,9 @@ export default defineConfig({
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
   test: {
-    include: ["src/**/*.test.ts"],
+    // `src` is the app; `convex` holds the backend, whose replay specs run
+    // against an in-memory backend via convex-test. `e2e/` stays out (see
+    // above) — Playwright specs fail collection under vitest on purpose.
+    include: ["src/**/*.test.ts", "convex/**/*.test.ts"],
   },
 });

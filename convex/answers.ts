@@ -25,11 +25,18 @@ import { getAuthUserId } from "@convex-dev/auth/server";
  * - same verdict within 5s of the previous event for the same question is a
  *   network retry: returns the previous result without inserting. A changed
  *   verdict (wrong then right) always records as a new event.
+ * - an `eventId` that already exists for this user is an outbox replay of a
+ *   mutation that succeeded on the server but whose response was lost on the
+ *   way back: returns the stored result without inserting. Exact, no time
+ *   window, and it suppresses the 5s rule below — a player who genuinely
+ *   answered the same question twice offline would otherwise lose the second
+ *   attempt at replay.
  */
 export const answer = mutation({
   args: {
     questionId: v.string(),
     picked: v.string(),
+    eventId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const userId = await requireUser(ctx);
@@ -41,6 +48,26 @@ export const answer = mutation({
       .then((rows) => rows[0]);
     if (!question || question.status !== "published") {
       throw new ConvexError("Unknown question.");
+    }
+
+    if (args.eventId) {
+      const replayed = await ctx.db
+        .query("answerEvents")
+        .withIndex("by_user_event", (q) =>
+          q.eq("userId", userId).eq("eventId", args.eventId),
+        )
+        .take(1)
+        .then((rows) => rows[0]);
+      if (replayed) {
+        return {
+          correct: replayed.correct,
+          ratingBefore: replayed.ratingBefore,
+          ratingAfter: replayed.ratingAfter,
+          delta:
+            Math.round((replayed.ratingAfter - replayed.ratingBefore) * 10) / 10,
+          deduped: true,
+        };
+      }
     }
 
     const recent = await ctx.db
@@ -73,8 +100,17 @@ export const answer = mutation({
     const correct = args.picked === question.answer;
     // Same outcome within 5s of the previous event for this question means a
     // network retry, not a new attempt — return the previous result without
-    // inserting. A changed verdict (wrong then right) always records.
-    if (lastSame && Date.now() - lastSame.createdAt < 5000 && lastSame.correct === correct) {
+    // inserting. A changed verdict (wrong then right) always records. Skipped
+    // for outbox replays: their dedupe is the exact `eventId` lookup above,
+    // and a player who answered the same question twice while offline (both
+    // queued, both replayed seconds apart) would otherwise lose the second
+    // attempt to this rule.
+    if (
+      !args.eventId &&
+      lastSame &&
+      Date.now() - lastSame.createdAt < 5000 &&
+      lastSame.correct === correct
+    ) {
       return {
         correct: lastSame.correct,
         ratingBefore: lastSame.ratingBefore,
@@ -105,6 +141,7 @@ export const answer = mutation({
       ratingBefore,
       ratingAfter: rating,
       createdAt: now,
+      ...(args.eventId ? { eventId: args.eventId } : {}),
     });
 
     return {

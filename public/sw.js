@@ -52,7 +52,10 @@ const CURRENT_CACHES = [SHELL_CACHE, ASSET_CACHE];
  * offline shell at all.
  */
 const ROUTES = ["/", "/categories", "/profile"];
-const PRECACHE = [...ROUTES, "/manifest.webmanifest"];
+// `/bank.json` is the offline fallback bank (#17): a stable-URL snapshot of
+// the validated content, generated on every build. It is precached by name,
+// which is the whole reason it is a file instead of hashed chunks.
+const PRECACHE = [...ROUTES, "/manifest.webmanifest", "/bank.json"];
 
 /** How long a cold navigation waits on the network before trying the cache. */
 const NAV_TIMEOUT_MS = 3000;
@@ -97,6 +100,9 @@ const STATIC_EXTENSIONS = [
   ".woff2",
   ".ttf",
   ".webmanifest",
+  // `/bank.json` is already precached by name (see PRECACHE), so this only
+  // matters for fetches that miss the shell cache — belt and braces.
+  ".json",
   ".txt",
 ];
 
@@ -152,12 +158,39 @@ async function handleDocument(request) {
 }
 
 async function handleAsset(request) {
-  const cache = await caches.open(ASSET_CACHE);
-  const hit = await cache.match(request);
+  // Global lookup, not the asset cache alone: precached entries live in the
+  // shell cache (`/bank.json` among them), and a hit there is as good as one
+  // here. Only same-origin static assets ever reach this function, so the
+  // global search cannot surface anything it should not.
+  const hit = await caches.match(request);
   if (hit) return hit;
+  const cache = await caches.open(ASSET_CACHE);
   const response = await fetch(request);
   if (response.ok) await cache.put(request, response.clone());
   return response;
+}
+
+/**
+ * The bundled bank is the one asset whose content changes without the shell
+ * changing: a content-only deploy leaves `sw.js` byte-identical, so no
+ * reinstall happens and a cache-first read would serve the old bank
+ * indefinitely — on exactly the path that serves content directly (offline
+ * first run). Network-first with cache fallback: online players always get
+ * the fresh bank, offline players get the last precached one, and a device
+ * that never cached it gets a network error the client already handles as an
+ * empty bank.
+ */
+async function handleBankJson(request) {
+  const cache = await caches.open(SHELL_CACHE);
+  try {
+    const response = await fetchWithTimeout(request, NAV_TIMEOUT_MS);
+    if (response.ok) await cache.put(request, response.clone());
+    return response;
+  } catch {
+    const hit = await cache.match(request);
+    if (hit) return hit;
+    return Response.error();
+  }
 }
 
 /**
@@ -244,9 +277,24 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(handleDocument(request));
     return;
   }
+  if (url.pathname === "/bank.json") {
+    event.respondWith(handleBankJson(request));
+    return;
+  }
   if (isStaticAsset(url)) {
     event.respondWith(handleAsset(request));
   }
   // Anything else falls through to the browser's default handling: network,
   // no cache, no interference.
+});
+
+/**
+ * Taking over mid-session is refused by default (see the install note), so
+ * the page has to ask for it. The only sender is the update prompt's apply
+ * button, after the player has been told a reload is coming.
+ */
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });

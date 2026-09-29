@@ -23,6 +23,11 @@ import {
   writeListCache,
   writeProfileCache,
 } from "@/lib/quiz/bankCache";
+import {
+  getNetworkServerSnapshot,
+  getNetworkSnapshot,
+  subscribeNetwork,
+} from "@/lib/pwa/network";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import type { Question } from "@/lib/questions/schema";
 import { DoneList } from "@/components/DoneList";
@@ -165,7 +170,20 @@ export default function ProfilePage() {
       status: "published" as const,
       addedAt: q.addedAt,
     })) ?? cachedList ?? [];
-  const bankReady = bank !== undefined || cachedList !== null;
+  // Offline, Convex auth and every query hang instead of failing — auth never
+  // settles and the query hooks stay `undefined` until the socket connects.
+  // An unsettled page would park on skeletons forever, so everything below
+  // treats offline as settled and lets the guest frame plus the device-local
+  // progress carry the page until the connection returns. Subscribed, not
+  // read once, so a mid-session disconnect re-renders out of the skeletons;
+  // the server snapshot is always online, so hydration matches.
+  const network = useSyncExternalStore(
+    subscribeNetwork,
+    getNetworkSnapshot,
+    getNetworkServerSnapshot,
+  );
+  const offline = !network.online;
+  const bankReady = bank !== undefined || cachedList !== null || offline;
 
   useEffect(() => {
     if (bank && bank.length > 0) writeListCache(questions);
@@ -178,7 +196,7 @@ export default function ProfilePage() {
   // Treat a cached non-anonymous identity as signed-in until auth settles,
   // and keep the skeleton while the identity is still unknown.
   const mePending = isAuthenticated && me === undefined;
-  const headerPending = (isLoading || mePending) && !displayMe;
+  const headerPending = !offline && (isLoading || mePending) && !displayMe;
   const guest = isLoading
     ? !displayMe || displayMe.isAnonymous
     : !isAuthenticated || !displayMe || displayMe.isAnonymous;
@@ -282,7 +300,7 @@ export default function ProfilePage() {
           <p className="label mt-4 text-muted">
             {stats
               ? `${stats.answered} answered · streak ${stats.streak} · best ${stats.bestStreak}`
-              : isAuthenticated
+              : isAuthenticated && !offline
                 ? "no answers yet on this account"
                 : "on this device only · sign in to sync"}
           </p>
@@ -307,26 +325,26 @@ export default function ProfilePage() {
 
           {tab === "you" ? (
             <div className="mt-3 min-h-[340px]">
-              {history === undefined ? (
+              {history === undefined && !offline ? (
                 isAuthenticated ? (
                   <ChartSkeleton />
                 ) : (
                   <EloChart points={[]} median={population?.median ?? null} />
                 )
               ) : (
-                <EloChart points={history} median={population?.median ?? null} />
+                <EloChart points={history ?? []} median={population?.median ?? null} />
               )}
             </div>
           ) : (
             <div className="mt-3 min-h-[340px]">
-              {population === undefined ? (
+              {population === undefined && !offline ? (
                 <DistributionSkeleton />
               ) : (
                 <Distribution
-                  buckets={population.buckets}
-                  count={population.count}
-                  median={population.median}
-                  percentile={population.percentile}
+                  buckets={population?.buckets ?? []}
+                  count={population?.count ?? 0}
+                  median={population?.median ?? null}
+                  percentile={population?.percentile ?? null}
                   rating={stats?.rating ?? null}
                 />
               )}
