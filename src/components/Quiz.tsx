@@ -51,6 +51,7 @@ export function Quiz({
   const { isAuthenticated } = useConvexAuth();
   const recordAnswer = useMutation(api.answers.answer);
   const nextRef = useRef<HTMLButtonElement | null>(null);
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     hydrateProgress();
@@ -129,10 +130,11 @@ export function Quiz({
     if (phase === "revealed") nextRef.current?.focus({ preventScroll: true });
   }, [phase, current]);
 
-  // Keyboard-first play (#26): 1-4/A-D answer, Enter/Space/→ advance. Mouse
-  // flow untouched. Guards: modifiers held, editable targets, and natively
-  // activatable focused elements (their default activation already fires —
-  // handling them too would double-advance).
+  // Keyboard-first play (#26): 1-4/A-D answer, arrows move between options,
+  // Enter/Space/→ advance, ? opens Learn. Mouse flow untouched. Guards:
+  // modifiers held, editable targets, and natively activatable focused
+  // elements (their default activation already fires — handling them too
+  // would double-advance).
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
@@ -153,14 +155,49 @@ export function Quiz({
         if (index !== -1 && index < current.options.length) {
           event.preventDefault();
           answer(current.options[index]!);
+          return;
+        }
+        // Arrow navigation between options; focus + Enter/Space answers via
+        // native button activation. Wraps around; starts at an end when
+        // focus is elsewhere.
+        const dir =
+          event.key === "ArrowDown" || event.key === "ArrowRight"
+            ? 1
+            : event.key === "ArrowUp" || event.key === "ArrowLeft"
+              ? -1
+              : 0;
+        if (dir !== 0) {
+          const buttons = optionRefs.current.filter(
+            (el): el is HTMLButtonElement => el !== null,
+          );
+          if (buttons.length > 0) {
+            event.preventDefault();
+            const focused = buttons.indexOf(document.activeElement as HTMLButtonElement);
+            const next =
+              focused === -1
+                ? dir > 0
+                  ? 0
+                  : buttons.length - 1
+                : (focused + dir + buttons.length) % buttons.length;
+            buttons[next]!.focus({ preventScroll: true });
+          }
         }
         return;
       }
-      if (phase === "revealed") {
+      if (phase === "revealed" && current) {
         if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
           if (target && (target.tagName === "BUTTON" || target.tagName === "A")) return;
           event.preventDefault();
           nextQuestion();
+          return;
+        }
+        // ? opens the Learn source when the question has one.
+        if (event.key === "?") {
+          const href = sourceHref(current.source);
+          if (href) {
+            event.preventDefault();
+            window.open(href, "_blank", "noopener,noreferrer");
+          }
         }
       }
     };
@@ -208,6 +245,9 @@ export function Quiz({
                   return (
                     <li key={option}>
                       <button
+                        ref={(el) => {
+                          optionRefs.current[index] = el;
+                        }}
                         type="button"
                         disabled={revealed}
                         onClick={() => answer(option)}
@@ -325,6 +365,8 @@ function Reveal({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
+            aria-keyshortcuts="?"
+            title="press ? to open"
             className="label group inline-flex items-center gap-2 text-muted transition-colors hover:text-signal"
           >
             learn
