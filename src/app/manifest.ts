@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
+  // Dev-only branding (#28): a dev install reads as dev. Prod untouched.
+  const isDev = process.env.NODE_ENV === "development";
   return {
-    name: "Endless AI",
-    short_name: "Endless AI",
+    name: isDev ? "[dev] Endless AI" : "Endless AI",
+    short_name: isDev ? "[dev] AI" : "Endless AI",
     description:
       "An endless general knowledge quiz about AI. Four options, no timer, keep going until you quit.",
     start_url: "/",

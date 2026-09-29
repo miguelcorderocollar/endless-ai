@@ -98,6 +98,7 @@ export function QuizFromConvex() {
         excludeIds,
         count: PAGE,
         categories: filter,
+        ratingHint: readProgress().rating,
       })
       .then((rows) => {
         if (cancelled) return;
@@ -148,6 +149,7 @@ export function QuizFromConvex() {
         excludeIds,
         count: PAGE,
         categories: filter,
+        ratingHint: readProgress().rating,
       });
       const fresh = rows.map(toQuestion);
       setBank((prev) => {

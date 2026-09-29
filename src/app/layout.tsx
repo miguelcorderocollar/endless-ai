@@ -27,12 +27,15 @@ const instrument = Instrument_Serif({
   display: "swap",
 });
 
+/** Dev-only branding (#28): automatic via NODE_ENV, zero prod effect. */
+const isDev = process.env.NODE_ENV === "development";
+
 export const metadata: Metadata = {
-  title: "Endless AI",
+  title: isDev ? "[dev] 👷 Endless AI" : "Endless AI",
   description:
     "An endless general knowledge quiz about AI. Four options, no timer, keep going until you quit.",
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: isDev ? "/icon-dev.svg" : "/icon.svg", type: "image/svg+xml" }],
     apple: "/icons/apple-touch-icon.png",
   },
 };

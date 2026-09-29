@@ -7,6 +7,8 @@ export const size = {
 export const contentType = "image/png";
 
 export default function AppleIcon() {
+  // Dev-only branding (#28): orange + hard hat on local dev, prod untouched.
+  const isDev = process.env.NODE_ENV === "development";
   return new ImageResponse(
     (
       <div
@@ -18,7 +20,7 @@ export default function AppleIcon() {
           justifyContent: "center",
           background: "#0a0b0d",
           borderRadius: 40,
-          border: "8px solid #d6ff3f",
+          border: isDev ? "8px dashed #ff9f1c" : "8px solid #d6ff3f",
           boxSizing: "border-box",
         }}
       >
@@ -27,13 +29,13 @@ export default function AppleIcon() {
             fontFamily: "system-ui, -apple-system, 'Segoe UI', Arial, sans-serif",
             fontStyle: "normal",
             fontWeight: 700,
-            fontSize: 124,
+            fontSize: isDev ? 96 : 124,
             lineHeight: 1,
-            color: "#d6ff3f",
+            color: isDev ? "#ff9f1c" : "#d6ff3f",
             marginTop: 8,
           }}
         >
-          ?
+          {isDev ? "👷" : "?"}
         </div>
       </div>
     ),

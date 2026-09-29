@@ -1,6 +1,7 @@
 import { v } from "convex/values";
 
 import { internalMutation, query } from "./_generated/server";
+import { matchWeight, weightedSample } from "../src/lib/quiz/engine";
 import { questionFields } from "./schema";
 
 /** Published bank for play. Drafts live in git; only `published` ships. */
@@ -25,6 +26,12 @@ export const list = query({
  * `categories` narrows the pool to the fun-mode filter (#12). It never
  * touches Elo or ranking — the answer mutation scores identically.
  *
+ * `ratingHint` Elo-matches the page (#32): the client's local rating biases
+ * the draw toward on-level questions. Safe to accept from the client —
+ * selection is not scoreable (easy questions at high Elo gain ~nothing, hard
+ * ones risk losses), and the client re-weights its pick anyway. Absent for
+ * guests: uniform draw, the old behavior.
+ *
  * Scaling note (#34): the full published collect is fine to ~1-2k questions.
  * Past that, swap the collect for aggregate-backed random access and keep
  * this signature.
@@ -34,9 +41,11 @@ export const draw = query({
     excludeIds: v.array(v.string()),
     count: v.optional(v.number()),
     categories: v.optional(v.array(v.string())),
+    ratingHint: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
     const n = Math.min(Math.max(args.count ?? 20, 1), 50);
+    const hint = args.ratingHint;
     const excluded = new Set(args.excludeIds.slice(-1000));
     const filter = new Set(args.categories ?? []);
     const pool = (
@@ -50,11 +59,18 @@ export const draw = query({
         (filter.size === 0 || filter.has(q.category)),
     );
 
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pool[i], pool[j]] = [pool[j]!, pool[i]!];
+    if (hint === undefined) {
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j]!, pool[i]!];
+      }
+      return pool.slice(0, n);
     }
-    return pool.slice(0, n);
+    return weightedSample(
+      pool,
+      pool.map((q) => matchWeight(q.difficulty, hint)),
+      n,
+    );
   },
 });
 

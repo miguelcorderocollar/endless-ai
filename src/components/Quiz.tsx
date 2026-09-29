@@ -55,12 +55,12 @@ export function Quiz({
   }, []);
 
   const nextQuestion = useCallback(() => {
-    const next = pickNext(bank, seen, categories);
+    const next = pickNext(bank, seen, categories, Math.random, progress.rating);
     if (!next) {
       // Current page exhausted: ask the server for more unseen questions.
       // Empty twice in a row means the bank is truly done.
       void onNeedMore(seen).then((fresh) => {
-        const retry = pickNext([...bank, ...fresh], seen, categories);
+        const retry = pickNext([...bank, ...fresh], seen, categories, Math.random, progress.rating);
         if (!retry) {
           setExhausted(true);
           return;
@@ -76,7 +76,7 @@ export function Quiz({
     setCurrent(next);
     setPicked(null);
     setPhase("question");
-  }, [bank, seen, onNeedMore, categories]);
+  }, [bank, seen, onNeedMore, categories, progress.rating]);
 
   const answer = useCallback(
     (option: string) => {
