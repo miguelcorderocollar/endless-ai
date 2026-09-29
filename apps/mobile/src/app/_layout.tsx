@@ -2,6 +2,8 @@
 // weight in the family, and Metro treats each `.ttf` beside it as an asset, so
 // importing from the root ships all fifteen Plex Sans files (~3.4MB) to load
 // three of them. Each subpath pulls exactly one file.
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IBMPlexMono_400Regular } from "@expo-google-fonts/ibm-plex-mono/400Regular";
 import { IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono/500Medium";
 import { IBMPlexSans_400Regular } from "@expo-google-fonts/ibm-plex-sans/400Regular";
@@ -9,7 +11,6 @@ import { IBMPlexSans_500Medium } from "@expo-google-fonts/ibm-plex-sans/500Mediu
 import { IBMPlexSans_600SemiBold } from "@expo-google-fonts/ibm-plex-sans/600SemiBold";
 import { InstrumentSerif_400Regular } from "@expo-google-fonts/instrument-serif/400Regular";
 import { InstrumentSerif_400Regular_Italic } from "@expo-google-fonts/instrument-serif/400Regular_Italic";
-import { ConvexProvider } from "convex/react";
 import {
   DarkTheme,
   ThemeProvider,
@@ -73,7 +74,17 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={theme}>
       {client ? (
-        <ConvexProvider client={client}>
+        <ConvexAuthProvider
+          client={client}
+          // Convex Auth persists its session under `localStorage`, which React
+          // Native does not have. Without this the provider throws on first
+          // render: "`localStorage` is not available in this environment, set
+          // the `storage` prop on `ConvexAuthProvider`". AsyncStorage already
+          // implements the same async getItem/setItem/removeItem surface, so it
+          // is a drop-in — and it means the session survives an app restart the
+          // same way local progress does.
+          storage={AsyncStorage}
+        >
           <Stack
             screenOptions={{
               headerShown: false,
@@ -84,8 +95,9 @@ export default function RootLayout() {
             <Stack.Screen name="index" />
             <Stack.Screen name="categories" />
             <Stack.Screen name="profile" />
+            <Stack.Screen name="account" />
           </Stack>
-        </ConvexProvider>
+        </ConvexAuthProvider>
       ) : (
         <NoBackend />
       )}

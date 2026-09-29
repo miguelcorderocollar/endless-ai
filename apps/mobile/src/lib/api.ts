@@ -39,3 +39,75 @@ export const counts = makeFunctionReference<
   Record<string, never>,
   { category: string; count: number }[]
 >("questions:counts");
+
+/*
+ * Auth and account (#2, and the part of #18 that was missing). The server side
+ * already shipped — Convex Auth with a Password provider and Anonymous — and
+ * the native app talks to the same backend, so this is client wiring only.
+ */
+
+/** `null` for a guest, so a guest and a signed-out user are the same branch. */
+export const me = makeFunctionReference<
+  "query",
+  Record<string, never>,
+  {
+    handle: string | null;
+    displayName: string | null;
+    role: "user" | "admin";
+    isAnonymous: boolean;
+  } | null
+>("users:me");
+
+export const ensureProfile = makeFunctionReference<
+  "mutation",
+  Record<string, never>,
+  null
+>("users:ensureProfile");
+
+/**
+ * Seeds a brand-new account from this device's totals. Returns
+ * `{ seeded: false }` for an account that already has stats, which is the
+ * signal to discard local totals and show server truth instead.
+ */
+export const claimProgress = makeFunctionReference<
+  "mutation",
+  { rating: number; answered: number; correct: number },
+  { seeded: boolean }
+>("users:claimProgress");
+
+/**
+ * The one writer of server Elo (#3 + #4). `eventId` is the outbox's exact
+ * replay key (#17): a mutation that succeeded but whose response was lost
+ * returns the stored result instead of inserting twice.
+ */
+export const answer = makeFunctionReference<
+  "mutation",
+  { questionId: string; picked: string; eventId?: string },
+  {
+    correct: boolean;
+    ratingBefore: number;
+    ratingAfter: number;
+    delta: number;
+    deduped: boolean;
+  }
+>("answers:answer");
+
+/** Materialized per-user rollup (#34), or null before the first answer. */
+export const myStats = makeFunctionReference<
+  "query",
+  Record<string, never>,
+  {
+    rating: number;
+    answered: number;
+    correct: number;
+    streak: number;
+    bestStreak: number;
+    byCategory: { category: string; answered: number; correct: number }[];
+  } | null
+>("answers:myStats");
+
+export const myCompleted = makeFunctionReference<
+  "query",
+  Record<string, never>,
+  string[]
+>("answers:myCompleted");

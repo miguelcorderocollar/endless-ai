@@ -15,6 +15,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { draw } from "@/lib/api";
+import { useConvexAuth } from "convex/react";
+import { sendAnswer, syncOnSignIn } from "@/lib/account";
 import { Masthead } from "@/components/Masthead";
 import { Rise, staggerDelay, usePrefersReducedMotion } from "@/components/rise";
 import { asCategoryKeys, toQuestions } from "@/lib/bank";
@@ -68,6 +70,22 @@ export default function QuizScreen() {
   const [error, setError] = useState<string | null>(null);
 
   const client = convexClient();
+  const { isAuthenticated } = useConvexAuth();
+
+  // Claim or reconcile exactly once per sign-in. A new account is seeded from
+  // this device; an existing one overwrites it with server truth. See
+  // lib/account.ts for why that direction matters.
+  const synced = useRef(false);
+  useEffect(() => {
+    if (!isAuthenticated || !client) return;
+    if (synced.current) return;
+    synced.current = true;
+    void syncOnSignIn(client).then(() => {
+      // Signing out and back in must be able to claim again, so only clear the
+      // latch if we got far enough to be sure the transition happened.
+      synced.current = false;
+    });
+  }, [isAuthenticated, client]);
   const filterKey = filter.join(",");
   const categories = useMemo(() => new Set<CategoryKey>(asCategoryKeys(filter)), [filter]);
 
@@ -194,8 +212,19 @@ export default function QuizScreen() {
         ].slice(-RECENT_CAP),
         lastPlayed: new Date().toISOString().slice(0, 10),
       });
+
+      // Signed in: the server is truth for Elo and owns the event log (#3/#4).
+      // The local update above already happened so feedback is instant; this
+      // reconciles to the server's rating when it lands. A guest stays
+      // local-only, which is what #2 intends.
+      if (isAuthenticated && client) {
+        void sendAnswer(client, current.id, option).then((result) => {
+          if (result === null) return;
+          updateProgress({ ...getProgress(), rating: result.rating });
+        });
+      }
     },
-    [current, phase, progress],
+    [client, current, isAuthenticated, phase, progress],
   );
 
   const advance = useCallback(async () => {
