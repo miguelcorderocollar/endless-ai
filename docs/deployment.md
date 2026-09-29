@@ -204,6 +204,30 @@ Two consequences worth remembering:
 `publish.mts` is content only. It never calls `convex deploy`, so publishing the
 bank does not move backend code.
 
+## The native build (`apps/mobile`, issue #18)
+
+A third target, and the only one whose backend URL cannot be changed after the
+fact. Add it to the identities table when it actually ships:
+
+| Target | How the backend is selected |
+| --- | --- |
+| Expo dev build | `EXPO_PUBLIC_CONVEX_URL` in `apps/mobile/.env` (gitignored) |
+| Play release | inlined at build time by Metro — **there is no runtime override** |
+
+`EXPO_PUBLIC_*` is a string-substituted constant, not a read at launch. Once an
+APK is built, the Convex deployment is part of the binary, and shipping a
+corrected one means shipping a new build. So a release profile must set
+`EXPO_PUBLIC_CONVEX_URL` to the **production** host (`moonlit-blackbird-812`),
+not the dev one — an APK pointed at `careful-salmon-552` is a public app reading
+and writing dev data that a later deploy can erase. `apps/mobile/src/lib/backend.ts`
+logs an error when a non-`__DEV__` bundle carries a `.convex.cloud` URL, which
+catches the mistake at build time rather than in review.
+
+Nothing else about the native app is a deployment concern: EAS Build compiles in
+the cloud, so there is no Android SDK on this machine and no native folder to
+commit. The Play listing itself is the $25 account plus the content rating and
+data safety forms, and none of that is set up yet.
+
 ## Deploy checklist (before `git push`)
 
 1. `npm run validate` (or `:offline` for speed, full before publish)

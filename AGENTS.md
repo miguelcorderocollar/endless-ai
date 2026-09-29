@@ -24,6 +24,27 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run review:serve` builds it and serves it at `http://localhost:8901/review.html`.
 - `npx convex dev` syncs the backend to your dev deployment (watch mode); `npm run dev` is the frontend.
 - `npx tsx scripts/publish.mts` syncs the validated bank to dev (`--prod` for prod).
+- `npm start` inside `apps/mobile` runs the Expo app (issue #18). Copy `apps/mobile/.env.example` to `.env` and set `EXPO_PUBLIC_CONVEX_URL` first. It needs no Android SDK: Expo Go runs the JS and EAS Build compiles in the cloud.
+- `npm run typecheck` inside `apps/mobile` checks the native app. The root `typecheck` skips it, and the root `test` picks up only its pure helpers.
+
+## The native app (apps/mobile)
+
+An Expo / React Native build of the same quiz, for issue #18. Read
+`apps/mobile/README.md` before changing it. Two rules keep it honest:
+
+- **The quiz logic is imported, never copied.** `src/lib/quiz/*` and
+  `src/lib/questions/schema.ts` are reached through the `@shared/*` alias, which
+  is declared in both `apps/mobile/tsconfig.json` and `metro.config.js`. If you
+  add a file under `src/lib/quiz` or `src/lib/questions`, the native app can
+  import it — do not fork it into `apps/mobile`. Storage is the only thing
+  reimplemented, because localStorage and AsyncStorage are different stores.
+- **A release build bakes in its Convex URL.** `EXPO_PUBLIC_*` is inlined by
+  Metro, so there is no runtime override: an APK pointed at the dev deployment
+  is a public app reading disposable dev data. See `docs/deployment.md`.
+
+It is not finished. Offline play, the answer outbox, auth and server Elo are all
+absent, and `apps/mobile/README.md` lists them. Do not treat a passing native
+build as #18 being done.
 
 ## Before you commit
 

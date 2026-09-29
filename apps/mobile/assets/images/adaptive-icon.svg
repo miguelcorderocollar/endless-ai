@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!--
+    Android adaptive icon FOREGROUND. Source of truth for the store export is
+    ../../public/icons/app-icon.svg; this is a re-cut of it, not a new design.
+
+    Android crops adaptive icons to an unpredictable mask and only guarantees
+    the centre 66% survives, so the full-bleed rounded square from the master
+    would be sliced off at the corners. Everything here is inset inside the
+    safe zone (roughly x 174..850 on this canvas) and the canvas is transparent
+    so `backgroundColor` in app.json supplies the ink field.
+
+    Colors: ink #0a0b0d, signal #d6ff3f.
+  -->
+  <rect x="214" y="214" width="596" height="596" rx="150" fill="none" stroke="#d6ff3f" stroke-width="40"/>
+  <text x="512" y="512" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="440" fill="#d6ff3f">?</text>
+</svg>
