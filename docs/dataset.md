@@ -146,7 +146,7 @@ of the time is worse than useless, it teaches the player to guess.
 
 ## Grounding, and how the validator enforces it
 
-Run `pnpm validate` before shipping anything. It does seven things.
+Run `npm run validate` before shipping anything. It does seven things.
 
 1. Parses every file against the schema. Missing fields, wrong types, categories outside the
    taxonomy, difficulty outside 1 to 5.
@@ -175,7 +175,7 @@ usually to reword the question to match what the source actually says.
 
 1. Pick a category and a difficulty band.
 2. Generate candidates following `.opencode/skills/question-author/SKILL.md`.
-3. Run `pnpm validate`. Fix everything it reports.
+3. Run `npm run validate`. Fix everything it reports.
 4. Read the questions yourself. The validator cannot tell you whether a question is
    interesting, only whether it is well formed and probably true.
 5. Set `status` to `published`.
