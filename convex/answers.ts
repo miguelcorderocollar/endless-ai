@@ -87,6 +87,15 @@ export const answer = mutation({
     const { delta, rating } = scoreAnswer(ratingBefore, question.difficulty, correct);
     const now = Date.now();
 
+    // Stats before the event insert: the first-answer fold must not include
+    // this answer (it applies it itself), or it would count twice.
+    await upsertStats(ctx, userId, {
+      rating,
+      correct,
+      category: question.category,
+      now,
+    });
+
     await ctx.db.insert("answerEvents", {
       userId,
       questionId: question._id,
@@ -96,13 +105,6 @@ export const answer = mutation({
       ratingBefore,
       ratingAfter: rating,
       createdAt: now,
-    });
-
-    await upsertStats(ctx, userId, {
-      rating,
-      correct,
-      category: question.category,
-      now,
     });
 
     return {

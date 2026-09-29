@@ -47,7 +47,7 @@ export default function CategoriesPage() {
   };
 
   return (
-    <Shell>
+    <Shell showElo={false}>
       <main className="flex flex-1 flex-col pt-14">
         <p className="label text-muted">choose a category</p>
         <h1 className="mt-3 font-display text-3xl">

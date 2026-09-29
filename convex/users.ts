@@ -133,6 +133,10 @@ export const claimProgress = mutation({
     const correct = Math.min(Math.max(0, Math.floor(args.correct)), answered);
     const rating = Math.min(Math.max(Math.round(args.rating) || 1000, 0), 3000);
 
+    // Nothing played locally: leave the account stat-free so it does not show
+    // up in population stats until it has real answers.
+    if (answered === 0) return { seeded: false };
+
     await ctx.db.insert("userStats", {
       userId,
       rating,
@@ -204,6 +208,45 @@ async function rebuildStatsFromOwnEvents(ctx: MutationCtx, userId: Id<"users">) 
     updatedAt: Date.now(),
   });
 }
+
+/**
+ * Wipes the caller's play history: all answer events and their rollup. The
+ * account, handle, and role survive — only the points/history go. This is the
+ * "start over" button and is irreversible by design.
+ */
+export const resetProgress = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await requireUser(ctx);
+    let events = 0;
+    let stats = 0;
+
+    let cursor: string | null = null;
+    for (;;) {
+      const page = await ctx.db
+        .query("answerEvents")
+        .withIndex("by_user", (q) => q.eq("userId", userId))
+        .paginate({ cursor, numItems: 200 });
+      for (const doc of page.page) {
+        await ctx.db.delete(doc._id);
+        events++;
+      }
+      if (page.isDone) break;
+      cursor = page.continueCursor;
+    }
+
+    const statRows = await ctx.db
+      .query("userStats")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .collect();
+    for (const doc of statRows) {
+      await ctx.db.delete(doc._id);
+      stats++;
+    }
+
+    return { events, stats };
+  },
+});
 
 /**
  * Proves the admin gate from #2: population counts for future admin tooling

@@ -154,7 +154,13 @@ export function QuizFromConvex() {
 }
 
 /** Same frame as Quiz (masthead + footer) so the swap-in doesn't jump. */
-export function Shell({ children }: { children: React.ReactNode }) {
+export function Shell({
+  children,
+  showElo = true,
+}: {
+  children: React.ReactNode;
+  showElo?: boolean;
+}) {
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
       <header className="flex items-baseline justify-between border-b border-ink-line py-5">
@@ -163,9 +169,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
             Endless <span className="text-signal">AI</span>
           </a>
         </span>
-        <span className="label text-muted">
-          elo <span className="ml-1.5 font-mono text-sm text-paper">—</span>
-        </span>
+        {showElo ? (
+          <span className="label text-muted">
+            elo <span className="ml-1.5 font-mono text-sm text-paper">—</span>
+          </span>
+        ) : null}
       </header>
       {children}
     </div>

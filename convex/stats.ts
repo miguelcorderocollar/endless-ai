@@ -59,7 +59,10 @@ export const population = query({
       .order("desc")
       .take(POPULATION_CAP + 1);
     const capped = rows.length > POPULATION_CAP;
-    const ratings = rows.slice(0, POPULATION_CAP).map((r) => r.rating);
+    const ratings = rows
+      .slice(0, POPULATION_CAP)
+      .filter((r) => r.answered > 0)
+      .map((r) => r.rating);
     if (ratings.length === 0) {
       return { count: 0, median: null, buckets: new Array(HISTOGRAM_BINS).fill(0), percentile: null, capped };
     }
