@@ -7,6 +7,7 @@ import {
   getProgressServerSnapshot,
   getProgressSnapshot,
   hydrateProgress,
+  readProgress,
   subscribeProgress,
   updateProgress,
 } from "@/lib/progress";
@@ -14,6 +15,9 @@ import { pickNext } from "@/lib/quiz/engine";
 import { scoreAnswer } from "@/lib/quiz/elo";
 import { sourceHref, sourceLabel } from "@/lib/questions/schema";
 import type { Question } from "@/lib/questions/schema";
+import { useConvexAuth, useMutation } from "convex/react";
+
+import { api } from "../../convex/_generated/api";
 
 type Phase = "question" | "revealed";
 
@@ -30,6 +34,8 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
   const [picked, setPicked] = useState<string | null>(null);
   const [seen, setSeen] = useState<Set<string>>(() => new Set([initial.id]));
   const [exhausted, setExhausted] = useState(false);
+  const { isAuthenticated } = useConvexAuth();
+  const recordAnswer = useMutation(api.answers.answer);
 
   useEffect(() => {
     hydrateProgress();
@@ -67,8 +73,23 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
             : progress.completed,
         lastPlayed: new Date().toISOString().slice(0, 10),
       });
+
+      // Server is truth for Elo and owns the event log. Optimistic local
+      // update above keeps feedback instant; reconcile to the server rating
+      // when it lands. Guests without a session stay local-only.
+      if (isAuthenticated) {
+        const questionId = current.id;
+        void recordAnswer({ questionId, picked: option }).then(
+          (result) => {
+            updateProgress({ ...readProgress(), rating: result.ratingAfter });
+          },
+          () => {
+            /* offline or backend hiccup: the local update stands */
+          },
+        );
+      }
     },
-    [current, phase, progress],
+    [current, phase, progress, isAuthenticated, recordAnswer],
   );
 
   return (
