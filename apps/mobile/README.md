@@ -72,3 +72,11 @@ in `src/lib/backend.ts` and `docs/deployment.md`:
 2. The Play listing needs a $25 account, a content rating form, a data safety
    form and a target SDK. The icon and adaptive icon are already generated from
    `public/icons/app-icon.svg` by `rsvg-convert`.
+
+## Parity with the web app
+
+[`docs/native-parity.md`](../../docs/native-parity.md) is the gap list, split
+into what is deliberately different (keyboard play, install prompt, update
+prompt — all meaningless on a phone) and what is genuinely missing. The short
+version: offline play and the answer outbox are the real work, then the Elo
+graph and per-category bars, which are reads of data the server already has.
