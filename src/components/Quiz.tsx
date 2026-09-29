@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import type { Ref } from "react";
 
 import {
   type SavedProgress,
@@ -49,6 +50,7 @@ export function Quiz({
   const [exhausted, setExhausted] = useState(false);
   const { isAuthenticated } = useConvexAuth();
   const recordAnswer = useMutation(api.answers.answer);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     hydrateProgress();
@@ -121,6 +123,51 @@ export function Quiz({
     [current, phase, progress, isAuthenticated, recordAnswer],
   );
 
+  // Move focus to Next on reveal so Tab+Enter works; preventScroll avoids
+  // yanking the viewport on long explanations.
+  useEffect(() => {
+    if (phase === "revealed") nextRef.current?.focus({ preventScroll: true });
+  }, [phase, current]);
+
+  // Keyboard-first play (#26): 1-4/A-D answer, Enter/Space/→ advance. Mouse
+  // flow untouched. Guards: modifiers held, editable targets, and natively
+  // activatable focused elements (their default activation already fires —
+  // handling them too would double-advance).
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+      if (phase === "question" && current) {
+        const digit = ["1", "2", "3", "4"].indexOf(event.key);
+        const letter = ["a", "b", "c", "d"].indexOf(event.key.toLowerCase());
+        const index = digit !== -1 ? digit : letter;
+        if (index !== -1 && index < current.options.length) {
+          event.preventDefault();
+          answer(current.options[index]!);
+        }
+        return;
+      }
+      if (phase === "revealed") {
+        if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
+          if (target && (target.tagName === "BUTTON" || target.tagName === "A")) return;
+          event.preventDefault();
+          nextQuestion();
+        }
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [phase, current, answer, nextQuestion]);
+
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
       <Masthead progress={progress} />
@@ -164,11 +211,17 @@ export function Quiz({
                         type="button"
                         disabled={revealed}
                         onClick={() => answer(option)}
+                        aria-keyshortcuts={`${letter.toLowerCase()} ${index + 1}`}
                         className={`group flex w-full items-start gap-4 border px-4 py-3.5 text-left transition-colors duration-150 ${tone} ${
                           revealed ? "cursor-default" : "cursor-pointer"
                         }`}
                       >
-                        <span className="label mt-0.5 w-4 shrink-0 opacity-60">{letter}</span>
+                        <kbd
+                          title={`press ${letter} or ${index + 1}`}
+                          className="label mt-0.5 w-4 shrink-0 font-normal opacity-60"
+                        >
+                          {letter}
+                        </kbd>
                         <span className="text-[0.95rem] leading-snug">{option}</span>
                       </button>
                     </li>
@@ -182,6 +235,7 @@ export function Quiz({
                   question={current}
                   correct={picked === current.answer}
                   onNext={nextQuestion}
+                  nextRef={nextRef}
                 />
               ) : null}
             </>
@@ -239,10 +293,12 @@ function Reveal({
   question,
   correct,
   onNext,
+  nextRef,
 }: {
   question: Question;
   correct: boolean;
   onNext: () => void;
+  nextRef: Ref<HTMLButtonElement>;
 }) {
   const href = sourceHref(question.source);
   const label = sourceLabel(question.source);
@@ -254,11 +310,14 @@ function Reveal({
 
       <div className="mt-5 flex flex-wrap items-center gap-5">
         <button
+          ref={nextRef}
           type="button"
           onClick={onNext}
+          aria-keyshortcuts="Enter ArrowRight"
+          title="press Enter or →"
           className="label cursor-pointer border border-signal bg-signal px-5 py-2.5 text-ink transition-colors hover:bg-paper hover:border-paper"
         >
-          next
+          next <span aria-hidden="true" className="opacity-60">⏎</span>
         </button>
 
         {href && label ? (
