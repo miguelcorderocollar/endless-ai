@@ -172,6 +172,10 @@ export const sync = internalMutation({
 /**
  * Archive published rows missing from the bank (deleted in git). Takes only
  * the id list, so it stays tiny no matter the bank size.
+ *
+ * Archive rather than delete by default: a missed judgement from `npm run dupe`
+ * is one `sync` away from being undone, and the row plus its answer history is
+ * the record of what shipped.
  */
 export const prune = internalMutation({
   args: {
@@ -194,5 +198,48 @@ export const prune = internalMutation({
       }
     }
     return { archived };
+  },
+});
+
+/**
+ * Permanently remove rows that are already archived, i.e. content that has been
+ * out of the playable set for at least one publish. Two-step on purpose: this
+ * only ever touches a row `prune` retired earlier, so a live question cannot be
+ * destroyed by one mistake in the bank file.
+ *
+ * `answerEvents.questionId` is a document reference, and Convex does not
+ * cascade, so events against a removed question become unresolvable. That is
+ * already how the read paths behave: `myRecent` and `answeredCorrectly` skip
+ * rows they cannot resolve, and `answer` rejects anything not `published`. The
+ * event log and `userStats` rollups survive regardless, so per-user rating,
+ * streak and counts are unaffected.
+ */
+export const purgeArchived = internalMutation({
+  args: {
+    /** Guard: refuse unless the caller confirms the ids are already archived. */
+    ids: v.array(v.string()),
+  },
+  handler: async (ctx, args) => {
+    let removed = 0;
+    let skipped = 0;
+    for (const id of args.ids) {
+      const doc = await ctx.db
+        .query("questions")
+        .withIndex("by_questionId", (q) => q.eq("questionId", id))
+        .take(1)
+        .then((rows) => rows[0]);
+      if (!doc) {
+        skipped += 1;
+        continue;
+      }
+      if (doc.status !== "archived") {
+        // Never purge a playable question: archiving first is the reversible step.
+        skipped += 1;
+        continue;
+      }
+      await ctx.db.delete(doc._id);
+      removed += 1;
+    }
+    return { removed, skipped };
   },
 });
