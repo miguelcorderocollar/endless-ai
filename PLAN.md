@@ -142,8 +142,8 @@ them.
 The question bank is the one part that is not in the database during authoring. Curated
 questions live as JSON in `content/questions/`, one file per category, versioned in git
 and reviewed in pull requests. Every question gets a commit, a review and a rollback.
-Publishing runs the validator and then upserts a snapshot into Convex tagged with a content
-version, so the client always knows which bank a run was played from.
+Publishing runs the validator and then syncs the published questions into Convex
+(upsert per stable question id); the client plays from that table.
 
 Community submissions, once we open them, go to a separate Convex table with a moderation
 status. They never mix into the curated bank until somebody has reviewed them.

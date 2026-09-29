@@ -1,53 +1,47 @@
 import { createHash } from "crypto";
-import { execSync } from "child_process";
-import { existsSync, readFileSync } from "fs";
-import { join } from "path";
+import { execFileSync, execSync } from "child_process";
 
-import { ConvexHttpClient } from "convex/browser";
-
-import { api } from "../convex/_generated/api";
 import { loadBank, publishedOnly } from "../src/lib/questions/load";
 
 /**
- * Publishes the validated bank snapshot to the selected Convex deployment.
+ * Syncs the validated bank to a Convex deployment (issue #27).
  *
- * Usage: `npx tsx scripts/publish.mts [--url <convex-url>]`
+ * Usage:
+ *   `npx tsx scripts/publish.mts`          # dev deployment (from `.env.local`)
+ *   `npx tsx scripts/publish.mts --prod`   # production deployment
  *
  * 1. Loads `content/questions/*.json`, fails on any file error.
- * 2. Compares the published set against the latest snapshot (fingerprint).
- *    Identical content is a no-op — no new version is minted.
- * 3. Otherwise mints version = latest + 1 and upserts the snapshot.
+ * 2. Fast-path: compares the full-content fingerprint against the target's
+ *    published list. Identical content is a no-op (no CLI write at all).
+ * 3. Otherwise runs the internal `questions:sync` mutation, which upserts per
+ *    stable questionId (insert new, patch changed, archive removed) and is
+ *    itself a no-op on an empty diff.
+ *
+ * Writes go through `npx convex run`, so publishing needs an authenticated
+ * CLI (login / deploy key), not just the deployment URL. The mutation is
+ * internal and unreachable from the shipped client.
  *
  * Run `npm run validate` first. Publish only from a clean tree.
- * Target URL: `--url`, else `CONVEX_URL`, else `NEXT_PUBLIC_CONVEX_URL`
- * from `.env.local` (written by `npx convex dev`).
  */
-function argValue(flag: string): string | null {
-  const i = process.argv.indexOf(flag);
-  return i >= 0 ? (process.argv[i + 1] ?? null) : null;
-}
+const toProd = process.argv.includes("--prod");
+const runTarget = toProd ? ["--prod"] : [];
 
-function envFileValue(key: string): string | null {
-  const path = join(process.cwd(), ".env.local");
-  if (!existsSync(path)) return null;
-  for (const line of readFileSync(path, "utf8").split("\n")) {
-    const m = line.match(new RegExp(`^${key}=(.*)$`));
-    if (m) return m[1]!.trim().replace(/^["']|["']$/g, "");
-  }
-  return null;
-}
-
-const url =
-  argValue("--url") ??
-  process.env.CONVEX_URL ??
-  process.env.NEXT_PUBLIC_CONVEX_URL ??
-  envFileValue("NEXT_PUBLIC_CONVEX_URL");
-
-if (!url) {
-  console.error(
-    "No Convex URL. Run `npx convex dev` first, or pass `--url <convex-url>`.",
+function convexRun(fn: string, payload: unknown): string {
+  return execFileSync(
+    "npx",
+    ["convex", "run", fn, JSON.stringify(payload), ...runTarget],
+    { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 },
   );
-  process.exit(1);
+}
+
+/** Canonical form: full content, sorted, fixed key order. */
+function fingerprint(
+  rows: { questionId: string; text: string; rest: unknown }[],
+): string {
+  const sorted = [...rows].sort((a, b) =>
+    a.questionId < b.questionId ? -1 : 1,
+  );
+  return createHash("sha1").update(JSON.stringify(sorted)).digest("hex");
 }
 
 const { questions, fileErrors } = loadBank();
@@ -62,21 +56,59 @@ if (published.length === 0) {
   process.exit(1);
 }
 
-const fingerprint = (ids: string[]) =>
-  createHash("sha1").update([...ids].sort().join("\n")).digest("hex");
+const rows = published.map((q) => ({
+  questionId: q.id,
+  text: q.text,
+  rest: {
+    options: q.options,
+    answer: q.answer,
+    category: q.category,
+    difficulty: q.difficulty,
+    explanation: q.explanation,
+    source: q.source,
+    tags: q.tags,
+    addedAt: q.addedAt,
+  },
+}));
 
-const client = new ConvexHttpClient(url);
-const latest = await client.query(api.snapshots.latest, {});
-const nextFingerprint = fingerprint(published.map((q) => `${q.id}:${q.text}`));
-
-if (latest) {
-  const currentFingerprint = fingerprint(
-    latest.questions.map((q) => `${q.questionId}:${q.text}`),
-  );
-  if (currentFingerprint === nextFingerprint) {
-    console.log(`snapshot v${latest.version} already current (${latest.questionCount} questions), nothing to do.`);
+// Fast-path: skip the write when the target already matches.
+try {
+  const raw = convexRun("questions:list", {});
+  const remote = JSON.parse(raw) as {
+    questionId: string;
+    text: string;
+    options: string[];
+    answer: string;
+    category: string;
+    difficulty: number;
+    explanation: string;
+    source: unknown;
+    tags: string[];
+    addedAt: string;
+  }[];
+  const remoteRows = remote.map((q) => ({
+    questionId: q.questionId,
+    text: q.text,
+    rest: {
+      options: q.options,
+      answer: q.answer,
+      category: q.category,
+      difficulty: q.difficulty,
+      explanation: q.explanation,
+      source: q.source,
+      tags: q.tags,
+      addedAt: q.addedAt,
+    },
+  }));
+  if (fingerprint(remoteRows) === fingerprint(rows)) {
+    console.log(
+      `bank already current on ${toProd ? "prod" : "dev"} (${remote.length} questions), nothing to do.`,
+    );
     process.exit(0);
   }
+} catch {
+  // Unparseable list output: fall through to sync, whose empty diff is a
+  // no-op anyway. Keeps the fast-path from ever blocking a publish.
 }
 
 let commit: string | undefined;
@@ -88,25 +120,47 @@ try {
   /* git metadata is a nicety, not a requirement */
 }
 
-const result = await client.mutation(api.snapshots.publishSnapshot, {
-  version: (latest?.version ?? 0) + 1,
-  commit,
-  questions: published.map((q) => ({
-    questionId: q.id,
-    text: q.text,
-    options: [...q.options],
-    answer: q.answer,
-    category: q.category,
-    difficulty: q.difficulty,
-    explanation: q.explanation,
-    source: q.source,
-    tags: [...q.tags],
-    addedAt: q.addedAt,
-  })),
-});
+const payload = published.map((q) => ({
+  questionId: q.id,
+  text: q.text,
+  options: [...q.options],
+  answer: q.answer,
+  category: q.category,
+  difficulty: q.difficulty,
+  explanation: q.explanation,
+  source: q.source,
+  tags: [...q.tags],
+  addedAt: q.addedAt,
+}));
 
+// Small batches: `convex run` takes args as one argv string and drops large
+// payloads silently, so the whole bank never goes in a single call.
+const BATCH = 25;
+let inserted = 0;
+let updated = 0;
+let unchanged = 0;
+for (let i = 0; i < payload.length; i += BATCH) {
+  const raw = convexRun(
+    "questions:sync",
+    { commit, questions: payload.slice(i, i + BATCH) },
+  );
+  const r = JSON.parse(raw) as {
+    inserted: number;
+    updated: number;
+    unchanged: number;
+  };
+  inserted += r.inserted;
+  updated += r.updated;
+  unchanged += r.unchanged;
+}
+
+const pruned = JSON.parse(
+  convexRun("questions:prune", { keepIds: payload.map((q) => q.questionId) }),
+) as { archived: number };
+
+const changed = inserted + updated + pruned.archived > 0;
 console.log(
-  result.deduped
-    ? `snapshot v${result.version} already published, nothing written.`
-    : `published snapshot v${result.version} (${result.count} questions)${commit ? ` at ${commit}` : ""}.`,
+  changed
+    ? `synced ${toProd ? "prod" : "dev"}: +${inserted} ~${updated} -${pruned.archived} =${unchanged} (${payload.length} published)${commit ? ` at ${commit}` : ""}.`
+    : `bank already current on ${toProd ? "prod" : "dev"} (${payload.length} questions), nothing written.`,
 );

@@ -7,13 +7,13 @@ import { api } from "../../convex/_generated/api";
 import type { Question } from "@/lib/questions/schema";
 import { Quiz } from "./Quiz";
 
-/** Plays from the published Convex snapshot, not the bundled JSON. */
+/** Plays from the published Convex questions table, not the bundled JSON. */
 export function QuizFromConvex() {
-  const snapshot = useQuery(api.snapshots.latest, {});
+  const list = useQuery(api.questions.list, {});
 
   const bank = useMemo<Question[] | null>(() => {
-    if (!snapshot) return null;
-    return snapshot.questions.map((q) => ({
+    if (!list) return null;
+    return list.map((q) => ({
       id: q.questionId,
       text: q.text,
       options: [...q.options] as [string, string, string, string],
@@ -27,11 +27,11 @@ export function QuizFromConvex() {
       status: "published" as const,
       addedAt: q.addedAt,
     }));
-  }, [snapshot]);
+  }, [list]);
 
-  if (snapshot === undefined || bank === null) return <LoadingSkeleton />;
+  if (list === undefined || bank === null) return <LoadingSkeleton />;
 
-  if (snapshot === null || bank.length === 0) {
+  if (bank.length === 0) {
     return (
       <Shell>
         <main className="flex flex-1 flex-col pt-14">
@@ -39,18 +39,18 @@ export function QuizFromConvex() {
           <h1 className="mt-3 font-display text-3xl">Nothing published yet</h1>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
             Run <span className="font-mono">npx convex dev</span> and then{" "}
-            <span className="font-mono">npx tsx scripts/publish.mts</span> to publish the
-            validated bank snapshot.
+            <span className="font-mono">npx tsx scripts/publish.mts</span> to sync the
+            validated bank.
           </p>
         </main>
       </Shell>
     );
   }
 
-  return <QuizWithOpening key={snapshot.version} bank={bank} />;
+  return <QuizWithOpening bank={bank} />;
 }
 
-/** Picks the opening question once per snapshot, on mount. */
+/** Picks the opening question once, on mount. Later bank updates join in. */
 function QuizWithOpening({ bank }: { bank: Question[] }) {
   const [initial] = useState<Question>(
     () => bank[Math.floor(Math.random() * bank.length)] ?? bank[0]!,

@@ -2,13 +2,14 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 /**
- * No-runs model (Sep 2026): the game is a pure endless stream. There is no
- * `runs` table. Every answered question is an `answerEvents` row carrying its
- * content version; stats, repeat-avoidance, and streaks all derive from events.
+ * Simple model (issue #27): git (`content/questions/*.json`) is the draft
+ * space, Convex holds the published set only — one doc per stable questionId.
+ * No snapshots, no content versions, no per-question history. Adding one
+ * question costs one write; publish upserts the diff.
  *
- * Auth (#2) will extend `users` and lock down writes. Until then `userId` on
- * answer events is an unauthenticated device id and `publishSnapshot` is
- * callable by anyone with the deployment URL (dev/local only).
+ * Auth (#2) will add login and gate writes. Until then `answerEvents` has no
+ * writers yet (#3/#4 add server-side Elo), and publishing runs through an
+ * internal mutation via authenticated CLI, never from the client.
  */
 const source = v.union(
   v.object({ kind: v.literal("wikipedia"), title: v.string(), label: v.string() }),
@@ -16,7 +17,7 @@ const source = v.union(
   v.object({ kind: v.literal("none") }),
 );
 
-export const snapshotQuestion = v.object({
+export const questionFields = {
   questionId: v.string(),
   text: v.string(),
   options: v.array(v.string()),
@@ -27,22 +28,17 @@ export const snapshotQuestion = v.object({
   source,
   tags: v.array(v.string()),
   addedAt: v.string(),
-});
+};
 
 export default defineSchema({
-  contentVersions: defineTable({
-    version: v.number(),
-    questionCount: v.number(),
-    createdAt: v.number(),
+  questions: defineTable({
+    ...questionFields,
+    status: v.union(v.literal("published"), v.literal("archived")),
+    updatedAt: v.number(),
     commit: v.optional(v.string()),
-  }).index("by_version", ["version"]),
-
-  questionSnapshots: defineTable({
-    contentVersion: v.number(),
-    ...snapshotQuestion.fields,
   })
-    .index("by_version", ["contentVersion"])
-    .index("by_question", ["questionId", "contentVersion"]),
+    .index("by_questionId", ["questionId"])
+    .index("by_status", ["status"]),
 
   users: defineTable({
     handle: v.optional(v.string()),
@@ -51,14 +47,13 @@ export default defineSchema({
   }).index("by_handle", ["handle"]),
 
   answerEvents: defineTable({
-    userId: v.string(),
-    questionId: v.string(),
+    userId: v.id("users"),
+    questionId: v.id("questions"),
     category: v.string(),
     difficulty: v.number(),
     correct: v.boolean(),
     ratingBefore: v.number(),
     ratingAfter: v.number(),
-    contentVersion: v.number(),
     createdAt: v.number(),
   })
     .index("by_user", ["userId", "createdAt"])

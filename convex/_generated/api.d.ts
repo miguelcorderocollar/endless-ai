@@ -8,7 +8,7 @@
  * @module
  */
 
-import type * as snapshots from "../snapshots.js";
+import type * as questions from "../questions.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +17,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  snapshots: typeof snapshots;
+  questions: typeof questions;
 }>;
 
 /**

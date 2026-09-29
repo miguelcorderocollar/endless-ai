@@ -2,7 +2,7 @@
 
 Source: [Convex Vercel hosting](https://docs.convex.dev/production/hosting/vercel.md),
 [Multiple deployments](https://docs.convex.dev/production/multiple-deployments.md).
-Convex CLI `1.46.0`, Vercel project `endless-ai` (`https://endless-ai-phi.vercel.app`).
+Convex CLI `1.46.0`, Vercel project `endless-ai` (`https://endless-ai-quiz.vercel.app`).
 
 ## Mental model
 
@@ -15,8 +15,8 @@ Convex CLI `1.46.0`, Vercel project `endless-ai` (`https://endless-ai-phi.vercel
 | Vercel Preview | Builds each PR against its own Convex preview backend. | open a PR |
 
 The question bank stays in git (`content/questions/*.json` = source of truth).
-Convex holds the **published snapshot** tagged with a content version.
-The app plays from Convex, and every answer event records its content version.
+Convex holds the **published questions** (one doc per stable questionId).
+The app plays from Convex.
 
 ## Local development
 
@@ -35,21 +35,24 @@ Never commit them, never put them in `.env.example` with real values.
 `convex/_generated/` is generated code. It is committed so Vercel typechecks,
 but never hand-edit it — `convex dev` / `convex deploy` regenerate it.
 
-## Content publish pipeline (issue #1)
+## Content publish pipeline (issue #27)
 
 ```bash
-npm run validate             # must pass before anything ships
-npx tsx scripts/publish.mts  # upserts snapshot into the *currently selected* Convex deployment
+npm run validate                  # must pass before anything ships
+npx tsx scripts/publish.mts       # syncs the bank to dev
+npx tsx scripts/publish.mts --prod  # syncs the bank to prod
 ```
 
 Rules:
 
 - Publish only from a clean tree (`git status` clean).
-- Each publish creates a new content version (incrementing integer).
-- Upsert is idempotent per `(contentVersion, questionId)` — re-running the same
-  tree does not duplicate rows.
+- Sync is idempotent per `questionId`: inserts new rows, patches changed ones,
+  archives published rows removed from git. Adding one question costs one write.
+- Full-content fingerprint short-circuits unchanged banks (no write at all).
 - Only `status: "published"` questions ship.
-- Answer events always carry the content version they were played from.
+- Writes go through the internal `questions:sync` mutation via authenticated
+  `npx convex run`, so publishing needs CLI login — the shipped client cannot
+  write questions.
 
 ## Vercel wiring (one-time setup, then automatic)
 

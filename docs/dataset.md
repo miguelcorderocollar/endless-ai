@@ -179,7 +179,7 @@ usually to reword the question to match what the source actually says.
 4. Read the questions yourself. The validator cannot tell you whether a question is
    interesting, only whether it is well formed and probably true.
 5. Set `status` to `published`.
-6. `pnpm publish` pushes the snapshot to Convex.
+6. `npx tsx scripts/publish.mts` syncs the published questions to Convex dev (`--prod` for prod).
 
 The human review in step 4 is not optional. The validator catches malformed data and
 unsupported answers. It cannot catch a question that is technically true and completely
