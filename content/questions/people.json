@@ -279,5 +279,360 @@
     "answerAliases": [],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "ppl-0011",
+    "text": "Who founded the community blog LessWrong and co-founded the Machine Intelligence Research Institute?",
+    "options": [
+      "Nick Bostrom",
+      "Robin Hanson",
+      "Eliezer Yudkowsky",
+      "Sam Altman"
+    ],
+    "answer": "Eliezer Yudkowsky",
+    "category": "people",
+    "tags": [
+      "rationality",
+      "safety",
+      "alignment"
+    ],
+    "difficulty": 2,
+    "explanation": "Yudkowsky founded LessWrong in 2009 using his own posts as seed material, and co-founded MIRI to work on friendly AI. Robin Hanson is the tempting miss because he co-wrote the predecessor blog Overcoming Bias, but he kept that blog while Yudkowsky launched LessWrong. Yudkowsky also spread rationalist ideas through the fanfiction novel Harry Potter and the Methods of Rationality.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Eliezer Yudkowsky",
+      "label": "Eliezer Yudkowsky on Wikipedia"
+    },
+    "answerAliases": [
+      "Eliezer Shlomo Yudkowsky",
+      "Eliezer S. Yudkowsky"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0012",
+    "text": "Who wrote the 2014 book Superintelligence: Paths, Dangers, Strategies?",
+    "options": [
+      "Nick Bostrom",
+      "Eliezer Yudkowsky",
+      "Stuart Russell",
+      "Max Tegmark"
+    ],
+    "answer": "Nick Bostrom",
+    "category": "people",
+    "tags": [
+      "safety",
+      "books",
+      "existential-risk"
+    ],
+    "difficulty": 2,
+    "explanation": "Bostrom, then at Oxford, published Superintelligence in 2014 and it became a New York Times bestseller that carried AI risk into the mainstream. Yudkowsky is the closest miss because his writing on intelligence explosion influenced the book, but he never wrote it. The paperclip maximizer thought experiment comes from Bostrom's work on the orthogonality thesis.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Nick Bostrom",
+      "label": "Nick Bostrom on Wikipedia"
+    },
+    "answerAliases": [
+      "Niklas Bostrom",
+      "Bostrom"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0013",
+    "text": "Who developed convolutional neural networks in the 1980s and served as Meta chief AI scientist?",
+    "options": [
+      "Geoffrey Hinton",
+      "Yann LeCun",
+      "Yoshua Bengio",
+      "Andrew Ng"
+    ],
+    "answer": "Yann LeCun",
+    "category": "people",
+    "tags": [
+      "deep-learning",
+      "vision",
+      "turing-award"
+    ],
+    "difficulty": 1,
+    "explanation": "LeCun invented convolutional networks at Bell Labs in the late 1980s, including the LeNet system for reading handwritten checks. Hinton is the tempting miss because he shared the 2018 Turing Award with LeCun and Bengio, but his fame rests on backpropagation and deep belief nets rather than CNNs. LeCun joined Facebook in 2013 to found FAIR and served as chief AI scientist for a decade.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Yann LeCun",
+      "label": "Yann LeCun on Wikipedia"
+    },
+    "answerAliases": [
+      "Yann Andre LeCun",
+      "Yann André Le Cun",
+      "LeCun",
+      "Yann Le Cun"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0014",
+    "text": "Who founded the Quebec AI institute Mila and shared the 2018 Turing Award with Hinton and LeCun?",
+    "options": [
+      "Demis Hassabis",
+      "Andrew Ng",
+      "Fei-Fei Li",
+      "Yoshua Bengio"
+    ],
+    "answer": "Yoshua Bengio",
+    "category": "people",
+    "tags": [
+      "deep-learning",
+      "labs",
+      "turing-award"
+    ],
+    "difficulty": 2,
+    "explanation": "Bengio founded Mila, the Quebec Artificial Intelligence Institute in Montreal, and split the 2018 Turing Award for deep learning breakthroughs. Hassabis is the closest miss because he is another famous lab leader, but he co-founded DeepMind and won the 2024 Nobel Prize in Chemistry instead. Bengio also co-directs the CIFAR Learning in Machines and Brains program with LeCun.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Yoshua Bengio",
+      "label": "Yoshua Bengio on Wikipedia"
+    },
+    "answerAliases": [
+      "Bengio"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0015",
+    "text": "Who led Tesla Autopilot vision as director of AI and later became known for the Zero to Hero neural network videos?",
+    "options": [
+      "Andrej Karpathy",
+      "Ilya Sutskever",
+      "John Carmack",
+      "George Hotz"
+    ],
+    "answer": "Andrej Karpathy",
+    "category": "people",
+    "tags": [
+      "autopilot",
+      "openai",
+      "education"
+    ],
+    "difficulty": 1,
+    "explanation": "Karpathy, an OpenAI founding member, joined Tesla in 2017 and led the Autopilot vision team until 2022. George Hotz is the tempting miss because he also worked briefly with Musk on driving automation, but he founded comma.ai instead of leading Tesla AI. Karpathy returned to OpenAI in 2023 and later founded the AI education company Eureka Labs in 2024.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Andrej Karpathy",
+      "label": "Andrej Karpathy on Wikipedia"
+    },
+    "answerAliases": [
+      "Karpathy"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0016",
+    "text": "Which OpenAI CTO became interim CEO immediately after Sam Altman was fired in November 2023?",
+    "options": [
+      "Daniela Amodei",
+      "Emmett Shear",
+      "Mira Murati",
+      "Lilian Weng"
+    ],
+    "answer": "Mira Murati",
+    "category": "people",
+    "tags": [
+      "openai",
+      "leadership",
+      "ceo"
+    ],
+    "difficulty": 1,
+    "explanation": "Murati, OpenAI CTO since 2022, stepped in as interim CEO on November 17 2023 when the board removed Altman. Emmett Shear is the tempting miss because he held the same interim title days later, but he came from Twitch and was second in the sequence. Murati left OpenAI in September 2024 and founded Thinking Machines Lab in February 2025.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mira Murati",
+      "label": "Mira Murati on Wikipedia"
+    },
+    "answerAliases": [
+      "Ermira Murati",
+      "Murati"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0017",
+    "text": "Who co-founded Mistral AI in 2023 and serves as its CEO after working at DeepMind Paris?",
+    "options": [
+      "Clement Delangue",
+      "Guillaume Lample",
+      "Thomas Wolf",
+      "Arthur Mensch"
+    ],
+    "answer": "Arthur Mensch",
+    "category": "people",
+    "tags": [
+      "mistral",
+      "france",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "Mensch left DeepMind Paris in May 2023 and co-founded Mistral AI with Guillaume Lample and Timothee Lacroix, becoming CEO. Lample is the tempting miss because he is also a Mistral co-founder, but he serves as chief scientist rather than CEO. Under Mensch, Mistral released open-weight models like Mistral 7B and Mixtral and became the flagship of European AI.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Arthur Mensch",
+      "label": "Arthur Mensch on Wikipedia"
+    },
+    "answerAliases": [
+      "Mensch"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0018",
+    "text": "Who founded the Chinese AI company DeepSeek after building the High-Flyer quantitative hedge fund?",
+    "options": [
+      "Kai-Fu Lee",
+      "Liang Wenfeng",
+      "Robin Li",
+      "Lei Jun"
+    ],
+    "answer": "Liang Wenfeng",
+    "category": "people",
+    "tags": [
+      "deepseek",
+      "china",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "Liang co-founded the quant fund High-Flyer in 2015 and launched DeepSeek in 2023, funding it from the fund and stockpiling Nvidia chips before export controls. Kai-Fu Lee is the tempting miss because he is the other famous Chinese AI founder-investor, but his company is 01.AI rather than DeepSeek. DeepSeek stunned markets in early 2025 when its R1 reasoning model matched Western rivals at far lower reported cost.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Liang Wenfeng",
+      "label": "Liang Wenfeng on Wikipedia"
+    },
+    "answerAliases": [
+      "Wenfeng Liang",
+      "Liang Wen-Feng"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0019",
+    "text": "Who co-founded DeepMind and Inflection AI and became CEO of Microsoft AI in 2024?",
+    "options": [
+      "Mustafa Suleyman",
+      "Demis Hassabis",
+      "Shane Legg",
+      "Reid Hoffman"
+    ],
+    "answer": "Mustafa Suleyman",
+    "category": "people",
+    "tags": [
+      "deepmind",
+      "microsoft",
+      "inflection"
+    ],
+    "difficulty": 2,
+    "explanation": "Suleyman co-founded DeepMind in 2010, left Google in 2022 to co-found Inflection AI, then joined Microsoft in March 2024 to lead Copilot and consumer AI. Shane Legg is the tempting miss because he is the third DeepMind co-founder, but he stayed in research rather than taking the Microsoft role. Suleyman also wrote the 2023 book The Coming Wave about AI risk.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mustafa Suleyman",
+      "label": "Mustafa Suleyman on Wikipedia"
+    },
+    "answerAliases": [
+      "Suleyman"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0020",
+    "text": "Which Transformer co-author left Google to found Character.AI and returned to Google in 2024?",
+    "options": [
+      "Illia Polosukhin",
+      "Jakob Uszkoreit",
+      "Llion Jones",
+      "Noam Shazeer"
+    ],
+    "answer": "Noam Shazeer",
+    "category": "people",
+    "tags": [
+      "transformer",
+      "character-ai",
+      "google"
+    ],
+    "difficulty": 3,
+    "explanation": "Shazeer, a Google researcher since 2000 who designed key parts of the Transformer, left in 2021 with Daniel De Freitas to found Character.AI. Llion Jones is the tempting miss because he is another Transformer author who left Google for a startup, but he joined Sakana AI in Tokyo rather than founding Character.AI. Google brought Shazeer back in August 2024 with a licensing deal reported at over 2 billion dollars.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Noam Shazeer",
+      "label": "Noam Shazeer on Wikipedia"
+    },
+    "answerAliases": [
+      "Shazeer"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0021",
+    "text": "Which Transformer paper co-author went on to co-found and lead Cohere as CEO?",
+    "options": [
+      "Illia Polosukhin",
+      "Aidan Gomez",
+      "Niki Parmar",
+      "Lukasz Kaiser"
+    ],
+    "answer": "Aidan Gomez",
+    "category": "people",
+    "tags": [
+      "transformer",
+      "cohere",
+      "enterprise"
+    ],
+    "difficulty": 3,
+    "explanation": "Gomez was a 20-year-old intern at Google Brain when he co-authored Attention Is All You Need in 2017, then co-founded Cohere in 2019 as CEO. Illia Polosukhin is the tempting miss because he is another Transformer author turned founder, but he founded NEAR Protocol rather than Cohere. Cohere focuses on enterprise AI models rather than consumer chatbots.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Aidan Gomez",
+      "label": "Aidan Gomez on Wikipedia"
+    },
+    "answerAliases": [
+      "Gomez"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0022",
+    "text": "Who succeeded Mira Murati as OpenAI interim CEO during the November 2023 leadership crisis?",
+    "options": [
+      "Bret Taylor",
+      "Adam D'Angelo",
+      "Emmett Shear",
+      "Larry Summers"
+    ],
+    "answer": "Emmett Shear",
+    "category": "people",
+    "tags": [
+      "openai",
+      "twitch",
+      "leadership"
+    ],
+    "difficulty": 2,
+    "explanation": "Shear, who co-founded Justin.tv and led Twitch as CEO until 2023, accepted the interim job on November 20 after Murati and left when Altman was reinstated days later. Bret Taylor is the tempting miss because he became board chair in the shake-up, but he never held the CEO title. Shear had publicly estimated a 5 to 50 percent chance of AI-caused doom, which drew attention during his brief tenure.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Emmett Shear",
+      "label": "Emmett Shear on Wikipedia"
+    },
+    "answerAliases": [
+      "Shear"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

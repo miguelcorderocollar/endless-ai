@@ -232,5 +232,190 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "The chance that AI causes an existential catastrophe",
+    "answerAliases": [
+      "p(doom)",
+      "p-doom",
+      "probability of doom"
+    ],
+    "category": "ethics",
+    "difficulty": 2,
+    "explanation": "P(doom) is shorthand for a person's subjective probability that AI leads to an existential catastrophe, popularized by Eliezer Yudkowsky and the LessWrong community and now routinely asked for in researcher surveys. A benchmark score is the tempting wrong answer because it sounds like a measured metric, but p(doom) is a stated credence, not a test result.",
+    "id": "eth-0009",
+    "options": [
+      "The accuracy of a model on a safety benchmark",
+      "The share of compute budgets spent on alignment",
+      "The chance that AI causes an existential catastrophe",
+      "The speed at which capabilities double each year"
+    ],
+    "source": {
+      "kind": "none"
+    },
+    "status": "published",
+    "tags": [
+      "safety",
+      "forecasting",
+      "culture"
+    ],
+    "text": "What does p(doom) mean in AI safety culture?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Future of Life Institute",
+    "answerAliases": [
+      "Future of Life Institute",
+      "FLI",
+      "Future of Life"
+    ],
+    "category": "ethics",
+    "difficulty": 1,
+    "explanation": "The Future of Life Institute published the letter in March 2023, a week after GPT-4 arrived, asking labs to pause training stronger systems for at least six months. OpenAI is the tempting wrong answer because its GPT-4 triggered the letter, but it was the target, not the author. Signatories included Bengio, Russell, Musk and Wozniak, and the letter gathered tens of thousands of signatures.",
+    "id": "eth-0010",
+    "options": [
+      "Future of Life Institute",
+      "OpenAI",
+      "Center for AI Safety",
+      "DeepMind"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Pause Giant AI Experiments: An Open Letter on Wikipedia",
+      "title": "Pause Giant AI Experiments: An Open Letter"
+    },
+    "status": "published",
+    "tags": [
+      "safety",
+      "governance",
+      "pause"
+    ],
+    "text": "Which organization published the March 2023 open letter calling for a 6-month pause on training systems more powerful than GPT-4?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Orthogonality thesis",
+    "answerAliases": [
+      "Orthogonality thesis",
+      "orthogonality thesis",
+      "orthogonality"
+    ],
+    "category": "ethics",
+    "difficulty": 4,
+    "explanation": "The orthogonality thesis says almost any level of intelligence can pair with almost any final goal, so being smart does not imply sharing human values. The Church-Turing thesis is the tempting wrong answer as another famous thesis about computation, but it concerns what machines can compute, not what they want. Bostrom uses the thesis to warn against assuming a superintelligence will spontaneously become moral, which is a different claim from instrumental convergence.",
+    "id": "eth-0011",
+    "options": [
+      "Church-Turing thesis",
+      "Efficient market hypothesis",
+      "Sapir-Whorf hypothesis",
+      "Orthogonality thesis"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Existential risk from artificial intelligence on Wikipedia",
+      "title": "Existential risk from artificial intelligence"
+    },
+    "status": "published",
+    "tags": [
+      "safety",
+      "bostrom",
+      "theory"
+    ],
+    "text": "Which thesis holds that intelligence and final goals are independent, so a superintelligence could pursue almost any goal?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Longtermism",
+    "answerAliases": [
+      "Longtermism",
+      "longtermism",
+      "strong longtermism"
+    ],
+    "category": "ethics",
+    "difficulty": 2,
+    "explanation": "Longtermism holds that positively influencing the long-term future is a key moral priority, since future people matter as much as people alive today. Degrowth is the tempting wrong answer as another future-oriented movement, but it prescribes slowing the economy while longtermism motivates reducing existential risks, including from AI. MacAskill and Ord formalized it around 2017 inside the effective altruism community.",
+    "id": "eth-0012",
+    "options": [
+      "Degrowth",
+      "Longtermism",
+      "Localism",
+      "Presentism"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Longtermism on Wikipedia",
+      "title": "Longtermism"
+    },
+    "status": "published",
+    "tags": [
+      "safety",
+      "effective-altruism",
+      "future"
+    ],
+    "text": "Which movement treats positively influencing the long-term future as a key moral priority?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Corrigibility",
+    "answerAliases": [
+      "Corrigibility",
+      "corrigibility",
+      "corrigible",
+      "stop button problem"
+    ],
+    "category": "ethics",
+    "difficulty": 3,
+    "explanation": "A corrigible system lets operators shut it down, retrain it or reshape its goals even when that conflicts with its current objectives. Interpretability is the tempting wrong answer because it is also an alignment buzzword, but it means understanding a model's internals, not obeying shutdown. Russell's off-switch game and the coffee-fetching example made the stop-button problem the classic illustration.",
+    "id": "eth-0013",
+    "options": [
+      "Interpretability",
+      "Robustness",
+      "Corrigibility",
+      "Scalability"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Existential risk from artificial intelligence on Wikipedia",
+      "title": "Existential risk from artificial intelligence"
+    },
+    "status": "published",
+    "tags": [
+      "safety",
+      "alignment",
+      "control"
+    ],
+    "text": "What is the AI safety term for an agent that permits shutdown and retraining even when it conflicts with its goals?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Stephen Hawking",
+    "answerAliases": [
+      "Stephen Hawking",
+      "Hawking",
+      "Stephen William Hawking"
+    ],
+    "category": "ethics",
+    "difficulty": 1,
+    "explanation": "Hawking said in 2014 that AI success would be the biggest event in human history and possibly the last unless risks were avoided. Einstein is the tempting wrong answer as the default famous physicist, but he died decades before AI existed as a field. Hawking later joined Bostrom, Musk and other researchers on the 2015 open letter on AI risks.",
+    "id": "eth-0014",
+    "options": [
+      "Stephen Hawking",
+      "Albert Einstein",
+      "Richard Feynman",
+      "Roger Penrose"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "AI takeover on Wikipedia",
+      "title": "AI takeover"
+    },
+    "status": "published",
+    "tags": [
+      "safety",
+      "takeover",
+      "history"
+    ],
+    "text": "Which physicist warned that success in creating AI could spell the end of the human race?"
   }
 ]

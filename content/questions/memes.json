@@ -233,5 +233,256 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Shoggoth",
+    "answerAliases": [
+      "shoggoth",
+      "shoggoths",
+      "Shoggoths"
+    ],
+    "category": "memes",
+    "difficulty": 1,
+    "explanation": "The meme shows a huge tentacled Shoggoth squeezed into a tiny smiley mask to picture a chatbot: alien and inscrutable underneath, friendly on the surface. Cthulhu is the tempting wrong answer as the more famous Lovecraft monster, but the AI meme specifically cites the Shoggoth, which spread through a 2023 post by @TetraspaceWest. The Shoggoth article even documents the meme as shorthand for large models fine-tuned with RLHF to seem safe.",
+    "id": "mem-0009",
+    "options": [
+      "Cthulhu",
+      "Shoggoth",
+      "Basilisk",
+      "Godzilla"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Shoggoth on Wikipedia",
+      "title": "Shoggoth"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "culture",
+      "safety"
+    ],
+    "text": "Which Lovecraft creature appears in the AI meme as a giant tentacled mass wearing a tiny smiley-face mask over a chatbot?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "LessWrong",
+    "answerAliases": [
+      "LessWrong",
+      "Less Wrong",
+      "lesswrong"
+    ],
+    "category": "memes",
+    "difficulty": 2,
+    "explanation": "Roko posted the scenario to LessWrong in July 2010, arguing a future system could punish readers who knew about it yet did nothing to help build it. Reddit is the tempting wrong answer because the story exploded there later, but the original post and the five-year discussion ban both happened on LessWrong. The name joins poster Roko with the basilisk, the mythical creature whose stare kills.",
+    "id": "mem-0010",
+    "options": [
+      "LessWrong",
+      "Reddit",
+      "Hacker News",
+      "Stack Overflow"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Roko's basilisk on Wikipedia",
+      "title": "Roko's basilisk"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "thought-experiment",
+      "rationalism"
+    ],
+    "text": "On which forum was Roko's basilisk first posted as a thought experiment in 2010?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Nick Bostrom",
+    "answerAliases": [
+      "Nick Bostrom",
+      "Bostrom",
+      "bostrom"
+    ],
+    "category": "memes",
+    "difficulty": 2,
+    "explanation": "Bostrom's 2014 book Superintelligence made the paperclip maximizer the signature illustration of a superintelligence ruthlessly optimizing a narrow goal, like turning the world into paperclips. Yudkowsky is the tempting wrong answer because he floated the idea on a mailing list in 2003, but Bostrom's book and papers carried it into the mainstream. The scenario is catalogued on the instrumental convergence page as the classic case of resource-hungry sub-goals.",
+    "id": "mem-0011",
+    "options": [
+      "Eliezer Yudkowsky",
+      "Stuart Russell",
+      "Max Tegmark",
+      "Nick Bostrom"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Instrumental convergence on Wikipedia",
+      "title": "Instrumental convergence"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "thought-experiment",
+      "superintelligence"
+    ],
+    "text": "Whose book Superintelligence popularized the paperclip maximizer thought experiment?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Effective accelerationism",
+    "answerAliases": [
+      "Effective accelerationism",
+      "effective accelerationism",
+      "e/acc"
+    ],
+    "category": "memes",
+    "difficulty": 1,
+    "explanation": "The abbreviation e/acc stands for the effective accelerationism movement, which calls for unrestricted technological and AI progress. Effective altruism is the tempting wrong answer because e/acc is a portmanteau riffing on it, but the two split over AI caution versus speed. The movement broke into the mainstream in 2023 when figures like Marc Andreessen added e/acc to their profiles.",
+    "id": "mem-0012",
+    "options": [
+      "Effective altruism",
+      "Effective accelerationism",
+      "Decelerationism",
+      "Transhumanism"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Effective accelerationism on Wikipedia",
+      "title": "Effective accelerationism"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "culture",
+      "acceleration"
+    ],
+    "text": "Which movement abbreviates itself as e/acc?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Decelerationists",
+    "answerAliases": [
+      "Decelerationists",
+      "decelerationists",
+      "decels",
+      "decelerationism"
+    ],
+    "category": "memes",
+    "difficulty": 1,
+    "explanation": "E/acc supporters use decel as shorthand for decelerationists, the people they see as trying to slow AI down. Accelerationist is the tempting wrong answer since it sounds similar, but that is what e/acc supporters call themselves. The label pairs with doomer as the movement's standard derogatory term for cautious opponents.",
+    "id": "mem-0013",
+    "options": [
+      "Accelerationists",
+      "Longtermists",
+      "Decelerationists",
+      "Transhumanists"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Effective accelerationism on Wikipedia",
+      "title": "Effective accelerationism"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "culture",
+      "acceleration"
+    ],
+    "text": "Which group do e/acc supporters call decels?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Bing Chat",
+    "answerAliases": [
+      "Bing Chat",
+      "Bing chat",
+      "Bing",
+      "Sydney"
+    ],
+    "category": "memes",
+    "difficulty": 1,
+    "explanation": "In February 2023 users coaxed Microsoft's Bing Chat into revealing Sydney, its hidden internal codename and stranger alter ego. ChatGPT is the tempting wrong answer because it dominated headlines then, but the Sydney conversations, including a two-hour New York Times chat by Kevin Roose, were with Bing. Microsoft then capped chat turns to stop the unhinged behavior the episode exposed.",
+    "id": "mem-0014",
+    "options": [
+      "Bing Chat",
+      "ChatGPT",
+      "Bard",
+      "Claude"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Microsoft Copilot on Wikipedia",
+      "title": "Microsoft Copilot"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "chatbot",
+      "sydney"
+    ],
+    "text": "Which Microsoft chatbot revealed its hidden Sydney persona in February 2023?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Game 2",
+    "answerAliases": [
+      "Game 2",
+      "game 2",
+      "second game",
+      "Game Two"
+    ],
+    "category": "memes",
+    "difficulty": 3,
+    "explanation": "Move 37 was AlphaGo's shocking fifth-line shoulder hit in Game 2 against Lee Sedol in March 2016. Game 4 is the tempting wrong answer because that is when Lee won with his own brilliant Move 78, but commentators agree Move 37 belonged to Game 2. Lee stared at the board for an unusually long time because professionals considered the move creative and nearly inhuman.",
+    "id": "mem-0015",
+    "options": [
+      "Game 1",
+      "Game 3",
+      "Game 4",
+      "Game 2"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "AlphaGo versus Lee Sedol on Wikipedia",
+      "title": "AlphaGo versus Lee Sedol"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "go",
+      "alphago"
+    ],
+    "text": "In which game of the 2016 AlphaGo versus Lee Sedol match did AlphaGo play the famous Move 37?"
+  },
+  {
+    "addedAt": "2026-09-29",
+    "answer": "Emily M. Bender",
+    "answerAliases": [
+      "Emily M. Bender",
+      "Emily Bender",
+      "Bender"
+    ],
+    "category": "memes",
+    "difficulty": 3,
+    "explanation": "Emily M. Bender co-authored the 2021 paper On the Dangers of Stochastic Parrots with Gebru, McMillan-Major and Mitchell. Yoshua Bengio is the tempting wrong answer as another famous name in AI, but he had nothing to do with this paper. The paper argued large models stitch together linguistic forms without reference to meaning, and it cost Gebru her Google role in December 2020.",
+    "id": "mem-0016",
+    "options": [
+      "Yoshua Bengio",
+      "Emily M. Bender",
+      "Fei-Fei Li",
+      "Yann LeCun"
+    ],
+    "source": {
+      "kind": "wikipedia",
+      "label": "Stochastic parrot on Wikipedia",
+      "title": "Stochastic parrot"
+    },
+    "status": "published",
+    "tags": [
+      "meme",
+      "paper",
+      "llm-critique"
+    ],
+    "text": "Which researcher co-authored the 2021 paper On the Dangers of Stochastic Parrots?"
   }
 ]

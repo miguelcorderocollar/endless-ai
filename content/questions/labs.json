@@ -228,5 +228,247 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "lab-0009",
+    "text": "Which lab develops the Claude family of AI models?",
+    "options": [
+      "OpenAI",
+      "Anthropic",
+      "Meta AI",
+      "Google DeepMind"
+    ],
+    "answer": "Anthropic",
+    "category": "labs",
+    "tags": [
+      "anthropic",
+      "claude"
+    ],
+    "difficulty": 1,
+    "explanation": "Claude is the flagship product of Anthropic, the public benefit corporation founded in January 2021 by former OpenAI members including Dario and Daniela Amodei with an explicit AI safety mission. OpenAI is the tempting wrong answer because the Amodeis came from there, but OpenAI builds the GPT series, not Claude.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Anthropic",
+      "label": "Anthropic on Wikipedia"
+    },
+    "answerAliases": [
+      "Anthropic PBC",
+      "Anthropic, PBC"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0010",
+    "text": "Which lab develops the Gemini family of AI models?",
+    "options": [
+      "Anthropic",
+      "Meta AI",
+      "Google DeepMind",
+      "OpenAI"
+    ],
+    "answer": "Google DeepMind",
+    "category": "labs",
+    "tags": [
+      "deepmind",
+      "gemini",
+      "google"
+    ],
+    "difficulty": 1,
+    "explanation": "Google DeepMind is responsible for the proprietary Gemini family alongside the open-weight Gemma models, after Google merged DeepMind with the Google Brain division in April 2023. OpenAI is the closest distractor since GPT and Gemini compete head to head, but GPT belongs to OpenAI.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Google DeepMind",
+      "label": "Google DeepMind on Wikipedia"
+    },
+    "answerAliases": [
+      "DeepMind",
+      "DeepMind Technologies Limited"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0011",
+    "text": "Which lab develops the Llama family of AI models?",
+    "options": [
+      "Meta AI",
+      "Mistral AI",
+      "xAI",
+      "Cohere"
+    ],
+    "answer": "Meta AI",
+    "category": "labs",
+    "tags": [
+      "meta",
+      "llama",
+      "open-weights"
+    ],
+    "difficulty": 1,
+    "explanation": "Meta AI is the research division behind the Llama models, which Meta released with open weights and built its Meta AI assistant on. Mistral AI is the natural confusion because the Paris lab also publishes open-weight models, but its family is Mistral and Mixtral, not Llama.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Meta AI",
+      "label": "Meta AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Meta",
+      "Meta Platforms",
+      "FAIR"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0012",
+    "text": "Which lab develops the Grok family of AI models?",
+    "options": [
+      "Anthropic",
+      "DeepSeek",
+      "OpenAI",
+      "xAI"
+    ],
+    "answer": "xAI",
+    "category": "labs",
+    "tags": [
+      "xai",
+      "grok",
+      "musk"
+    ],
+    "difficulty": 1,
+    "explanation": "Grok is the primary product of xAI, the company founded by Elon Musk whose first model, Grok 1, was released in November 2023. OpenAI is the trap here because Musk co-founded it, but he left and built Grok at xAI instead.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "SpaceXAI",
+      "label": "SpaceXAI (formerly xAI) on Wikipedia"
+    },
+    "answerAliases": [
+      "SpaceXAI",
+      "xAI (company)",
+      "Grok"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0013",
+    "text": "Which former OpenAI chief scientist co-founded Safe Superintelligence Inc.?",
+    "options": [
+      "Sam Altman",
+      "Ilya Sutskever",
+      "Mira Murati",
+      "Dario Amodei"
+    ],
+    "answer": "Ilya Sutskever",
+    "category": "labs",
+    "tags": [
+      "ssi",
+      "sutskever",
+      "safety"
+    ],
+    "difficulty": 2,
+    "explanation": "Ilya Sutskever founded SSI with Daniel Gross and Daniel Levy after leaving OpenAI in May 2024, with a mission focused on building safe superintelligence. Sam Altman is the closest distractor as the OpenAI CEO whose brief removal preceded Sutskever's exit, but Altman stayed and Sutskever left to start SSI.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Safe Superintelligence Inc.",
+      "label": "Safe Superintelligence Inc. on Wikipedia"
+    },
+    "answerAliases": [
+      "Ilya Sutskever",
+      "Sutskever",
+      "SSI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0014",
+    "text": "Which former OpenAI chief technology officer founded Thinking Machines Lab in 2025?",
+    "options": [
+      "Sam Altman",
+      "Dario Amodei",
+      "Mira Murati",
+      "Ilya Sutskever"
+    ],
+    "answer": "Mira Murati",
+    "category": "labs",
+    "tags": [
+      "thinking-machines",
+      "murati"
+    ],
+    "difficulty": 2,
+    "explanation": "Mira Murati, OpenAI's former chief technology officer, founded Thinking Machines Lab in February 2025 as a San Francisco public benefit corporation. Ilya Sutskever is the tempting alternative because he also left OpenAI to found a lab, but his lab is SSI, founded a year earlier.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Thinking Machines Lab",
+      "label": "Thinking Machines Lab on Wikipedia"
+    },
+    "answerAliases": [
+      "Mira Murati",
+      "Murati"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0015",
+    "text": "What does World Labs, the startup founded by Fei-Fei Li, build?",
+    "options": [
+      "Large world models for 3D space",
+      "Protein-folding models like AlphaFold",
+      "Self-driving car software stacks",
+      "AI accelerator chips for data centers"
+    ],
+    "answer": "Large world models for 3D space",
+    "category": "labs",
+    "tags": [
+      "world-labs",
+      "spatial-intelligence"
+    ],
+    "difficulty": 2,
+    "explanation": "World Labs came out of stealth in September 2024 with $230 million in funding to build large world models that perceive and interact with the 3D world, aimed at artists, designers and game studios. Protein folding is DeepMind's AlphaFold territory, while Li's bet is that spatial intelligence is the frontier after language.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2024/09/13/fei-fei-lis-world-labs-comes-out-of-stealth-with-230m-in-funding/",
+      "label": "TechCrunch on World Labs' 2024 launch"
+    },
+    "answerAliases": [
+      "World Labs",
+      "large world models",
+      "spatial intelligence",
+      "Fei-Fei Li"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0016",
+    "text": "Which AI lab was created by Google LaMDA developers Noam Shazeer and Daniel De Freitas?",
+    "options": [
+      "Inflection AI",
+      "Replika",
+      "Character.ai",
+      "xAI"
+    ],
+    "answer": "Character.ai",
+    "category": "labs",
+    "tags": [
+      "character-ai",
+      "chatbots"
+    ],
+    "difficulty": 3,
+    "explanation": "Shazeer and De Freitas built LaMDA at Google, then left to found Character.ai, whose beta opened in September 2022 with customizable characters that users define and publish. Inflection AI is the closest distractor because it is also a chatbot lab, but its product was Pi and its founders came from DeepMind, not LaMDA.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Character.ai",
+      "label": "Character.ai on Wikipedia"
+    },
+    "answerAliases": [
+      "Character AI",
+      "Character.ai",
+      "Noam Shazeer"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

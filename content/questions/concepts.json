@@ -284,5 +284,181 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "con-0011",
+    "text": "What is a token in a large language model?",
+    "options": [
+      "A password that unlocks model access",
+      "A unit of text the model processes",
+      "A score that rates output quality",
+      "A file that stores model weights"
+    ],
+    "answer": "A unit of text the model processes",
+    "category": "concepts",
+    "tags": [
+      "tokenization",
+      "fundamentals"
+    ],
+    "difficulty": 1,
+    "explanation": "Models process numbers rather than text, so a tokenizer converts text into integer indices from a fixed vocabulary, often splitting words into subword pieces. The password reading is the common confusion because API keys are also called tokens, but a model token is a unit of text like part of a word.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Large language model",
+      "label": "Large language model on Wikipedia"
+    },
+    "answerAliases": [
+      "token",
+      "tokens",
+      "tokenization"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0012",
+    "text": "What is limited by a language model context window?",
+    "options": [
+      "The languages it can translate",
+      "The time its training takes",
+      "The users it can serve at once",
+      "The text it can consider at once"
+    ],
+    "answer": "The text it can consider at once",
+    "category": "concepts",
+    "tags": [
+      "context-window",
+      "fundamentals"
+    ],
+    "difficulty": 2,
+    "explanation": "The attention mechanism only relates tokens within the context window, so anything beyond that limit cannot influence the output and must be truncated or retrieved another way. The language distractor plays on the word context, but the window is about how much text fits, measured in tokens, not how many languages are covered.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Large language model",
+      "label": "Large language model on Wikipedia"
+    },
+    "answerAliases": [
+      "context window",
+      "context length"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0013",
+    "text": "What is a hallucination in artificial intelligence?",
+    "options": [
+      "A confident but false model output",
+      "A bug that crashes the program",
+      "A training run that diverges",
+      "An attack that steals model weights"
+    ],
+    "answer": "A confident but false model output",
+    "category": "concepts",
+    "tags": [
+      "hallucination",
+      "reliability"
+    ],
+    "difficulty": 1,
+    "explanation": "A hallucination is false or misleading information presented as fact, such as fabricated citations embedded in otherwise fluent text. The crash distractor misses the point: the program runs perfectly, which is exactly why hallucinations are dangerous in high-stakes uses.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hallucination (artificial intelligence)",
+      "label": "Hallucination (artificial intelligence) on Wikipedia"
+    },
+    "answerAliases": [
+      "hallucination",
+      "artificial hallucination",
+      "confabulation"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0014",
+    "text": "What does the temperature setting control when generating text with a language model?",
+    "options": [
+      "How fast the text is generated",
+      "How much memory the model uses",
+      "How random the word choices are",
+      "How many languages it supports"
+    ],
+    "answer": "How random the word choices are",
+    "category": "concepts",
+    "tags": [
+      "temperature",
+      "sampling"
+    ],
+    "difficulty": 2,
+    "explanation": "Temperature scales the randomness of sampling: near zero the model almost always picks the top token and behaves deterministically, while higher values spread probability and produce more varied but riskier output. Speed is the natural confusion, but that is governed by hardware and serving, not by temperature.",
+    "source": {
+      "kind": "none"
+    },
+    "answerAliases": [
+      "temperature",
+      "sampling temperature"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0015",
+    "text": "What do neural scaling laws describe?",
+    "options": [
+      "Shrinking chips from more transistors",
+      "Gains from scaling models and data",
+      "Decay from copying datasets repeatedly",
+      "Loss of signal in very deep networks"
+    ],
+    "answer": "Gains from scaling models and data",
+    "category": "concepts",
+    "tags": [
+      "scaling-laws",
+      "kaplan"
+    ],
+    "difficulty": 3,
+    "explanation": "Neural scaling laws state that performance improves predictably as parameter count, dataset size and training compute grow, a relationship quantified by Kaplan and colleagues in 2020. The chip distractor is Moore's law, which is about transistors per chip, not about model loss falling with scale.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Neural scaling law",
+      "label": "Neural scaling law on Wikipedia"
+    },
+    "answerAliases": [
+      "scaling law",
+      "scaling laws"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0016",
+    "text": "What is chain-of-thought prompting?",
+    "options": [
+      "Linking several models in sequence",
+      "Training on human raters' thoughts",
+      "Repeating a prompt until it works",
+      "Getting step-by-step reasoning"
+    ],
+    "answer": "Getting step-by-step reasoning",
+    "category": "concepts",
+    "tags": [
+      "chain-of-thought",
+      "prompting",
+      "reasoning"
+    ],
+    "difficulty": 2,
+    "explanation": "Chain-of-thought prompting induces the model to work through intermediate reasoning steps before the final answer, which Google researchers reported in 2022 improves multi-step and math performance, even zero-shot with phrase variants of let's think step by step. Linking models in sequence is a different idea, pipelines of models, not reasoning inside one response.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Prompt engineering",
+      "label": "Prompt engineering on Wikipedia"
+    },
+    "answerAliases": [
+      "chain-of-thought",
+      "chain of thought",
+      "chain-of-thought prompting"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]

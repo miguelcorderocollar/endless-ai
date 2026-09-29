@@ -290,5 +290,391 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "mod-0011",
+    "text": "Which company released GPT-4 in March 2023?",
+    "options": [
+      "Anthropic",
+      "OpenAI",
+      "xAI",
+      "Meta AI"
+    ],
+    "answer": "OpenAI",
+    "category": "models",
+    "tags": [
+      "openai",
+      "frontier"
+    ],
+    "difficulty": 1,
+    "explanation": "OpenAI released GPT-4 on March 14, 2023 as a multimodal model accepting image and text input. Anthropic is the closest wrong answer because it released Claude the same month, but Claude is a different model family from a different lab.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-4",
+      "label": "GPT-4 on Wikipedia"
+    },
+    "answerAliases": [
+      "OpenAI",
+      "GPT-4",
+      "March 14, 2023",
+      "March 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0012",
+    "text": "Which model was the first widely released large reasoning model that thinks through a chain of thought before answering?",
+    "options": [
+      "GPT-3",
+      "BERT",
+      "DeepSeek-R1",
+      "OpenAI o1"
+    ],
+    "answer": "OpenAI o1",
+    "category": "models",
+    "tags": [
+      "openai",
+      "reasoning"
+    ],
+    "difficulty": 2,
+    "explanation": "OpenAI released the o1-preview on September 12, 2024, resetting its counter to 1 for a new reasoning series trained to spend test-time compute thinking before responding. DeepSeek-R1 is the tempting wrong answer, but it arrived later in January 2025 and matched o1 rather than preceding it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "OpenAI o1",
+      "label": "OpenAI o1 on Wikipedia"
+    },
+    "answerAliases": [
+      "o1",
+      "OpenAI o1",
+      "o1-preview",
+      "chain of thought",
+      "September 12, 2024"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0013",
+    "text": "What made DeepSeek-R1 notable when it launched in January 2025?",
+    "options": [
+      "Open weights with frontier-level math and code reasoning",
+      "Closed API-only video generation from text prompts",
+      "Encoder-only pretraining with masked-word prediction",
+      "Tiny on-device model for keyboard autocomplete"
+    ],
+    "answer": "Open weights with frontier-level math and code reasoning",
+    "category": "models",
+    "tags": [
+      "open-weights",
+      "reasoning"
+    ],
+    "difficulty": 3,
+    "explanation": "DeepSeek-R1 shipped under the MIT license in January 2025 and matched OpenAI o1 on math and code benchmarks despite far lower reported training cost. The video-generator distractor describes Sora-style models, not a reasoning language model, which is why it fails on the math and code hook.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DeepSeek",
+      "label": "DeepSeek on Wikipedia"
+    },
+    "answerAliases": [
+      "DeepSeek-R1",
+      "DeepSeek R1",
+      "open-weight",
+      "open weights",
+      "MIT",
+      "reasoning",
+      "January 2025"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0014",
+    "text": "What is Constitutional AI, the technique Anthropic introduced for training Claude?",
+    "options": [
+      "Pretraining only on masked words in both directions",
+      "Routing each token through two of eight expert networks",
+      "Training guided by a written constitution of principles",
+      "Upscaling images by reversing a noise process"
+    ],
+    "answer": "Training guided by a written constitution of principles",
+    "category": "models",
+    "tags": [
+      "anthropic",
+      "alignment"
+    ],
+    "difficulty": 3,
+    "explanation": "Anthropic's December 2022 method trains a harmless assistant from a written constitution plus AI feedback (RLAIF) instead of human harm labels. The expert-routing distractor describes mixture-of-experts models like Mixtral, which is an architecture choice, not an alignment technique.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2212.08073",
+      "label": "Constitutional AI paper on arXiv"
+    },
+    "answerAliases": [
+      "Constitutional AI",
+      "constitution",
+      "RLAIF",
+      "Anthropic",
+      "2022"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0015",
+    "text": "What made Meta's Llama 2 release in July 2023 significant compared with Llama 1?",
+    "options": [
+      "It shipped as an API-only product with no downloadable weights",
+      "It generated minute-long video clips from text prompts",
+      "It was restricted to academic researchers on request",
+      "Its weights were released free for research and commercial use"
+    ],
+    "answer": "Its weights were released free for research and commercial use",
+    "category": "models",
+    "tags": [
+      "meta",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "Meta released Llama 2 on July 18, 2023 with weights available free for research and commercial use, unlike Llama 1 which was gated to researchers under a non-commercial license. The researcher-only distractor describes Llama 1 itself, which is exactly why it confuses people.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Llama (language model)",
+      "label": "Llama (language model) on Wikipedia"
+    },
+    "answerAliases": [
+      "Llama 2",
+      "commercial use",
+      "Meta",
+      "July 18, 2023",
+      "July 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0016",
+    "text": "What architecture does Mistral's Mixtral 8x7B, released in December 2023, use?",
+    "options": [
+      "Encoder-only bidirectional pretraining",
+      "Sparse mixture of experts with routed subnetworks",
+      "Denoising diffusion probabilistic modeling",
+      "Recurrent sequence-to-sequence memory"
+    ],
+    "answer": "Sparse mixture of experts with routed subnetworks",
+    "category": "models",
+    "tags": [
+      "mistral",
+      "architecture"
+    ],
+    "difficulty": 4,
+    "explanation": "Mixtral 8x7B is a sparse mixture-of-experts decoder where a router sends each token to two of eight expert groups, giving 46.7B parameters at a fraction of the active cost. The diffusion distractor belongs to image generators like Stable Diffusion, not to this language model.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mixture of experts",
+      "label": "Mixture of experts on Wikipedia"
+    },
+    "answerAliases": [
+      "Mixture of experts",
+      "mixture-of-experts",
+      "MoE",
+      "Mixtral 8x7B",
+      "sparse mixture",
+      "December 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0017",
+    "text": "What does OpenAI's Sora, previewed in February 2024, generate?",
+    "options": [
+      "Protein structures from amino acid sequences",
+      "Speech transcripts from audio recordings",
+      "Short video clips from text prompts",
+      "Chess moves from board positions"
+    ],
+    "answer": "Short video clips from text prompts",
+    "category": "models",
+    "tags": [
+      "openai",
+      "video"
+    ],
+    "difficulty": 1,
+    "explanation": "OpenAI previewed Sora on February 15, 2024 as a text-to-video model generating up-to-a-minute clips from written prompts. The speech-transcript distractor describes Whisper, OpenAI's audio model, which is why the two get mixed up.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Sora (text-to-video model)",
+      "label": "Sora (text-to-video model) on Wikipedia"
+    },
+    "answerAliases": [
+      "Sora",
+      "text-to-video",
+      "video",
+      "February 15, 2024",
+      "February 2024"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0018",
+    "text": "Which model first offered a 1-million-token context window in February 2024?",
+    "options": [
+      "Gemini 1.5 Pro",
+      "GPT-4 Turbo",
+      "Claude 2.1",
+      "Llama 2 70B"
+    ],
+    "answer": "Gemini 1.5 Pro",
+    "category": "models",
+    "tags": [
+      "google",
+      "context"
+    ],
+    "difficulty": 3,
+    "explanation": "Google's Gemini 1.5 Pro, announced February 15, 2024, ran up to 1 million tokens, then the longest context of any large-scale foundation model. GPT-4 Turbo is the tempting miss because its 128k window led at the time, but it was roughly an eighth of Gemini's reach.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini (language model)",
+      "label": "Gemini (language model) on Wikipedia"
+    },
+    "answerAliases": [
+      "Gemini 1.5 Pro",
+      "Gemini 1.5",
+      "1 million tokens",
+      "one-million-token",
+      "Gemini",
+      "February 2024"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0019",
+    "text": "Which company develops the Qwen family of language models?",
+    "options": [
+      "Tencent",
+      "Baidu",
+      "ByteDance",
+      "Alibaba"
+    ],
+    "answer": "Alibaba",
+    "category": "models",
+    "tags": [
+      "alibaba",
+      "open-weights"
+    ],
+    "difficulty": 1,
+    "explanation": "Qwen, also called Tongyi Qianwen, is built by Alibaba Cloud, with its weights opening up from late 2023. Baidu is the natural confusion because its Ernie Bot is the other famous Chinese LLM, but Ernie and Qwen come from different companies.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Qwen",
+      "label": "Qwen on Wikipedia"
+    },
+    "answerAliases": [
+      "Alibaba Cloud",
+      "Alibaba",
+      "Qwen",
+      "Tongyi Qianwen"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0020",
+    "text": "Which company develops the Grok family of models?",
+    "options": [
+      "Anthropic",
+      "xAI",
+      "Mistral AI",
+      "OpenAI"
+    ],
+    "answer": "xAI",
+    "category": "models",
+    "tags": [
+      "xai",
+      "chatbots"
+    ],
+    "difficulty": 1,
+    "explanation": "Grok is built by xAI, the company Elon Musk launched in 2023, and debuted as a chatbot in November 2023 with live knowledge from X. OpenAI tempts people because Musk co-founded it, but he left years before Grok existed.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Grok (chatbot)",
+      "label": "Grok (chatbot) on Wikipedia"
+    },
+    "answerAliases": [
+      "xAI",
+      "Grok",
+      "Elon Musk",
+      "November 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0021",
+    "text": "What does OpenAI's Whisper, released as open-source software in September 2022, do?",
+    "options": [
+      "Generates images from text descriptions",
+      "Predicts protein structures from sequences",
+      "Transcribes and translates speech into text",
+      "Plays strategy games at superhuman level"
+    ],
+    "answer": "Transcribes and translates speech into text",
+    "category": "models",
+    "tags": [
+      "openai",
+      "audio"
+    ],
+    "difficulty": 2,
+    "explanation": "Whisper is an encoder-decoder speech recognition model trained on 680,000 hours of audio that transcribes many languages and translates them into English. The image-generation distractor describes DALL-E, OpenAI's other famous model family of that era.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Whisper (speech recognition system)",
+      "label": "Whisper (speech recognition system) on Wikipedia"
+    },
+    "answerAliases": [
+      "Whisper",
+      "speech recognition",
+      "transcription",
+      "September 21, 2022",
+      "September 2022"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0022",
+    "text": "What does the \"o\" stand for in GPT-4o, released in May 2024?",
+    "options": [
+      "Omni",
+      "Open",
+      "Online",
+      "Oracle"
+    ],
+    "answer": "Omni",
+    "category": "models",
+    "tags": [
+      "openai",
+      "multimodal"
+    ],
+    "difficulty": 2,
+    "explanation": "The \"o\" stands for \"omni\", marking GPT-4o as natively multimodal across text, audio, and image in one network. \"Open\" is the trap because the maker is OpenAI, but the May 2024 announcement spells out omni.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-4o",
+      "label": "GPT-4o on Wikipedia"
+    },
+    "answerAliases": [
+      "Omni",
+      "omni",
+      "o for omni",
+      "GPT-4o",
+      "May 2024",
+      "May 13, 2024"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]
