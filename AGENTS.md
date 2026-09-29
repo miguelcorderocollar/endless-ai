@@ -13,6 +13,8 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run verify` runs validate, typecheck, lint, and build.
 - `npm run rebalance` reports answer-slot balance; add `--write` only after reviewing the diff.
 - `npm run probe -- "Title" ...` inspects Wikipedia lead sections before authoring.
+- `npm run review` builds `review/review.html`, a self-contained page for human review of draft questions (search, filter, per-ID verdicts).
+- `npm run review:serve` builds it and serves it at `http://localhost:8901/review.html`.
 - `npx convex dev` syncs the backend to your dev deployment (watch mode); `npm run dev` is the frontend.
 - `npx tsx scripts/publish.mts` syncs the validated bank to dev (`--prod` for prod).
 

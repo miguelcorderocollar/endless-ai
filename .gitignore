@@ -16,3 +16,6 @@ scripts/.cache/
 
 # local convex backend state (sqlite + storage)
 .convex/
+
+# generated human-review bundle (npm run review)
+review/

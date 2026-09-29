@@ -53,6 +53,37 @@ supports the answer, so you have to actually read the model page yourself. Secon
 guess a page slug. Open the page or query the API and confirm the `{lab}/{model}` path
 exists before you cite it.
 
+### Other catalogs, and what not to cite
+
+- **LMArena / Chatbot Arena.** Fine for how blind pairwise voting works (methodology is
+  stable). Never for who is top-ranked. Rankings rot weekly.
+- **Epoch AI, Stanford HAI AI Index.** Annual data on training compute, cost, adoption.
+  Always pin the year in the question text.
+- **Reputable news, one-off.** Only for event facts with no primary page yet (funding
+  rounds, launches). Prefer a URL that answers HEAD requests, and upgrade to Wikipedia
+  once an article exists. `openai.com` blog URLs 403 bots; the `openai-cookbook` repo on
+  GitHub is a good substitute for API features.
+- The volatility rule from below applies to all of the above: if the answer could change
+  within a year, reframe it as history ("released in March 2023") or drop it. No
+  valuations, rankings, prices, or headcounts.
+
+### Wikipedia title gotchas (learned the hard way)
+
+The validator fails redirects and disambiguation pages, and it matches the answer string
+against the article text — so the exact title matters more than it looks.
+
+- Use the canonical title, not the redirect: `SpaceXAI`, not `xAI` (resolves nowhere);
+  `Safe Superintelligence Inc.`, not `Safe Superintelligence`.
+- Ambiguous titles resolve to the wrong article: `Her (film)` is the pronoun article,
+  the film is `Her (2013 film)`. `Humane Ai Pin` is no article at all, the company is
+  `Humane Inc.`. When in doubt, probe first.
+- Person pages often use middle names the answer does not: the article is
+  "Yann André Le Cun (usually spelled LeCun)", so the alias list must contain the
+  page's spellings (`Yann André Le Cun`, `LeCun`), not just the answer string.
+- Related is not grounding: the "Prompt engineering" article never says "jailbreak",
+  the "Prompt injection" one does. Search the article for your answer string before
+  you cite it.
+
 If you are not sure whether a Wikipedia article exists, use `kind: "none"` with a good
 explanation. The validator will tell you which ones it could not ground, and you can promote
 them later once somebody checks.
@@ -88,7 +119,9 @@ spaces.
 every surface form that might appear in a source page: acronyms, full names, alternate
 spellings, the short form when the option is the long form. For a question about an
 organization, include the abbreviation and the full name. For a person, include their full
-name and any disambiguated form.
+name and any disambiguated form. Critically, include the *page's* spellings, not just the
+answer's: if Wikipedia writes "Yann André Le Cun", that exact form (plus "LeCun") must be
+in the list or grounding fails.
 
 ## Categories
 
@@ -169,12 +202,28 @@ footnote in a 1994 workshop talk with no explanation value is not.
 
 ## Questions that work
 
+Not every true fact is a good question. These shapes work, in priority order:
+
+1. **Origin stories.** Why a thing is called what it is. DALL-E is Dalí plus WALL-E,
+   Claude is Claude Shannon, Gemini is twins. Naming questions are the most shareable
+   in the bank.
+2. **A distinction the reader wants to have.** "What problem does group query attention
+   address" beats "what is group query attention", because the second is a definition
+   and the first is understanding.
+3. **Culture moments.** One event, one image, one clip the internet remembers. Tay,
+   Sydney, the Pope in a puffer jacket, glue pizza, vibe coding. These onboard casual
+   players.
+4. **Lineage.** Who built what, where, when. Lab to model, founder to company, paper
+   to product.
+5. **Failure tales.** Bard's demo error, the Humane Pin, Tay, the Air Canada refund bot.
+   Cautionary stories stick better than specs.
+6. **Anchored numbers, framed as history.** Release dates, old parameter counts,
+   context sizes at launch. Never current records.
+
+The rest of the general advice still holds:
+
 **Facts with a story behind them.** The Dartmouth question works because there is a reason
 you remember it wrong. The 1956 date, the four names, the term that got coined there.
-
-**A distinction the reader wants to have.** "What problem does group query attention
-address" beats "what is group query attention", because the second is a definition and the
-first is understanding.
 
 **Real confusions as distractors.** Asking who introduced the transformer, with "Attention
 Is All You Need" as a paper distractor and other labs as lab distractors, catches people who
@@ -195,6 +244,13 @@ should feel like a friend explaining it, not a textbook.
 
 Say why the answer is right. Say why the most tempting wrong option is wrong. Add the detail
 that makes it stick, like a date, a name, or the reason it happened. Two or three sentences.
+
+Accurate, not exhaustive. One sticky detail is enough — never three. Numbers, author
+lists, and mechanism trivia stay out unless the question turns on them. "A large cash
+prize in 2024" beats "$1M+ pool including a $600,000 grand prize for scoring 85%", and
+"the largest model" beats "the 70B model (the 7B and 13B kept standard attention)".
+Precision that does not change the player's understanding is clutter, and a wall of
+jargon teaches nobody anything. Fix a wrong claim, then stop.
 
 Do not repeat the question. Do not restate the answer in different words and stop there.
 That is the failure mode of a generated explanation, and it teaches nobody anything.
@@ -233,6 +289,33 @@ across 14 categories that is roughly 7 or 8 each, but weight the categories the 
 cares about. Keep difficulty 1 and 2 to about half the batch for the first release, since a
 new player who hits five hard questions in a row bounces.
 
+The bank-wide distribution targets (era mix, thinnest categories first) live in
+`docs/question-roadmap.md`. Check it before choosing what a batch covers, and reserve ID
+ranges that do not overlap anything in `content/questions/`.
+
 Report at the end, as plain text after the JSON: how many questions per category, the
 difficulty spread, how many have a `wikipedia` source, how many have a `url` source, and how
 many are `none`. Be honest about the `none` count. Do not claim grounding you did not do.
+
+## Human review
+
+Batches ship as `status: draft`, and a human reads them before they become `published`.
+The review loop is mechanical:
+
+1. The author runs `npm run review`, which regenerates `review/review.html` — a single
+   self-contained page with every draft question, its options with the answer marked,
+   its explanation, its source, and every validator warning attached to it.
+   `npm run review:serve` does the same and prints a `http://localhost:8901/review.html`
+   link so the reviewer never touches the filesystem.
+2. The reviewer opens the file in a browser, searches and filters, and sends feedback
+   back as lines keyed by question ID:
+   - `approve <id>` — ship it (author flips `status` to `published`).
+   - `reject <id>: <reason>` — drop it (boring, broken, duplicate). The reason goes
+     back to whoever writes the replacement.
+   - `edit <id>: <field> = <new text>` — surgical fix (reword text, swap a distractor,
+     change difficulty, change source). Author applies it verbatim, then revalidates.
+3. The author applies the feedback, re-runs `npm run validate` (must pass) and
+   `npm run review` (to confirm the queue is empty), and reports per-ID outcomes.
+
+Validator warnings (`weak-grounding`, `recency`) are review prompts, not verdicts: they
+mark the exact questions the human should double-check in the review page.
