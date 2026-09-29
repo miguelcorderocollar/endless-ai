@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useConvex, useConvexAuth, useQuery } from "convex/react";
+import type { ConvexReactClient } from "convex/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
@@ -16,6 +17,46 @@ import { QuizSkeleton, Shell } from "./Skeletons";
 export { Shell };
 
 const PAGE = 20;
+
+/**
+ * Remembers for the session that the backend predates `ratingHint` (#32), so
+ * every draw pays at most one validation failure. Module-level: survives
+ * client-side navigation, resets on full reload (by which time the backend
+ * may have been synced, so we probe again).
+ */
+let hintUnsupported = false;
+
+type DrawArgs = {
+  excludeIds: string[];
+  count: number;
+  categories: string[];
+  ratingHint: number;
+};
+
+/**
+ * Draws a page, degrading gracefully on an unsynced backend. Convex rejects
+ * unknown args, so a backend predating `ratingHint` fails validation — retry
+ * once without it (uniform draw, the old behavior) instead of breaking the
+ * quiz. Other errors (offline, auth) propagate to the callers' handling.
+ */
+async function drawPage(client: ConvexReactClient, args: DrawArgs) {
+  if (!hintUnsupported) {
+    try {
+      return await client.query(api.questions.draw, args);
+    } catch (err) {
+      if (err instanceof Error && /ratingHint|extra field/i.test(err.message)) {
+        hintUnsupported = true;
+      } else {
+        throw err;
+      }
+    }
+  }
+  return await client.query(api.questions.draw, {
+    excludeIds: args.excludeIds,
+    count: args.count,
+    categories: args.categories,
+  });
+}
 
 type DrawRow = {
   questionId: string;
@@ -93,13 +134,12 @@ export function QuizFromConvex() {
     const excludeIds = [
       ...new Set([...readProgress().completed, ...(serverCompleted ?? [])]),
     ];
-    void client
-      .query(api.questions.draw, {
-        excludeIds,
-        count: PAGE,
-        categories: filter,
-        ratingHint: readProgress().rating,
-      })
+    void drawPage(client, {
+      excludeIds,
+      count: PAGE,
+      categories: filter,
+      ratingHint: readProgress().rating,
+    })
       .then((rows) => {
         if (cancelled) return;
         const questions = rows.map(toQuestion);
@@ -145,7 +185,7 @@ export function QuizFromConvex() {
       const excludeIds = [
         ...new Set([...(serverCompleted ?? []), ...seen]),
       ].slice(-1000);
-      const rows = await client.query(api.questions.draw, {
+      const rows = await drawPage(client, {
         excludeIds,
         count: PAGE,
         categories: filter,
