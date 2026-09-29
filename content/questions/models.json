@@ -676,5 +676,1219 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0023",
+    "text": "Anthropic's assistant Claude was named after which computer scientist?",
+    "options": [
+      "Alan Turing",
+      "Marvin Minsky",
+      "John McCarthy",
+      "Claude Shannon"
+    ],
+    "answer": "Claude Shannon",
+    "category": "models",
+    "tags": [
+      "origin",
+      "naming",
+      "anthropic"
+    ],
+    "difficulty": 2,
+    "explanation": "Anthropic named Claude after Claude Shannon, the founder of information theory. Alan Turing was a computing pioneer but has no connection to the name, despite being the tempting classic-computing answer.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Claude Shannon",
+      "label": "Claude Shannon on Wikipedia"
+    },
+    "answerAliases": [
+      "Claude Shannon",
+      "Claude Elwood Shannon"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0024",
+    "text": "The word Grok, used for xAI's chatbot, comes from which science fiction novel?",
+    "options": [
+      "The Hitchhiker's Guide to the Galaxy",
+      "Stranger in a Strange Land",
+      "Do Androids Dream of Electric Sheep?",
+      "Neuromancer"
+    ],
+    "answer": "Stranger in a Strange Land",
+    "category": "models",
+    "tags": [
+      "origin",
+      "naming",
+      "grok"
+    ],
+    "difficulty": 2,
+    "explanation": "Grok was coined by Robert Heinlein in Stranger in a Strange Land, meaning to understand deeply. Neuromancer gave us cyberspace and feels similar, but it never used the word grok.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Stranger in a Strange Land",
+      "label": "Stranger in a Strange Land on Wikipedia"
+    },
+    "answerAliases": [
+      "Stranger in a Strange Land"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0025",
+    "text": "The name DALL-E combines artist Salvador Dali with which movie robot?",
+    "options": [
+      "EVE",
+      "R2-D2",
+      "C-3PO",
+      "WALL-E"
+    ],
+    "answer": "WALL-E",
+    "category": "models",
+    "tags": [
+      "origin",
+      "naming",
+      "openai"
+    ],
+    "difficulty": 1,
+    "explanation": "DALL-E is a portmanteau of Dali and WALL-E, the Pixar robot. EVE is tricky because she is from the same film, but she is not part of the name.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DALL-E",
+      "label": "DALL-E on Wikipedia"
+    },
+    "answerAliases": [
+      "WALL-E",
+      "WALL E",
+      "Wall-E"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0026",
+    "text": "Google's chatbot Bard was renamed to what in 2024?",
+    "options": [
+      "Claude",
+      "Copilot",
+      "Gemini",
+      "ChatGPT"
+    ],
+    "answer": "Gemini",
+    "category": "models",
+    "tags": [
+      "lineage",
+      "google",
+      "renaming"
+    ],
+    "difficulty": 1,
+    "explanation": "Google retired the Bard name and rebranded the chatbot as Gemini, matching its model family. ChatGPT is OpenAI's rival product, not a Google rename.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Bard (chatbot)",
+      "label": "Bard (chatbot) on Wikipedia"
+    },
+    "answerAliases": [
+      "Gemini",
+      "Gemini (chatbot)",
+      "Gemini (language model)"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0027",
+    "text": "GitHub Copilot was built through a partnership between GitHub and which AI lab?",
+    "options": [
+      "GitHub and Google",
+      "GitHub and Anthropic",
+      "GitHub and Meta",
+      "GitHub and OpenAI"
+    ],
+    "answer": "GitHub and OpenAI",
+    "category": "models",
+    "tags": [
+      "lineage",
+      "coding",
+      "partnership"
+    ],
+    "difficulty": 1,
+    "explanation": "Copilot launched as a GitHub and OpenAI collaboration, powered by OpenAI's Codex models. GitHub and Google sounds plausible since Google makes coding tools, but Google was never the Copilot partner.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GitHub Copilot",
+      "label": "GitHub Copilot on Wikipedia"
+    },
+    "answerAliases": [
+      "GitHub and OpenAI",
+      "GitHub",
+      "OpenAI"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0028",
+    "text": "DeepMind's AlphaGo famously mastered which board game?",
+    "options": [
+      "Chess",
+      "Go",
+      "Checkers",
+      "Shogi"
+    ],
+    "answer": "Go",
+    "category": "models",
+    "tags": [
+      "lineage",
+      "games",
+      "deepmind"
+    ],
+    "difficulty": 1,
+    "explanation": "AlphaGo was built to play Go and beat world champion Lee Sedol in 2016. Chess is the trap because its sibling AlphaZero later mastered chess too, but AlphaGo itself played Go.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlphaGo",
+      "label": "AlphaGo on Wikipedia"
+    },
+    "answerAliases": [
+      "Go",
+      "Go (game)",
+      "game of Go"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0029",
+    "text": "DeepMind's AlphaFold is famous for predicting what?",
+    "options": [
+      "Stock market prices",
+      "Protein structures",
+      "Weather forecasts",
+      "Earthquake warnings"
+    ],
+    "answer": "Protein structures",
+    "category": "models",
+    "tags": [
+      "lineage",
+      "science",
+      "deepmind"
+    ],
+    "difficulty": 2,
+    "explanation": "AlphaFold predicts the 3D shape of proteins from their amino acid sequences. Weather forecasts are the tempting pick because DeepMind also builds forecasting models, but that is GraphCast, not AlphaFold.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlphaFold",
+      "label": "AlphaFold on Wikipedia"
+    },
+    "answerAliases": [
+      "Protein structures",
+      "protein structure",
+      "protein folding"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0030",
+    "text": "The ChatGPT product generates which of the following in response to a user prompt?",
+    "options": [
+      "Video clips of fictional scenes",
+      "Text, speech, and images",
+      "Chess moves from board positions",
+      "Protein structures from sequences"
+    ],
+    "answer": "Text, speech, and images",
+    "category": "models",
+    "tags": [
+      "openai",
+      "multimodal"
+    ],
+    "difficulty": 1,
+    "explanation": "ChatGPT answers a prompt with text, speech and images from the same service, and it has been a freemium product since it launched on November 30, 2022. People assume it is a text-only tool because that is all it did for its first few months, which is the gap the later voice and image features closed.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ChatGPT",
+      "label": "ChatGPT on Wikipedia"
+    },
+    "answerAliases": [
+      "Text, speech, and images",
+      "text, speech, and images",
+      "generate text, speech, and images"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0031",
+    "text": "What does the AI tool Midjourney generate?",
+    "options": [
+      "Voiceovers from written scripts",
+      "Program code from plain English",
+      "Images from text descriptions",
+      "Music tracks from hummed melodies"
+    ],
+    "answer": "Images from text descriptions",
+    "category": "models",
+    "tags": [
+      "midjourney",
+      "images",
+      "text-to-image"
+    ],
+    "difficulty": 1,
+    "explanation": "Midjourney turns written prompts into images, and its open beta in July 2022 made it one of the best-known AI image generators. Writing code from plain English describes GitHub Copilot, a different kind of tool.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Midjourney",
+      "label": "Midjourney on Wikipedia"
+    },
+    "answerAliases": [
+      "generates images",
+      "images from natural language descriptions",
+      "Midjourney"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0032",
+    "text": "What does GitHub Copilot help programmers do?",
+    "options": [
+      "Write code with AI suggestions",
+      "Track bugs across project boards",
+      "Review pull requests for style",
+      "Deploy apps to cloud servers"
+    ],
+    "answer": "Write code with AI suggestions",
+    "category": "models",
+    "tags": [
+      "github-copilot",
+      "coding",
+      "assistant"
+    ],
+    "difficulty": 1,
+    "explanation": "Copilot lives inside code editors like Visual Studio Code and suggests whole lines and functions as you type; it was first announced in June 2021. Deploying apps and tracking bugs are GitHub platform features, not what the Copilot assistant itself does.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GitHub Copilot",
+      "label": "GitHub Copilot on Wikipedia"
+    },
+    "answerAliases": [
+      "code completion",
+      "autocompleting code",
+      "GitHub Copilot"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0033",
+    "text": "How did OpenAI release the Whisper speech recognition model in 2022?",
+    "options": [
+      "As a cloud-only service with a fee",
+      "As a feature locked inside ChatGPT",
+      "As a paid app on mobile stores",
+      "As free open-source software"
+    ],
+    "answer": "As free open-source software",
+    "category": "models",
+    "tags": [
+      "whisper",
+      "openai",
+      "open-source"
+    ],
+    "difficulty": 2,
+    "explanation": "OpenAI released Whisper's code and weights for anyone to download in September 2022, which is why it quickly turned up inside transcription apps and subtitle tools. The cloud-only distractor describes how OpenAI served models like DALL-E, not Whisper.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Whisper (speech recognition system)",
+      "label": "Whisper (speech recognition system) on Wikipedia"
+    },
+    "answerAliases": [
+      "open-source software",
+      "released as open-source software",
+      "open source"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0034",
+    "text": "To make an image with OpenAI's DALL-E, what does the user provide?",
+    "options": [
+      "A rough pencil sketch to trace over",
+      "A voice memo describing the scene",
+      "A written description of the image",
+      "A folder of reference photos"
+    ],
+    "answer": "A written description of the image",
+    "category": "models",
+    "tags": [
+      "dall-e",
+      "openai",
+      "text-to-image"
+    ],
+    "difficulty": 1,
+    "explanation": "DALL-E is a text-to-image model: you type a description, called a prompt, and it generates a matching picture. Sketch and audio inputs describe other tools; DALL-E's defining input has always been natural language text.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DALL-E",
+      "label": "DALL-E on Wikipedia"
+    },
+    "answerAliases": [
+      "natural language descriptions",
+      "text-to-image models",
+      "prompts"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0035",
+    "text": "Claude, first released in March 2023, is what kind of product?",
+    "options": [
+      "A music streaming service",
+      "A smart home speaker",
+      "A photo editing app",
+      "An AI chatbot assistant"
+    ],
+    "answer": "An AI chatbot assistant",
+    "category": "models",
+    "tags": [
+      "claude",
+      "anthropic",
+      "chatbot"
+    ],
+    "difficulty": 1,
+    "explanation": "Claude is Anthropic's conversational AI, released as a chatbot in March 2023 and used for writing, analysis, and coding. A smart home speaker is hardware like Amazon's Echo, a different product category entirely.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Claude (AI)",
+      "label": "Claude (AI) on Wikipedia"
+    },
+    "answerAliases": [
+      "chatbot",
+      "AI-based chatbot",
+      "Claude"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0036",
+    "text": "What made Stable Diffusion's 2022 release unusual among image models at the time?",
+    "options": [
+      "It could generate video as well as images",
+      "It was built by OpenAI as a DALL-E sequel",
+      "Its code and weights were released publicly",
+      "It was the first model to generate images"
+    ],
+    "answer": "Its code and weights were released publicly",
+    "category": "models",
+    "tags": [
+      "stable-diffusion",
+      "open-weights",
+      "images"
+    ],
+    "difficulty": 2,
+    "explanation": "Stability AI released Stable Diffusion's code and model weights publicly in 2022, a departure from DALL-E and Midjourney, which were reachable only through cloud services. That openness let anyone run it on a home GPU and turned it into the base for countless derivative image tools.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Stable Diffusion",
+      "label": "Stable Diffusion on Wikipedia"
+    },
+    "answerAliases": [
+      "released publicly",
+      "code and model weights have been released publicly",
+      "model weights"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0037",
+    "text": "What style of interaction made ChatGPT famous when it launched?",
+    "options": [
+      "Gesture controls through a webcam",
+      "One-word answers with no memory of context",
+      "Back-and-forth chat that remembers follow-ups",
+      "Voice commands that control home devices"
+    ],
+    "answer": "Back-and-forth chat that remembers follow-ups",
+    "category": "models",
+    "tags": [
+      "chatgpt",
+      "openai",
+      "chatbot"
+    ],
+    "difficulty": 1,
+    "explanation": "ChatGPT keeps the thread of a conversation, so a user can say 'make it shorter' and be understood; that follow-up-friendly chat carried it to 100 million users in two months. Voice assistants like Alexa already handled single commands, but they were not open-ended conversation partners.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ChatGPT",
+      "label": "ChatGPT on Wikipedia"
+    },
+    "answerAliases": [
+      "generative AI chatbot",
+      "chatbot",
+      "ChatGPT"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0038",
+    "text": "Which Paris based AI company, founded in 2023, released the open-weight Mistral 7B and Mixtral 8x7B models?",
+    "options": [
+      "Hugging Face",
+      "Stability AI",
+      "Mistral AI",
+      "AI21 Labs"
+    ],
+    "answer": "Mistral AI",
+    "category": "models",
+    "tags": [
+      "mistral",
+      "open-weights",
+      "lineage"
+    ],
+    "difficulty": 1,
+    "explanation": "Mistral AI, founded in Paris in 2023, released the Mistral and Mixtral families under permissive open licences and became the main European name in the open model wave. Hugging Face is the tempting wrong answer because it hosts thousands of these models, but it is a distribution platform rather than the maker.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mistral AI",
+      "label": "Mistral AI on Wikipedia"
+    },
+    "answerAliases": [
+      "Mistral AI",
+      "Mistral AI SAS",
+      "Mistral",
+      "Mistral 7B",
+      "Mixtral",
+      "Mixtral 8x7B"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0039",
+    "text": "Which Chinese technology company developed the chatbot Ernie Bot and the ERNIE models behind it?",
+    "options": [
+      "Alibaba",
+      "Moonshot AI",
+      "iFlytek",
+      "Baidu"
+    ],
+    "answer": "Baidu",
+    "category": "models",
+    "tags": [
+      "baidu",
+      "ernie",
+      "lineage"
+    ],
+    "difficulty": 2,
+    "explanation": "Baidu built both the chatbot and the ERNIE model family underneath it, opening Ernie Bot to the public in August 2023 after Chinese regulators approved it. Alibaba is the tempting wrong answer because Qwen is the other well known Chinese model family, but Qwen and ERNIE come from different companies.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Ernie Bot",
+      "label": "Ernie Bot on Wikipedia"
+    },
+    "answerAliases": [
+      "Baidu",
+      "ERNIE",
+      "Ernie Bot",
+      "Wenxin Yiyan",
+      "Chinese technology company"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0040",
+    "text": "The Gemini family of large language models, announced in December 2023, comes from which company?",
+    "options": [
+      "xAI",
+      "Google",
+      "Mistral AI",
+      "Anthropic"
+    ],
+    "answer": "Google",
+    "category": "models",
+    "tags": [
+      "google",
+      "gemini",
+      "lineage"
+    ],
+    "difficulty": 1,
+    "explanation": "Gemini is Google's model family, built by Google DeepMind after the merger with Google Brain, and the same name was given to the assistant that replaced Bard. Anthropic is the closest wrong answer because it ships a competing family called Claude, but Claude is a separate lab's model.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini (language model)",
+      "label": "Gemini (language model) on Wikipedia"
+    },
+    "answerAliases": [
+      "Google",
+      "Google DeepMind",
+      "Google Brain",
+      "Gemini",
+      "December 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0041",
+    "text": "Which country is the AI lab behind the DeepSeek R1 reasoning model based in?",
+    "options": [
+      "South Korea",
+      "China",
+      "Vietnam",
+      "Japan"
+    ],
+    "answer": "China",
+    "category": "models",
+    "tags": [
+      "deepseek",
+      "china",
+      "lineage"
+    ],
+    "difficulty": 1,
+    "explanation": "DeepSeek is based in Hangzhou and funded by the High-Flyer hedge fund, which is unusual because its research money did not come from outside investors looking for a return. South Korea is the tempting wrong answer because it has its own model labs, but DeepSeek is Chinese.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DeepSeek",
+      "label": "DeepSeek on Wikipedia"
+    },
+    "answerAliases": [
+      "China",
+      "Chinese",
+      "Hangzhou",
+      "Zhejiang",
+      "DeepSeek"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0042",
+    "text": "Which model family did Meta release with downloadable weights in February 2023?",
+    "options": [
+      "Falcon",
+      "OLMo",
+      "Gemma",
+      "Llama"
+    ],
+    "answer": "Llama",
+    "category": "models",
+    "tags": [
+      "meta",
+      "llama",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "Llama landed in February 2023 with weights anyone could download, which is what turned open models from a research curiosity into the default choice for people building products. Gemma is the tempting wrong answer because Meta released that smaller family later, in 2024.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Llama (language model)",
+      "label": "Llama (language model) on Wikipedia"
+    },
+    "answerAliases": [
+      "Llama",
+      "Llama 1",
+      "Large Language Model Meta AI",
+      "Meta AI",
+      "February 2023"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0043",
+    "text": "Which Go world champion did DeepMind's AlphaGo beat in the high-profile 2016 match?",
+    "options": [
+      "Fan Hui",
+      "Lee Sedol",
+      "Wang Lei",
+      "Ke Jie"
+    ],
+    "answer": "Lee Sedol",
+    "category": "models",
+    "tags": [
+      "alphago",
+      "go",
+      "2016",
+      "culture"
+    ],
+    "difficulty": 1,
+    "explanation": "AlphaGo beat Lee Sedol 4-1 in March 2016, and the second game produced move 37, a move so unfamiliar that commentators called it a mistake before it proved decisive. Ke Jie is the player AlphaGo beat later in 2017, so the two are the two most common confusions in this story.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlphaGo",
+      "label": "AlphaGo on Wikipedia"
+    },
+    "answerAliases": [
+      "Lee Sedol",
+      "Sedol"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0044",
+    "text": "Which company built AlphaGo, the Go-playing system that beat Lee Sedol in 2016?",
+    "options": [
+      "OpenAI",
+      "DeepMind",
+      "Anthropic",
+      "IBM"
+    ],
+    "answer": "DeepMind",
+    "category": "models",
+    "tags": [
+      "alphago",
+      "deepmind",
+      "lineage"
+    ],
+    "difficulty": 1,
+    "explanation": "DeepMind built AlphaGo in London, and Google's 2014 purchase of the company is why the win usually gets handed to Google. IBM's Deep Blue was the chess machine that beat Garry Kasparov in 1997, which is the version people misremember.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlphaGo",
+      "label": "AlphaGo on Wikipedia"
+    },
+    "answerAliases": [
+      "DeepMind",
+      "Google DeepMind"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0045",
+    "text": "In which year did Stability AI release Stable Diffusion?",
+    "options": [
+      "2020",
+      "2022",
+      "2019",
+      "2023"
+    ],
+    "answer": "2022",
+    "category": "models",
+    "tags": [
+      "stable-diffusion",
+      "images",
+      "open-source",
+      "2022"
+    ],
+    "difficulty": 1,
+    "explanation": "Stability AI released Stable Diffusion in August 2022 and published the weights, which meant anyone could generate images on their own machine for free. That openness is why it turned up inside so many apps and plugins within months.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Stable Diffusion",
+      "label": "Stable Diffusion on Wikipedia"
+    },
+    "answerAliases": [
+      "2022",
+      "in 2022"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0046",
+    "text": "The 2020 GPT-3 paper became famous for showing a model could do a task after seeing what?",
+    "options": [
+      "A full fine-tuning run on the task data",
+      "A reward signal from a human rater",
+      "A short written description of the task",
+      "A few worked examples of the task in the prompt"
+    ],
+    "answer": "A few worked examples of the task in the prompt",
+    "category": "models",
+    "tags": [
+      "gpt-3",
+      "prompting",
+      "few-shot"
+    ],
+    "difficulty": 2,
+    "explanation": "Showing a handful of worked examples in the prompt is few-shot prompting, and GPT-3 made it look like a new capability rather than a trick. A written description is zero-shot prompting, which the same paper also demonstrated, and the fine-tuning option is the old way of doing this that GPT-3 made look unnecessary.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-3",
+      "label": "GPT-3 on Wikipedia"
+    },
+    "answerAliases": [
+      "A few worked examples of the task in the prompt",
+      "few-shot",
+      "few shot prompting",
+      "few-shot prompting"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0047",
+    "text": "What did Google put BERT to work on inside its own products?",
+    "options": [
+      "Generating images from text prompts",
+      "Ranking search results",
+      "Synthesizing spoken audio",
+      "Driving a self-driving car"
+    ],
+    "answer": "Ranking search results",
+    "category": "models",
+    "tags": [
+      "bert",
+      "google",
+      "language-understanding"
+    ],
+    "difficulty": 1,
+    "explanation": "Google released BERT in 2018 as a model for reading and understanding text, and it quickly improved how results were ranked in Google Search. Image and speech work belong to entirely different models: BERT reads, it does not generate.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "BERT (language model)",
+      "label": "BERT (language model) on Wikipedia"
+    },
+    "answerAliases": [
+      "BERT",
+      "Google Search",
+      "search ranking",
+      "language understanding",
+      "question answering"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0048",
+    "text": "The live voice demo of GPT-4o in May 2024 was compared to which film's talking operating system?",
+    "options": [
+      "Her, the 2013 Spike Jonze film",
+      "Wall-E, the 2008 Pixar film",
+      "Blade Runner, the 1982 Ridley Scott film",
+      "A.I. Artificial Intelligence, the 2001 Spielberg film"
+    ],
+    "answer": "Her, the 2013 Spike Jonze film",
+    "category": "models",
+    "tags": [
+      "gpt-4o",
+      "voice",
+      "culture",
+      "film"
+    ],
+    "difficulty": 2,
+    "explanation": "Sam Altman's May 2024 demo opened with the line 'Hi, I'm GPT-4o', and the comparison people drew was the operating system in the 2013 Spike Jonze film Her. No robot rolled across the stage, which is part of why the clip landed the way it did.",
+    "source": {
+      "kind": "none"
+    },
+    "answerAliases": [
+      "Her",
+      "Her (2013 film)",
+      "Spike Jonze"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0049",
+    "text": "Which company released ChatGPT, the chatbot that made AI chat go mainstream in 2022?",
+    "options": [
+      "Anthropic",
+      "OpenAI",
+      "Meta",
+      "xAI"
+    ],
+    "answer": "OpenAI",
+    "category": "models",
+    "tags": [
+      "chatgpt",
+      "openai",
+      "lineage",
+      "2022"
+    ],
+    "difficulty": 1,
+    "explanation": "OpenAI released ChatGPT in November 2022 as a free public demo of GPT-3.5, and millions of people were talking to a chatbot within days. The stock phrase 'based on a language model' in its replies became the opening line of a very large number of conversations.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ChatGPT",
+      "label": "ChatGPT on Wikipedia"
+    },
+    "answerAliases": [
+      "OpenAI",
+      "ChatGPT"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0050",
+    "text": "ELIZA, the 1960s program widely credited as the first chatbot, was written at which university?",
+    "options": [
+      "Stanford University",
+      "Carnegie Mellon University",
+      "University of California, Berkeley",
+      "Massachusetts Institute of Technology"
+    ],
+    "answer": "Massachusetts Institute of Technology",
+    "category": "models",
+    "tags": [
+      "chatbot",
+      "origin",
+      "nlp"
+    ],
+    "difficulty": 1,
+    "explanation": "Joseph Weizenbaum built ELIZA at MIT between 1964 and 1967, and it worked by pattern-matching user text and echoing it back as a question, which was enough to convince people it understood them. Weizenbaum was disturbed by that success and wrote a whole paper about how easy it is to fool people with a machine this simple.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ELIZA",
+      "label": "ELIZA on Wikipedia"
+    },
+    "answerAliases": [
+      "Massachusetts Institute of Technology",
+      "MIT"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0051",
+    "text": "How long did Microsoft's Tay chatbot stay online in 2016?",
+    "options": [
+      "16 hours",
+      "Six months",
+      "16 days",
+      "One year"
+    ],
+    "answer": "16 hours",
+    "category": "models",
+    "tags": [
+      "chatbot",
+      "failure",
+      "microsoft"
+    ],
+    "difficulty": 2,
+    "explanation": "Tay launched on Twitter on March 23, 2016 and Microsoft pulled it 16 hours later after it had been fed racist messages by internet trolls and repeated them back. The name stood for Tay, an AI think-tank product, and the episode is the standard cautionary tale about what happens when a model trains on whatever people feed it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Tay (bot)",
+      "label": "Tay (bot) on Wikipedia"
+    },
+    "answerAliases": [
+      "16 hours",
+      "sixteen hours"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0052",
+    "text": "Which company's question-answering system beat the reigning champions on the US quiz show Jeopardy! in 2011?",
+    "options": [
+      "Microsoft",
+      "Facebook",
+      "IBM",
+      "Google"
+    ],
+    "answer": "IBM",
+    "category": "models",
+    "tags": [
+      "watson",
+      "qa",
+      "ibm"
+    ],
+    "difficulty": 1,
+    "explanation": "IBM Watson beat Ken Jennings and Brad Rutter on Jeopardy! in February 2011, and it was built as part of IBM's DeepQA project rather than as a consumer product. The name comes from Thomas J. Watson, IBM's founder, not from the company being good at anything in particular.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "IBM Watson",
+      "label": "IBM Watson on Wikipedia"
+    },
+    "answerAliases": [
+      "IBM",
+      "Watson",
+      "IBM Watson"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0053",
+    "text": "The chess computer Deep Blue became the first to beat a reigning world champion under standard time controls in which year?",
+    "options": [
+      "1997",
+      "2003",
+      "1991",
+      "2007"
+    ],
+    "answer": "1997",
+    "category": "models",
+    "tags": [
+      "deep-blue",
+      "chess",
+      "ibm"
+    ],
+    "difficulty": 2,
+    "explanation": "Deep Blue beat Garry Kasparov in May 1997, and the rematch was billed as a rematch of the world champion defending his title. The machine started life at Carnegie Mellon as ChipTest, was renamed Deep Thought, and only became Deep Blue after moving to IBM, which is why the lineage is genuinely confusing.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Deep Blue (chess computer)",
+      "label": "Deep Blue (chess computer) on Wikipedia"
+    },
+    "answerAliases": [
+      "1997"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0054",
+    "text": "Character.ai, the companion chatbot service launched in 2023, was designed by which pair of researchers?",
+    "options": [
+      "Jeffrey Dean and Greg Brockman",
+      "Yann LeCun and Geoffrey Hinton",
+      "Noam Shazeer and Daniel de Freitas",
+      "Ilya Sutskever and John Schulman"
+    ],
+    "answer": "Noam Shazeer and Daniel de Freitas",
+    "category": "models",
+    "tags": [
+      "character-ai",
+      "chatbot",
+      "lamda"
+    ],
+    "difficulty": 2,
+    "explanation": "Noam Shazeer and Daniel de Freitas had already co-created LaMDA at Google before leaving to build Character.ai, so the two companies are directly linked in the chatbot timeline. Shazeer co-authored the transformer paper's attention work at Google Brain before that.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Character.ai",
+      "label": "Character.ai on Wikipedia"
+    },
+    "answerAliases": [
+      "Noam Shazeer and Daniel de Freitas",
+      "Noam Shazeer",
+      "Daniel de Freitas"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0055",
+    "text": "What distinguishes Perplexity, the search startup founded in 2022, from a conventional search engine?",
+    "options": [
+      "It ranks pages by how many other pages link to them",
+      "It searches a private index that no one outside the company can use",
+      "It answers with a written summary that cites its sources",
+      "It returns only images instead of text results"
+    ],
+    "answer": "It answers with a written summary that cites its sources",
+    "category": "models",
+    "tags": [
+      "perplexity",
+      "search",
+      "product"
+    ],
+    "difficulty": 2,
+    "explanation": "Perplexity processes a query and synthesizes a response from live web content while citing the pages it used, which is why it is called an answer engine rather than a link list. It was founded by former Google researchers and depends on other companies' models underneath, which is the part people find surprising.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Perplexity AI",
+      "label": "Perplexity AI on Wikipedia"
+    },
+    "answerAliases": [
+      "answers with a written summary that cites its sources",
+      "cites sources",
+      "citing sources",
+      "synthesizes responses"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0056",
+    "text": "What is Adobe Firefly, released in 2023, a family of models for?",
+    "options": [
+      "Network routing between company datacentres",
+      "Creative production work in design and media",
+      "Disease diagnosis from medical scan images",
+      "Fraud detection on bank transaction records"
+    ],
+    "answer": "Creative production work in design and media",
+    "category": "models",
+    "tags": [
+      "adobe",
+      "firefly",
+      "image"
+    ],
+    "difficulty": 2,
+    "explanation": "Adobe Firefly is a web app and a family of generative models for creative production, covering text-to-image, text-to-video, speech, soundtrack and sound effects. It was trained on Adobe's own licensed stock library and public domain material so customers would not inherit the copyright exposure that hit earlier image generators.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Adobe Firefly",
+      "label": "Adobe Firefly on Wikipedia"
+    },
+    "answerAliases": [
+      "Creative production work in design and media",
+      "creative production",
+      "family of generative artificial intelligence models for creative production"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0057",
+    "text": "Replika, released in November 2017, builds each personal chatbot how?",
+    "options": [
+      "By recording ten minutes of the user's speech",
+      "By uploading a photograph of the user's face",
+      "By importing the user's email history",
+      "By having the user answer a series of questions"
+    ],
+    "answer": "By having the user answer a series of questions",
+    "category": "models",
+    "tags": [
+      "replika",
+      "companion",
+      "chatbot"
+    ],
+    "difficulty": 2,
+    "explanation": "Replika is built by having the user answer a questionnaire that shapes the bot's own neural network, so each instance is customised rather than drawn from one shared model. Some users sued the company in 2023 after updates changed how the bot responded to them.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Replika",
+      "label": "Replika on Wikipedia"
+    },
+    "answerAliases": [
+      "By having the user answer a series of questions",
+      "trained by having the user answer a series of questions",
+      "create a specific neural network"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0058",
+    "text": "In the Markov chain model, what does the probability of each next event depend on?",
+    "options": [
+      "Only the state of the immediately preceding event",
+      "The average of all previous probabilities",
+      "The single most likely event seen so far",
+      "Every event in the entire history"
+    ],
+    "answer": "Only the state of the immediately preceding event",
+    "category": "models",
+    "tags": [
+      "markov",
+      "probability",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "The Markov assumption is that the future depends only on the present state, which is exactly what makes the math tractable. It is also the limiting idea behind early text generators that predicted the next word from the last few words, and behind much of the recommendation-engine work that predates modern models.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Markov chain",
+      "label": "Markov chain on Wikipedia"
+    },
+    "answerAliases": [
+      "Only the state of the immediately preceding event",
+      "the state attained in the previous event",
+      "only the state of the previous event"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0059",
+    "text": "DeepMind's MuZero learned chess, Go and shogi in 2019. How was it set up differently from AlphaGo and AlphaZero?",
+    "options": [
+      "It was trained only on Atari games",
+      "It was built by a different research group",
+      "It was never told the rules of the games",
+      "It was given the rules but no board"
+    ],
+    "answer": "It was never told the rules of the games",
+    "category": "models",
+    "tags": [
+      "muzero",
+      "alphazero",
+      "reinforcement-learning"
+    ],
+    "difficulty": 2,
+    "explanation": "MuZero receives only screen pixels and a win signal, so it has to learn the rules as well as the strategy, and it matched AlphaZero on Go, chess and shogi anyway. AlphaGo and AlphaZero were both handed explicit rule sets, which is the distinction that gets lost when the three are listed as one family of DeepMind systems.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "MuZero",
+      "label": "MuZero on Wikipedia"
+    },
+    "answerAliases": [
+      "It was never told the rules of the games",
+      "without knowing their rules",
+      "the rules"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0060",
+    "text": "An autoencoder compresses its input into a smaller internal code. What is that code trained to do?",
+    "options": [
+      "Rebuild the original input from the code",
+      "Pick which expert handles a token",
+      "Rank search results by relevance",
+      "Predict the next word in a sentence"
+    ],
+    "answer": "Rebuild the original input from the code",
+    "category": "models",
+    "tags": [
+      "autoencoder",
+      "embeddings",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "An autoencoder learns an encoding function and a decoding function, and the only way it can succeed at rebuilding its input is if the compressed code kept what mattered. That pressure to throw away noise is what makes the code useful for dimensionality reduction and embeddings, and image compression is the same idea with the decoder turned back into a real compressor.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Autoencoder",
+      "label": "Autoencoder on Wikipedia"
+    },
+    "answerAliases": [
+      "Rebuild the original input from the code",
+      "a decoding function that recreates the input data",
+      "efficient codings"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mod-0061",
+    "text": "The Turing test asks a human evaluator to judge which of two things in a text conversation?",
+    "options": [
+      "Which participant gave more accurate answers",
+      "Which participant spoke first",
+      "Which participant is the human and which is the machine",
+      "Which participant used more complex vocabulary"
+    ],
+    "answer": "Which participant is the human and which is the machine",
+    "category": "models",
+    "tags": [
+      "turing",
+      "consciousness",
+      "foundations"
+    ],
+    "difficulty": 1,
+    "explanation": "Alan Turing proposed the test in his 1950 paper as a way to replace the unanswerable question of whether machines can think with a behavioural one. The machine passes if the evaluator cannot reliably tell it apart from the human, which is why the test measures the illusion of understanding rather than understanding itself.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Turing test",
+      "label": "Turing test on Wikipedia"
+    },
+    "answerAliases": [
+      "Which participant is the human and which is the machine",
+      "identify the machine",
+      "cannot reliably tell them apart"
+    ],
+    "status": "published",
+    "addedAt": "2026-09-29"
   }
 ]
