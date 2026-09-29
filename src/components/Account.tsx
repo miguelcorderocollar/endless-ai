@@ -1,21 +1,26 @@
 "use client";
 
 import { useAuthActions } from "@convex-dev/auth/react";
-import { useConvexAuth, useMutation, useQuery } from "convex/react";
+import { useConvex, useConvexAuth, useMutation, useQuery } from "convex/react";
 import { useEffect, useRef, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
-import { readProgress } from "@/lib/progress";
+import { readProgress, updateProgress } from "@/lib/progress";
 
 /**
  * Lazy guests (#34): visitors play fully local with no server session — no
- * user row, no actions, no subscriptions until they choose to sign in. At
- * signup, `claimProgress` seeds the rollup once from device-local totals so
- * nothing played is lost. Never overwrites server history.
+ * user row, no actions, no subscriptions until they choose to sign in.
+ *
+ * On sign-in, `claimProgress` seeds the rollup once from device-local totals
+ * ONLY when the account is brand new (no stats, no events). Logging into an
+ * existing account leaves that account untouched (`seeded: false`): local
+ * totals are ignored and the device cache is reconciled to server truth so
+ * the existing Elo/counts/done list stay visible instead of the guest's.
  */
 export function Account() {
   const { isLoading, isAuthenticated } = useConvexAuth();
   const { signOut } = useAuthActions();
+  const convex = useConvex();
   const me = useQuery(api.users.me, isAuthenticated ? {} : "skip");
   const ensureProfile = useMutation(api.users.ensureProfile);
   const claim = useMutation(api.users.claimProgress);
@@ -27,21 +32,44 @@ export function Account() {
       profileEnsured.current = true;
       const local = readProgress();
       void ensureProfile().then(
-        () =>
-          void claim({
-            rating: local.rating,
-            answered: local.answered,
-            correct: local.correct,
-          }).catch(() => {
-            /* claim is best-effort: local progress stands regardless */
-          }),
+        async () => {
+          try {
+            const result = await claim({
+              rating: local.rating,
+              answered: local.answered,
+              correct: local.correct,
+            });
+            if (!result.seeded) {
+              // Existing account: discard guest totals, show server truth.
+              const [stats, completed] = await Promise.all([
+                convex.query(api.answers.myStats, {}),
+                convex.query(api.answers.myCompleted, {}),
+              ]);
+              if (stats) {
+                updateProgress({
+                  ...readProgress(),
+                  rating: stats.rating,
+                  answered: stats.answered,
+                  correct: stats.correct,
+                  streak: stats.streak,
+                  completed,
+                });
+              } else {
+                updateProgress({ ...readProgress(), completed });
+              }
+            }
+            // New account (seeded): server mirrors local, keep local as is.
+          } catch {
+            /* claim/reconcile is best-effort: local progress stands regardless */
+          }
+        },
         () => {
           profileEnsured.current = false;
         },
       );
     }
     if (!isAuthenticated) profileEnsured.current = false;
-  }, [isAuthenticated, ensureProfile, claim]);
+  }, [isAuthenticated, ensureProfile, claim, convex]);
 
   if (isLoading || (isAuthenticated && me === undefined)) {
     return <span className="label text-muted/50">…</span>;

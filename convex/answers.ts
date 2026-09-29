@@ -130,6 +130,43 @@ export const myStats = query({
   },
 });
 
+/**
+ * Distinct public questionIds the current user answered correctly.
+ * Guests get []. Used on login to replace device-local completed ids when
+ * the account already existed, so the existing account stays visible instead
+ * of the guest's local list. Paginated like the stats fold (20k cap).
+ */
+export const myCompleted = query({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return [];
+    const seen = new Set<string>();
+    const out: string[] = [];
+    let cursor: string | null = null;
+    for (let pages = 0; pages < 40; pages++) {
+      const page = await ctx.db
+        .query("answerEvents")
+        .withIndex("by_user", (q) => q.eq("userId", userId))
+        .paginate({ cursor, numItems: 500 });
+      const correctEvents = page.page.filter((e) => e.correct);
+      const questions = await Promise.all(
+        correctEvents.map((e) => ctx.db.get(e.questionId)),
+      );
+      for (const q of questions) {
+        const publicId = q?.questionId;
+        if (publicId && !seen.has(publicId)) {
+          seen.add(publicId);
+          out.push(publicId);
+        }
+      }
+      if (page.isDone) break;
+      cursor = page.continueCursor;
+    }
+    return out;
+  },
+});
+
 type CategoryCount = { category: string; answered: number; correct: number };
 
 /**

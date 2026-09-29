@@ -1,6 +1,6 @@
 "use client";
 
-import { useConvex } from "convex/react";
+import { useConvex, useConvexAuth, useQuery } from "convex/react";
 import { useCallback, useEffect, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
@@ -42,20 +42,30 @@ function toQuestion(q: DrawRow): Question {
 
 /**
  * Plays from the published Convex questions table in pages (#25), not the
- * whole bank. First page excludes the local done list; top-ups exclude
- * everything seen so far. Page loads transfer O(1) questions regardless of
- * bank size.
+ * whole bank. First page excludes the done list (local + server when signed
+ * in, so an existing account never replays its history on a fresh device);
+ * top-ups exclude everything seen so far. Page loads transfer O(1) questions
+ * regardless of bank size.
  */
 export function QuizFromConvex() {
   const client = useConvex();
+  const { isAuthenticated } = useConvexAuth();
+  const serverCompleted = useQuery(
+    api.answers.myCompleted,
+    isAuthenticated ? {} : "skip",
+  );
   const [bank, setBank] = useState<Question[] | null>(null);
   const [initial, setInitial] = useState<Question | null>(null);
 
   useEffect(() => {
+    if (isAuthenticated && serverCompleted === undefined) return;
     let cancelled = false;
+    const excludeIds = [
+      ...new Set([...readProgress().completed, ...(serverCompleted ?? [])]),
+    ];
     void client
       .query(api.questions.draw, {
-        excludeIds: [...readProgress().completed],
+        excludeIds,
         count: PAGE,
       })
       .then((rows) => {
@@ -72,12 +82,15 @@ export function QuizFromConvex() {
     return () => {
       cancelled = true;
     };
-  }, [client]);
+  }, [client, isAuthenticated, serverCompleted]);
 
   const topUp = useCallback(
     async (seen: Set<string>): Promise<Question[]> => {
+      const excludeIds = [
+        ...new Set([...(serverCompleted ?? []), ...seen]),
+      ].slice(-1000);
       const rows = await client.query(api.questions.draw, {
-        excludeIds: [...seen].slice(-1000),
+        excludeIds,
         count: PAGE,
       });
       const fresh = rows.map(toQuestion);
@@ -88,7 +101,7 @@ export function QuizFromConvex() {
       });
       return fresh;
     },
-    [client],
+    [client, serverCompleted],
   );
 
   if (bank === null || initial === null) return <LoadingSkeleton />;

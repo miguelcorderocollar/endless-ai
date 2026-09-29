@@ -2,7 +2,10 @@ import { ConvexError, v } from "convex/values";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
 import { mutation, query } from "./_generated/server";
+import type { MutationCtx } from "./_generated/server";
+import type { Id } from "./_generated/dataModel";
 import { isAdminEmail, requireAdmin, requireUser } from "./access";
+import { STARTING_ELO } from "../src/lib/quiz/elo";
 
 const HANDLE_ALPHABET = "abcdefghjkmnpqrstuvwxyz23456789";
 
@@ -89,8 +92,15 @@ export const setDisplayName = mutation({
 
 /**
  * Seeds the rollup from device-local progress at signup (#34, lazy guests).
- * Only when the user has neither stats nor events — never overwrites
- * server-derived history, so it cannot forge standing. Idempotent.
+ * Only when the user has neither stats nor events — i.e. the account is brand
+ * new. An existing account (stats or events present) keeps its server history:
+ * local totals are ignored and nothing is overwritten, so logging into an
+ * existing account from a device with guest progress leaves that account
+ * untouched. Idempotent.
+ *
+ * Edge case: stats doc missing but events present (pre-rollup accounts). The
+ * rollup is rebuilt by folding the account's own events — still never from
+ * local — so the existing history stays visible.
  */
 export const claimProgress = mutation({
   args: {
@@ -107,11 +117,17 @@ export const claimProgress = mutation({
       .take(1);
     if (existingStats.length > 0) return { seeded: false };
 
-    const existingEvents = await ctx.db
-      .query("answerEvents")
-      .withIndex("by_user", (q) => q.eq("userId", userId))
-      .take(1);
-    if (existingEvents.length > 0) return { seeded: false };
+    const hasEvents =
+      (
+        await ctx.db
+          .query("answerEvents")
+          .withIndex("by_user", (q) => q.eq("userId", userId))
+          .take(1)
+      ).length > 0;
+    if (hasEvents) {
+      await rebuildStatsFromOwnEvents(ctx, userId);
+      return { seeded: false };
+    }
 
     const answered = Math.max(0, Math.floor(args.answered));
     const correct = Math.min(Math.max(0, Math.floor(args.correct)), answered);
@@ -131,6 +147,63 @@ export const claimProgress = mutation({
     return { seeded: true };
   },
 });
+
+/**
+ * Rebuilds a missing rollup from the account's own events only. Used when an
+ * existing account predates userStats: the existing history stays (rating =
+ * latest event, counts folded), device-local totals are ignored.
+ */
+async function rebuildStatsFromOwnEvents(ctx: MutationCtx, userId: Id<"users">) {
+  let answered = 0;
+  let correct = 0;
+  let bestStreak = 0;
+  let trailingStreak = 0;
+  let rating = STARTING_ELO;
+  const byCategory: { category: string; answered: number; correct: number }[] = [];
+  let cursor: string | null = null;
+
+  for (let pages = 0; pages < 40; pages++) {
+    const page = await ctx.db
+      .query("answerEvents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .paginate({ cursor, numItems: 500 });
+    for (const e of page.page) {
+      answered += 1;
+      rating = e.ratingAfter;
+      if (e.correct) {
+        correct += 1;
+        trailingStreak += 1;
+        bestStreak = Math.max(bestStreak, trailingStreak);
+      } else {
+        trailingStreak = 0;
+      }
+      const entry = byCategory.find((c) => c.category === e.category);
+      if (entry) {
+        entry.answered += 1;
+        if (e.correct) entry.correct += 1;
+      } else {
+        byCategory.push({
+          category: e.category,
+          answered: 1,
+          correct: e.correct ? 1 : 0,
+        });
+      }
+    }
+    if (page.isDone) break;
+    cursor = page.continueCursor;
+  }
+
+  await ctx.db.insert("userStats", {
+    userId,
+    rating,
+    answered,
+    correct,
+    streak: trailingStreak,
+    bestStreak,
+    byCategory,
+    updatedAt: Date.now(),
+  });
+}
 
 /**
  * Proves the admin gate from #2: population counts for future admin tooling
