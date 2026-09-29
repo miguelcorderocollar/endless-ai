@@ -39,7 +39,7 @@ export function Shell({
     getProgressServerSnapshot,
   );
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
+    <div className="frame-x frame-t frame-b mx-auto flex min-h-dvh w-full max-w-2xl flex-col">
       <header className="flex items-center justify-between border-b border-ink-line py-5">
         <span className="font-display text-2xl tracking-tight">
           <Link href="/" aria-label="back to the game">

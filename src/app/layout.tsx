@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, Instrument_Serif } from "next/font/google
 
 import { AmbientBackground } from "@/components/AmbientBackground";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+import { ServiceWorker } from "@/components/ServiceWorker";
 import "./globals.css";
 
 const plexSans = IBM_Plex_Sans({
@@ -38,10 +39,22 @@ export const metadata: Metadata = {
     icon: [{ url: isDev ? "/icon-dev.svg" : "/icon.svg", type: "image/svg+xml" }],
     apple: "/icons/apple-touch-icon.png",
   },
+  // iOS has no install prompt and no install API. These three tags are the
+  // entire install path there, and they only take effect once the app has been
+  // added to the home screen, so browser mode pays nothing for them.
+  appleWebApp: {
+    capable: true,
+    title: "Endless AI",
+    // A dark room with one bright accent: black bars, light text.
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#0a0b0d",
+  // Lets the background bleed under the notch and the home indicator once
+  // installed. `frame-t/x/b` in globals.css pads the content back in.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -52,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="relative z-2">
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </div>
+        <ServiceWorker />
       </body>
     </html>
   );

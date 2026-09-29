@@ -9,8 +9,11 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run validate:offline` skips live Wikipedia and URL checks.
 - `npm run typecheck` runs TypeScript.
 - `npm run lint` runs ESLint.
+- `npm run test` runs the unit tests (vitest).
+- `npm run test:e2e` runs the browser tests (Playwright). It builds the app and starts it on port 3210, so it needs no dev server running.
+- `npm run test:all` runs both suites.
 - `npm run build` builds the Next.js production app.
-- `npm run verify` runs validate, typecheck, lint, and build.
+- `npm run verify` runs validate, typecheck, lint, unit tests, and build.
 - `npm run rebalance` reports answer-slot balance; add `--write` only after reviewing the diff.
 - `npm run probe -- "Title" ...` inspects Wikipedia lead sections before authoring.
 - `npm run review` builds `review/review.html`, a self-contained page for human review of draft questions (search, filter, per-ID verdicts).
@@ -39,6 +42,26 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - Keep the quiz loop simple: no timer, immediate feedback, Learn when a source exists.
 - Elo updates belong in shared quiz code so the UI and backend can reuse them.
 - Prototype progress is local only. Do not present it as an account, leaderboard, or shared result.
+
+## The installed app (PWA)
+
+The app installs to the home screen from the browser and works offline. There is
+no native wrapper and no app-store build. Two rules keep it honest:
+
+- **`public/sw.js` caches the shell and nothing else.** Documents are
+  network-first, `/_next/static` is cache-first, and Convex, auth and RSC
+  payloads are never touched. A cached question set is a bug, not a feature.
+- **Bump `VERSION` in `public/sw.js` when the shell changes shape.** It is
+  served from `public/`, so Next never fingerprints it and a deploy will not
+  retire the old caches on its own. Anything added to `ROUTES` (which the
+  manifest shortcuts point at) has to be reachable offline.
+
+The install banner waits for ten answered questions and remembers a refusal.
+The profile always keeps a way in. `src/lib/pwa/install.ts` holds the platform
+branches and is unit-tested; `e2e/pwa.spec.ts` covers the wiring. Both e2e and
+the offline quiz run against a seeded local draw cache with Convex cut off, so
+they exercise the degraded path on every run instead of only when the network
+happens to be gone.
 
 <!-- convex-ai-start -->
 
