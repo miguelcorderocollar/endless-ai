@@ -20,6 +20,12 @@ import { Popup } from "@/components/Popup";
 import { Shell } from "@/components/QuizFromConvex";
 import { SignInForm } from "@/components/Account";
 import { Distribution, EloChart } from "@/components/Stats";
+import {
+  ChartSkeleton,
+  DistributionSkeleton,
+  DoneListSkeleton,
+  ProfileHeaderSkeleton,
+} from "@/components/Skeletons";
 
 function PencilIcon() {
   return (
@@ -106,7 +112,7 @@ export default function ProfilePage() {
         <p className="label text-muted">profile</p>
 
         {isLoading || (isAuthenticated && me === undefined) ? (
-          <h1 className="mt-3 font-display text-3xl">Loading…</h1>
+          <ProfileHeaderSkeleton />
         ) : guest ? (
           <>
             <h1 className="mt-3 font-display text-3xl">Playing as guest</h1>
@@ -200,12 +206,16 @@ export default function ProfilePage() {
 
           {tab === "you" ? (
             history === undefined ? (
-              <p className="mt-3 text-sm text-muted">Loading your line…</p>
+              isAuthenticated ? (
+                <ChartSkeleton />
+              ) : (
+                <EloChart points={[]} median={population?.median ?? null} />
+              )
             ) : (
               <EloChart points={history} median={population?.median ?? null} />
             )
           ) : population === undefined ? (
-            <p className="mt-3 text-sm text-muted">Loading the field…</p>
+            <DistributionSkeleton />
           ) : (
             <Distribution
               buckets={population.buckets}
@@ -220,7 +230,7 @@ export default function ProfilePage() {
         <div className="mt-8 border-t border-ink-line pt-6">
           <p className="label text-muted">done</p>
           {bank === undefined ? (
-            <p className="mt-3 text-sm text-muted">Loading done list…</p>
+            <DoneListSkeleton />
           ) : (
             <div className="mt-2">
               <DoneList

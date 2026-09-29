@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
 import { readProgress, updateProgress } from "@/lib/progress";
+import { AccountSlotSkeleton } from "./Skeletons";
 
 /**
  * Lazy guests (#34): visitors play fully local with no server session — no
@@ -72,7 +73,7 @@ export function Account() {
   }, [isAuthenticated, ensureProfile, claim, convex]);
 
   if (isLoading || (isAuthenticated && me === undefined)) {
-    return <span className="label text-muted/50">…</span>;
+    return <AccountSlotSkeleton />;
   }
 
   if (!isAuthenticated || !me || me.isAnonymous) {

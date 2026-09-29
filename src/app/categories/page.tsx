@@ -7,6 +7,7 @@ import { api } from "../../../convex/_generated/api";
 import { CATEGORIES } from "@/lib/questions/schema";
 import { readFilter, writeFilter } from "@/lib/quiz/filter";
 import { Shell } from "@/components/QuizFromConvex";
+import { CategoriesSkeleton } from "@/components/Skeletons";
 
 /**
  * Fun-mode filter (#12): pick 1+ categories, the stream stays inside them.
@@ -60,7 +61,7 @@ export default function CategoriesPage() {
         </p>
 
         {counts === undefined ? (
-          <p className="mt-8 text-sm text-muted">Loading categories…</p>
+          <CategoriesSkeleton />
         ) : (
           <ul className="stagger mt-8 flex flex-col gap-2">
             {CATEGORIES.map((cat) => {
