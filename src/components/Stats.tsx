@@ -8,7 +8,9 @@
 
 const W = 560;
 const H = 220;
-const PAD = 8;
+const PAD_X = 8;
+const PAD_TOP = 28;
+const PAD_BOTTOM = 22;
 
 export function EloChart({
   points,
@@ -28,8 +30,9 @@ export function EloChart({
   const lo = Math.min(...values, median ?? Infinity);
   const hi = Math.max(...values, median ?? -Infinity);
   const span = Math.max(hi - lo, 40);
-  const x = (i: number) => PAD + (i / (points.length - 1)) * (W - PAD * 2);
-  const y = (r: number) => H - PAD - ((r - lo) / span) * (H - PAD * 2);
+  const plotH = H - PAD_TOP - PAD_BOTTOM;
+  const x = (i: number) => PAD_X + (i / (points.length - 1)) * (W - PAD_X * 2);
+  const y = (r: number) => PAD_TOP + (1 - (r - lo) / span) * plotH;
   const line = points.map((p, i) => `${x(i).toFixed(1)},${y(p.r).toFixed(1)}`).join(" ");
 
   return (
@@ -39,8 +42,8 @@ export function EloChart({
           const v = Math.round(lo + span * f);
           return (
             <g key={f}>
-              <line x1={PAD} x2={W - PAD} y1={y(v)} y2={y(v)} stroke="#23262b" strokeWidth="1" />
-              <text x={PAD + 2} y={y(v) - 4} fill="#6f7580" fontSize="11" fontFamily="monospace">
+              <line x1={PAD_X} x2={W - PAD_X} y1={y(v)} y2={y(v)} stroke="#23262b" strokeWidth="1" />
+              <text x={PAD_X + 2} y={y(v) - 4} fill="#6f7580" fontSize="11" fontFamily="monospace">
                 {v}
               </text>
             </g>
@@ -49,14 +52,14 @@ export function EloChart({
         {median !== null ? (
           <g>
             <line
-              x1={PAD}
-              x2={W - PAD}
+              x1={PAD_X}
+              x2={W - PAD_X}
               y1={y(median)}
               y2={y(median)}
               stroke="#d6ff3f"
               strokeWidth="2"
             />
-            <text x={W - PAD} y={y(median) - 5} fill="#d6ff3f" fontSize="11" fontFamily="monospace" textAnchor="end">
+            <text x={PAD_X + 2} y={y(median) - 6} fill="#d6ff3f" fontSize="11" fontFamily="monospace">
               median {median}
             </text>
           </g>

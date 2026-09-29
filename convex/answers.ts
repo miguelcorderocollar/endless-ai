@@ -131,6 +131,48 @@ export const myStats = query({
 });
 
 /**
+ * Builds the rollup on demand for users whose events predate userStats (so
+ * /profile never falls back to device-only numbers while signed in). No-op
+ * when stats exist or the user has never answered. Bounded fold, idempotent.
+ */
+export const ensureStats = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await requireUser(ctx);
+    const existing = await ctx.db
+      .query("userStats")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .take(1);
+    if (existing.length > 0) return { created: false };
+
+    const anyEvent = await ctx.db
+      .query("answerEvents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .take(1);
+    if (anyEvent.length === 0) return { created: false };
+
+    const folded = await foldUserEvents(ctx, userId);
+    const last = await ctx.db
+      .query("answerEvents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .order("desc")
+      .take(1);
+
+    await ctx.db.insert("userStats", {
+      userId,
+      rating: last[0]?.ratingAfter ?? STARTING_ELO,
+      answered: folded.answered,
+      correct: folded.correct,
+      streak: folded.trailingStreak,
+      bestStreak: folded.bestStreak,
+      byCategory: folded.byCategory,
+      updatedAt: Date.now(),
+    });
+    return { created: true };
+  },
+});
+
+/**
  * Distinct public questionIds the current user answered correctly.
  * Guests get []. Used on login to replace device-local completed ids when
  * the account already existed, so the existing account stays visible instead

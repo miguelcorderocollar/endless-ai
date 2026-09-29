@@ -19,6 +19,25 @@ import { Shell } from "@/components/QuizFromConvex";
 import { SignInForm } from "@/components/Account";
 import { Distribution, EloChart } from "@/components/Stats";
 
+function PencilIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </svg>
+  );
+}
+
+function SignOutIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <polyline points="16 17 21 12 16 7" />
+      <line x1="21" y1="12" x2="9" y2="12" />
+    </svg>
+  );
+}
+
 export default function ProfilePage() {
   const router = useRouter();
   const { isLoading, isAuthenticated } = useConvexAuth();
@@ -26,6 +45,7 @@ export default function ProfilePage() {
   const me = useQuery(api.users.me, isAuthenticated ? {} : "skip");
   const bank = useQuery(api.questions.list, {});
   const stats = useQuery(api.answers.myStats, isAuthenticated ? {} : "skip");
+  const ensureStats = useMutation(api.answers.ensureStats);
   const history = useQuery(api.stats.history, isAuthenticated ? {} : "skip");
   const population = useQuery(api.stats.population, {});
   const serverCompleted = useQuery(
@@ -44,6 +64,12 @@ export default function ProfilePage() {
   useEffect(() => {
     hydrateProgress();
   }, []);
+
+  useEffect(() => {
+    // Signed-in users with events but no rollup get one built on demand, so
+    // the profile never shows device-only totals while authenticated.
+    if (isAuthenticated && stats === null) void ensureStats();
+  }, [isAuthenticated, stats, ensureStats]);
 
   const questions: Question[] =
     bank?.map((q) => ({
@@ -87,36 +113,42 @@ export default function ProfilePage() {
           </>
         ) : (
           <>
-            <h1 className="mt-3 font-display text-3xl">
-              {me.displayName ?? me.handle ?? "player"}
-            </h1>
-            <p className="label mt-4 text-muted">
-              {me.handle ?? ""}{" "}
+            <div className="mt-3 flex items-center justify-between gap-4">
+              <h1 className="font-display text-3xl leading-none">
+                {me.displayName ?? me.handle ?? "player"}
+              </h1>
+              <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => setPopup("name")}
+                  aria-label="edit name"
+                  className="cursor-pointer text-muted transition-colors hover:text-signal"
+                >
+                  <PencilIcon />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    void signOut();
+                    router.push("/");
+                  }}
+                  aria-label="sign out"
+                  className="cursor-pointer text-muted transition-colors hover:text-signal"
+                >
+                  <SignOutIcon />
+                </button>
+              </div>
+            </div>
+            <p className="label mt-2 text-muted">
+              {me.handle ?? ""}
               {me.role === "admin" ? (
                 <span className="ml-2 text-signal">admin</span>
               ) : null}
             </p>
-            <button
-              type="button"
-              onClick={() => setPopup("name")}
-              className="label mt-6 w-fit cursor-pointer text-muted transition-colors hover:text-signal"
-            >
-              edit name
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                void signOut();
-                router.push("/");
-              }}
-              className="label mt-4 w-fit cursor-pointer text-muted transition-colors hover:text-signal"
-            >
-              sign out
-            </button>
           </>
         )}
 
-        <div className="mt-12 border-t border-ink-line pt-8">
+        <div className="mt-8 border-t border-ink-line pt-6">
           <p className="label text-muted">elo rating</p>
           <p className="mt-2 font-display text-7xl leading-none tracking-tight">
             {stats?.rating ?? progress.rating}
@@ -124,7 +156,9 @@ export default function ProfilePage() {
           <p className="label mt-4 text-muted">
             {stats
               ? `${stats.answered} answered · streak ${stats.streak} · best ${stats.bestStreak}`
-              : `${progress.answered} answered on this device`}
+              : isAuthenticated
+                ? "syncing your history…"
+                : "on this device only · sign in to sync"}
           </p>
 
           <div className="mt-8 flex gap-3">
@@ -164,7 +198,7 @@ export default function ProfilePage() {
           )}
         </div>
 
-        <div className="mt-12 border-t border-ink-line pt-8">
+        <div className="mt-8 border-t border-ink-line pt-6">
           <p className="label text-muted">done</p>
           {bank === undefined ? (
             <p className="mt-3 text-sm text-muted">Loading done list…</p>

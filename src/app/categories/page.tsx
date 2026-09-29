@@ -1,7 +1,7 @@
 "use client";
 
-import { useQuery, useConvexAuth } from "convex/react";
-import { useState } from "react";
+import { useQuery, useConvexAuth, useMutation } from "convex/react";
+import { useEffect, useState } from "react";
 
 import { api } from "../../../convex/_generated/api";
 import { CATEGORIES } from "@/lib/questions/schema";
@@ -17,7 +17,12 @@ export default function CategoriesPage() {
   const { isAuthenticated } = useConvexAuth();
   const counts = useQuery(api.questions.counts, {});
   const stats = useQuery(api.answers.myStats, isAuthenticated ? {} : "skip");
+  const ensureStats = useMutation(api.answers.ensureStats);
   const [selected, setSelected] = useState<string[]>(() => readFilter());
+
+  useEffect(() => {
+    if (isAuthenticated && stats === null) void ensureStats();
+  }, [isAuthenticated, stats, ensureStats]);
 
   const byCategory = new Map<string, { answered: number; correct: number }>(
     (stats?.byCategory ?? []).map((c) => [
@@ -48,8 +53,10 @@ export default function CategoriesPage() {
         <h1 className="mt-3 font-display text-3xl">
           {selected.length === 0 ? "Everything" : `${selected.length} selected`}
         </h1>
-        <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-          For fun only — filtering never touches your Elo or ranking.
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
+          For fun only — filtering never touches your Elo or ranking. Right side is
+          your accuracy, the bracketed number is how many questions are in that
+          category. A dash means you have not answered it yet.
         </p>
 
         {counts === undefined ? (
@@ -76,8 +83,11 @@ export default function CategoriesPage() {
                         : "border-ink-line text-paper hover:border-paper/50 hover:bg-paper/[0.04]"
                     }`}
                   >
-                    <span className="w-40 shrink-0 text-[0.95rem] leading-snug">
-                      {cat.label}
+                    <span className="flex w-44 shrink-0 items-baseline gap-2">
+                      <span className="text-[0.95rem] leading-snug">{cat.label}</span>
+                      <span className={`label ${active ? "text-ink/60" : "text-muted/60"}`}>
+                        [{count}]
+                      </span>
                     </span>
                     <span
                       className={`h-1 flex-1 ${
@@ -92,12 +102,11 @@ export default function CategoriesPage() {
                       />
                     </span>
                     <span
-                      className={`label w-24 shrink-0 text-right ${
-                        active ? "text-ink" : "text-muted"
+                      className={`label w-16 shrink-0 text-right ${
+                        active ? "text-ink" : pct !== null ? "text-paper" : "text-muted/40"
                       }`}
                     >
-                      {pct !== null ? `${pct}% · ` : ""}
-                      {count}
+                      {pct !== null ? `${pct}%` : "—"}
                     </span>
                   </button>
                 </li>
