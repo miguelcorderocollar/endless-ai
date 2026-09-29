@@ -52,6 +52,10 @@ Rules:
   `archived`.
 - Prune is a status change, not a delete: the row and its answer history stay, so
   answers already recorded against a retired id are not orphaned.
+- Hard delete is opt-in and two-step: `questions:purgeArchived` refuses anything not
+  already `archived`, so a live question cannot be destroyed by one mistake. Check
+  `npx convex data questions --deployment <dev|prod> --limit 400` first. `publish.mts`
+  never calls it.
 - Publish only from a clean tree (`git status` clean).
 - Sync is idempotent per `questionId`: inserts new rows, patches changed ones,
   archives published rows removed from git. Adding one question costs one write.

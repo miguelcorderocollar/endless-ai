@@ -92,6 +92,12 @@ playable set immediately. Ids are never reused, so the pruned id stays retired.
 Pruning is a status change, not a delete. The row and its answer history stay in
 the table, which is what you want if answers were recorded against that id.
 
+To actually remove them, `npx convex run questions:purgeArchived '{"ids":[...]}'
+` deletes only rows that are *already* archived, so it takes two publishes to
+remove anything and a live question cannot be destroyed by one mistake. Verify
+with `npx convex data questions --deployment dev --limit 400` that a row reads
+`archived` before purging it.
+
 Prefer rewording over deleting when one side carries more value (a better hook, a
 harder difficulty, a category that needs the coverage). Delete when the two are
 genuinely interchangeable. Of seven duplicates fixed in #38, three were deleted and
