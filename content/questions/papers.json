@@ -176,27 +176,30 @@
   },
   {
     "id": "pap-0007",
-    "text": "The ImageNet project, without which the AlexNet moment could not have happened, was led by which researcher?",
+    "text": "The 2012 AlexNet paper depended on a large labelled image dataset that had not existed before. What was it?",
     "options": [
-      "Yann LeCun",
-      "Jitendra Malik",
-      "Fei-Fei Li",
-      "Alex Krizhevsky"
+      "ImageNet, a dataset of hand-labelled images built at Stanford",
+      "COCO, built by Microsoft a year later",
+      "Labeled Faces in the Wild, focused on celebrity photos",
+      "Pascal VOC, a set of 20,000 images"
     ],
-    "answer": "Fei-Fei Li",
+    "answer": "ImageNet, a dataset of hand-labelled images built at Stanford",
     "category": "papers",
     "tags": [
       "imagenet",
       "datasets"
     ],
     "difficulty": 2,
-    "explanation": "Fei-Fei Li built it starting in 2007 with a team of Stanford students, and it took years of manual labelling by undergraduate workers. She has said the data was the actual contribution and the models were the easy part, which is roughly the consensus of everyone who has tried to reproduce an ImageNet result.",
+    "explanation": "ImageNet was assembled at Stanford with tens of millions of hand-labelled images, and AlexNet's win in 2012 was as much a demonstration that the data existed as it was an architectural advance. Before it, the field trained on datasets like Pascal VOC with roughly 20,000 images, which is two orders of magnitude smaller.",
     "source": {
       "kind": "wikipedia",
       "title": "ImageNet",
       "label": "ImageNet on Wikipedia"
     },
-    "answerAliases": [],
+    "answerAliases": [
+      "ImageNet, a dataset of hand-labelled images built at Stanford",
+      "ImageNet"
+    ],
     "status": "published",
     "addedAt": "2026-09-28"
   },

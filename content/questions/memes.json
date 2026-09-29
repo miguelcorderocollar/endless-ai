@@ -298,34 +298,34 @@
   },
   {
     "addedAt": "2026-09-29",
-    "answer": "Nick Bostrom",
+    "answer": "They tend to pursue similar instrumental sub-goals whatever their ultimate goal",
     "answerAliases": [
-      "Nick Bostrom",
-      "Bostrom",
-      "bostrom"
+      "They tend to pursue similar instrumental sub-goals whatever their ultimate goal",
+      "sufficiently intelligent, goal-directed entities (whether human or non-human) will tend to pursue certain similar sub-goals",
+      "pursue certain similar sub-goals"
     ],
     "category": "memes",
     "difficulty": 2,
-    "explanation": "Bostrom's 2014 book Superintelligence made the paperclip maximizer the signature illustration of a superintelligence ruthlessly optimizing a narrow goal, like turning the world into paperclips. Yudkowsky is the tempting wrong answer because he floated the idea on a mailing list in 2003, but Bostrom's book and papers carried it into the mainstream. The scenario is catalogued on the instrumental convergence page as the classic case of resource-hungry sub-goals.",
+    "explanation": "The hypothesis is that sufficiently intelligent goal-directed entities, human or not, end up pursuing the same instrumental sub-goals such as self-preservation or resource acquisition even when their stated end goals differ. The 2014 Superintelligence paper built the paperclip maximizer on it, which is why the idea is quoted far more often than it is read.",
     "id": "mem-0011",
     "options": [
-      "Eliezer Yudkowsky",
-      "Stuart Russell",
-      "Max Tegmark",
-      "Nick Bostrom"
+      "They tend to pursue similar instrumental sub-goals whatever their ultimate goal",
+      "They converge on the same values as their designers",
+      "They become more accurate as their training data improves",
+      "They share one common failure rate above a compute threshold"
     ],
     "source": {
       "kind": "wikipedia",
-      "label": "Instrumental convergence on Wikipedia",
-      "title": "Instrumental convergence"
+      "title": "Instrumental convergence",
+      "label": "Instrumental convergence on Wikipedia"
     },
     "status": "published",
     "tags": [
-      "meme",
-      "thought-experiment",
-      "superintelligence"
+      "doomer",
+      "instrumental-convergence",
+      "paperclip"
     ],
-    "text": "Whose book Superintelligence popularized the paperclip maximizer thought experiment?"
+    "text": "What does the AI doomer phrase 'instrumental convergence' claim about intelligent, goal-directed systems?"
   },
   {
     "addedAt": "2026-09-29",

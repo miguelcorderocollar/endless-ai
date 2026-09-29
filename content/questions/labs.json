@@ -320,37 +320,6 @@
     "addedAt": "2026-09-29"
   },
   {
-    "id": "lab-0012",
-    "text": "Which lab develops the Grok family of AI models?",
-    "options": [
-      "Anthropic",
-      "DeepSeek",
-      "OpenAI",
-      "xAI"
-    ],
-    "answer": "xAI",
-    "category": "labs",
-    "tags": [
-      "xai",
-      "grok",
-      "musk"
-    ],
-    "difficulty": 1,
-    "explanation": "Grok is the primary product of xAI, the company founded by Elon Musk whose first model, Grok 1, was released in November 2023. OpenAI is the trap here because Musk co-founded it, but he left and built Grok at xAI instead.",
-    "source": {
-      "kind": "wikipedia",
-      "title": "SpaceXAI",
-      "label": "SpaceXAI (formerly xAI) on Wikipedia"
-    },
-    "answerAliases": [
-      "SpaceXAI",
-      "xAI (company)",
-      "Grok"
-    ],
-    "status": "published",
-    "addedAt": "2026-09-29"
-  },
-  {
     "id": "lab-0013",
     "text": "Which former OpenAI chief scientist co-founded Safe Superintelligence Inc.?",
     "options": [

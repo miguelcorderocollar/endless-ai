@@ -1139,40 +1139,6 @@
     "addedAt": "2026-09-29"
   },
   {
-    "id": "mod-0038",
-    "text": "Which Paris based AI company, founded in 2023, released the open-weight Mistral 7B and Mixtral 8x7B models?",
-    "options": [
-      "Hugging Face",
-      "Stability AI",
-      "Mistral AI",
-      "AI21 Labs"
-    ],
-    "answer": "Mistral AI",
-    "category": "models",
-    "tags": [
-      "mistral",
-      "open-weights",
-      "lineage"
-    ],
-    "difficulty": 1,
-    "explanation": "Mistral AI, founded in Paris in 2023, released the Mistral and Mixtral families under permissive open licences and became the main European name in the open model wave. Hugging Face is the tempting wrong answer because it hosts thousands of these models, but it is a distribution platform rather than the maker.",
-    "source": {
-      "kind": "wikipedia",
-      "title": "Mistral AI",
-      "label": "Mistral AI on Wikipedia"
-    },
-    "answerAliases": [
-      "Mistral AI",
-      "Mistral AI SAS",
-      "Mistral",
-      "Mistral 7B",
-      "Mixtral",
-      "Mixtral 8x7B"
-    ],
-    "status": "published",
-    "addedAt": "2026-09-29"
-  },
-  {
     "id": "mod-0039",
     "text": "Which Chinese technology company developed the chatbot Ernie Bot and the ERNIE models behind it?",
     "options": [
@@ -1397,38 +1363,6 @@
     "addedAt": "2026-09-29"
   },
   {
-    "id": "mod-0046",
-    "text": "The 2020 GPT-3 paper became famous for showing a model could do a task after seeing what?",
-    "options": [
-      "A full fine-tuning run on the task data",
-      "A reward signal from a human rater",
-      "A short written description of the task",
-      "A few worked examples of the task in the prompt"
-    ],
-    "answer": "A few worked examples of the task in the prompt",
-    "category": "models",
-    "tags": [
-      "gpt-3",
-      "prompting",
-      "few-shot"
-    ],
-    "difficulty": 2,
-    "explanation": "Showing a handful of worked examples in the prompt is few-shot prompting, and GPT-3 made it look like a new capability rather than a trick. A written description is zero-shot prompting, which the same paper also demonstrated, and the fine-tuning option is the old way of doing this that GPT-3 made look unnecessary.",
-    "source": {
-      "kind": "wikipedia",
-      "title": "GPT-3",
-      "label": "GPT-3 on Wikipedia"
-    },
-    "answerAliases": [
-      "A few worked examples of the task in the prompt",
-      "few-shot",
-      "few shot prompting",
-      "few-shot prompting"
-    ],
-    "status": "published",
-    "addedAt": "2026-09-29"
-  },
-  {
     "id": "mod-0047",
     "text": "What did Google put BERT to work on inside its own products?",
     "options": [
@@ -1493,23 +1427,22 @@
   },
   {
     "id": "mod-0049",
-    "text": "Which company released ChatGPT, the chatbot that made AI chat go mainstream in 2022?",
+    "text": "ChatGPT launched in November 2022 and is often credited with making generative AI mainstream. What changed in public perception at that point?",
     "options": [
-      "Anthropic",
-      "OpenAI",
-      "Meta",
-      "xAI"
+      "Ordinary people could talk to a model without writing code or a prompt",
+      "OpenAI became the first lab to sell a chatbot",
+      "ChatGPT was free for everyone on day one",
+      "Every other lab paused work on chat models"
     ],
-    "answer": "OpenAI",
+    "answer": "Ordinary people could talk to a model without writing code or a prompt",
     "category": "models",
     "tags": [
-      "chatgpt",
       "openai",
-      "lineage",
-      "2022"
+      "chatgpt",
+      "culture"
     ],
     "difficulty": 1,
-    "explanation": "OpenAI released ChatGPT in November 2022 as a free public demo of GPT-3.5, and millions of people were talking to a chatbot within days. The stock phrase 'based on a language model' in its replies became the opening line of a very large number of conversations.",
+    "explanation": "ChatGPT shipped a chat box in front of a GPT-3.5 model, so the barrier was the interface rather than the capability. Access was free, it was multilingual, and it kept the conversation going, which is why adoption was measured in months rather than the years that preceded it.",
     "source": {
       "kind": "wikipedia",
       "title": "ChatGPT",

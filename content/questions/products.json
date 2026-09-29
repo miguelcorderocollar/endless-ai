@@ -90,14 +90,14 @@
   },
   {
     "id": "pro-0004",
-    "text": "Sora, previewed by OpenAI in February 2024, is what kind of model?",
+    "text": "Sora, previewed by OpenAI in February 2024, became generally available to which users first?",
     "options": [
-      "A speech to text model",
-      "A protein folding model",
-      "A reinforcement learning agent",
-      "A text to video model"
+      "ChatGPT Plus and Pro subscribers",
+      "Every free ChatGPT user worldwide",
+      "API customers on the waitlist",
+      "Users of the DALL-E 3 interface"
     ],
-    "answer": "A text to video model",
+    "answer": "ChatGPT Plus and Pro subscribers",
     "category": "products",
     "tags": [
       "sora",
@@ -105,14 +105,16 @@
       "video"
     ],
     "difficulty": 1,
-    "explanation": "Text to video, and it also came as a social media app. The first public generation was for ChatGPT Plus and Pro users in the United States and Canada in December 2024, after a long preview period that generated an enormous amount of speculation.",
+    "explanation": "Sora generates text to video, and it reached paying ChatGPT subscribers before it reached anyone else. The rollout was staggered by tier and then by region through 2024, which is why a model previewed in February was still gated months later.",
     "source": {
       "kind": "wikipedia",
       "title": "Sora (text-to-video model)",
       "label": "Sora on Wikipedia"
     },
     "answerAliases": [
-      "Sora"
+      "ChatGPT Plus and Pro subscribers",
+      "ChatGPT Plus",
+      "Pro subscribers"
     ],
     "status": "published",
     "addedAt": "2026-09-28"
