@@ -81,7 +81,7 @@ if (latest) {
 
 let commit: string | undefined;
 try {
-  const status = execSync("git status --porcelain", { encoding: "utf8" }).trim();
+  const status = execSync("git status --porcelain --untracked-files=no", { encoding: "utf8" }).trim();
   if (status) console.warn("warning: publishing from a dirty tree.");
   commit = execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim();
 } catch {
