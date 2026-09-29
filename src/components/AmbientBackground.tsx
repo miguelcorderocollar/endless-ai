@@ -13,35 +13,58 @@ type Blob = {
   phaseX: number;
   phaseY: number;
   alpha: number;
+  tone: "paper" | "signal";
 };
 
 function randomBlobs(): Blob[] {
-  return Array.from({ length: 5 }, () => ({
+  const blobs: Blob[] = Array.from({ length: 6 }, () => ({
     x: Math.random(),
     y: Math.random(),
-    r: 0.28 + Math.random() * 0.22,
+    r: 0.3 + Math.random() * 0.25,
     ampX: 0.05 + Math.random() * 0.07,
     ampY: 0.05 + Math.random() * 0.07,
     speedX: 0.07 + Math.random() * 0.08,
     speedY: 0.06 + Math.random() * 0.08,
     phaseX: Math.random() * Math.PI * 2,
     phaseY: Math.random() * Math.PI * 2,
-    alpha: 0.028 + Math.random() * 0.018,
+    alpha: 0.05 + Math.random() * 0.05,
+    tone: "paper" as const,
   }));
+  // One accent-tinted blob so the theme color drifts through the backdrop.
+  blobs[0]!.tone = "signal";
+  return blobs;
 }
 
-function makeBlobSprite(): HTMLCanvasElement {
+function makeBlobSprite(color: string): HTMLCanvasElement {
   const s = 256;
   const sprite = document.createElement("canvas");
   sprite.width = s;
   sprite.height = s;
   const ctx = sprite.getContext("2d")!;
   const g = ctx.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, s / 2);
-  g.addColorStop(0, "rgba(242,239,233,1)");
-  g.addColorStop(1, "rgba(242,239,233,0)");
+  g.addColorStop(0, toRgba(color, 1));
+  g.addColorStop(1, toRgba(color, 0));
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, s, s);
   return sprite;
+}
+
+/** Active theme colors, so the blobs belong to the current theme. */
+function themeColor(varName: "--color-paper" | "--color-signal"): string {
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .trim();
+  return raw || "#f2efe9";
+}
+
+function toRgba(color: string, alpha: number): string {
+  const match = color.match(/^#([0-9a-f]{6})$/i);
+  if (!match?.[1]) return `rgba(242,239,233,${alpha})`;
+  const n = Number.parseInt(match[1], 16);
+  const r = (n >> 16) & 255;
+  const g = (n >> 8) & 255;
+  const b = n & 255;
+  return `rgba(${r},${g},${b},${alpha})`;
 }
 
 /**
@@ -60,7 +83,22 @@ export function AmbientBackground() {
     let w = 0;
     let h = 0;
     const blobs = randomBlobs();
-    const sprite = makeBlobSprite();
+    let sprites = {
+      paper: makeBlobSprite(themeColor("--color-paper")),
+      signal: makeBlobSprite(themeColor("--color-signal")),
+    };
+
+    // ThemeLab swaps CSS variables on <html> when cycling themes — retint.
+    const observer = new MutationObserver(() => {
+      sprites = {
+        paper: makeBlobSprite(themeColor("--color-paper")),
+        signal: makeBlobSprite(themeColor("--color-signal")),
+      };
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["style"],
+    });
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -81,14 +119,17 @@ export function AmbientBackground() {
         const y = (b.y + b.ampY * Math.cos(t * b.speedY + b.phaseY)) * h;
         const r = b.r * m;
         ctx.globalAlpha = b.alpha;
-        ctx.drawImage(sprite, x - r, y - r, r * 2, r * 2);
+        ctx.drawImage(sprites[b.tone], x - r, y - r, r * 2, r * 2);
       }
       ctx.globalAlpha = 1;
     };
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       paint(8);
-      return () => window.removeEventListener("resize", resize);
+      return () => {
+        observer.disconnect();
+        window.removeEventListener("resize", resize);
+      };
     }
 
     let raf = 0;
@@ -110,6 +151,7 @@ export function AmbientBackground() {
 
     return () => {
       cancelAnimationFrame(raf);
+      observer.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("resize", resize);
     };

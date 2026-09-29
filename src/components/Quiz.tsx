@@ -185,7 +185,7 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
       )}
 
       <footer className="label mt-10 border-t border-ink-line pt-4 text-muted/60">
-        Prototype · progress saved on this device only
+        Prototype · progress saved on this device only · shift+C color
       </footer>
     </div>
   );
