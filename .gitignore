@@ -25,3 +25,7 @@ test-results/
 playwright-report/
 blob-report/
 .playwright/
+
+# duplicate-detection embeddings (issue #38): ~40MB at 10k questions,
+# regenerable with `npm run dupe` for a fraction of a cent
+data/dupe/embeddings.jsonl

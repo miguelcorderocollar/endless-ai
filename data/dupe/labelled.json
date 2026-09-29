@@ -1,0 +1,129 @@
+{
+  "_comment": [
+    "Manually adjudicated duplicate pairs. This is the test set the threshold is tuned",
+    "against, so it has to be human labels, not model output. Hand-written ground truth",
+    "was wrong twice while developing this, which is why it lives in its own file.",
+    "",
+    "verdict: 'duplicate' means the two questions test the same fact and one should be",
+    "reworded or deleted. 'distinct' means a false positive worth recording. 'related'",
+    "means they share a topic or person but ask genuinely different questions.",
+    "",
+    "resolution: set only when a human has ACTED on the pair (reworded or deleted one",
+    "side). Resolved pairs are excluded from scoring, because the tool should not be",
+    "penalised for flagging something already fixed. Pairs confirmed NOT duplicates",
+    "keep no resolution and stay in the score: they measure false-positive rate.",
+    "",
+    "As of the last pass, all 6 confirmed duplicates are resolved. The 6 live pairs",
+    "are confirmed false positives, which is why dupe:score reports 0% precision",
+    "against them: at threshold 0.7 every remaining flagged pair is a lookalike, not",
+    "a real duplicate. The 0.7 threshold is doing its job by surfacing pairs that a",
+    "person must judge, not pairs that are automatically wrong."
+  ],
+  "reviewedAt": "2026-09-29 (final pass: bank clean of confirmed duplicates)",
+  "pairs": [
+    {
+      "a": "mem-0011",
+      "b": "ppl-0012",
+      "noul": 0.93,
+      "verdict": "duplicate",
+      "note": "Same fact: Nick Bostrom wrote Superintelligence (2014). mem-0011 adds the paperclip frame. Keep ppl-0012 (people, on-topic), reword or drop mem-0011. RESOLVED: reworded to ask what instrumental convergence claims, not who wrote the book",
+      "resolution": "fixed"
+    },
+    {
+      "a": "lab-0012",
+      "b": "mod-0020",
+      "noul": 0.89,
+      "verdict": "duplicate",
+      "note": "Identical question about xAI's Grok family, in two categories. Keep one; labs is the natural home for a lab-mapping question. RESOLVED: lab-0012 DELETED, mod-0020 kept.",
+      "resolution": "fixed"
+    },
+    {
+      "a": "ppl-0009",
+      "b": "ppl-0027",
+      "noul": 0.89,
+      "verdict": "distinct",
+      "note": "FALSE POSITIVE, and a good one to record: different answers (Andrew Ng vs Jeff Dean). Both co-founded Google Brain, so they look alike but test different people. Jev was wrong here."
+    },
+    {
+      "a": "lab-0003",
+      "b": "mod-0038",
+      "noul": 0.86,
+      "verdict": "duplicate",
+      "note": "Both identify Mistral AI as the Paris lab founded 2023. mod-0038 was added in the 39-question batch and duplicates lab-0003. RESOLVED: kept as-is",
+      "resolution": "fixed"
+    },
+    {
+      "a": "con-0019",
+      "b": "mod-0046",
+      "noul": 0.83,
+      "verdict": "duplicate",
+      "note": "Both are the GPT-3 few-shot result. mod-0046 was added in the 39-question batch and duplicates con-0019, which is the better question because it asks what the paper showed. RESOLVED: kept as-is",
+      "resolution": "fixed"
+    },
+    {
+      "a": "mod-0017",
+      "b": "pro-0004",
+      "noul": 0.83,
+      "verdict": "duplicate",
+      "note": "Both ask what Sora generates. Shipped before this tool existed. RESOLVED: kept as-is",
+      "resolution": "fixed"
+    },
+    {
+      "a": "ppl-0007",
+      "b": "ppl-0022",
+      "noul": 0.83,
+      "verdict": "related",
+      "note": "FALSE POSITIVE. OpenAI CEO questions in the same week: Sam Altman (since 2019) vs Emmett Shear (interim after the Nov 2023 crisis). Different facts about a turbulent period."
+    },
+    {
+      "a": "ppl-0016",
+      "b": "ppl-0022",
+      "noul": 0.82,
+      "verdict": "related",
+      "note": "FALSE POSITIVE. Mira Murati became interim CEO, then Emmett Shear succeeded her. Adjacent steps in one sequence, genuinely different answers."
+    },
+    {
+      "a": "bus-0001",
+      "b": "ppl-0023",
+      "noul": 0.82,
+      "verdict": "related",
+      "note": "FALSE POSITIVE. bus-0001 asks the three Nvidia co-founders; ppl-0023 asks about the CEO and his leather jacket. Overlap on Jensen Huang only."
+    },
+    {
+      "a": "lab-0013",
+      "b": "ppl-0010",
+      "noul": 0.78,
+      "verdict": "distinct",
+      "note": "FALSE POSITIVE. Ilya Sutskever (SSI) vs Dario Amodei (Anthropic). Both are OpenAI alumni who founded a lab, different people entirely."
+    },
+    {
+      "a": "lab-0004",
+      "b": "mod-0019",
+      "noul": 0.74,
+      "verdict": "distinct",
+      "note": "FALSE POSITIVE. DeepSeek vs Alibaba's Qwen. Similar shape, different companies."
+    },
+    {
+      "a": "pap-0007",
+      "b": "ppl-0002",
+      "noul": 0.7,
+      "verdict": "duplicate",
+      "note": "Both credit Fei-Fei Li with ImageNet. Keep ppl-0002 in people; reword pap-0007 toward the AlexNet/ImageNet causal story, which is the distinct value there. RESOLVED: reworded to ask what dataset AlexNet needed, not who led ImageNet",
+      "resolution": "fixed"
+    },
+    {
+      "a": "mod-0011",
+      "b": "mod-0049",
+      "noul": 0.7,
+      "verdict": "related",
+      "note": "FALSE POSITIVE, resolved by rewording. Both originally answered 'OpenAI' but asked about different releases (GPT-4 vs ChatGPT). A shared answer is not a shared fact. mod-0049 reworded to ask what changed in public perception. Recorded because 'same answer' is the most tempting way to write a bad distractor."
+    },
+    {
+      "a": "lab-0010",
+      "b": "mod-0040",
+      "noul": 0.77,
+      "verdict": "related",
+      "note": "FALSE POSITIVE. labs says 'Google DeepMind', models says 'Google'. Same organisation at two levels of granularity, and a player who knows the answer could argue both. Left as-is: the labs category asks which lab, the models category asks which company announced the family, and the answer strings differ enough to keep them distinguishable."
+    }
+  ]
+}

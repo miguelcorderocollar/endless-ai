@@ -15,6 +15,10 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run build` builds the Next.js production app.
 - `npm run verify` runs validate, typecheck, lint, unit tests, build, and the browser suite.
 - `npm run rebalance` reports answer-slot balance; add `--write` only after reviewing the diff.
+- `npm run dupe` finds near-duplicate questions (embeddings + Jev, issue #38). Needs `OPENROUTER_API_KEY` in `.env`. Costs ~$0.005 for the current bank and re-runs are free from the verdict cache. Writes `data/dupe/report.md`. Local only, never in CI.
+- `npm run dupe:refresh` re-adjudicates every pair, ignoring the cache. Use after changing the definition or the pinned model.
+- `npm run dupe:score` scores the reporting threshold against the hand-labelled pairs in `data/dupe/labelled.json`.
+- `npm run dupe -- --offline` runs the embedding shortlist only, no network.
 - `npm run probe -- "Title" ...` inspects Wikipedia lead sections before authoring.
 - `npm run review` builds `review/review.html`, a self-contained page for human review of draft questions (search, filter, per-ID verdicts).
 - `npm run review:serve` builds it and serves it at `http://localhost:8901/review.html`.
@@ -62,6 +66,23 @@ Keep the browser suite worth running:
 - Every question needs an explanation.
 - Prefer Wikipedia or primary sources. Use `"kind": "none"` only when no source exists, and make the explanation carry the teaching.
 - Do not ship generated questions without `npm run validate` and a human read.
+- `npm run validate` cannot see a reworded or cross-category repeat. Run
+  `npm run dupe` before shipping a batch, and adjudicate every pair by hand: Jev is
+  calibrated, not correct. A shared answer is not a shared fact, which is the most
+  common false positive. Record the outcome in `data/dupe/labelled.json` so the
+  threshold stays honest.
+
+## Removing a duplicate
+
+No Convex change is needed. Delete the question from
+`content/questions/*.json` and run `npx tsx scripts/publish.mts`: `questions:prune`
+archives any published row whose id is no longer in the bank, and every read path
+filters on `status === "published"`, so it leaves the playable set immediately.
+IDs are never reused, so the pruned id stays retired.
+
+Prefer rewording over deleting when one side carries more value (a better hook, a
+harder difficulty, a category that needs the coverage). Delete when the two are
+genuinely interchangeable.
 
 ## Code rules
 

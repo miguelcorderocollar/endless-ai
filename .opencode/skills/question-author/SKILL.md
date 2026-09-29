@@ -271,6 +271,11 @@ Strong:
 
 Go through every question and answer these. If any answer is no, fix it before returning.
 
+0. Would this question be a near-duplicate of one already in the bank? The validator
+   cannot see a reworded or cross-category repeat, so check with `npm run dupe`.
+   The most common trap is writing a second question whose answer is the same entity
+   as an existing one: "Which company released GPT-4?" and "Which company released
+   ChatGPT?" both answer OpenAI, and they are not the same fact.
 1. Is every answer actually supported by the source I cited?
 2. Are all four options the same kind of thing?
 3. Is the correct answer the longest, the shortest, or the only one with a number in it?
@@ -292,6 +297,13 @@ new player who hits five hard questions in a row bounces.
 The bank-wide distribution targets (era mix, thinnest categories first) live in
 `docs/question-roadmap.md`. Check it before choosing what a batch covers, and reserve ID
 ranges that do not overlap anything in `content/questions/`.
+
+### Duplicates
+
+`npm run dupe` embeds every question, shortlists the closest pairs, and asks a
+calibrated model whether each pair tests the same fact. It writes
+`data/dupe/report.md`. Run it before shipping a batch. It is a suggestion list, not
+a verdict: adjudicate each pair and record the outcome in `data/dupe/labelled.json`.
 
 Report at the end, as plain text after the JSON: how many questions per category, the
 difficulty spread, how many have a `wikipedia` source, how many have a `url` source, and how

@@ -17,6 +17,9 @@
     "test:e2e": "playwright test",
     "test:all": "npm run test && npm run test:e2e",
     "rebalance": "tsx scripts/rebalance.mts",
+    "dupe": "tsx scripts/dupe.mts",
+    "dupe:refresh": "tsx scripts/dupe.mts --refresh",
+    "dupe:score": "tsx scripts/dupe-score.mts",
     "probe": "tsx scripts/probe.mts",
     "review": "tsx scripts/review.mts",
     "review:serve": "tsx scripts/review.mts --serve"

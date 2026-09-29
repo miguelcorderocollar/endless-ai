@@ -176,11 +176,39 @@ usually to reword the question to match what the source actually says.
 1. Pick a category and a difficulty band.
 2. Generate candidates following `.opencode/skills/question-author/SKILL.md`.
 3. Run `npm run validate`. Fix everything it reports.
-4. Read the questions yourself. The validator cannot tell you whether a question is
+4. Run `npm run dupe` and adjudicate every pair it flags. Record the outcome in
+   `data/dupe/labelled.json`.
+5. Read the questions yourself. The validator cannot tell you whether a question is
    interesting, only whether it is well formed and probably true.
-5. Set `status` to `published`.
-6. `npx tsx scripts/publish.mts` syncs the published questions to Convex dev (`--prod` for prod).
+6. Set `status` to `published`.
+7. `npx tsx scripts/publish.mts` syncs the published questions to Convex dev (`--prod` for prod).
 
-The human review in step 4 is not optional. The validator catches malformed data and
-unsupported answers. It cannot catch a question that is technically true and completely
-boring, and a bank of those is what kills a quiz app.
+The human review in steps 4 and 5 is not optional. The validator catches malformed
+data and unsupported answers. It cannot catch a question that is technically true and
+completely boring, and it cannot catch a reworded repeat of a question you already
+have. A bank of boring questions, or one that quietly doubles up, is what kills a
+quiz app.
+
+## Near-duplicates, which the validator cannot see
+
+`validate` rejects byte-identical question text. It cannot see that "Which **company**
+develops the Grok family?" and "Which **lab** develops the Grok family?" ask the same
+thing, because token overlap between them is low. Six such pairs shipped before
+`npm run dupe` existed (issue #38), two of them from a single 39-question batch.
+
+`npm run dupe` finds them in two stages. Embeddings
+(`qwen/qwen3-embedding-8b`, truncated to 1024 dims) shortlist the closest pairs by
+cosine; then one calibrated Noul per candidate pair asks whether the two test the same
+fact. The whole bank is never sent to the model, because its budget is 64k tokens per
+request and unrelated state measurably degrades it.
+
+The threshold is `0.7`, tuned against hand-adjudicated pairs. It is a **review
+threshold, not a correctness one**: at 0.7 the flagged set is dominated by
+lookalikes, and a person decides each one. A shared correct answer is not a shared
+fact, and that is the most common false positive.
+
+Cost is negligible and cached, so it is worth running every batch. Verdicts live in
+`data/dupe/verdicts.json` and are keyed on question *content*, so editing a question
+forces a fresh judgement rather than reusing a verdict about text that no longer
+exists. Re-runs are free; a new batch of 40 questions adds roughly 70-100 pairs, which
+is under a tenth of a cent.
