@@ -30,6 +30,29 @@ In order of preference:
 3. `kind: "none"` when you genuinely cannot find a source. Keep these rare. The explanation
    field then has to carry the whole learning value.
 
+### Models.dev, the authority for model questions
+
+For anything about a specific model, check models.dev before Wikipedia. It is an open source
+database of AI model specs (github.com/sst/models.dev, data stored as TOML files per
+provider and model), and it is usually more current and more precise than the model's
+Wikipedia article. It also has a JSON API (`/models.json`, `/catalog.json`) and lab pages
+that group every canonical model by its author.
+
+A model page lives at `https://models.dev/models/{lab}/{model}`, for example
+`https://models.dev/models/alibaba/qwen3.8-max-prime/`, and it lists the lab, the model
+family, the context window, the output limit, the release date, whether the weights are
+open or closed, and every provider serving it with pricing. Use the model page as a `url`
+source with a label like "Qwen 3.8 Max Prime on models.dev".
+
+Good models.dev questions ask which lab makes a model, whether its weights are open or
+closed, or what its context window is. Do not write questions about pricing or about which
+model is newest. Those rot within months and the volatility lint will flag them anyway.
+
+Two warnings. First, the validator only checks that a `url` source loads, not that it
+supports the answer, so you have to actually read the model page yourself. Second, never
+guess a page slug. Open the page or query the API and confirm the `{lab}/{model}` path
+exists before you cite it.
+
 If you are not sure whether a Wikipedia article exists, use `kind: "none"` with a good
 explanation. The validator will tell you which ones it could not ground, and you can promote
 them later once somebody checks.
