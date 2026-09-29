@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Endless AI app icon master. Source of truth for store exports (iOS / Android).
+       Colors: ink #0a0b0d (app background), signal #d6ff3f (accent).
+       iOS applies its own mask; Android adaptive crops to the maskable safe zone,
+       so use app-icon-maskable.svg for Play Store / adaptive exports. -->
+  <rect x="48" y="48" width="928" height="928" rx="224" fill="#0a0b0d" stroke="#d6ff3f" stroke-width="48"/>
+  <text x="512" y="496" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-style="normal" font-weight="700" font-size="704" fill="#d6ff3f">?</text>
+</svg>

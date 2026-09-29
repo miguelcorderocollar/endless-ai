@@ -22,6 +22,9 @@ export const list = query({
  * correct answers may resurface past the cap, which matches the
  * misses-come-back spirit.
  *
+ * `categories` narrows the pool to the fun-mode filter (#12). It never
+ * touches Elo or ranking — the answer mutation scores identically.
+ *
  * Scaling note (#34): the full published collect is fine to ~1-2k questions.
  * Past that, swap the collect for aggregate-backed random access and keep
  * this signature.
@@ -30,22 +33,42 @@ export const draw = query({
   args: {
     excludeIds: v.array(v.string()),
     count: v.optional(v.number()),
+    categories: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
     const n = Math.min(Math.max(args.count ?? 20, 1), 50);
     const excluded = new Set(args.excludeIds.slice(-1000));
+    const filter = new Set(args.categories ?? []);
     const pool = (
       await ctx.db
         .query("questions")
         .withIndex("by_status", (q) => q.eq("status", "published"))
         .collect()
-    ).filter((q) => !excluded.has(q.questionId));
+    ).filter(
+      (q) =>
+        !excluded.has(q.questionId) &&
+        (filter.size === 0 || filter.has(q.category)),
+    );
 
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pool[i], pool[j]] = [pool[j]!, pool[i]!];
     }
     return pool.slice(0, n);
+  },
+});
+
+/** Published counts per category for the picker (#12). Tiny table, direct read. */
+export const counts = query({
+  args: {},
+  handler: async (ctx) => {
+    const counts = new Map<string, number>();
+    const rows = await ctx.db
+      .query("questions")
+      .withIndex("by_status", (q) => q.eq("status", "published"))
+      .collect();
+    for (const q of rows) counts.set(q.category, (counts.get(q.category) ?? 0) + 1);
+    return [...counts.entries()].map(([category, count]) => ({ category, count }));
   },
 });
 

@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   title: "Endless AI",
   description:
     "An endless general knowledge quiz about AI. Four options, no timer, keep going until you quit.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: "/icons/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {

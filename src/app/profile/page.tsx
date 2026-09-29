@@ -17,6 +17,7 @@ import { DoneList } from "@/components/DoneList";
 import { Popup } from "@/components/Popup";
 import { Shell } from "@/components/QuizFromConvex";
 import { SignInForm } from "@/components/Account";
+import { Distribution, EloChart } from "@/components/Stats";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -25,6 +26,8 @@ export default function ProfilePage() {
   const me = useQuery(api.users.me, isAuthenticated ? {} : "skip");
   const bank = useQuery(api.questions.list, {});
   const stats = useQuery(api.answers.myStats, isAuthenticated ? {} : "skip");
+  const history = useQuery(api.stats.history, isAuthenticated ? {} : "skip");
+  const population = useQuery(api.stats.population, {});
   const serverCompleted = useQuery(
     api.answers.myCompleted,
     isAuthenticated ? {} : "skip",
@@ -36,6 +39,7 @@ export default function ProfilePage() {
   );
 
   const [popup, setPopup] = useState<"signin" | "name" | null>(null);
+  const [tab, setTab] = useState<"you" | "all">("you");
 
   useEffect(() => {
     hydrateProgress();
@@ -111,6 +115,54 @@ export default function ProfilePage() {
             </button>
           </>
         )}
+
+        <div className="mt-12 border-t border-ink-line pt-8">
+          <p className="label text-muted">elo rating</p>
+          <p className="mt-2 font-display text-7xl leading-none tracking-tight">
+            {stats?.rating ?? progress.rating}
+          </p>
+          <p className="label mt-4 text-muted">
+            {stats
+              ? `${stats.answered} answered · streak ${stats.streak} · best ${stats.bestStreak}`
+              : `${progress.answered} answered on this device`}
+          </p>
+
+          <div className="mt-8 flex gap-3">
+            {(["you", "all"] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTab(t)}
+                aria-pressed={tab === t}
+                className={`label cursor-pointer border px-4 py-2 transition-colors ${
+                  tab === t
+                    ? "border-signal bg-signal text-ink"
+                    : "border-ink-line text-muted hover:text-signal"
+                }`}
+              >
+                {t === "you" ? "you" : "all players"}
+              </button>
+            ))}
+          </div>
+
+          {tab === "you" ? (
+            history === undefined ? (
+              <p className="mt-3 text-sm text-muted">Loading your line…</p>
+            ) : (
+              <EloChart points={history} median={population?.median ?? null} />
+            )
+          ) : population === undefined ? (
+            <p className="mt-3 text-sm text-muted">Loading the field…</p>
+          ) : (
+            <Distribution
+              buckets={population.buckets}
+              count={population.count}
+              median={population.median}
+              percentile={population.percentile}
+              rating={stats?.rating ?? null}
+            />
+          )}
+        </div>
 
         <div className="mt-12 border-t border-ink-line pt-8">
           <p className="label text-muted">done</p>

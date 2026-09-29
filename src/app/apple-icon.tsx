@@ -16,18 +16,21 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#d6ff3f",
+          background: "#0a0b0d",
+          borderRadius: 40,
+          border: "8px solid #d6ff3f",
+          boxSizing: "border-box",
         }}
       >
         <div
           style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontFamily: "system-ui, -apple-system, 'Segoe UI', Arial, sans-serif",
             fontStyle: "normal",
             fontWeight: 700,
             fontSize: 124,
             lineHeight: 1,
-            color: "#0a0b0d",
-            marginTop: -12,
+            color: "#d6ff3f",
+            marginTop: 8,
           }}
         >
           ?

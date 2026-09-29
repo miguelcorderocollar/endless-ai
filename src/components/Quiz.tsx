@@ -27,10 +27,13 @@ export function Quiz({
   bank,
   initial,
   onNeedMore,
+  categories,
 }: {
   bank: Question[];
   initial: Question;
   onNeedMore: (seen: Set<string>) => Promise<Question[]>;
+  /** Fun-mode filter (#12): stream stays inside these, Elo untouched. */
+  categories: Set<Question["category"]>;
 }) {
   const progress = useSyncExternalStore(
     subscribeProgress,
@@ -50,7 +53,6 @@ export function Quiz({
   }, []);
 
   const nextQuestion = useCallback(() => {
-    const categories = new Set<Question["category"]>();
     const next = pickNext(bank, seen, categories);
     if (!next) {
       // Current page exhausted: ask the server for more unseen questions.
@@ -72,7 +74,7 @@ export function Quiz({
     setCurrent(next);
     setPicked(null);
     setPhase("question");
-  }, [bank, seen, onNeedMore]);
+  }, [bank, seen, onNeedMore, categories]);
 
   const answer = useCallback(
     (option: string) => {
@@ -196,6 +198,12 @@ function Masthead({ progress }: { progress: SavedProgress }) {
         <span className="label text-muted">
           elo <span className="ml-1.5 font-mono text-sm text-paper">{progress.rating}</span>
         </span>
+        <a
+          href="/categories"
+          className="label cursor-pointer text-muted transition-colors hover:text-signal"
+        >
+          cats
+        </a>
         <a
           href="/profile"
           aria-label="profile and settings"

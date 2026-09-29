@@ -1,10 +1,11 @@
 "use client";
 
 import { useConvex, useConvexAuth, useQuery } from "convex/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
 import type { Question } from "@/lib/questions/schema";
+import { readFilter } from "@/lib/quiz/filter";
 import { readProgress } from "@/lib/progress";
 import { Quiz } from "./Quiz";
 
@@ -56,6 +57,11 @@ export function QuizFromConvex() {
   );
   const [bank, setBank] = useState<Question[] | null>(null);
   const [initial, setInitial] = useState<Question | null>(null);
+  const [filter] = useState<string[]>(() => readFilter());
+  const categories = useMemo(
+    () => new Set(filter as Question["category"][]),
+    [filter],
+  );
 
   useEffect(() => {
     if (isAuthenticated && serverCompleted === undefined) return;
@@ -67,6 +73,7 @@ export function QuizFromConvex() {
       .query(api.questions.draw, {
         excludeIds,
         count: PAGE,
+        categories: filter,
       })
       .then((rows) => {
         if (cancelled) return;
@@ -82,7 +89,7 @@ export function QuizFromConvex() {
     return () => {
       cancelled = true;
     };
-  }, [client, isAuthenticated, serverCompleted]);
+  }, [client, isAuthenticated, serverCompleted, filter]);
 
   const topUp = useCallback(
     async (seen: Set<string>): Promise<Question[]> => {
@@ -92,6 +99,7 @@ export function QuizFromConvex() {
       const rows = await client.query(api.questions.draw, {
         excludeIds,
         count: PAGE,
+        categories: filter,
       });
       const fresh = rows.map(toQuestion);
       setBank((prev) => {
@@ -101,8 +109,10 @@ export function QuizFromConvex() {
       });
       return fresh;
     },
-    [client, serverCompleted],
+    [client, serverCompleted, filter],
   );
+
+  // The filter is fixed per page load: changing it reloads the game.
 
   if (bank === null || initial === null) return <LoadingSkeleton />;
 
@@ -140,7 +150,7 @@ export function QuizFromConvex() {
     );
   }
 
-  return <Quiz bank={bank} initial={initial} onNeedMore={topUp} />;
+  return <Quiz bank={bank} initial={initial} onNeedMore={topUp} categories={categories} />;
 }
 
 /** Same frame as Quiz (masthead + footer) so the swap-in doesn't jump. */

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Maskable / adaptive variant: full-bleed ink background so round/square masks
+       never reveal transparency; artwork kept inside the ~72% safe zone. -->
+  <rect width="1024" height="1024" fill="#0a0b0d"/>
+  <g transform="translate(141 141) scale(0.725)">
+    <rect x="48" y="48" width="928" height="928" rx="224" fill="#0a0b0d" stroke="#d6ff3f" stroke-width="48"/>
+    <text x="512" y="496" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-style="normal" font-weight="700" font-size="704" fill="#d6ff3f">?</text>
+  </g>
+</svg>
