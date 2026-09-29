@@ -5,36 +5,43 @@ import { useConvexAuth, useMutation, useQuery } from "convex/react";
 import { useEffect, useRef, useState } from "react";
 
 import { api } from "../../convex/_generated/api";
+import { readProgress } from "@/lib/progress";
 
 /**
- * Silent guest identity: every visitor gets an anonymous session (a real
- * users row), so future answer events have an owner from day one. Signing
- * up with a password upgrades the same row — rating, streak and history
- * carry over with no merge UI.
+ * Lazy guests (#34): visitors play fully local with no server session — no
+ * user row, no actions, no subscriptions until they choose to sign in. At
+ * signup, `claimProgress` seeds the rollup once from device-local totals so
+ * nothing played is lost. Never overwrites server history.
  */
 export function Account() {
   const { isLoading, isAuthenticated } = useConvexAuth();
-  const { signIn, signOut } = useAuthActions();
+  const { signOut } = useAuthActions();
   const me = useQuery(api.users.me, isAuthenticated ? {} : "skip");
   const ensureProfile = useMutation(api.users.ensureProfile);
+  const claim = useMutation(api.users.claimProgress);
 
-  const guestStarted = useRef(false);
   const profileEnsured = useRef(false);
-
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated && !guestStarted.current) {
-      guestStarted.current = true;
-      void signIn("anonymous");
-    }
-    if (!isAuthenticated) profileEnsured.current = false;
-  }, [isLoading, isAuthenticated, signIn]);
 
   useEffect(() => {
     if (isAuthenticated && !profileEnsured.current) {
       profileEnsured.current = true;
-      void ensureProfile();
+      const local = readProgress();
+      void ensureProfile().then(
+        () =>
+          void claim({
+            rating: local.rating,
+            answered: local.answered,
+            correct: local.correct,
+          }).catch(() => {
+            /* claim is best-effort: local progress stands regardless */
+          }),
+        () => {
+          profileEnsured.current = false;
+        },
+      );
     }
-  }, [isAuthenticated, ensureProfile]);
+    if (!isAuthenticated) profileEnsured.current = false;
+  }, [isAuthenticated, ensureProfile, claim]);
 
   if (isLoading || (isAuthenticated && me === undefined)) {
     return <span className="label text-muted/50">…</span>;

@@ -23,7 +23,15 @@ type Phase = "question" | "revealed";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 
-export function Quiz({ bank, initial }: { bank: Question[]; initial: Question }) {
+export function Quiz({
+  bank,
+  initial,
+  onNeedMore,
+}: {
+  bank: Question[];
+  initial: Question;
+  onNeedMore: (seen: Set<string>) => Promise<Question[]>;
+}) {
   const progress = useSyncExternalStore(
     subscribeProgress,
     getProgressSnapshot,
@@ -42,16 +50,29 @@ export function Quiz({ bank, initial }: { bank: Question[]; initial: Question })
   }, []);
 
   const nextQuestion = useCallback(() => {
-    const next = pickNext(bank, seen, new Set<Question["category"]>());
+    const categories = new Set<Question["category"]>();
+    const next = pickNext(bank, seen, categories);
     if (!next) {
-      setExhausted(true);
+      // Current page exhausted: ask the server for more unseen questions.
+      // Empty twice in a row means the bank is truly done.
+      void onNeedMore(seen).then((fresh) => {
+        const retry = pickNext([...bank, ...fresh], seen, categories);
+        if (!retry) {
+          setExhausted(true);
+          return;
+        }
+        setSeen((prev) => new Set(prev).add(retry.id));
+        setCurrent(retry);
+        setPicked(null);
+        setPhase("question");
+      });
       return;
     }
     setSeen((prev) => new Set(prev).add(next.id));
     setCurrent(next);
     setPicked(null);
     setPhase("question");
-  }, [bank, seen]);
+  }, [bank, seen, onNeedMore]);
 
   const answer = useCallback(
     (option: string) => {

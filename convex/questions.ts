@@ -14,6 +14,41 @@ export const list = query({
   },
 });
 
+/**
+ * Server-side draw (#25): returns a handful of random published questions
+ * excluding the caller's known-seen ids, so page loads transfer O(1)
+ * questions instead of the whole bank. The client sends its seen ids
+ * (session + local done list), capped at the most recent 1000 — ancient
+ * correct answers may resurface past the cap, which matches the
+ * misses-come-back spirit.
+ *
+ * Scaling note (#34): the full published collect is fine to ~1-2k questions.
+ * Past that, swap the collect for aggregate-backed random access and keep
+ * this signature.
+ */
+export const draw = query({
+  args: {
+    excludeIds: v.array(v.string()),
+    count: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const n = Math.min(Math.max(args.count ?? 20, 1), 50);
+    const excluded = new Set(args.excludeIds.slice(-1000));
+    const pool = (
+      await ctx.db
+        .query("questions")
+        .withIndex("by_status", (q) => q.eq("status", "published"))
+        .collect()
+    ).filter((q) => !excluded.has(q.questionId));
+
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j]!, pool[i]!];
+    }
+    return pool.slice(0, n);
+  },
+});
+
 const sameStrings = (a: string[], b: string[]) =>
   a.length === b.length && a.every((s, i) => s === b[i]);
 

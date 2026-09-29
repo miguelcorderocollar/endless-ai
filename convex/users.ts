@@ -88,6 +88,51 @@ export const setDisplayName = mutation({
 });
 
 /**
+ * Seeds the rollup from device-local progress at signup (#34, lazy guests).
+ * Only when the user has neither stats nor events — never overwrites
+ * server-derived history, so it cannot forge standing. Idempotent.
+ */
+export const claimProgress = mutation({
+  args: {
+    rating: v.number(),
+    answered: v.number(),
+    correct: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const userId = await requireUser(ctx);
+
+    const existingStats = await ctx.db
+      .query("userStats")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .take(1);
+    if (existingStats.length > 0) return { seeded: false };
+
+    const existingEvents = await ctx.db
+      .query("answerEvents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .take(1);
+    if (existingEvents.length > 0) return { seeded: false };
+
+    const answered = Math.max(0, Math.floor(args.answered));
+    const correct = Math.min(Math.max(0, Math.floor(args.correct)), answered);
+    const rating = Math.min(Math.max(Math.round(args.rating) || 1000, 0), 3000);
+
+    await ctx.db.insert("userStats", {
+      userId,
+      rating,
+      answered,
+      correct,
+      streak: 0,
+      bestStreak: 0,
+      byCategory: [],
+      seeded: true,
+      updatedAt: Date.now(),
+    });
+    return { seeded: true };
+  },
+});
+
+/**
  * Proves the admin gate from #2: population counts for future admin tooling
  * (#30). Throws "Admin only." for everyone else.
  */

@@ -76,4 +76,30 @@ export default defineSchema({
   })
     .index("by_user", ["userId", "createdAt"])
     .index("by_user_question", ["userId", "questionId"]),
+
+  /**
+   * Materialized per-user rollup (#34). The event log is write-only at scale;
+   * every per-user read (rating, streak, counts, category bars) comes from
+   * this one doc, updated transactionally in the `answer` mutation. Global
+   * rank/percentile will use the aggregate component (#8), never event scans.
+   */
+  userStats: defineTable({
+    userId: v.id("users"),
+    rating: v.number(),
+    answered: v.number(),
+    correct: v.number(),
+    streak: v.number(),
+    bestStreak: v.number(),
+    byCategory: v.array(
+      v.object({
+        category: v.string(),
+        answered: v.number(),
+        correct: v.number(),
+      }),
+    ),
+    seeded: v.optional(v.boolean()),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_rating", ["rating"]),
 });

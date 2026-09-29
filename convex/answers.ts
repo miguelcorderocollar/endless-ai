@@ -1,8 +1,11 @@
 import { ConvexError, v } from "convex/values";
 
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
+import type { MutationCtx } from "./_generated/server";
+import type { Id } from "./_generated/dataModel";
 import { requireUser } from "./access";
 import { STARTING_ELO, scoreAnswer } from "../src/lib/quiz/elo";
+import { getAuthUserId } from "@convex-dev/auth/server";
 
 /**
  * Records one answered question and moves Elo — the only writer of both
@@ -12,6 +15,10 @@ import { STARTING_ELO, scoreAnswer } from "../src/lib/quiz/elo";
  * Event-sourced rating: the player's current rating is the latest event's
  * `ratingAfter` (STARTING_ELO when there are no events), so no rating column
  * is needed on `users` and replays can't drift it.
+ *
+ * The same mutation maintains `userStats` (#34): the materialized per-user
+ * rollup every per-user read comes from. The event log is never scanned for
+ * reads beyond point lookups.
  *
  * Guards:
  * - unknown or archived questions are rejected (client plays published only)
@@ -42,7 +49,14 @@ export const answer = mutation({
       .order("desc")
       .take(1);
     const last = recent[0] ?? null;
-    const ratingBefore = last?.ratingAfter ?? STARTING_ELO;
+    // Prefer the rollup: identical to the latest event for event-derived
+    // users, and honors a seeded claim (lazy signup) that has no events yet.
+    const stats = await ctx.db
+      .query("userStats")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .take(1)
+      .then((rows) => rows[0]);
+    const ratingBefore = stats?.rating ?? last?.ratingAfter ?? STARTING_ELO;
 
     const lastSame =
       last && last.questionId === question._id
@@ -71,6 +85,7 @@ export const answer = mutation({
     }
 
     const { delta, rating } = scoreAnswer(ratingBefore, question.difficulty, correct);
+    const now = Date.now();
 
     await ctx.db.insert("answerEvents", {
       userId,
@@ -80,7 +95,14 @@ export const answer = mutation({
       correct,
       ratingBefore,
       ratingAfter: rating,
-      createdAt: Date.now(),
+      createdAt: now,
+    });
+
+    await upsertStats(ctx, userId, {
+      rating,
+      correct,
+      category: question.category,
+      now,
     });
 
     return {
@@ -92,3 +114,129 @@ export const answer = mutation({
     };
   },
 });
+
+/** Current user's materialized rollup, or null before their first answer. */
+export const myStats = query({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return null;
+    const stats = await ctx.db
+      .query("userStats")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .take(1)
+      .then((rows) => rows[0]);
+    return stats ?? null;
+  },
+});
+
+type CategoryCount = { category: string; answered: number; correct: number };
+
+/**
+ * Maintains the per-user rollup transactionally with the event insert.
+ * First call for a pre-stats user folds their existing events once (bounded
+ * paginated scan, then every later answer is O(1)). Streak counts the current
+ * correct-in-a-row run; a wrong answer resets it.
+ */
+async function upsertStats(
+  ctx: MutationCtx,
+  userId: Id<"users">,
+  answer: { rating: number; correct: boolean; category: string; now: number },
+) {
+  const existing = await ctx.db
+    .query("userStats")
+    .withIndex("by_user", (q) => q.eq("userId", userId))
+    .take(1)
+    .then((rows) => rows[0]);
+
+  if (!existing) {
+    const folded = await foldUserEvents(ctx, userId);
+    await ctx.db.insert("userStats", {
+      userId,
+      rating: answer.rating,
+      answered: folded.answered + 1,
+      correct: folded.correct + (answer.correct ? 1 : 0),
+      streak: answer.correct ? folded.trailingStreak + 1 : 0,
+      bestStreak: Math.max(
+        folded.bestStreak,
+        answer.correct ? folded.trailingStreak + 1 : 0,
+      ),
+      byCategory: bumpCategory(folded.byCategory, answer.category, answer.correct),
+      updatedAt: answer.now,
+    });
+    return;
+  }
+
+  const streak = answer.correct ? existing.streak + 1 : 0;
+  await ctx.db.patch(existing._id, {
+    rating: answer.rating,
+    answered: existing.answered + 1,
+    correct: existing.correct + (answer.correct ? 1 : 0),
+    streak,
+    bestStreak: Math.max(existing.bestStreak, streak),
+    byCategory: bumpCategory(existing.byCategory, answer.category, answer.correct),
+    updatedAt: answer.now,
+  });
+}
+
+function bumpCategory(
+  counts: CategoryCount[],
+  category: string,
+  correct: boolean,
+): CategoryCount[] {
+  const next = counts.map((c) => ({ ...c }));
+  const entry = next.find((c) => c.category === category);
+  if (entry) {
+    entry.answered += 1;
+    if (correct) entry.correct += 1;
+  } else {
+    next.push({ category, answered: 1, correct: correct ? 1 : 0 });
+  }
+  return next;
+}
+
+/**
+ * One-time fold for users whose events predate userStats. Paginated so no
+ * single call reads unbounded history; 20k events covers ~20 years of daily
+ * play, after which the oldest history stays in the log but leaves the rollup.
+ */
+async function foldUserEvents(ctx: MutationCtx, userId: Id<"users">) {
+  let answered = 0;
+  let correct = 0;
+  let bestStreak = 0;
+  let trailingStreak = 0;
+  const byCategory: CategoryCount[] = [];
+  let cursor: string | null = null;
+
+  for (let pages = 0; pages < 40; pages++) {
+    const page = await ctx.db
+      .query("answerEvents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .paginate({ cursor, numItems: 500 });
+    for (const e of page.page) {
+      answered += 1;
+      if (e.correct) {
+        correct += 1;
+        trailingStreak += 1;
+        bestStreak = Math.max(bestStreak, trailingStreak);
+      } else {
+        trailingStreak = 0;
+      }
+      const entry = byCategory.find((c) => c.category === e.category);
+      if (entry) {
+        entry.answered += 1;
+        if (e.correct) entry.correct += 1;
+      } else {
+        byCategory.push({
+          category: e.category,
+          answered: 1,
+          correct: e.correct ? 1 : 0,
+        });
+      }
+    }
+    if (page.isDone) break;
+    cursor = page.continueCursor;
+  }
+
+  return { answered, correct, bestStreak, trailingStreak, byCategory };
+}
