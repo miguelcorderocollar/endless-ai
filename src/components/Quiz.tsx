@@ -188,7 +188,9 @@ function Masthead({ progress }: { progress: SavedProgress }) {
   return (
     <header className="flex items-center justify-between border-b border-ink-line py-5">
       <span className="font-display text-2xl tracking-tight">
-        Endless <span className="text-signal">AI</span>
+        <a href="/" aria-label="back to the game">
+          Endless <span className="text-signal">AI</span>
+        </a>
       </span>
       <div className="flex items-center gap-5">
         <span className="label text-muted">

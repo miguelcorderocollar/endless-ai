@@ -24,6 +24,7 @@ export default function ProfilePage() {
   const { signOut } = useAuthActions();
   const me = useQuery(api.users.me, isAuthenticated ? {} : "skip");
   const bank = useQuery(api.questions.list, {});
+  const stats = useQuery(api.answers.myStats, isAuthenticated ? {} : "skip");
   const progress = useSyncExternalStore(
     subscribeProgress,
     getProgressSnapshot,
@@ -113,7 +114,13 @@ export default function ProfilePage() {
             <p className="mt-3 text-sm text-muted">Loading done list…</p>
           ) : (
             <div className="mt-2">
-              <DoneList bank={questions} completedIds={progress.completed} />
+              <DoneList
+                bank={questions}
+                completedIds={progress.completed}
+                correct={stats?.correct ?? progress.correct}
+                answered={stats?.answered ?? progress.answered}
+                total={questions.length}
+              />
             </div>
           )}
         </div>

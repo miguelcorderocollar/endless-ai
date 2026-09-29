@@ -5,13 +5,22 @@ import { useMemo } from "react";
 import { sourceHref, sourceLabel } from "@/lib/questions/schema";
 import type { Question } from "@/lib/questions/schema";
 
-/** Correctly answered questions with Learn links. Misses aren't here — they come back. */
+/** Correctly answered questions with Learn links. */
 export function DoneList({
   bank,
   completedIds,
+  correct,
+  answered,
+  total,
 }: {
   bank: Question[];
   completedIds: string[];
+  /** Correct count (server truth when signed in, device count otherwise). */
+  correct: number;
+  /** Answered count, same source as correct. */
+  answered: number;
+  /** Published bank size. */
+  total: number;
 }) {
   const done = useMemo(() => {
     const byId = new Map(bank.map((q) => [q.id, q]));
@@ -23,8 +32,13 @@ export function DoneList({
 
   return (
     <>
-      <p className="mt-2 font-display text-7xl leading-none tracking-tight">{done.length}</p>
-      <p className="label mt-4 text-muted">questions answered right · misses come back</p>
+      <p className="mt-2 font-display text-7xl leading-none tracking-tight">
+        {correct}
+        <span className="text-3xl text-muted">/{answered}</span>
+      </p>
+      <p className="label mt-4 text-muted">
+        answered correctly · {total} in the bank
+      </p>
 
       {done.length > 0 ? (
         <ul className="mt-10 flex flex-col gap-5">

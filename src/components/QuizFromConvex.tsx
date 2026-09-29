@@ -136,7 +136,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
     <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 pb-10">
       <header className="flex items-baseline justify-between border-b border-ink-line py-5">
         <span className="font-display text-2xl tracking-tight">
-          Endless <span className="text-signal">AI</span>
+          <a href="/" aria-label="back to the game">
+            Endless <span className="text-signal">AI</span>
+          </a>
         </span>
         <span className="label text-muted">
           elo <span className="ml-1.5 font-mono text-sm text-paper">—</span>
