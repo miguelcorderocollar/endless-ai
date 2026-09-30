@@ -1,27 +1,44 @@
-import { useConvexAuth } from "convex/react";
-import { useQuery } from "convex/react";
+import { useConvexAuth, useQuery } from "convex/react";
 import { router } from "expo-router";
+import { useEffect, useSyncExternalStore } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { me } from "@/lib/api";
+import { rememberProfile } from "@/lib/account";
+import { readProfileCache, subscribeCaches } from "@/lib/profileCache";
+import { SyncStatus } from "@/components/SyncStatus";
 import { colors, fonts, label } from "@/theme";
 
 /**
- * The quiz masthead from `src/components/Quiz.tsx`, with the same three
- * affordances: the wordmark home, the live Elo, and a way into categories and
- * the profile. On the web the last two are text links and an inline SVG; native
- * needs a target area, so the two links get hit slop and the gear becomes a
+ * The quiz masthead from `src/components/Quiz.tsx`, with the same affordances:
+ * the wordmark home, the sync status, the live Elo, and a way into categories
+ * and the profile. On the web the last two are text links and an inline SVG;
+ * native needs a target area, so they get hit slop and the gear becomes a
  * labelled button.
  *
- * The account slot is the one addition the web does not have here: the PWA
+ * The account slot is the one addition the web does not need here: a PWA
  * already had a session by the time you noticed, whereas a fresh install is a
  * guest. It says "sign in" until there is an identity, then the handle, so the
  * state is never ambiguous.
+ *
+ * The name comes from the cache first, the way the web's does (`bankCache.ts`):
+ * a returning player should not watch their own name flash to "sign in" while
+ * `users.me` revalidates.
  */
 export function Masthead({ rating }: { rating: number }) {
   const { isAuthenticated } = useConvexAuth();
   const identity = useQuery(me, isAuthenticated ? {} : "skip");
-  const name = identity?.displayName ?? identity?.handle ?? null;
+  const cached = useSyncExternalStore(
+    subscribeCaches,
+    readProfileCache,
+    readProfileCache,
+  );
+
+  useEffect(() => {
+    if (identity) rememberProfile(identity);
+  }, [identity]);
+
+  const name = cached?.displayName ?? cached?.handle ?? null;
 
   return (
     <View style={styles.bar}>
@@ -38,6 +55,7 @@ export function Masthead({ rating }: { rating: number }) {
       </Pressable>
 
       <View style={styles.right}>
+        <SyncStatus />
         <Text style={styles.elo}>
           elo <Text style={styles.eloValue}>{rating}</Text>
         </Text>
@@ -53,7 +71,9 @@ export function Masthead({ rating }: { rating: number }) {
           onPress={() => router.push(name ? "/profile" : "/account")}
           hitSlop={12}
           accessibilityRole="button"
-          accessibilityLabel={name ? `Signed in as ${name}. Profile` : "Sign in"}
+          accessibilityLabel={
+            name ? `Signed in as ${name}. Profile` : "Sign in"
+          }
         >
           <Text style={[styles.link, styles.account]}>
             {isAuthenticated ? (name ?? "you") : "sign in"}

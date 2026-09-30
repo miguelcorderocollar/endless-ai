@@ -6,14 +6,22 @@ import {
   ensureProfile as ensureProfileRef,
   myCompleted as myCompletedRef,
   myStats as myStatsRef,
+  resetProgress as resetProgressRef,
+  setDisplayName as setDisplayNameRef,
 } from "./api";
+import {
+  clearProfileCache,
+  readProfileCache,
+  writeProfileCache,
+} from "./profileCache";
 import { getProgress, updateProgress } from "./progress";
 
 /**
  * Account wiring for the native app, ported from the web's
- * `src/components/Account.tsx`. The server side already shipped in #2, so this
- * is the client half: claim on sign-in, send answers while signed in, and
- * reconcile to server truth.
+ * `src/components/Account.tsx` and `src/app/profile/page.tsx`. The server side
+ * already shipped in #2, so this is the client half: claim on sign-in, queue
+ * answers while signed in, reconcile to server truth, and the two profile
+ * mutations (rename, reset).
  *
  * The rule that matters, and it is the one people get wrong: **a brand-new
  * account is seeded from this device, an existing one overwrites it.**
@@ -29,14 +37,6 @@ import { getProgress, updateProgress } from "./progress";
  * stands, because a guest who cannot reach the network must still be able to
  * play — the same reasoning the web applies.
  */
-
-/** Client-generated id, so a replayed answer is recognisable. */
-export function newEventId(): string {
-  // Not a UUID: no crypto dependency, and the only requirement is that it be
-  // unique per answer. `crypto.randomUUID` is not available in Hermes.
-  const rand = () => Math.floor(Math.random() * 0x100000000).toString(16);
-  return `${Date.now().toString(16)}-${rand()}-${rand()}`;
-}
 
 /**
  * Runs once per sign-in: make sure the profile row exists, then claim or
@@ -85,29 +85,58 @@ export async function syncOnSignIn(client: ConvexReactClient): Promise<void> {
 }
 
 /**
- * Sends one answer and hands back the server's rating.
+ * Records the identity for the masthead and for the outbox's drain attribution.
  *
- * `eventId` is always sent, including on the live path, and that is not
- * decoration: a mutation that fails is indistinguishable from one whose
- * response was lost, and only the exact-`eventId` dedupe tells them apart. The
- * web sends every signed-in answer through its outbox for the same reason.
- *
- * Returns null on failure. The caller has already moved the local rating
- * optimistically, so a failure here costs a sync, not the answer.
+ * The handle, not the display name, is the identity: names are editable and not
+ * unique, so an event tagged with one could be attributed to the wrong player.
+ * Display names are non-unique and editable, so they are not identity here.
  */
-export async function sendAnswer(
+export function rememberProfile(profile: {
+  handle: string | null;
+  displayName: string | null;
+  role: string;
+  isAnonymous: boolean;
+}): void {
+  writeProfileCache(profile);
+}
+
+/** On sign-out, so a guest never sees the previous account's name. */
+export function forgetProfile(): void {
+  clearProfileCache();
+}
+
+/** The handle of the last signed-in identity, for tagging a queued answer. */
+export function currentHandle(): string | null {
+  return readProfileCache()?.handle ?? null;
+}
+
+/** Renames yourself. Throws on an empty name; trims and caps at 40. */
+export async function saveDisplayName(
   client: ConvexReactClient,
-  questionId: string,
-  picked: string,
-): Promise<{ rating: number } | null> {
-  try {
-    const result = await client.mutation(answerRef, {
-      questionId,
-      picked,
-      eventId: newEventId(),
-    });
-    return { rating: result.ratingAfter };
-  } catch {
-    return null;
-  }
+  displayName: string,
+): Promise<void> {
+  await client.mutation(setDisplayNameRef, { displayName });
+  const cached = readProfileCache();
+  if (cached) writeProfileCache({ ...cached, displayName: displayName.trim() });
+}
+
+/**
+ * Wipes the account's history. Irreversible by design — the events and the
+ * rollup are deleted, so the server drops back to a fresh 1000.
+ *
+ * The device cache is cleared in the same breath, because leaving a local
+ * rating behind would show numbers the server no longer agrees with, and the
+ * next claim would resurrect them.
+ */
+export async function resetProgress(client: ConvexReactClient): Promise<void> {
+  await client.mutation(resetProgressRef, {});
+  updateProgress({
+    ...getProgress(),
+    rating: 1000,
+    answered: 0,
+    correct: 0,
+    streak: 1,
+    completed: [],
+    recent: [],
+  });
 }

@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { syncOnSignIn } from "@/lib/account";
+import { forgetProfile, syncOnSignIn } from "@/lib/account";
 import { convexClient } from "@/lib/backend";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
 
@@ -42,7 +42,9 @@ function friendlyError(raw: unknown, flow: Flow): string {
   if (/already exists|already registered|taken/i.test(message)) {
     return "That email already has an account. Sign in instead.";
   }
-  if (/InvalidPassword|invalid credentials|verify the password/i.test(message)) {
+  if (
+    /InvalidPassword|invalid credentials|verify the password/i.test(message)
+  ) {
     return "That email and password do not match.";
   }
   if (/Invalid password|needs 8\+ characters|too short/i.test(message)) {
@@ -54,7 +56,9 @@ function friendlyError(raw: unknown, flow: Flow): string {
   if (/fetch|network|failed to|timeout/i.test(message)) {
     return "Could not reach the server. Check your connection and try again.";
   }
-  return flow === "signIn" ? "Could not sign in. Try again." : "Could not create the account.";
+  return flow === "signIn"
+    ? "Could not sign in. Try again."
+    : "Could not create the account.";
 }
 
 export default function AccountScreen() {
@@ -127,7 +131,9 @@ export default function AccountScreen() {
             {flow === "signIn" ? "sign in" : "create account"}
           </Text>
           <Text style={styles.headline}>
-            {flow === "signIn" ? "Sign in to Endless AI" : "Keep your Elo everywhere"}
+            {flow === "signIn"
+              ? "Sign in to Endless AI"
+              : "Keep your Elo everywhere"}
           </Text>
           <Text style={styles.copy}>
             One account keeps your Elo, streak and done list on every device.
@@ -152,7 +158,9 @@ export default function AccountScreen() {
               placeholder="password (8+)"
               secureTextEntry
               autoCapitalize="none"
-              autoComplete={flow === "signUp" ? "new-password" : "current-password"}
+              autoComplete={
+                flow === "signUp" ? "new-password" : "current-password"
+              }
               testID="auth-password"
             />
 
@@ -164,7 +172,9 @@ export default function AccountScreen() {
 
             <Pressable
               accessibilityRole="button"
-              accessibilityLabel={flow === "signIn" ? "Sign in" : "Create account"}
+              accessibilityLabel={
+                flow === "signIn" ? "Sign in" : "Create account"
+              }
               accessibilityState={{ disabled: busy }}
               disabled={busy}
               onPress={submit}
@@ -196,7 +206,9 @@ export default function AccountScreen() {
                 hitSlop={8}
               >
                 <Text style={styles.link}>
-                  {flow === "signIn" ? "new here? sign up" : "have an account? sign in"}
+                  {flow === "signIn"
+                    ? "new here? sign up"
+                    : "have an account? sign in"}
                 </Text>
               </Pressable>
 
@@ -205,6 +217,10 @@ export default function AccountScreen() {
                   accessibilityRole="button"
                   accessibilityLabel="Sign out"
                   onPress={() => {
+                    // Drop the cached identity too, so the masthead goes back to
+                    // "sign in" immediately rather than showing the name of an
+                    // account that no longer has a session.
+                    forgetProfile();
                     void signOut();
                     router.dismissTo("/");
                   }}
@@ -221,7 +237,11 @@ export default function AccountScreen() {
   );
 }
 
-function Field({ name, testID, ...input }: { name: string; testID: string } & React.ComponentProps<typeof TextInput>) {
+function Field({
+  name,
+  testID,
+  ...input
+}: { name: string; testID: string } & React.ComponentProps<typeof TextInput>) {
   return (
     <TextInput
       {...input}
@@ -250,7 +270,12 @@ const styles = StyleSheet.create({
   muted: { ...label, color: colors.muted },
   body: { padding: GUTTER, paddingTop: 40, paddingBottom: BOTTOM_INSET },
   kicker: { color: colors.muted },
-  headline: { fontFamily: fonts.display, fontSize: 30, color: colors.paper, marginTop: 10 },
+  headline: {
+    fontFamily: fonts.display,
+    fontSize: 30,
+    color: colors.paper,
+    marginTop: 10,
+  },
   copy: {
     fontFamily: fonts.sans,
     fontSize: 14,
@@ -289,7 +314,12 @@ const styles = StyleSheet.create({
   submitPressed: { backgroundColor: colors.paper, borderColor: colors.paper },
   busy: { opacity: 0.7 },
   submitLabel: { ...label, color: colors.ink },
-  links: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 14 },
+  links: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 14,
+  },
   link: { ...label, color: colors.muted },
   faint: { color: "rgba(111,117,128,0.6)" },
 });

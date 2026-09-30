@@ -1,7 +1,14 @@
 import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import {
   ActivityIndicator,
   Pressable,
@@ -14,13 +21,20 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { draw } from "@/lib/api";
 import { useConvexAuth } from "convex/react";
-import { sendAnswer, syncOnSignIn } from "@/lib/account";
+import { answer as answerRef, draw as drawRef } from "@/lib/api";
+import { currentHandle, syncOnSignIn } from "@/lib/account";
 import { Masthead } from "@/components/Masthead";
 import { Rise, staggerDelay, usePrefersReducedMotion } from "@/components/rise";
 import { asCategoryKeys, toQuestions } from "@/lib/bank";
 import { convexClient } from "@/lib/backend";
+import { drawLocal } from "@/lib/localBank";
+import {
+  drainOutbox,
+  enqueueAnswer,
+  newEventId,
+  shouldReconcile,
+} from "@/lib/outbox";
 import {
   EMPTY_PROGRESS,
   getFilter,
@@ -32,7 +46,12 @@ import {
 } from "@/lib/progress";
 import { pickNext } from "@shared/lib/quiz/engine";
 import { scoreAnswer } from "@shared/lib/quiz/elo";
-import { type CategoryKey, type Question, sourceHref, sourceLabel } from "@shared/lib/questions/schema";
+import {
+  type CategoryKey,
+  type Question,
+  sourceHref,
+  sourceLabel,
+} from "@shared/lib/questions/schema";
 import { RECENT_CAP } from "@shared/lib/progress";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
 
@@ -87,7 +106,10 @@ export default function QuizScreen() {
     });
   }, [isAuthenticated, client]);
   const filterKey = filter.join(",");
-  const categories = useMemo(() => new Set<CategoryKey>(asCategoryKeys(filter)), [filter]);
+  const categories = useMemo(
+    () => new Set<CategoryKey>(asCategoryKeys(filter)),
+    [filter],
+  );
 
   const setQueue = useCallback((next: Question[]) => {
     queueRef.current = next;
@@ -98,19 +120,44 @@ export default function QuizScreen() {
     void hydrateProgress();
   }, []);
 
+  /**
+   * One draw, from wherever it can be had. Convex first, the bundled bank
+   * second.
+   *
+   * The fallback is not a degraded mode that has to be labelled: it is the same
+   * filter, the same Elo-matched weighting (`weightedSample`, the function the
+   * server's own draw calls) and the same schema-validated rows, so the only
+   * difference is whether the question came over the wire. Before the bank was
+   * bundled, a cold offline launch had nothing to show at all — which is the
+   * one case offline play exists for.
+   */
   const drawPage = useCallback(
     async (opts: { seen: Set<string>; filter: string[]; rating: number }) => {
-      if (!client) return [];
-      // `excludeIds` is the server's no-repeat list; it keeps only the last
-      // 1000, so an ancient answer can resurface on a very long run. Same
-      // misses-come-back behaviour as the web draw.
-      const rows = await client.query(draw, {
-        excludeIds: [...opts.seen].slice(-1000),
-        count: PAGE,
-        categories: opts.filter.length > 0 ? opts.filter : undefined,
-        ratingHint: opts.rating,
-      });
-      return toQuestions(rows);
+      const keys = new Set<CategoryKey>(asCategoryKeys(opts.filter));
+      const local = () =>
+        drawLocal({
+          seen: opts.seen,
+          categories: keys,
+          ratingHint: opts.rating,
+          count: PAGE,
+        });
+      if (!client) return local();
+      try {
+        // `excludeIds` is the server's no-repeat list; it keeps only the last
+        // 1000, so an ancient answer can resurface on a very long run. Same
+        // misses-come-back behaviour as the web draw.
+        const rows = await client.query(drawRef, {
+          excludeIds: [...opts.seen].slice(-1000),
+          count: PAGE,
+          categories: opts.filter.length > 0 ? opts.filter : undefined,
+          ratingHint: opts.rating,
+        });
+        return toQuestions(rows);
+      } catch {
+        // Unreachable is not the end of the quiz: the whole bank is in the
+        // binary, and the fallback draws from it with the same rules.
+        return local();
+      }
     },
     [client],
   );
@@ -145,13 +192,27 @@ export default function QuizScreen() {
     drawn.current = true;
     void (async () => {
       try {
-        const fresh = await drawPage({ seen: seenRef.current, filter, rating: progress.rating });
+        const fresh = await drawPage({
+          seen: seenRef.current,
+          filter,
+          rating: progress.rating,
+        });
         setQueue(fresh);
-        const first = pickNext(fresh, seenRef.current, categories, Math.random, progress.rating);
+        const first = pickNext(
+          fresh,
+          seenRef.current,
+          categories,
+          Math.random,
+          progress.rating,
+        );
         if (first) show(first);
         else setExhausted(true);
       } catch (cause) {
-        setError(cause instanceof Error ? cause.message : "Could not reach the quiz server");
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "Could not reach the quiz server",
+        );
       } finally {
         drawn.current = false;
         setLoading(false);
@@ -166,7 +227,11 @@ export default function QuizScreen() {
     let cancelled = false;
     void (async () => {
       try {
-        const fresh = await drawPage({ seen: seenRef.current, filter, rating: progress.rating });
+        const fresh = await drawPage({
+          seen: seenRef.current,
+          filter,
+          rating: progress.rating,
+        });
         if (cancelled) return;
         setQueue([
           ...queueRef.current,
@@ -187,7 +252,11 @@ export default function QuizScreen() {
     (option: string) => {
       if (phase !== "question" || !current) return;
       const correct = option === current.answer;
-      const { rating } = scoreAnswer(progress.rating, current.difficulty, correct);
+      const { rating } = scoreAnswer(
+        progress.rating,
+        current.difficulty,
+        correct,
+      );
 
       void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {
         /* haptics are a nicety, and a device without a vibrator rejects */
@@ -214,13 +283,30 @@ export default function QuizScreen() {
       });
 
       // Signed in: the server is truth for Elo and owns the event log (#3/#4).
-      // The local update above already happened so feedback is instant; this
-      // reconciles to the server's rating when it lands. A guest stays
-      // local-only, which is what #2 intends.
+      // The local update above already happened so feedback is instant.
+      //
+      // Every signed-in answer goes through the outbox, including the live ones:
+      // a mutation that fails is indistinguishable from one whose response was
+      // lost, and only the outbox's exact `eventId` dedupe tells them apart on
+      // replay. Enqueue-then-drain, so a dead connection parks the event instead
+      // of dropping it, and the same queue is what `OutboxFlusher` retries when
+      // the network comes back. A guest stays local-only, which is what #2 wants.
       if (isAuthenticated && client) {
-        void sendAnswer(client, current.id, option).then((result) => {
-          if (result === null) return;
-          updateProgress({ ...getProgress(), rating: result.rating });
+        const account = currentHandle();
+        enqueueAnswer({
+          eventId: newEventId(),
+          questionId: current.id,
+          picked: option,
+          account,
+          at: Date.now(),
+        });
+        void drainOutbox(
+          (args) => client.mutation(answerRef, args),
+          account,
+        ).then(({ sent, lastRating, maxAt }) => {
+          if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
+            updateProgress({ ...getProgress(), rating: lastRating });
+          }
         });
       }
     },
@@ -263,7 +349,11 @@ export default function QuizScreen() {
       }
       show(next);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Could not reach the quiz server");
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Could not reach the quiz server",
+      );
     } finally {
       setLoading(false);
     }
@@ -370,7 +460,11 @@ function Option({
       accessibilityState={{ disabled, selected: picked }}
       disabled={disabled}
       onPress={onPress}
-      style={({ pressed }) => [styles.option, tone, pressed && !revealed && styles.optionPressed]}
+      style={({ pressed }) => [
+        styles.option,
+        tone,
+        pressed && !revealed && styles.optionPressed,
+      ]}
     >
       <Text style={[styles.optionLetter, ink]}>{letter}</Text>
       <Text style={[styles.optionLabel, ink]}>{label}</Text>
@@ -398,7 +492,13 @@ function Reveal({
   return (
     <Rise enabled={motion}>
       <View style={styles.reveal}>
-        <Text style={[label, styles.verdict, correct ? styles.verdictRight : styles.verdictWrong]}>
+        <Text
+          style={[
+            label,
+            styles.verdict,
+            correct ? styles.verdictRight : styles.verdictWrong,
+          ]}
+        >
           {correct ? "correct" : "not quite"}
         </Text>
         <Text style={styles.explanation}>{explanation}</Text>
@@ -409,7 +509,10 @@ function Reveal({
             accessibilityLabel="Next question"
             onPress={onNext}
             disabled={busy}
-            style={({ pressed }) => [styles.next, pressed && styles.nextPressed]}
+            style={({ pressed }) => [
+              styles.next,
+              pressed && styles.nextPressed,
+            ]}
           >
             <Text style={styles.nextLabel}>next</Text>
           </Pressable>
@@ -419,7 +522,10 @@ function Reveal({
               accessibilityRole="link"
               accessibilityLabel={`Learn more about ${sourceText}`}
               onPress={() => void WebBrowser.openBrowserAsync(href)}
-              style={({ pressed }) => [styles.learn, pressed && styles.learnPressed]}
+              style={({ pressed }) => [
+                styles.learn,
+                pressed && styles.learnPressed,
+              ]}
             >
               <Text style={styles.learnLabel}>learn →</Text>
             </Pressable>
@@ -446,7 +552,11 @@ function Exhausted() {
       <Pressable
         accessibilityRole="button"
         onPress={() => router.push("/profile")}
-        style={({ pressed }) => [styles.next, styles.exhaustedAction, pressed && styles.nextPressed]}
+        style={({ pressed }) => [
+          styles.next,
+          styles.exhaustedAction,
+          pressed && styles.nextPressed,
+        ]}
       >
         <Text style={styles.nextLabel}>see your done list</Text>
       </Pressable>
@@ -454,20 +564,31 @@ function Exhausted() {
   );
 }
 
-function ErrorPanel({ message, onRetry }: { message: string; onRetry: () => void }) {
+function ErrorPanel({
+  message,
+  onRetry,
+}: {
+  message: string;
+  onRetry: () => void;
+}) {
   return (
     <View style={styles.body}>
       <Text style={[label, styles.kicker]}>offline</Text>
       <Text style={styles.title}>Can't reach the quiz</Text>
       <Text style={styles.copy}>{message}</Text>
       <Text style={styles.copy}>
-        The native build has no bundled bank yet, so the first question needs a
-        connection. That lands with the offline pass.
+        Answers you give offline are queued and sent when you are back, so
+        nothing is lost — the bank ships inside the app, so the quiz keeps going
+        too.
       </Text>
       <Pressable
         accessibilityRole="button"
         onPress={onRetry}
-        style={({ pressed }) => [styles.next, styles.exhaustedAction, pressed && styles.nextPressed]}
+        style={({ pressed }) => [
+          styles.next,
+          styles.exhaustedAction,
+          pressed && styles.nextPressed,
+        ]}
       >
         <Text style={styles.nextLabel}>try again</Text>
       </Pressable>
@@ -499,7 +620,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
-  optionPressed: { backgroundColor: "rgba(242,239,233,0.04)", borderColor: "rgba(242,239,233,0.5)" },
+  optionPressed: {
+    backgroundColor: "rgba(242,239,233,0.04)",
+    borderColor: "rgba(242,239,233,0.5)",
+  },
   optionIdle: { borderColor: colors.inkLine },
   optionAnswer: { borderColor: colors.signal, backgroundColor: colors.signal },
   optionWrong: { borderColor: colors.fail, backgroundColor: colors.fail },
@@ -536,8 +660,19 @@ const styles = StyleSheet.create({
     color: "rgba(242,239,233,0.85)",
     marginTop: 12,
   },
-  revealActions: { flexDirection: "row", alignItems: "center", gap: 20, marginTop: 20 },
-  next: { backgroundColor: colors.signal, borderWidth: 1, borderColor: colors.signal, paddingHorizontal: 20, paddingVertical: 10 },
+  revealActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 20,
+    marginTop: 20,
+  },
+  next: {
+    backgroundColor: colors.signal,
+    borderWidth: 1,
+    borderColor: colors.signal,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
   nextPressed: { backgroundColor: colors.paper, borderColor: colors.paper },
   nextLabel: { ...label, color: colors.ink },
   learn: { paddingVertical: 10 },
@@ -545,7 +680,18 @@ const styles = StyleSheet.create({
   learnLabel: { ...label, color: colors.muted },
 
   kicker: { color: colors.muted },
-  title: { fontFamily: fonts.display, fontSize: 30, color: colors.paper, marginTop: 12 },
-  copy: { fontFamily: fonts.sans, fontSize: 15, lineHeight: 23, color: colors.muted, marginTop: 16 },
+  title: {
+    fontFamily: fonts.display,
+    fontSize: 30,
+    color: colors.paper,
+    marginTop: 12,
+  },
+  copy: {
+    fontFamily: fonts.sans,
+    fontSize: 15,
+    lineHeight: 23,
+    color: colors.muted,
+    marginTop: 16,
+  },
   exhaustedAction: { alignSelf: "flex-start", marginTop: 32 },
 });
