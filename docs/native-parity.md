@@ -16,7 +16,7 @@ Updated after the parity pass that closed items 1 through 9 below.
 | `manifest.shortcuts` long-press | Android app shortcuts | Not implemented; a later nicety. |
 | Service worker, network-first shell | — | Same reason. |
 | `/categories` is a route you navigate to | A screen you push and dismiss | Same reason, sort of: the phone has a back gesture and no address bar, so "a page" is a stack entry. The content is identical. |
-| Blobs render behind content, grain in front | One overlay above both | `globals.css` puts the canvas at `z-0` and the grain at `z-index: 1`. At 0.028 and 0.035 alpha the difference is not visible, and one overlay is one less thing to get wrong on a phone. |
+| Film grain: an `feTurbulence` data URI | A generated 120x120 noise tile | React Native has no canvas to run a filter in, so `npm run assets:grain` regenerates the same noise — three octaves at 0.9 base frequency, sampled on a torus so the tile repeats seamlessly — and overlays it at the same 0.035. |
 
 ## Closed, and how
 
@@ -75,17 +75,23 @@ Each of these was a real gap. What follows is what replaced it, because the
    `admin` is marked the way the web marks it.
 9. **Best streak.** In the Elo block's subline, in the web's format:
    `12 answered · streak 3 · best 7`.
-10. **Ambience.** Five drifting blobs and a grain overlay, both reproduced rather
-    than approximated. The blobs are the web's `AmbientBackground` with the same
-    radii, amplitudes, speeds, phases and alpha, drawn as SVG circles with a
-    `RadialGradient` instead of canvas sprite blits. The grain is the part that
-    could not be: `react-native-svg` implements no filters, so `feTurbulence` is
-    unreachable. `npm run assets:grain` regenerates the same noise — fractal
-    value noise, three octaves, 0.9 base frequency, sampled on a torus so the
-    tile has no seam — into a 120x120 PNG, overlaid at the same 0.035. It runs at
-    20fps rather than display rate, which is imperceptible for a backdrop moving
-    a few pixels a second, and freezes at `t = 8` under reduced motion, which is
-    what the web paints.
+10. **Ambience, partially — and the blobs are gone from both apps.** The film
+    grain made it across as a generated tile (see the table above). The drifting
+    blob backdrop did not, and it is now removed from the web too.
+
+    Three attempts, all visible on a real device: SVG circles with a
+    `RadialGradient` filled their bounding boxes flat, so the backdrop was
+    hard-edged pale rectangles; a baked sprite with the blobs animated by
+    interpolating `left`/`top` stacked them all in the corner, because the native
+    driver only animates `transform`; and a correct sprite-and-transform version
+    was smooth in measurement — worst adjacent-pixel step 1/255 — but still read
+    as concentric rings, because a shallow radial ramp is precisely what 8-bit
+    alpha bands into, and dithering the ramp away did not fix it at this size.
+
+    A backdrop that cannot be made to look like nothing is worse than no
+    backdrop, so `AmbientBackground` came out of the web's root layout and the
+    native app kept only the grain. The grain is noise, so it does not band,
+    which is why the two halves got opposite verdicts.
 
 ## Still missing, and it is real work
 
@@ -114,7 +120,7 @@ Each of these was a real gap. What follows is what replaced it, because the
 - The sync status, in the masthead, with the same labels.
 - Typography and palette: the same Instrument Serif, IBM Plex Sans and Mono, and
   the same `ink`/`paper`/`signal` values as `globals.css`.
-- Ambience: the drifting blobs and the film grain.
+- The film grain over the dark areas.
 
 ## Native-only, and worth keeping
 

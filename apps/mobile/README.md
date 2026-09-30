@@ -43,6 +43,13 @@ set of questions with different rules.
 reused: `npm run assets:grain` writes fractal value noise, three octaves at 0.9
 base frequency, sampled on a torus so the 120x120 tile repeats without a seam.
 
+The drifting blob backdrop that used to sit under the grain is gone from this app
+*and* from the web — three attempts at reproducing it all read as hard-edged
+shapes or visible concentric rings on a real screen, and the reasons are written
+up in `docs/native-parity.md`. The grain stayed; it is noise, so it does not
+band. One useful side effect: with no animation loop running, the app is idle
+when nothing is happening, so `adb shell uiautomator dump` can settle.
+
 ## Running it
 
 There is no Android SDK requirement for a dev build — Expo Go runs the JS, and

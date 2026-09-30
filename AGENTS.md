@@ -16,7 +16,7 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run verify` runs validate, typecheck, lint, unit tests, build, and the browser suite.
 - `npm run rebalance` reports answer-slot balance; add `--write` only after reviewing the diff.
 - `npm run bundle:bank` regenerates `apps/mobile/assets/bank.json`, the bank baked into the APK. `npm run validate` fails when it drifts from `content/questions`, so a question change that does not reach the phone app fails the gate.
-- `npm run assets:grain` regenerates `apps/mobile/assets/images/grain.png`, the film grain baked into the APK. Rarely needed; it only changes if the noise parameters in `scripts/lib/grain.mts` do.
+- `npm run assets:grain` regenerates `apps/mobile/assets/images/grain.png`, the film grain baked into the APK. Rarely needed; it only changes if the noise parameters in `scripts/lib/grain.mts` do. The same script used to emit the blob sprite for the `AmbientBackground` backdrop; that is gone from both apps, see `docs/native-parity.md`.
 - `npm run dupe` finds near-duplicate questions (embeddings + Jev, issue #38). Needs `OPENROUTER_API_KEY` in `.env`. Costs ~$0.005 for the current bank and re-runs are free from the verdict cache. Writes `data/dupe/report.md`. Local only, never in CI.
 - `npm run dupe:refresh` re-adjudicates every pair, ignoring the cache. Use after changing the definition or the pinned model.
 - `npm run dupe:score` scores the reporting threshold against the hand-labelled pairs in `data/dupe/labelled.json`.
