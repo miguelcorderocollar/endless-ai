@@ -428,5 +428,166 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ben-0015",
+    "text": "The MATH benchmark collects competition mathematics problems. What did each one come with that made it useful for studying reasoning rather than just arithmetic?",
+    "options": [
+      "A list of four possible multiple choice answers",
+      "A full worked solution, written out step by step",
+      "A photograph of the original competition paper",
+      "A grade sheet filled in by a human competition judge"
+    ],
+    "answer": "A full worked solution, written out step by step",
+    "category": "benchmarks",
+    "tags": [
+      "math",
+      "reasoning",
+      "evaluation"
+    ],
+    "difficulty": 1,
+    "explanation": "Every problem in MATH ships with a full step-by-step solution, so a model's answer can be graded on whether the derivation holds and not only on whether the final number matches. The problems are competition level, which is why it stayed hard while GSM8K, built from grade-school word problems, got solved.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2103.03874",
+      "label": "MATH dataset paper on arXiv"
+    },
+    "answerAliases": [
+      "step-by-step solution",
+      "full step-by-step solution",
+      "answer derivations and explanations",
+      "MATH"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ben-0016",
+    "text": "MT-Bench scores chat assistants by having a strong language model act as the judge. How did the authors show that was a fair stand-in for people?",
+    "options": [
+      "They compared its scores against the scores of a rival model",
+      "They checked it always gave the same score twice in a row",
+      "They compared its scores against scores from human raters",
+      "They checked it scored below the human graders every time"
+    ],
+    "answer": "They compared its scores against scores from human raters",
+    "category": "benchmarks",
+    "tags": [
+      "mt-bench",
+      "llm-as-judge",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "The paper verifies the agreement between LLM judges and human preferences, and reports that a strong judge tracks both controlled and crowdsourced human preferences about as well as people track each other. The known failure modes are position bias, verbosity bias and self-preference, which is why the same paper also proposes ways to blunt them.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "label": "Judging LLM-as-a-Judge with MT-Bench on arXiv"
+    },
+    "answerAliases": [
+      "agreement between LLM judges and human preferences",
+      "human preferences",
+      "LLM-as-a-judge",
+      "MT-Bench"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ben-0017",
+    "text": "HELM was built around breadth rather than a single test. What does it publish for each model it evaluates?",
+    "options": [
+      "One single headline accuracy number for each model",
+      "A table of results across many scenarios and metrics",
+      "A ranking of all the models tested, from best to worst",
+      "A written critique of each model from its own authors"
+    ],
+    "answer": "A table of results across many scenarios and metrics",
+    "category": "benchmarks",
+    "tags": [
+      "helm",
+      "evaluation",
+      "transparency"
+    ],
+    "difficulty": 2,
+    "explanation": "HELM taxonomises the space of scenarios and metrics, then runs a broad subset of both against every model so trade-offs are exposed instead of averaged away, including things a plain accuracy score hides like calibration, bias and toxicity. It also releases the raw prompts and completions, and is meant to keep growing as a living benchmark.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2211.09110",
+      "label": "Holistic Evaluation of Language Models on arXiv"
+    },
+    "answerAliases": [
+      "multi-metric approach",
+      "trade-offs are clearly exposed",
+      "scenarios",
+      "metrics",
+      "HELM"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ben-0018",
+    "text": "The Loebner Prize ran a Turing test competition for nearly three decades and was disliked by much of the field. What did Marvin Minsky do about it?",
+    "options": [
+      "He published a proof that no bot had ever fooled anyone",
+      "He chaired the judging panel in its final year",
+      "He donated the prize fund to a rival competition",
+      "He offered a cash prize to anyone who could stop it"
+    ],
+    "answer": "He offered a cash prize to anyone who could stop it",
+    "category": "benchmarks",
+    "tags": [
+      "loebner-prize",
+      "turing-test",
+      "evaluation"
+    ],
+    "difficulty": 2,
+    "explanation": "Minsky called the contest a publicity stunt that did not help the field, so he announced a reward for ending it, and Loebner joked that this made Minsky a co-sponsor. The two big one-time prizes, for a program that passed a full Turing test, were never awarded, and the contest is now defunct.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Loebner Prize",
+      "label": "Loebner Prize on Wikipedia"
+    },
+    "answerAliases": [
+      "Marvin Minsky",
+      "Minsky",
+      "stop the competition",
+      "Annual Minsky Loebner Prize Revocation Prize 1995 Announcement"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ben-0019",
+    "text": "The needle-in-a-haystack test is a cheap way to check whether a model can really use a long context window. What does it do?",
+    "options": [
+      "Hides one short sentence in a long block of filler text",
+      "Asks the model to summarise a long document in a single line",
+      "Asks the model to count how often a word appears in a page",
+      "Asks the model to list every date mentioned in a document"
+    ],
+    "answer": "Hides one short sentence in a long block of filler text",
+    "category": "benchmarks",
+    "tags": [
+      "long-context",
+      "retrieval",
+      "evaluation"
+    ],
+    "difficulty": 1,
+    "explanation": "You plant a single sentence, such as a made-up magic number, at varying depths inside a long pile of filler text and ask the model to repeat it back. It stopped being hard once frontier models got good at it, but the resulting heatmap is still the fastest way to see that where a fact sits inside the context matters as much as how much context there is.",
+    "source": {
+      "kind": "url",
+      "url": "https://github.com/gkamradt/LLMTest_NeedleInAHaystack",
+      "label": "Needle In A Haystack test by Greg Kamradt"
+    },
+    "answerAliases": [
+      "needle",
+      "haystack",
+      "in-context retrieval",
+      "Needle In A Haystack"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

@@ -365,5 +365,337 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "pro-0013",
+    "text": "Meta began rolling out a product called Muse to US users on September 8, 2026. What kind of product is it?",
+    "options": [
+      "A personal AI agent you message that works on your apps for you",
+      "A multimodal model that generates images and video inside Meta apps",
+      "A paid subscription that bundles Meta AI with your Instagram account",
+      "A pair of smart glasses with a camera and a built-in voice assistant"
+    ],
+    "answer": "A personal AI agent you message that works on your apps for you",
+    "category": "products",
+    "tags": [
+      "meta",
+      "muse",
+      "agent",
+      "launch"
+    ],
+    "difficulty": 1,
+    "explanation": "Muse is Meta's personal agent: you tell it what needs doing and it opens a browser, fills in forms, buys things, and comes back to ask before it sends an email or spends money. It runs on Muse Secure VM, a dedicated virtual machine holding both the agent and your data, and you reach it in the Muse app or straight in WhatsApp. The name is deliberately shared with Meta's model line, because Muse runs on Muse Spark, which Meta calls its most capable model to date.",
+    "source": {
+      "kind": "url",
+      "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "label": "Meta's Introducing Muse announcement"
+    },
+    "answerAliases": [
+      "Muse",
+      "personal AI agent",
+      "Muse Secure VM",
+      "muse.ai"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0014",
+    "text": "Suno launched its v6 music models on September 9, 2026, the first generation it built with music industry partners. Which partners did Suno name?",
+    "options": [
+      "Believe, Concord and Downtown Music",
+      "Universal Music Group, Sony Music and Believe",
+      "Warner Music Group, BMG and Believe",
+      "Warner Music Group, UMG and BMG"
+    ],
+    "answer": "Warner Music Group, BMG and Believe",
+    "category": "products",
+    "tags": [
+      "suno",
+      "music",
+      "licensing",
+      "launch"
+    ],
+    "difficulty": 2,
+    "explanation": "Suno's own announcement names Warner Music Group, BMG and Believe as the partners v6 was developed with, and says the earlier models would be retired as v6 rolls out. Universal Music Group and Sony are the tempting miss because a player who remembers Suno's copyright fights reaches for the biggest labels rather than the ones that actually signed. The release also came as a set of three models: v6 and v6-wild for paid subscribers, and v6-mini free for everyone.",
+    "source": {
+      "kind": "url",
+      "url": "https://about.suno.com/blog/introducing-v6",
+      "label": "Suno's Introducing v6 announcement"
+    },
+    "answerAliases": [
+      "Warner Music Group, BMG and Believe",
+      "Warner Music Group",
+      "BMG",
+      "Believe"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0015",
+    "text": "Manus shipped Manus 2.0 and a separate agent app called Cue on September 28, 2026. In Cue, what does every agent get for itself?",
+    "options": [
+      "A clone of your voice and your writing style",
+      "A dedicated GPU and a private server to run on",
+      "Its own social media accounts and login details",
+      "Its own email, phone number, wallet and computer"
+    ],
+    "answer": "Its own email, phone number, wallet and computer",
+    "category": "products",
+    "tags": [
+      "manus",
+      "cue",
+      "agent",
+      "launch"
+    ],
+    "difficulty": 2,
+    "explanation": "Cue is a standalone app for personal agents, and Manus gives each one its own email, phone number, wallet and computer so it can message people, pay inside a budget you set, and finish a task on its own machine. A dedicated GPU and a private server is the tempting miss because Manus does sell a Cloud Computer, but that is a separate product you buy for a project. Several agents can also share a group chat and hand work to each other.",
+    "source": {
+      "kind": "url",
+      "url": "https://manus.im/blog/introducing-manus-2-0",
+      "label": "Manus's Introducing Manus 2.0 post"
+    },
+    "answerAliases": [
+      "Cue",
+      "its own email, phone number, wallet and computer",
+      "email",
+      "phone number",
+      "wallet",
+      "computer"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0016",
+    "text": "ByteDance launched Seedance 2.5 on July 31, 2026. Which two of ByteDance's own products did it roll out to on day one?",
+    "options": [
+      "CapCut and TikTok",
+      "Jimeng AI and Doubao Pro",
+      "Doubao and Lark, with the API to follow",
+      "Volcengine and BytePlus ModelArk only"
+    ],
+    "answer": "Jimeng AI and Doubao Pro",
+    "category": "products",
+    "tags": [
+      "bytedance",
+      "seedance",
+      "video",
+      "launch"
+    ],
+    "difficulty": 2,
+    "explanation": "Seedance 2.5 went live inside Jimeng AI, ByteDance's video creation app, and Doubao Pro, its paid assistant tier, with API access on BytePlus ModelArk promised for later. CapCut and TikTok are the tempting miss as the two ByteDance apps everyone knows, and Volcengine and ModelArk are the trap because the API only arrived after the consumer launch. The version jump hides the real change: single-pass length doubled from 15 seconds to 30.",
+    "source": {
+      "kind": "url",
+      "url": "https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5",
+      "label": "ByteDance Seed on Seedance 2.5"
+    },
+    "answerAliases": [
+      "Jimeng AI",
+      "Doubao Pro",
+      "Jimeng",
+      "Seedance 2.5"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0017",
+    "text": "Black Forest Labs announced FLUX 3 in July 2026, its first model that generates video, and extended the same backbone to predict what a robot should do next. Which carmaker's production network is already testing that action model?",
+    "options": [
+      "BMW",
+      "Porsche",
+      "Audi",
+      "Mercedes-Benz"
+    ],
+    "answer": "Audi",
+    "category": "products",
+    "tags": [
+      "black-forest-labs",
+      "flux",
+      "robotics",
+      "video"
+    ],
+    "difficulty": 2,
+    "explanation": "The action half is called FLUX 3 Action and was built with mimic robotics, whose robots Black Forest Labs says have been tested and deployed at Audi. BFL is the Freiburg startup behind Stable Diffusion and the FLUX image models, and FLUX 3 is the first time it has shipped video at all. Audi's production lab framed the work as solving flexible, soft-body handling that conventionally programmed robot cells cannot handle economically.",
+    "source": {
+      "kind": "url",
+      "url": "https://bfl.ai/blog/flux-3-mimic",
+      "label": "Black Forest Labs on FLUX 3 and mimic robotics"
+    },
+    "answerAliases": [
+      "Audi",
+      "Audi AG",
+      "Audi Production Lab"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0018",
+    "text": "Dazzle, the startup founded by Marissa Mayer, launched its first product on September 29, 2026. Unlike most personal assistants, what does Dazzle use to work out who you are?",
+    "options": [
+      "The email and calendar on your work account",
+      "The accounts you follow on social media",
+      "The voice memos and transcripts on your phone",
+      "The photos and screenshots in your camera roll"
+    ],
+    "answer": "The photos and screenshots in your camera roll",
+    "category": "products",
+    "tags": [
+      "dazzle",
+      "assistant",
+      "marissa-mayer",
+      "launch"
+    ],
+    "difficulty": 2,
+    "explanation": "Dazzle's launch post is called Pictures, Not Prompts: the camera roll is the context layer, so a photo of a flat tyre becomes a booked repair and a school flyer becomes a calendar entry. Email and calendar is the tempting miss because that is where most personal assistants start, and Mayer's own post argues it skews them toward work. The post opened by noting that around five billion photos would be taken on smartphones that day.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.dazzle.ai/blog/announcing-dazzle-pictures-not-prompts",
+      "label": "Dazzle's launch post, Announcing Dazzle: Pictures, Not Prompts"
+    },
+    "answerAliases": [
+      "camera roll",
+      "photos and screenshots",
+      "Dazzle",
+      "Marissa Mayer",
+      "Pictures, Not Prompts"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0019",
+    "text": "Google launched Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS on September 23, 2026, and put each one into a different Google product on day one. The cheaper, high-volume model landed in which product?",
+    "options": [
+      "Google AI Studio",
+      "Google Vids",
+      "Google Flow",
+      "Google Whisk"
+    ],
+    "answer": "Google Vids",
+    "category": "products",
+    "tags": [
+      "google",
+      "tts",
+      "voice",
+      "launch"
+    ],
+    "difficulty": 3,
+    "explanation": "Flash-Lite is the throughput model, built for high-volume dubbing and expressive voice agents at scale, so it is the one Google put into Google Vids, its video creation tool. The creative-direction model, plain Flash, is the one that went into Gemini Notebook instead. Google AI Studio is the tempting miss because it is the other no-code surface, but it is a developer tool: you need an API key to use it.",
+    "source": {
+      "kind": "url",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "label": "Google on Gemini 3.8 text-to-speech"
+    },
+    "answerAliases": [
+      "Google Vids",
+      "Vids",
+      "Gemini 3.8 Flash-Lite TTS",
+      "Flash-Lite TTS"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0020",
+    "text": "Sonos introduced Sonos 27, the next version of its audio operating system, in September 2026, and previewed its first in-house voice assistant alongside it. What was that in-house assistant built to do?",
+    "options": [
+      "Answer general questions the way Alexa does today",
+      "Transcribe and translate speech in real time",
+      "Curate music and mood rather than general tasks",
+      "Read messages and manage your calendar for you"
+    ],
+    "answer": "Curate music and mood rather than general tasks",
+    "category": "products",
+    "tags": [
+      "sonos",
+      "voice-assistant",
+      "consumer",
+      "launch"
+    ],
+    "difficulty": 2,
+    "explanation": "Sonos 27voice is deliberately narrow: Sonos describes its own first assistant as built for music and mood curation, not for handling general requests. The general-question distractor is the tempting miss because a speaker that answers questions is what most people picture, and the same release took the opposite route for everything else, adding Sonos 27mcp so an outside assistant such as OpenAI's ChatGPT could drive the system instead. The announcement also folded the Beam Ultra soundbar and Ace Ultra headphones into the portfolio.",
+    "source": {
+      "kind": "url",
+      "url": "https://newsroom.sonos.com/269843-sonos-introduces-sonos-27-the-next-generation-of-its-audio-operating-system/",
+      "label": "Sonos newsroom on Sonos 27"
+    },
+    "answerAliases": [
+      "Sonos 27voice",
+      "music and mood curation",
+      "curate music and mood",
+      "Sonos 27"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0021",
+    "text": "JetBrains took its AI coding agent Junie out of beta in June 2026. Which protocol did it rebuild the agent's IDE integration on for the general release?",
+    "options": [
+      "Agent Communication Protocol",
+      "Model Context Protocol",
+      "Language Server Protocol",
+      "Debug Adapter Protocol"
+    ],
+    "answer": "Agent Communication Protocol",
+    "category": "products",
+    "tags": [
+      "jetbrains",
+      "junie",
+      "coding-agent",
+      "protocols"
+    ],
+    "difficulty": 3,
+    "explanation": "Junie's general release talks to the IDE over ACP, the same protocol Junie CLI already used, so one agent engine sits behind the AI chat, the Junie tool window and the terminal. Model Context Protocol is the tempting miss because it is the other big agent protocol of 2026, but MCP is about handing a model tools, not plugging an agent into an editor. Language Server Protocol is about completions and navigation.",
+    "source": {
+      "kind": "url",
+      "url": "https://blog.jetbrains.com/junie/2026/06/junie-coding-agent-out-of-beta/",
+      "label": "JetBrains on Junie leaving beta"
+    },
+    "answerAliases": [
+      "Agent Communication Protocol",
+      "ACP",
+      "Junie",
+      "JetBrains"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pro-0022",
+    "text": "Cursor's Composer 2 and Composer 2.5 coding models were not trained from scratch: Cursor took an open base model from another lab and did its own continued pretraining and reinforcement learning on top. Which lab's open model was that base?",
+    "options": [
+      "Alibaba",
+      "Moonshot AI",
+      "Mistral AI",
+      "DeepSeek"
+    ],
+    "answer": "Moonshot AI",
+    "category": "products",
+    "tags": [
+      "cursor",
+      "composer",
+      "lineage",
+      "open-weights"
+    ],
+    "difficulty": 4,
+    "explanation": "Both Composer 2 and Composer 2.5 were built on Moonshot AI's open Kimi K2.5 checkpoint, a 1T parameter model that Cursor continued-pretrained on code and then reinforced on long-horizon tasks. The course change came in May 2026, when Cursor said it was training a significantly larger model from scratch with SpaceXAI, using ten times the total compute on Colossus 2. Alibaba and DeepSeek are the tempting misses because both ship strong open coding bases of their own.",
+    "source": {
+      "kind": "url",
+      "url": "https://cursor.com/blog/composer-2-5",
+      "label": "Cursor on Composer 2.5"
+    },
+    "answerAliases": [
+      "Moonshot AI",
+      "Moonshot",
+      "Kimi K2.5",
+      "Kimi"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

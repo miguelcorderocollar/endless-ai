@@ -20,7 +20,7 @@
     "person must judge, not pairs that are automatically wrong.",
     "Pass 4 adjudicated the remaining flags with AI judgement rather than human hands, since the pairs are unambiguous once read. noul is null where the pair was resolved by rewording, because the verdict that mattered was the second run, not the one that flagged it."
   ],
-  "reviewedAt": "2026-09-29 (pass 4: all flagged pairs adjudicated and acted on)",
+  "reviewedAt": "2026-09-30 (110-draft batch: 2 new flags adjudicated, both related/keep)",
   "pairs": [
     {
       "a": "mem-0011",
@@ -131,7 +131,7 @@
       "b": "ppl-0027",
       "noul": null,
       "verdict": "related",
-      "note": "ADJUDICATED AND ACTED ON. Both were 'co-founded Google Brain' with different answers (Andrew Ng, Jeff Dean) — not a shared fact, but near-identical wording for two different people reads as one question. ppl-0027 reworded to ask about MapReduce, which removes the surface overlap and adds a real difficulty-3 question.",
+      "note": "ADJUDICATED AND ACTED ON. Both were 'co-founded Google Brain' with different answers (Andrew Ng, Jeff Dean) \u2014 not a shared fact, but near-identical wording for two different people reads as one question. ppl-0027 reworded to ask about MapReduce, which removes the surface overlap and adds a real difficulty-3 question.",
       "adjudicated": "2026-09-29 (pass 4: AI adjudicated and acted on, no human review)"
     },
     {
@@ -165,6 +165,22 @@
       "verdict": "distinct",
       "note": "KEEP BOTH. Ilya Sutskever founded SSI, Dario Amodei founded Anthropic. Both are OpenAI alumni who founded a lab, which is exactly the surface similarity a lexical detector cannot separate. Clear false positive.",
       "adjudicated": "2026-09-29 (pass 4: AI adjudicated and acted on, no human review)"
+    },
+    {
+      "a": "pap-0009",
+      "b": "tec-0001",
+      "noul": 0.85,
+      "verdict": "related",
+      "note": "Same paper, complementary facts: tec-0001 asks what Attention removed (recurrent/conv stack), pap-0009 asks what it built instead (self-attention + position). Different answers, different option sets. Keep both; reword if a reviewer finds them samey back-to-back.",
+      "resolution": ""
+    },
+    {
+      "a": "hwr-0001",
+      "b": "tec-0021",
+      "noul": 0.74,
+      "verdict": "related",
+      "note": "Shared territory (why GPUs/Nvidia), different facts: hwr-0001 asks why GPUs suit training (linear algebra), tec-0021 asks why the field landed on Nvidia (CUDA software ecosystem). Different answers. Keep both.",
+      "resolution": ""
     }
   ]
 }

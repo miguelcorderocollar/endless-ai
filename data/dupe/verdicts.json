@@ -35,6 +35,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "03f45a4473f5c0c3": {
+    "noul": 0.14,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "0404599d680c581e": {
     "noul": 0.115,
     "model": "jev-1.13",
@@ -83,6 +89,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "07f167c7fea15954": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "0895e268384089d2": {
     "noul": 0.365,
     "model": "jev-1.13",
@@ -109,6 +121,12 @@
   },
   "0ad9577733e6cfed": {
     "noul": 0.145,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "0ae0b7f6ac0c5786": {
+    "noul": 0.065,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -149,6 +167,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "0c777b46bc0639a7": {
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "0d04ca0d3bb95a90": {
     "noul": 0.14,
     "model": "jev-1.13",
@@ -167,6 +191,18 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "1030dc5cfedd9a16": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "111cbb0a3ce23665": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "1133de3cf2c668ec": {
     "noul": 0.055,
     "model": "jev-1.13",
@@ -175,6 +211,18 @@
   },
   "113cd987a6533cbc": {
     "noul": 0.42,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "11617171b6926d45": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "11775d5252a2190e": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -197,6 +245,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "14e5ef3496447327": {
+    "noul": 0.195,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "14ed29c70baccf79": {
     "noul": 0.1,
     "model": "jev-1.13",
@@ -209,8 +263,44 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "155b64cadc03f9b3": {
+    "noul": 0.475,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "16a1fc652741051a": {
+    "noul": 0.195,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "16c4139024f8912e": {
+    "noul": 0.17,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "18508c2399e727f9": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "1996a84b09c38a22": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "1ac1b1a0d0582309": {
     "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "1ae3a193356c1d97": {
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -257,6 +347,24 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "1f66436bee01edde": {
+    "noul": 0.145,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "1f8331919cfae495": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "1fb0e454feeec14b": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "200983bc46460c88": {
     "noul": 0.125,
     "model": "jev-1.13",
@@ -265,6 +373,12 @@
   },
   "208c0f72e346b5ad": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "217d7a87192b3b54": {
+    "noul": 0.115,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -323,6 +437,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "2757e192acc71568": {
+    "noul": 0.23,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "279ce5aff5a23801": {
     "noul": 0.065,
     "model": "jev-1.13",
@@ -377,8 +497,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "2bd641f66b2d5b54": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "2c05dff7b362b6bc": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "2c79c7ca6c287b3d": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -389,8 +521,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "2d7242a735a4488a": {
+    "noul": 0.465,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "2d7eb5cc87c74737": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "2d9b01924d7d931b": {
+    "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -401,8 +545,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "2ee348aca7484127": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "2f5d8ca90adb7c4a": {
     "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "3012d5321bfa788e": {
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -431,8 +587,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "3292f58b4291df80": {
+    "noul": 0.235,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "333e77b1c57d5296": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "3349ef6a8b92a0f5": {
     "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "337a0c9439b65354": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "34736cd87fccd3aa": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -443,8 +623,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "35486a25ff970b5e": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "361212a39297a0b5": {
     "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "3660fa5ef3b0c115": {
+    "noul": 0.365,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -461,6 +653,18 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "36fcf4c0fb2cb8e7": {
+    "noul": 0.85,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "377b40de105b851c": {
+    "noul": 0.245,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "38eae96faf265212": {
     "noul": 0.06,
     "model": "jev-1.13",
@@ -469,6 +673,12 @@
   },
   "3909ce4205ac03c1": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "392ff13c2b885ce6": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -509,8 +719,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "3d5b786bdc9e5efe": {
+    "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "3d6a6b7c6bfc4880": {
+    "noul": 0.415,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "3dc7ae66703a6352": {
     "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "3f32d901df8f5afe": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -523,6 +751,12 @@
   },
   "3fd494abba3a438b": {
     "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "416f70693bf82cd3": {
+    "noul": 0.27,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -551,8 +785,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "459d0f0107adc4c6": {
+    "noul": 0.74,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "45b603b7a342be07": {
     "noul": 0.44,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "45e8c003cd67dc97": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "47242dd84e7d070f": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "47671b727085f257": {
+    "noul": 0.115,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -599,6 +857,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "4a1c66eb55e43e3d": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "4a24ab6f14f9c6d5": {
     "noul": 0.06,
     "model": "jev-1.13",
@@ -611,6 +875,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "4b2ff513e0382eec": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "4b9bb1622b2c8d6f": {
     "noul": 0.07,
     "model": "jev-1.13",
@@ -619,6 +889,18 @@
   },
   "4bb68a44bf6c5f99": {
     "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "4c14c6dd933134d5": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "4e01a9a2075f878d": {
+    "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -647,8 +929,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "519607fde74212e9": {
+    "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "520b4272d657f136": {
     "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "52d9d7b5a4d1aeb5": {
+    "noul": 0.1,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "5355f9423246262b": {
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -677,8 +977,44 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "548568ac4190455c": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "556df2a98ef83ae9": {
     "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "55bc0132202a16c1": {
+    "noul": 0.155,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "55c3ce77fe4b87d1": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "55d2a3cbe38ff048": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "5604ef5ed8085ad4": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "561a05bc8a1bdcf8": {
+    "noul": 0.18,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -707,6 +1043,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "5a00714b1cb92d22": {
+    "noul": 0.045,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "5a0a8de0ddacb9cc": {
     "noul": 0.09,
     "model": "jev-1.13",
@@ -719,8 +1061,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "5bb176195690f426": {
+    "noul": 0.695,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "5bf796b81c0224de": {
     "noul": 0.12,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "5c5f955afd463356": {
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -751,6 +1105,18 @@
   },
   "5d8e4d8d1560d6f8": {
     "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "5e01abdd13b4bbdf": {
+    "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "5f73372dae099ffc": {
+    "noul": 0.15,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -787,6 +1153,12 @@
   },
   "64969e99413c0ad6": {
     "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "66624208f679533e": {
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -863,8 +1235,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "6c5390478225c197": {
+    "noul": 0.23,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6c66f2f057cb8c3a": {
+    "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "6ca52c5fe7c3d99e": {
     "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6cca81a124b769fc": {
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -877,6 +1267,18 @@
   },
   "6dc1c7205412ebd6": {
     "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6dc62e5ab5456179": {
+    "noul": 0.325,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "6e06f0a6599d2e5f": {
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -929,8 +1331,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "741982e382439953": {
+    "noul": 0.195,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "74276ab4d39318b5": {
     "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "7540e72408434044": {
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -965,8 +1379,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "79a6016ff8be72f7": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "79d297ab8b2a72ac": {
     "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "7a7e4d5a7b4d400b": {
+    "noul": 0.34,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -989,6 +1415,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "7be7035bfbb5866a": {
+    "noul": 0.655,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "7c04fd0b6e309b5e": {
     "noul": 0.055,
     "model": "jev-1.13",
@@ -997,6 +1429,18 @@
   },
   "7cc5e718ef99f0dc": {
     "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "7ce22b573dbadf98": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "7daf3a0bbb054a72": {
+    "noul": 0.09,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1067,8 +1511,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "85ad257e63f08102": {
+    "noul": 0.265,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "868d2830683d40cf": {
+    "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "86d8f4d97ca93028": {
     "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "8738afd13e749b32": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "873c7e69f361147b": {
+    "noul": 0.06,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1091,6 +1559,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "8a3ea3efe8b71413": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "8a4805db15788349": {
     "noul": 0.085,
     "model": "jev-1.13",
@@ -1103,8 +1577,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "8a92a7adfa37dfbf": {
+    "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "8be633cadf8e4c28": {
     "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "8c1c942a5c8d63cf": {
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1121,14 +1607,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "8d509f00e03f1bf0": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "8e9bf7aa4eb1f7d9": {
     "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "8fbff2317924b7e2": {
+    "noul": 0.215,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "9034afb4f91139ba": {
     "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "9044ea60723ef78d": {
+    "noul": 0.095,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1169,6 +1673,18 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "9260f232d05e4cb3": {
+    "noul": 0.145,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "92b335aebf26d4a8": {
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "94673a5e7e61b9de": {
     "noul": 0.065,
     "model": "jev-1.13",
@@ -1187,6 +1703,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "983d5b276e8b4961": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "98688df4258983dc": {
     "noul": 0.085,
     "model": "jev-1.13",
@@ -1199,8 +1721,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "9a2ef25b104d9bc6": {
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "9a707b9d4e067fcd": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "9a7c61cca7dd5edc": {
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1217,8 +1751,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "9c261fe387c5ddc1": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "9c77095eda103e78": {
     "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "9d3f7115ff12894f": {
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "9e776e1ea33df9f4": {
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1253,6 +1805,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "a1d7add077c3f830": {
+    "noul": 0.325,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "a45348a968f5d55a": {
     "noul": 0.055,
     "model": "jev-1.13",
@@ -1265,8 +1823,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "a5c3c4d7a5f2c2d7": {
+    "noul": 0.13,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "a64089ba9d641c3e": {
+    "noul": 0.13,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "a649d8ee9d016b69": {
+    "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "a6f557323237af63": {
     "noul": 0.035,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "a72a65fd2e66ee1a": {
+    "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1279,6 +1861,12 @@
   },
   "a7df161ff1c390bb": {
     "noul": 0.225,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "a84b396970579270": {
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1313,8 +1901,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "abc8c16dc5249293": {
+    "noul": 0.095,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "ac229a878b73937a": {
     "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "aca12ff837f8d87e": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "acb0a17d90193110": {
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1427,6 +2033,18 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "ba7a2a3798bfefd7": {
+    "noul": 0.1,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "bac4c56eefe9578b": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "bb41b2089b64152e": {
     "noul": 0.1,
     "model": "jev-1.13",
@@ -1439,6 +2057,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "bdd339b1ce4529aa": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "be0496e33816e81a": {
     "noul": 0.06,
     "model": "jev-1.13",
@@ -1447,6 +2071,12 @@
   },
   "be642e9b015ef7c0": {
     "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "be97475141371b18": {
+    "noul": 0.04,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1511,8 +2141,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "c464a8107e853514": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "c4f88b65f3cd7148": {
+    "noul": 0.225,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "c561225db54338bf": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "c65c6ed7882e442a": {
+    "noul": 0.11,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "c6b5717f0bd61cbf": {
+    "noul": 0.075,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1529,8 +2183,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "c82e9d6b7f1190b9": {
+    "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "c8562abfeffe71e5": {
     "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "c994e846c8e5985f": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "ca1917c9de8900fc": {
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1542,6 +2214,12 @@
     "runs": 2
   },
   "cb9cd362950396f8": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "cca04b14ec9a7216": {
     "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
@@ -1559,14 +2237,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "cfa6d19fdf66a7bd": {
+    "noul": 0.1,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "cfe200e3a9751376": {
     "noul": 0.085,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "cffd50e21f9159ea": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "d07216bc1adc571f": {
     "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "d09ee95bb2348c42": {
+    "noul": 0.155,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1585,6 +2281,18 @@
   },
   "d2d08cbd8e5aaac6": {
     "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "d43f28862359074f": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "d469a068702dde29": {
+    "noul": 0.055,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1613,8 +2321,26 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "d858681b2c115a3b": {
+    "noul": 0.175,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "d88eafa3dc611852": {
+    "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "d8c63e13480822ca": {
     "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "d8ebab4913202a50": {
+    "noul": 0.11,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1633,6 +2359,12 @@
   },
   "da099a264ffdb75a": {
     "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "da59f349098bb20d": {
+    "noul": 0.135,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1673,8 +2405,20 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "df6d0bf98726f68d": {
+    "noul": 0.165,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "df7a0ce79a7ded1b": {
     "noul": 0.09,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "e0000d65d833730e": {
+    "noul": 0.07,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1709,6 +2453,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "e1c72bb793819f18": {
+    "noul": 0.08,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "e20ef902625f2def": {
     "noul": 0.105,
     "model": "jev-1.13",
@@ -1733,6 +2483,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "e4e95135bcd7eb14": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "e52a9bd0c22723a1": {
     "noul": 0.05,
     "model": "jev-1.13",
@@ -1751,6 +2507,18 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "e762295761957ff0": {
+    "noul": 0.105,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "e7db9c645a1fdde0": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "e88f678a4de46a09": {
     "noul": 0.055,
     "model": "jev-1.13",
@@ -1759,6 +2527,12 @@
   },
   "e914c443a6076a08": {
     "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "e99ee9f9bdb1c78e": {
+    "noul": 0.04,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1799,6 +2573,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "ec46adb5edbaa125": {
+    "noul": 0.075,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "ecb26ad60a4810c9": {
     "noul": 0.075,
     "model": "jev-1.13",
@@ -1807,6 +2587,12 @@
   },
   "edafd202473e49a2": {
     "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "ee9aafffe6f04d7d": {
+    "noul": 0.115,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1823,6 +2609,12 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "ef3b2bfe6fd8a67d": {
+    "noul": 0.15,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "f071bbf95bd74ea5": {
     "noul": 0.125,
     "model": "jev-1.13",
@@ -1835,8 +2627,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "f0dd17628b953ff2": {
+    "noul": 0.195,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "f158bd3c9ed93942": {
     "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f23f8aa5082aaf73": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f2e16c1e1b1f1d9a": {
+    "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f3ef9d98a720a5d5": {
+    "noul": 0.105,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1847,8 +2663,32 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "f5198ecbb36275c2": {
+    "noul": 0.055,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f583817b2aad068a": {
+    "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f5d4e06ca1fa42fa": {
+    "noul": 0.12,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "f63e2bda859f613d": {
     "noul": 0.06,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f65ee7d1fb4df69e": {
+    "noul": 0.05,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
@@ -1889,6 +2729,24 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "f8f0f2ac93c6afa8": {
+    "noul": 0.085,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f904830360f921dd": {
+    "noul": 0.17,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "f918bebb143857ee": {
+    "noul": 0.255,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "fa6891f556db173b": {
     "noul": 0.06,
     "model": "jev-1.13",
@@ -1901,14 +2759,44 @@
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "fb852dc0b61e35f9": {
+    "noul": 0.07,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "fba82a6e64b3c29a": {
     "noul": 0.08,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
   },
+  "fbdd6da1fc633a55": {
+    "noul": 0.365,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "fc2d07a787ad18da": {
+    "noul": 0.065,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "fc58e48d714c1ad4": {
+    "noul": 0.365,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
   "fc7501af2799d7dc": {
     "noul": 0.05,
+    "model": "jev-1.13",
+    "definitionHash": "d2627a3baeca883f",
+    "runs": 2
+  },
+  "fd0040208b4c0358": {
+    "noul": 0.37,
     "model": "jev-1.13",
     "definitionHash": "d2627a3baeca883f",
     "runs": 2
