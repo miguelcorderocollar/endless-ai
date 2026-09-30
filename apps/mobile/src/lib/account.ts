@@ -124,19 +124,12 @@ export async function saveDisplayName(
  * Wipes the account's history. Irreversible by design — the events and the
  * rollup are deleted, so the server drops back to a fresh 1000.
  *
- * The device cache is cleared in the same breath, because leaving a local
- * rating behind would show numbers the server no longer agrees with, and the
- * next claim would resurrect them.
+ * Server only. The caller resets the device cache in the same breath (leaving
+ * a local rating behind would show numbers the server no longer agrees with,
+ * and the next claim would resurrect them), but that write belongs to the
+ * screen that owns the confirmation, not to this transport call — doing it in
+ * both places double-notifies every subscriber for no reason.
  */
 export async function resetProgress(client: ConvexReactClient): Promise<void> {
   await client.mutation(resetProgressRef, {});
-  updateProgress({
-    ...getProgress(),
-    rating: 1000,
-    answered: 0,
-    correct: 0,
-    streak: 1,
-    completed: [],
-    recent: [],
-  });
 }

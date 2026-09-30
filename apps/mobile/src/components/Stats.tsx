@@ -1,6 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import Svg, { G, Line, Polyline, Text as SvgText } from "react-native-svg";
 
+import {
+  bucketForRating,
+  CHART_MIN_SPAN,
+  GRID_FRACTIONS,
+} from "@shared/lib/quiz/histogram";
 import { colors, fonts, label } from "@/theme";
 
 /**
@@ -96,7 +101,7 @@ export function EloChart({
   const values = points.map((p) => p.r);
   const lo = Math.min(...values, median ?? Infinity);
   const hi = Math.max(...values, median ?? -Infinity);
-  const span = Math.max(hi - lo, 40);
+  const span = Math.max(hi - lo, CHART_MIN_SPAN);
   const padTop = height * PAD_TOP_FRACTION;
   const plotH = height * (1 - PAD_TOP_FRACTION - PAD_BOTTOM_FRACTION);
   const x = (i: number) =>
@@ -110,7 +115,7 @@ export function EloChart({
     // viewBox == the panel, so the default uniform scale is 1:1 and nothing is
     // distorted in either direction.
     <Svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-      {[0.15, 0.4, 0.65, 0.9].map((f) => {
+      {GRID_FRACTIONS.map((f) => {
         const v = Math.round(lo + span * f);
         return (
           <G key={f}>
@@ -189,11 +194,11 @@ export function Distribution({
     );
   }
   const max = Math.max(...buckets, 1);
-  const marker =
-    rating !== null
-      ? Math.min(19, Math.max(0, Math.floor((rating - 600) / 80)))
-      : null;
-  // `gap-[3px]` on the web, in the same 20 buckets over the same measured width.
+  const marker = rating !== null ? bucketForRating(rating) : null;
+  // The web lays the bars out with `gap-[3px]`; this is the same thing written
+  // out. `marginRight` on every bar overshoots by one gap — the last bar needs
+  // none — so the gap lives on the container instead and each bar keeps only
+  // its share of the width.
   const barWidth = Math.max(
     1,
     (width - 3 * (buckets.length - 1)) / buckets.length,
@@ -210,7 +215,6 @@ export function Distribution({
             key={i}
             style={{
               width: barWidth,
-              marginRight: 3,
               height: `${Math.max(2, (b / max) * 100)}%`,
               backgroundColor:
                 marker === i ? colors.signal : "rgba(242,239,233,0.7)",
@@ -252,7 +256,7 @@ const styles = StyleSheet.create({
     maxWidth: 380,
   },
   panel: { height: PANEL_HEIGHT },
-  histogram: { flex: 1, flexDirection: "row", alignItems: "flex-end" },
+  histogram: { flex: 1, flexDirection: "row", alignItems: "flex-end", gap: 3 },
   axis: {
     flexDirection: "row",
     justifyContent: "space-between",

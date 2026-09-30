@@ -270,7 +270,10 @@ export default function QuizScreen() {
         rating,
         answered: progress.answered + 1,
         correct: progress.correct + (correct ? 1 : 0),
-        streak: correct ? progress.streak + 1 : 1,
+        // No local streak: the server owns it, and the web leaves it alone for
+        // the same reason. A guest's streak reads whatever the last reconcile
+        // left behind, on both apps — scoring it locally here made two phones
+        // disagree about a number only the server can compute.
         completed:
           correct && !progress.completed.includes(current.id)
             ? [...progress.completed, current.id]
@@ -304,7 +307,7 @@ export default function QuizScreen() {
           (args) => client.mutation(answerRef, args),
           account,
         ).then(({ sent, lastRating, maxAt }) => {
-          if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
+          if (sent > 0 && lastRating !== null && shouldReconcile(account, maxAt)) {
             updateProgress({ ...getProgress(), rating: lastRating });
           }
         });

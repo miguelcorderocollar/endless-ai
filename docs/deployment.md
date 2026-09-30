@@ -221,7 +221,8 @@ corrected one means shipping a new build. So a release profile must set
 not the dev one — an APK pointed at `careful-salmon-552` is a public app reading
 and writing dev data that a later deploy can erase. `apps/mobile/src/lib/backend.ts`
 logs an error when a non-`__DEV__` bundle carries a `.convex.cloud` URL, which
-catches the mistake at build time rather than in review.
+is a runtime console message on the device — not a build failure, so it catches
+the mistake in review and on-device logs rather than at build time.
 
 Nothing else about the native app is a deployment concern: EAS Build compiles in
 the cloud, so there is no Android SDK on this machine and no native folder to

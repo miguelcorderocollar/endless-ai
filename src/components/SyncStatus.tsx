@@ -43,7 +43,7 @@ export function OutboxFlusher() {
     if (!isAuthenticated || !network.online) return;
     const account = readProfileCache()?.handle ?? null;
     void drainOutbox(recordAnswer, account).then(({ sent, lastRating, maxAt }) => {
-      if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
+      if (sent > 0 && lastRating !== null && shouldReconcile(account, maxAt)) {
         updateProgress({ ...readProgress(), rating: lastRating });
       }
     });

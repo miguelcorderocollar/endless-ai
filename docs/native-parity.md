@@ -50,11 +50,12 @@ Each of these was a real gap. What follows is what replaced it, because the
    the queue has to outlive all of them. The `offline` half comes from NetInfo
    in a store shaped exactly like `src/lib/pwa/network.ts`.
 4. **Elo graph.** `EloChart` in `src/components/Stats.tsx`, redrawn in
-   `react-native-svg` with the web's arithmetic intact: same viewBox, same four
-   gridlines, same `Math.max(hi - lo, 40)` floor, same signal median. The chart
-   is laid out from a measured width rather than `preserveAspectRatio="none"`,
-   which is the one place the two implementations differ, and it is a layout
-   fact rather than a visual choice.
+   `react-native-svg` with the web's arithmetic intact: same four gridlines,
+   same `CHART_MIN_SPAN` floor, same signal median — all three from the shared
+   `src/lib/quiz/histogram.ts`, so neither side can restate them. The drawing is
+   1:1 (the viewBox *is* the measured panel) rather than the web's stretch,
+   because the web's mild non-uniform scale becomes a visible text distortion on
+   a phone-width panel.
 5. **Per-category accuracy bars.** These were on the web's `/categories` page,
    not its profile, and `docs/native-parity.md` used to say otherwise. The
    arithmetic moved to `accuracyByCategory` in `src/lib/quiz/categoryAccuracy.ts`
@@ -63,16 +64,17 @@ Each of these was a real gap. What follows is what replaced it, because the
 6. **Distribution and percentile.** Same component, same `population` query, same
    copy. It is only interesting once there is a population; it renders the
    "no rated players yet" branch honestly until then.
-7. **Done list as a browsable list.** `DoneList.tsx`, ported screen for screen:
-   the big `correct/answered`, the misses in red, then the done list itself with
-   a Learn link per row and page-through. The bank it resolves ids against is the
-   live `questions:list`, the AsyncStorage snapshot, or the bundled bank — so the
-   list works on a plane, which the web's does too.
-8. **Display name, handle, and the two things next to it.** The profile header
-   now carries the web's three actions: rename, reset, sign out, each behind a
-   `Popup` — `Modal` on native, because a dialog that ignores the status bar and
-   the gesture bar is clipped by the notch. The handle shows under the name, and
-   `admin` is marked the way the web marks it.
+7. **Done list as one ordered list.** `DoneList.tsx`, newest first, misses in red
+   among the finished rows, capped at fifty and headed "latest answers". The
+   ordering, the cap and the newest-wins verdict are `buildDoneList`'s in
+   `src/lib/answers/doneList.ts`, shared rather than restated. The bank it
+   resolves ids against is the live `questions:list`, the AsyncStorage snapshot,
+   or the bundled bank — so the list works on a plane, which the web's does too.
+8. **Display name and the two things next to it.** The profile header carries
+   the web's three actions: rename, reset, sign out, each behind a `Popup` —
+   `Modal` on native, because a dialog that ignores the status bar and the
+   gesture bar is clipped by the notch. No handle line on either app: it is the
+   account's internal id, and `admin` is the only marker that stays.
 9. **Best streak.** In the Elo block's subline, in the web's format:
    `12 answered · streak 3 · best 7`.
 10. **Ambience, partially — and the blobs are gone from both apps.** The film

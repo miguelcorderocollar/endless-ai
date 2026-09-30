@@ -13,11 +13,9 @@ import { RECENT_CAP, type SavedProgress } from "@shared/lib/progress";
  * other, which is how the two stores stop drifting. `import type` means nothing
  * from that module runs here, so its localStorage code never executes.
  *
- * Offline answer queuing (#17 on the web) is deliberately not here yet — the
- * native outbox needs its own AsyncStorage-backed queue and exact-replay
- * semantics, and it is a second pass. Until then a lost connection drops the
- * sync, not the local rating, which is the same degradation the PWA had before
- * PR #43.
+ * Signed-in answers travel through `lib/outbox.ts`, the AsyncStorage adapter
+ * over the shared `outboxCore` — the exact-replay semantics the server depends
+ * on, with this store holding only the optimistic local numbers.
  */
 const PROGRESS_KEY = "endless-ai:progress:v1";
 const FILTER_KEY = "endless-ai:filter:v1";
@@ -115,13 +113,14 @@ export function subscribeProgress(listener: () => void): () => void {
 }
 
 export function getProgress(): SavedProgress {
-  if (cached === null) cached = EMPTY_PROGRESS;
-  return cached;
+  // Pure: no assignment. The mirrors are written by `hydrateProgress`,
+  // `updateProgress` and `updateFilter` only. Assigning here would mutate module
+  // state during render, which is a render loop the day a writer notifies.
+  return cached ?? EMPTY_PROGRESS;
 }
 
 export function getFilter(): string[] {
-  if (filterCached === null) filterCached = [];
-  return filterCached;
+  return filterCached ?? [];
 }
 
 export function hasHydrated(): boolean {

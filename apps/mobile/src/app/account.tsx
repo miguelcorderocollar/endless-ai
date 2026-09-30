@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { forgetProfile, syncOnSignIn } from "@/lib/account";
+import { forgetProfile } from "@/lib/account";
 import { convexClient } from "@/lib/backend";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
 
@@ -91,9 +91,15 @@ export default function AccountScreen() {
     // it is handed a real FormData, and React Native's FormData has no `.get()`
     // anyway, so the object is the reliable path on this platform. `flow` is
     // the field the web form supplies via a hidden input.
+    //
+    // No claim here. Landing on `/` mounts the quiz screen, whose
+    // once-per-sign-in effect runs `syncOnSignIn` — the single place the claim
+    // happens, including for a session restored from storage. Claiming here as
+    // well ran it twice per sign-in; `claimProgress` is idempotent so the only
+    // symptom was a wasted round trip, but a check-then-insert run twice is a
+    // duplicate-`userStats` race waiting for a slow network.
     void signIn("password", { email: email.trim(), password, flow }).then(
-      async () => {
-        await syncOnSignIn(client);
+      () => {
         setBusy(false);
         router.dismissTo("/");
       },

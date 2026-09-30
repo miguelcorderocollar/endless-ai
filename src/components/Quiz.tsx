@@ -212,7 +212,7 @@ export function Quiz({
         });
         void drainOutbox(recordAnswer, account).then(
           ({ sent, lastRating, maxAt }) => {
-            if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
+            if (sent > 0 && lastRating !== null && shouldReconcile(account, maxAt)) {
               updateProgress({ ...readProgress(), rating: lastRating });
             }
           },

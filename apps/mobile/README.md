@@ -8,7 +8,7 @@ of it.
 
 | Shared, imported from `../../src` | Reimplemented here |
 | --- | --- |
-| `src/lib/quiz/elo.ts` — ratings, tiers, `scoreAnswer` | Storage: `src/lib/progress.ts`, `src/lib/outbox.ts`, `src/lib/profileCache.ts` (AsyncStorage, mirroring the web's localStorage modules) |
+| `src/lib/quiz/elo.ts` — ratings, tiers, `scoreAnswer` | Storage: `src/lib/progress.ts`, `src/lib/outbox.ts`, `src/lib/profileCache.ts` (AsyncStorage, mirroring the web's localStorage modules — same keys, same shapes, new read/write code; `parseProgress` and the recent-buffer sanitising are restated, not shared, so a rule change there has to land in both) |
 | `src/lib/quiz/engine.ts` — `pickNext`, `weightedSample`, `matchWeight` | Views: the four screens in `src/app` and the components in `src/components` |
 | `src/lib/quiz/categoryAccuracy.ts` — the per-category accuracy bars | |
 | `src/lib/questions/schema.ts` — `CATEGORIES`, `questionSchema`, source links | Backend calls: `src/lib/api.ts` (see below) |

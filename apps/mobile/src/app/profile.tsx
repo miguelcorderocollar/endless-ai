@@ -29,7 +29,7 @@ import {
   population as populationRef,
   history as historyRef,
 } from "@/lib/api";
-import { forgetProfile, resetProgress, saveDisplayName } from "@/lib/account";
+import { forgetProfile, rememberProfile, resetProgress, saveDisplayName } from "@/lib/account";
 import { convexClient } from "@/lib/backend";
 import { toQuestions } from "@/lib/bank";
 import { localBank } from "@/lib/localBank";
@@ -40,7 +40,6 @@ import {
   readProfileCache,
   subscribeCaches,
   writeListCache,
-  writeProfileCache,
 } from "@/lib/profileCache";
 import {
   EMPTY_PROGRESS,
@@ -53,6 +52,12 @@ import {
 import { PencilIcon, ResetIcon, SignOutIcon } from "@/components/icons";
 import { Distribution, EloChart, PANEL_HEIGHT } from "@/components/Stats";
 import { DoneList } from "@/components/DoneList";
+import {
+  getNetworkServerSnapshot,
+  getNetworkSnapshot,
+  startNetworkListener,
+  subscribeNetwork,
+} from "@/lib/network";
 import type { Question } from "@shared/lib/questions/schema";
 import { tierFor } from "@shared/lib/quiz/elo";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
@@ -94,6 +99,20 @@ export default function ProfileScreen() {
   const client = convexClient();
   const [popup, setPopup] = useState<"name" | "reset" | null>(null);
   const [tab, setTab] = useState<Tab>("you");
+  // Offline, Convex auth and every query hang instead of failing — auth never
+  // settles and the hooks stay `undefined` until the socket connects. The web
+  // page treats offline as settled and lets device-local progress carry the
+  // screen; this subscribes to the same condition so a signed-in player on a
+  // plane gets their chart frame and done list instead of skeletons.
+  useEffect(() => {
+    startNetworkListener();
+  }, []);
+  const online = useSyncExternalStore(
+    subscribeNetwork,
+    getNetworkSnapshot,
+    getNetworkServerSnapshot,
+  ).online;
+  const offline = !online;
   // The measured plot box. Both tabs read it, so the chart and the histogram
   // are drawn into the same rectangle rather than each assuming one.
   const [plot, setPlot] = useState({ width: 0, height: 0 });
@@ -113,10 +132,10 @@ export default function ProfileScreen() {
     void hydrateProgress();
   }, []);
 
-  // Remember the last signed-in identity, so the masthead paints the name on the
-  // next launch instead of "sign in" for the length of a query.
+  // Remember the last signed-in identity, so the profile header paints the name
+  // on the next launch instead of a blank for the length of a query.
   useEffect(() => {
-    if (identity) writeProfileCache(identity);
+    if (identity) rememberProfile(identity);
   }, [identity]);
 
   // Signed in with events but no rollup: build it on demand, so the profile
@@ -160,9 +179,6 @@ export default function ProfileScreen() {
   const correct = isAuthenticated
     ? (stats?.correct ?? local.correct)
     : local.correct;
-  const streak = isAuthenticated
-    ? (stats?.streak ?? local.streak)
-    : local.streak;
   const bestStreak = isAuthenticated ? (stats?.bestStreak ?? 0) : 0;
   const doneList = isAuthenticated
     ? (completed ?? local.completed)
@@ -184,10 +200,18 @@ export default function ProfileScreen() {
    * `buildDoneList`, so that function has one contract: record order.
    */
   const attempts = useMemo(() => {
+    // Both sources arrive newest-first: `myRecent` is `.order("desc")` and the
+    // ring is stored oldest-first. Flip each before the outer reverse, exactly
+    // like the web page, so `buildDoneList` always gets record order. Getting
+    // this wrong on one path shows guests the list backwards relative to
+    // signed-in players — which is what shipped here first.
     const source =
       isAuthenticated && recent
         ? recent.map((r) => ({ id: r.questionId, correct: r.correct }))
-        : local.recent.map((r) => ({ id: r.id, correct: r.correct }));
+        : local.recent
+            .slice()
+            .reverse()
+            .map((r) => ({ id: r.id, correct: r.correct }));
     return source.reverse();
   }, [isAuthenticated, recent, local.recent]);
 
@@ -306,13 +330,13 @@ export default function ProfileScreen() {
           <View style={styles.block}>
             <Text style={[label, styles.kicker]}>elo rating</Text>
             <Text style={styles.elo}>{rating}</Text>
-            <Text style={[label, styles.subhead]}>
-              {stats
-                ? `${stats.answered} answered · streak ${stats.streak} · best ${bestStreak}`
-                : isAuthenticated
-                  ? "no answers yet on this account"
-                  : `${tierFor(rating)} · on this device only · sign in to sync`}
-            </Text>
+              <Text style={[label, styles.subhead]}>
+                {stats
+                  ? `${stats.answered} answered · streak ${stats.streak} · best ${bestStreak}`
+                  : isAuthenticated && !offline
+                    ? "no answers yet on this account"
+                    : `${tierFor(rating)} · on this device only · sign in to sync`}
+              </Text>
 
             <View style={styles.tabs}>
               {(["you", "all"] as const).map((t) => (
@@ -341,8 +365,17 @@ export default function ProfileScreen() {
 
             <View style={styles.chart} onLayout={onPlot}>
               {plot.width === 0 ? null : tab === "you" ? (
-                history === undefined && isAuthenticated ? (
-                  <ChartSkeleton />
+                history === undefined && !offline ? (
+                  isAuthenticated ? (
+                    <ChartSkeleton />
+                  ) : (
+                    <EloChart
+                      points={[]}
+                      median={population?.median ?? null}
+                      width={plot.width}
+                      height={plot.height}
+                    />
+                  )
                 ) : (
                   <EloChart
                     points={history ?? []}
@@ -351,14 +384,14 @@ export default function ProfileScreen() {
                     height={plot.height}
                   />
                 )
-              ) : population === undefined ? (
+              ) : population === undefined && !offline ? (
                 <DistributionSkeleton />
               ) : (
                 <Distribution
-                  buckets={population.buckets}
-                  count={population.count}
-                  median={population.median}
-                  percentile={population.percentile}
+                  buckets={population?.buckets ?? []}
+                  count={population?.count ?? 0}
+                  median={population?.median ?? null}
+                  percentile={population?.percentile ?? null}
                   rating={isAuthenticated ? (stats?.rating ?? null) : null}
                   width={plot.width}
                 />
@@ -588,7 +621,6 @@ function DistributionSkeleton() {
               height: `${h}%`,
               flex: 1,
               backgroundColor: "rgba(242,239,233,0.07)",
-              marginRight: 3,
             }}
           />
         ))}
@@ -685,9 +717,10 @@ const styles = StyleSheet.create({
   skeletonBar: { height: 2, backgroundColor: "rgba(242,239,233,0.07)" },
   skeletonMedian: { height: 3, backgroundColor: "rgba(214,255,63,0.3)" },
   skeletonHistogram: {
-    height: 240,
+    height: PANEL_HEIGHT,
     flexDirection: "row",
     alignItems: "flex-end",
+    gap: 3,
   },
 
   primary: {

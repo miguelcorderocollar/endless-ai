@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect } from "react";
+import { type ReactNode } from "react";
 import {
   Modal,
   Pressable,
@@ -36,11 +36,6 @@ export function Popup({
   onClose: () => void;
   children: ReactNode;
 }) {
-  useEffect(() => {
-    // Nothing to lock on native: `Modal` already blocks touches behind, and the
-    // hardware back button is delivered to `onRequestClose`.
-  }, []);
-
   return (
     <Modal
       visible
@@ -49,18 +44,19 @@ export function Popup({
       statusBarTranslucent
       onRequestClose={onClose}
     >
-      <Pressable
-        style={styles.scrim}
-        accessibilityRole="button"
-        accessibilityLabel="Close"
-        onPress={onClose}
-      >
-        {/* Swallow taps on the panel so they do not reach the scrim. */}
+      {/* Siblings, not nested: a tap on the panel must never reach the scrim.
+          Nested Pressables both fire in React Native — the inner noop and the
+          outer close — so the web's "click the overlay to dismiss" cannot be a
+          Pressable wrapped around the panel. The scrim sits behind and the
+          panel above it; taps land on one or the other, never both. */}
+      <View style={styles.scrim}>
         <Pressable
-          onPress={() => {}}
-          style={styles.panel}
-          accessibilityViewIsModal
-        >
+          style={StyleSheet.absoluteFill}
+          accessibilityRole="button"
+          accessibilityLabel="Close"
+          onPress={onClose}
+        />
+        <View style={styles.panel} accessibilityViewIsModal>
           <View style={styles.bar}>
             <Text style={[label, styles.kicker]}>{kicker}</Text>
             <Pressable
@@ -80,8 +76,8 @@ export function Popup({
           >
             <Rise>{children}</Rise>
           </ScrollView>
-        </Pressable>
-      </Pressable>
+        </View>
+      </View>
     </Modal>
   );
 }

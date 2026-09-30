@@ -52,7 +52,7 @@ export function OutboxFlusher() {
     const account = readProfileCache()?.handle ?? null;
     void drainOutbox((args) => client.mutation(answerRef, args), account).then(
       ({ sent, lastRating, maxAt }) => {
-        if (sent > 0 && lastRating !== null && shouldReconcile(maxAt)) {
+        if (sent > 0 && lastRating !== null && shouldReconcile(account, maxAt)) {
           updateProgress({ ...getProgress(), rating: lastRating });
         }
       },

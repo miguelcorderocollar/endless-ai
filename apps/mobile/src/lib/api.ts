@@ -75,7 +75,7 @@ export const me = makeFunctionReference<
 export const ensureProfile = makeFunctionReference<
   "mutation",
   Record<string, never>,
-  null
+  { ok: true }
 >("users:ensureProfile");
 
 /**

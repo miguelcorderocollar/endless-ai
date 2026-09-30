@@ -158,13 +158,21 @@ export async function runDrain(
  * newest-sent event wins; ties (`>=`) reconcile, last-writer-wins within a
  * millisecond, which is below the resolution anything here can order by.
  *
- * Module state on purpose: the guard is about two concurrent callers in one
- * process, and both apps are one process.
+ * Keyed by account, not global: after a sign-out and a sign-in as somebody
+ * else, the new account's first drain carries an older `maxAt` than the
+ * previous account's last one, and a single global watermark would suppress
+ * exactly the reconcile that brings the new account's rating up to date. One
+ * process, one map; an account that never drains leaves no entry.
  */
-let reconciledAt = -1;
+const reconciledAt = new Map<string | null, number>();
 
-export function shouldReconcile(at: number | null): boolean {
-  if (at === null || at < reconciledAt) return false;
-  reconciledAt = at;
+export function shouldReconcile(
+  account: string | null,
+  at: number | null,
+): boolean {
+  if (at === null) return false;
+  const known = reconciledAt.get(account) ?? -1;
+  if (at < known) return false;
+  reconciledAt.set(account, at);
   return true;
 }

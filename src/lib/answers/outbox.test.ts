@@ -221,15 +221,26 @@ describe("shouldReconcile", () => {
     expect(firstResult).toMatchObject({ sent: 1, lastRating: 1010, maxAt: 100 });
 
     const applied: number[] = [];
-    if (shouldReconcile(second.maxAt)) applied.push(second.lastRating!);
-    if (shouldReconcile(firstResult.maxAt)) applied.push(firstResult.lastRating!);
+    if (shouldReconcile("atlas", second.maxAt)) applied.push(second.lastRating!);
+    if (shouldReconcile("atlas", firstResult.maxAt))
+      applied.push(firstResult.lastRating!);
     expect(applied).toEqual([1020]);
   });
 
   it("reconciles ties last-writer-wins", async () => {
     const { shouldReconcile } = await load();
-    expect(shouldReconcile(100)).toBe(true);
-    expect(shouldReconcile(100)).toBe(true);
-    expect(shouldReconcile(99)).toBe(false);
+    expect(shouldReconcile("atlas", 100)).toBe(true);
+    expect(shouldReconcile("atlas", 100)).toBe(true);
+    expect(shouldReconcile("atlas", 99)).toBe(false);
+  });
+
+  it("tracks accounts separately, so a new sign-in reconciles", async () => {
+    const { shouldReconcile } = await load();
+    // Atlas drains late events; Bruno signs in after, with an older watermark.
+    // A single global guard would suppress Bruno's reconcile and leave the
+    // device showing Atlas's rating under Bruno's name.
+    expect(shouldReconcile("atlas", 200)).toBe(true);
+    expect(shouldReconcile("bruno", 100)).toBe(true);
+    expect(shouldReconcile("bruno", 99)).toBe(false);
   });
 });
