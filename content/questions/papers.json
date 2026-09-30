@@ -232,5 +232,165 @@
     ],
     "status": "published",
     "addedAt": "2026-09-28"
+  },
+  {
+    "id": "pap-0009",
+    "text": "The 2017 paper Attention Is All You Need threw out the recurrent encoder-decoder setup that had dominated machine translation. What did it build in its place?",
+    "options": [
+      "Self-attention layers, with position added to the input",
+      "Long short-term memory cells chained one token at a time",
+      "Convolutional filters with a wider receptive field each layer",
+      "Gated recurrent units, with attention between the encoder and decoder"
+    ],
+    "answer": "Self-attention layers, with position added to the input",
+    "category": "papers",
+    "tags": [
+      "transformer",
+      "attention",
+      "foundational"
+    ],
+    "difficulty": 2,
+    "explanation": "The paper describes its architecture as based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. What that bought was parallelism, because no position has to wait for the one before it, which is why a Transformer trained in days where the recurrent models it replaced took weeks.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "label": "Attention Is All You Need on arXiv"
+    },
+    "answerAliases": [
+      "self-attention",
+      "attention mechanisms",
+      "dispensing with recurrence and convolutions entirely",
+      "Transformer"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pap-0010",
+    "text": "The 2012 AlexNet paper said its depth was what made it accurate, and that the same depth was computationally expensive. What did it name as the thing that made that depth affordable?",
+    "options": [
+      "Buying a much smaller set of images to train on",
+      "Replacing the depth with a much wider shallow network",
+      "Training the network on graphics processing units",
+      "Training the network on a large cluster of server CPUs"
+    ],
+    "answer": "Training the network on graphics processing units",
+    "category": "papers",
+    "tags": [
+      "alexnet",
+      "gpu",
+      "deep-learning"
+    ],
+    "difficulty": 2,
+    "explanation": "It ran on two consumer Nvidia GTX 580 graphics cards, in a bedroom, with hand-written C++ and CUDA because no GPU machine-learning framework existed yet. The hardware half of the story is the one that usually gets left out, and it is why deep learning looked practical a year before most of the field believed it was.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AlexNet",
+      "label": "AlexNet on Wikipedia"
+    },
+    "answerAliases": [
+      "graphics processing units",
+      "GPUs",
+      "utilization of graphics processing units (GPUs) during training",
+      "GPU"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pap-0011",
+    "text": "In the 2022 InstructGPT work, reinforcement learning from human feedback rests on one step where people do the actual work. What were they asked to do?",
+    "options": [
+      "Rewrite each answer by hand so the model could copy it",
+      "Rank several candidate answers the model wrote, best to worst",
+      "Write a long critique of every answer the model gave",
+      "Approve or reject each answer as a simple pass or fail"
+    ],
+    "answer": "Rank several candidate answers the model wrote, best to worst",
+    "category": "papers",
+    "tags": [
+      "rlhf",
+      "instructgpt",
+      "alignment"
+    ],
+    "difficulty": 2,
+    "explanation": "The paper collects a dataset of rankings of model outputs, and those rankings train a separate model to predict which answer a person would prefer. Comparing candidates against each other is fast and consistent work for a person to do, which is exactly why this one label is so cheap and so load-bearing.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2203.02155",
+      "label": "InstructGPT paper on arXiv"
+    },
+    "answerAliases": [
+      "rankings of model outputs",
+      "rankings",
+      "human feedback",
+      "reinforcement learning from human feedback"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pap-0012",
+    "text": "The 2022 chain-of-thought paper got models reasoning step by step without any fine-tuning. What did it put in the prompt to do it?",
+    "options": [
+      "A few worked examples with the reasoning steps written out",
+      "A few worked examples that give only the final answer",
+      "A short list of the facts the question is known to depend on",
+      "A score for how badly the earlier attempt was graded"
+    ],
+    "answer": "A few worked examples with the reasoning steps written out",
+    "category": "papers",
+    "tags": [
+      "chain-of-thought",
+      "prompting",
+      "reasoning"
+    ],
+    "difficulty": 2,
+    "explanation": "The method is a handful of chain of thought demonstrations supplied as exemplars, and the model copies their shape when it answers. The paper's sharpest finding is that this only pays off on sufficiently large models, which is why the same prompt helps a frontier model and does nothing for a small one.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2201.11903",
+      "label": "Chain-of-Thought Prompting on arXiv"
+    },
+    "answerAliases": [
+      "chain of thought demonstrations",
+      "exemplars",
+      "chain-of-thought demonstrations",
+      "intermediate reasoning steps"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "pap-0013",
+    "text": "Diffusion image models are described as denoising models. What is the model actually doing when it generates a picture?",
+    "options": [
+      "Starting from a blank canvas and drawing the subject in one pass",
+      "Starting from a finished image and adding detail and colour back",
+      "Starting from a rough sketch and sharpening the outlines",
+      "Starting from pure static, removing a little noise each step"
+    ],
+    "answer": "Starting from pure static, removing a little noise each step",
+    "category": "papers",
+    "tags": [
+      "diffusion",
+      "ddpm",
+      "image-generation"
+    ],
+    "difficulty": 1,
+    "explanation": "Training corrupts real images by adding a little more noise at every step until only static is left, and the model learns to run that backwards, peeling a small amount of noise off at a time. Because each step is a simple prediction rather than a fight between two networks, diffusion displaced GANs for image generation within a couple of years.",
+    "source": {
+      "kind": "url",
+      "url": "https://arxiv.org/abs/2006.11239",
+      "label": "Denoising Diffusion Probabilistic Models on arXiv"
+    },
+    "answerAliases": [
+      "denoising",
+      "denoising score matching",
+      "diffusion probabilistic models",
+      "reverse the diffusion process"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

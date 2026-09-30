@@ -469,5 +469,477 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "hwr-0017",
+    "text": "Most advanced AI chips are fabbed in Taiwan. Which of these follows from that concentration?",
+    "options": [
+      "A disruption there would affect only consumer devices",
+      "A disruption there could trigger a worldwide chip shortage",
+      "A disruption there would make AI models cheaper to train",
+      "A disruption there would remove the need for new chip designs"
+    ],
+    "answer": "A disruption there could trigger a worldwide chip shortage",
+    "category": "hardware",
+    "tags": [
+      "tsmc",
+      "supply-chain",
+      "taiwan"
+    ],
+    "difficulty": 1,
+    "explanation": "One company on one island makes the dies for the accelerators every AI lab rents, and a fabrication plant takes years to build, so the capacity cannot be replaced quickly if it stops. That dependency is expensive for everyone else to escape, which is the idea behind Taiwan's silicon shield. TSMC is spreading capacity to Arizona partly to soften exactly this risk.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "TSMC",
+      "label": "TSMC on Wikipedia"
+    },
+    "answerAliases": [
+      "a disruption could cause another worldwide chip shortage",
+      "supply chain bottleneck",
+      "commanding majority in the semiconductor foundry market"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0018",
+    "text": "ASML makes the only machines in the world that can print the smallest features on a chip. Which of these follows?",
+    "options": [
+      "Chipmakers can make the same nodes with older machines",
+      "Chipmakers no longer need to buy lithography equipment",
+      "Chipmakers can copy the machines once patents expire",
+      "Chipmakers at the smallest nodes buy from one supplier"
+    ],
+    "answer": "Chipmakers at the smallest nodes buy from one supplier",
+    "category": "hardware",
+    "tags": [
+      "asml",
+      "euv",
+      "supply-chain"
+    ],
+    "difficulty": 2,
+    "explanation": "EUV is the only way to print the layers at 5 nm and 3 nm, so every advanced chipmaker queues for the same supplier. The dependency is concrete: Intel put $4.1 billion into ASML in 2012 for a 15 percent stake, and Samsung and TSMC took smaller stakes under the same program, so the customers helped pay for the tool they all need. Nikon and Canon once led lithography, but neither ships EUV machines.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "ASML",
+      "label": "ASML on Wikipedia"
+    },
+    "answerAliases": [
+      "the world's only manufacturer of extreme ultraviolet (EUV) lithography machines",
+      "required to manufacture the most advanced semiconductor chips",
+      "largest supplier to the semiconductor industry"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0019",
+    "text": "Phone chips from Apple, Qualcomm and Samsung now carry a dedicated neural network accelerator. What is it mainly for?",
+    "options": [
+      "Running small AI models efficiently on low power",
+      "Training large language models from scratch on the phone",
+      "Replacing the graphics chip used to render phone games",
+      "Compressing photos and video to save phone storage"
+    ],
+    "answer": "Running small AI models efficiently on low power",
+    "category": "hardware",
+    "tags": [
+      "npu",
+      "mobile",
+      "inference"
+    ],
+    "difficulty": 1,
+    "explanation": "On a phone the accelerator is deliberately small and power-efficient, sized to run little models rather than train them, and a phone running a large model on its main cores would be hot and flat within minutes. Keeping the work on the device also means the data never has to leave the phone. Data centre accelerators make the opposite bet: far bigger, and happy to be noisy.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Neural processing unit",
+      "label": "Neural processing unit on Wikipedia"
+    },
+    "answerAliases": [
+      "small, power-efficient",
+      "run small models",
+      "Apple silicon"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0020",
+    "text": "Nvidia paid $6.9 billion for Mellanox, closing the deal in 2020. What did it get that mattered for AI clusters?",
+    "options": [
+      "A chip foundry that could manufacture its own silicon",
+      "A competing AI accelerator it could rebrand and retire",
+      "InfiniBand networking for linking huge GPU clusters",
+      "A controlling stake in the ARM instruction set"
+    ],
+    "answer": "InfiniBand networking for linking huge GPU clusters",
+    "category": "hardware",
+    "tags": [
+      "mellanox",
+      "infiniband",
+      "nvidia"
+    ],
+    "difficulty": 2,
+    "explanation": "Mellanox built InfiniBand adapters and switches, the fabric that stitches thousands of GPUs into a single training job instead of leaving them a room of separate boxes. InfiniBand competes with Ethernet for that job, and having both under one roof is why a cluster is now sold as a system rather than as chips. The company was folded into Nvidia's networking division, and the Mellanox name disappeared from new products.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Mellanox Technologies",
+      "label": "Mellanox Technologies on Wikipedia"
+    },
+    "answerAliases": [
+      "based on InfiniBand and Ethernet technology",
+      "supplier of computer networking products",
+      "high-performance computing"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0021",
+    "text": "Groq and Grok are two different AI things that get mixed up constantly. Which pairing is right?",
+    "options": [
+      "Grok is the chip company, Groq is the chatbot",
+      "Groq is the chip company, Grok is the chatbot",
+      "Groq is the chatbot, Grok is the chip company",
+      "Both are the same company, spelled two ways"
+    ],
+    "answer": "Groq is the chip company, Grok is the chatbot",
+    "category": "hardware",
+    "tags": [
+      "groq",
+      "grok",
+      "lpu"
+    ],
+    "difficulty": 1,
+    "explanation": "Groq builds the inference accelerator it calls the LPU, originally a Tensor Streaming Processor, and its speed demos went viral. Grok is the chatbot and model family from SpaceXAI, named after the verb in Heinlein's Stranger in a Strange Land. The one-letter gap between the two names is why they get crossed so often.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Groq",
+      "label": "Groq on Wikipedia"
+    },
+    "answerAliases": [
+      "Groq, Inc.",
+      "builds an AI accelerator application-specific integrated circuit",
+      "American artificial intelligence (AI) company that builds"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0022",
+    "text": "An AI accelerator's HBM sits on the same package as the GPU and is joined to it over a link more than a thousand bits wide. What does that width buy?",
+    "options": [
+      "Little, since AI chips are limited by compute rather than bandwidth",
+      "A wide path, so weights reach the GPU's arithmetic units faster",
+      "Enough capacity to hold a whole model's weights on one card",
+      "A cheaper way to build memory than ordinary DDR modules"
+    ],
+    "answer": "A wide path, so weights reach the GPU's arithmetic units faster",
+    "category": "hardware",
+    "tags": [
+      "hbm",
+      "memory",
+      "bandwidth"
+    ],
+    "difficulty": 2,
+    "explanation": "A single HBM stack presents a 1024-bit bus to the chip sitting next to it, where a single graphics memory channel is 32 bits, and the dies in the stack are wired together through silicon vias. The point is supply rate rather than storage: a GPU full of arithmetic units sits idle if the weights arrive slowly. Capacity is a separate figure and more layers do raise it, but that is not why the bus is so wide.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "High Bandwidth Memory",
+      "label": "High Bandwidth Memory on Wikipedia"
+    },
+    "answerAliases": [
+      "The HBM memory bus is very wide in comparison to other DRAM memories such as DDR4 or GDDR5",
+      "higher bandwidth than DDR4 or GDDR5",
+      "a width of 1024 bits in total"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0023",
+    "text": "HBM, the memory stacked onto AI accelerators, comes from a very small group of suppliers. Which of these four companies is one of them?",
+    "options": [
+      "Kioxia",
+      "Nanya Technology",
+      "Western Digital",
+      "SK Hynix"
+    ],
+    "answer": "SK Hynix",
+    "category": "hardware",
+    "tags": [
+      "hbm",
+      "memory",
+      "supply-chain"
+    ],
+    "difficulty": 2,
+    "explanation": "Samsung, SK Hynix and Micron make almost all of the world's HBM, which is why the same three names turn up on every accelerator data sheet. The other names here are storage companies rather than HBM suppliers: Kioxia and Western Digital live in flash, and Nanya makes conventional server DRAM without an HBM line. HBM earns more per wafer than DDR5, so the AI boom has squeezed ordinary DRAM supply as a side effect.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "High Bandwidth Memory",
+      "label": "High Bandwidth Memory on Wikipedia"
+    },
+    "answerAliases": [
+      "SK hynix",
+      "Hynix",
+      "SK Hynix, Samsung Electronics, and Micron Technology"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0024",
+    "text": "The 'double' in the name DDR5 memory refers to what?",
+    "options": [
+      "Data moving on both edges of the clock signal",
+      "The number of memory banks inside each chip",
+      "The number of bits stored in each memory cell",
+      "The rate at which a module refreshes its stored data"
+    ],
+    "answer": "Data moving on both edges of the clock signal",
+    "category": "hardware",
+    "tags": [
+      "ddr",
+      "memory",
+      "naming"
+    ],
+    "difficulty": 1,
+    "explanation": "DDR stands for double data rate: the memory moves data on the rising and falling edges of the clock, so a 100 MHz bus is sold as 1600 MT/s. That is why an advertised module speed is twice the physical clock, and the doubling has nothing to do with cells or banks. DDR5 also happens to have two 32-bit subchannels per module, a separate change that confuses anyone reading a spec sheet.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "DDR SDRAM",
+      "label": "DDR SDRAM on Wikipedia"
+    },
+    "answerAliases": [
+      "transferring data on both the rising and falling edges of the clock signal",
+      "both the rising and falling clock edges",
+      "double data rate"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0025",
+    "text": "A rack full of AI accelerators pumps coolant through cold plates bolted to the chips instead of just blowing room air over them. How does the heat leave the chip?",
+    "options": [
+      "Chilled air pumped up from under the data centre floor blown across the die",
+      "Liquid metal filling the plate soaks up the heat like a sponge and holds it",
+      "Coolant flowing through the plate absorbs the heat and carries it away",
+      "The coolant boiling on contact and its vapour lifting the heat off the die"
+    ],
+    "answer": "Coolant flowing through the plate absorbs the heat and carries it away",
+    "category": "hardware",
+    "tags": [
+      "cooling",
+      "data-center",
+      "liquid"
+    ],
+    "difficulty": 2,
+    "explanation": "A pump pushes coolant through a water block bonded to the chip and out to a heat exchanger, which is the same loop a water cooled car engine runs. Water shifts heat far better than air, and AI racks need it because a full rack of accelerators has gone past what fans can move: immersion designs are rated near 100 kW per 19-inch rack where air cooling stops around 23 kW. Liquid metal fills the gap between chip and plate, and boiling coolant belongs to two phase immersion, neither of which is the cold plate loop.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Computer cooling",
+      "label": "Computer cooling on Wikipedia"
+    },
+    "answerAliases": [
+      "the water being circulated by a water pump through a water block mounted on the CPU",
+      "out to a heat exchanger, typically a radiator",
+      "Direct Liquid Cooling (DLC) with cold plates for cooling chips in servers"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0026",
+    "text": "Data centre operators quote a figure called PUE when they talk about how efficiently a building runs. What does that number measure?",
+    "options": [
+      "The share of a data centre's power spent on cooling instead of computing",
+      "How efficiently the servers themselves turn electricity into useful work",
+      "How much power a data centre draws per terabyte of data it stores",
+      "A facility's total power draw divided by the power its computing gear uses"
+    ],
+    "answer": "A facility's total power draw divided by the power its computing gear uses",
+    "category": "hardware",
+    "tags": [
+      "pue",
+      "power",
+      "data-center"
+    ],
+    "difficulty": 1,
+    "explanation": "PUE is total facility energy divided by the energy that actually reaches computing equipment, and a perfect building would score 1.0. Anything that is not a server, an accelerator or a network switch counts as overhead, cooling and lighting included, so a PUE of 1.2 means twenty percent extra energy burned on everything else. It says nothing about how well the chips themselves turn power into useful work, which is the gap researchers were complaining about when they proposed compute-centric metrics instead.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Power usage effectiveness",
+      "label": "Power usage effectiveness on Wikipedia"
+    },
+    "answerAliases": [
+      "PUE is the ratio of the total amount of energy used by a computer data center facility to the energy delivered to computing equipment",
+      "Total Facility Energy",
+      "IT Equipment Energy",
+      "An ideal PUE is 1.0"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0027",
+    "text": "A chip designer draws up the blueprints and leaves the making to someone else. What is a chip foundry there to do?",
+    "options": [
+      "A company that designs chips and licenses them to be built",
+      "A factory that makes chips from other companies' designs",
+      "A plant that buys finished chips and resells them under its own label",
+      "A company that assembles finished chips into laptops and servers"
+    ],
+    "answer": "A factory that makes chips from other companies' designs",
+    "category": "hardware",
+    "tags": [
+      "foundry",
+      "fabless",
+      "manufacturing"
+    ],
+    "difficulty": 1,
+    "explanation": "A foundry is the factory: it owns the clean room and the process, and turns somebody else's design into silicon, which is why it is also called a fab. Pure-play means it does not draw up chip designs of its own, so TSMC can build chips for Nvidia and AMD without competing with them. The older arrangement was the integrated device manufacturer, which designed and fabbed under one roof, and the rise of fabless companies like Nvidia is what split those two jobs apart.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Semiconductor fabrication plant",
+      "label": "Semiconductor fabrication plants on Wikipedia"
+    },
+    "answerAliases": [
+      "also called a fab or a foundry, is a factory where integrated circuits (ICs) are manufactured",
+      "pure-play semiconductor foundries",
+      "fabless semiconductor companies",
+      "integrated device manufacturers (IDMs)"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0028",
+    "text": "Extreme ultraviolet lithography is the process behind the smallest features on modern chips. What does the machine actually do to a wafer?",
+    "options": [
+      "Shoots ions into the wafer to change how it conducts",
+      "Etches material between layers to cut the vertical features",
+      "Cuts each finished chip out of the wafer surface",
+      "Projects a circuit pattern onto a light sensitive coating"
+    ],
+    "answer": "Projects a circuit pattern onto a light sensitive coating",
+    "category": "hardware",
+    "tags": [
+      "lithography",
+      "euv",
+      "manufacturing"
+    ],
+    "difficulty": 1,
+    "explanation": "EUV is a light source: it projects a circuit pattern onto a light sensitive coating called photoresist, and later steps copy that pattern down into the silicon. The light sits at 13.5 nm, a band ordinary lenses cannot carry at all, so the optics bounce it off mirrors instead of refracting it through glass. Ion implantation and etching are genuine steps in the same factory and dicing happens at the very end, but none of them is lithography.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "EUV lithography",
+      "label": "EUV lithography on Wikipedia"
+    },
+    "answerAliases": [
+      "create intricate patterns on semiconductor substrates",
+      "to produce a pattern by using a reflective photomask to expose a substrate covered by photoresist",
+      "photolithography",
+      "photoresist"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0029",
+    "text": "The smallest process nodes, the ones AI accelerators are built on, come out of foundries run by the same three companies. Which three?",
+    "options": [
+      "TSMC, Samsung and Intel",
+      "TSMC, SK Hynix and Micron",
+      "GlobalFoundries, UMC and Tower",
+      "Intel, UMC and Tower Semiconductor"
+    ],
+    "answer": "TSMC, Samsung and Intel",
+    "category": "hardware",
+    "tags": [
+      "foundry",
+      "process-nodes",
+      "tsmc"
+    ],
+    "difficulty": 2,
+    "explanation": "TSMC, Samsung and Intel are the three that operate foundries at the smallest nodes, and every recent generation from 7 nm down has been built by those same names. GlobalFoundries, UMC and Tower are real foundries that deliberately stopped short of the newest nodes, because a plant for them costs billions and their customers do not need them. Intel is also the company that quietly dropped the nanometer suffix from its node names, calling its newest process 18A instead.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "2 nm process",
+      "label": "The 2 nm process on Wikipedia"
+    },
+    "answerAliases": [
+      "TSMC",
+      "Samsung",
+      "Intel",
+      "Intel 18A"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0030",
+    "text": "A chipmaker advertises a chip built on a 3 nm process. What does that label actually tell you?",
+    "options": [
+      "A physical size, with the smallest feature at 3 nm",
+      "The area the finished chip covers on the die",
+      "The generation of process it belongs to, not a size",
+      "The switching speed of one transistor, in nanoseconds"
+    ],
+    "answer": "The generation of process it belongs to, not a size",
+    "category": "hardware",
+    "tags": [
+      "process-nodes",
+      "naming",
+      "manufacturing"
+    ],
+    "difficulty": 2,
+    "explanation": "Nothing on the chip measures 3 nm any more: the name has been a generation label rather than a physical size for years, and the figure matches no gate length or metal pitch at all. What it does reliably mean is more transistors packed into the same area, built with more machines and more process steps. The sharpest reminder is that TSMC and Samsung shipped the same 3 nm label on very different transistors, FinFETs for one and gate-all-around for the other.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "3 nm process",
+      "label": "The 3 nm process on Wikipedia"
+    },
+    "answerAliases": [
+      "no direct relation to any actual physical feature",
+      "used primarily as a marketing term",
+      "new, improved generation of silicon semiconductor chips",
+      "3 nanometer"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "hwr-0031",
+    "text": "TSMC sells CoWoS as advanced packaging for AI accelerators. What does it do?",
+    "options": [
+      "Prints the transistor layers at a tighter node than a fab",
+      "Tests every die and discards the ones that fail",
+      "Cuts a finished wafer into separate chips for shipping",
+      "Merges several dies into one package as a single device"
+    ],
+    "answer": "Merges several dies into one package as a single device",
+    "category": "hardware",
+    "tags": [
+      "packaging",
+      "cowos",
+      "tsmc"
+    ],
+    "difficulty": 2,
+    "explanation": "Advanced packaging puts two or more dies into one package and wires them together so that the pair behaves like a single chip, and CoWoS does it over an interposer that carries the connections. It exists because shrinking one monolithic die keeps getting harder, so the industry bought performance back by connecting dies instead of drawing more of them. Dicing the wafer and sorting the good dies are real steps too, but they bracket this one rather than being it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Advanced packaging (semiconductors)",
+      "label": "Advanced packaging in semiconductors on Wikipedia"
+    },
+    "answerAliases": [
+      "TSMC's CoWoS (chip-on-wafer-on-substrate) technology, which uses an interposer",
+      "to be merged and packaged as a single electronic device",
+      "combining logic (processors) and memory in a single package",
+      "heterogeneous integration",
+      "2.5D ICs"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

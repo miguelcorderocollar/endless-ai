@@ -439,5 +439,316 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "lab-0017",
+    "text": "In August 2026, Google handed day-to-day leadership of Google DeepMind to a 13-year veteran of the lab, who took the new title of senior vice-president. Which veteran?",
+    "options": [
+      "Koray Kavukcuoglu",
+      "Sebastian Borgeaud",
+      "Sundar Pichai",
+      "Oriol Vinyals"
+    ],
+    "answer": "Koray Kavukcuoglu",
+    "category": "labs",
+    "tags": [
+      "deepmind",
+      "leadership",
+      "google"
+    ],
+    "difficulty": 2,
+    "explanation": "Google's own memo announced that Koray Kavukcuoglu would step up as SVP of Google DeepMind, while Demis Hassabis gave up day-to-day operations to become chair of GDM and chief scientist of Alphabet. Kavukcuoglu had already been the lab's CTO and Google's chief AI architect. Oriol Vinyals is the tempting wrong answer because he was a DeepMind research VP at the time, but he left Google days later to co-found Discovery Loop.",
+    "source": {
+      "kind": "url",
+      "url": "https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/",
+      "label": "Sundar Pichai and Demis Hassabis on the Google DeepMind leadership change"
+    },
+    "answerAliases": [
+      "Koray Kavukcuoglu",
+      "Kavukcuoglu",
+      "Koray"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0018",
+    "text": "In August 2026, Jeff Dean, Sanjay Ghemawat, Oriol Vinyals and Quoc Le left Google together to found a new research lab. Which lab?",
+    "options": [
+      "Ineffable Intelligence",
+      "Discovery Loop",
+      "Veeda AI",
+      "Sampura Research"
+    ],
+    "answer": "Discovery Loop",
+    "category": "labs",
+    "tags": [
+      "discovery-loop",
+      "google",
+      "new-lab",
+      "ai-for-science"
+    ],
+    "difficulty": 2,
+    "explanation": "Discovery Loop is a Palo Alto public benefit corporation whose stated goal is automating the propose-run-evaluate loop of scientific research, starting with machine learning itself. Google stayed in as a founding investor and cloud partner, so losing four researchers turned into an equity position. Ineffable Intelligence is the tempting wrong answer because it is the other ex-DeepMind lab that raised over a billion dollars, but David Silver founded that one months earlier.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.discoveryloop.com/",
+      "label": "Discovery Loop's own site"
+    },
+    "answerAliases": [
+      "Discovery Loop",
+      "DiscoveryLoop"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0019",
+    "text": "In the six days from June 18 to June 24, 2026, four senior Google DeepMind researchers said or were reported to be leaving for rival labs, and three of the four headed for the same company. Which company?",
+    "options": [
+      "OpenAI",
+      "xAI",
+      "Mistral AI",
+      "Anthropic"
+    ],
+    "answer": "Anthropic",
+    "category": "labs",
+    "tags": [
+      "anthropic",
+      "deepmind",
+      "talent",
+      "hires"
+    ],
+    "difficulty": 3,
+    "explanation": "John Jumper, who shared the 2024 Nobel Prize in Chemistry for AlphaFold, announced first, and Gemini contributors Jonas Adler and Alexander Pritzel followed within days. Gemini co-lead Noam Shazeer was the only one of the four who chose OpenAI, less than two years after Google paid billions to bring him back from Character.AI. Both OpenAI and Anthropic were close to going public, which is what made pre-IPO equity worth swapping a stable job for.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/06/24/ai-researchers-continue-to-leave-google-for-its-rivals/",
+      "label": "TechCrunch on the June 2026 Google departures"
+    },
+    "answerAliases": [
+      "Anthropic",
+      "Anthropic PBC",
+      "Anthropic, PBC"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0020",
+    "text": "In July 2026, Thinking Machines Lab co-founder Lilian Weng announced she was stepping down citing her health, then rejoined which lab two days later?",
+    "options": [
+      "Google DeepMind",
+      "Meta AI",
+      "OpenAI",
+      "Anthropic"
+    ],
+    "answer": "OpenAI",
+    "category": "labs",
+    "tags": [
+      "thinking-machines",
+      "openai",
+      "talent",
+      "leaves"
+    ],
+    "difficulty": 1,
+    "explanation": "Weng ran OpenAI's safety organisation before leaving in November 2024 to co-found Thinking Machines with Mira Murati, and she went back to lead a team supporting recursive self-improvement research. Murati stayed at her own lab, which is why the return looked awkward two days after the resignation note. Anthropic is the tempting wrong answer because it is Thinking Machines' most direct competitor.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/07/29/thinking-machines-co-founder-lilian-weng-left-the-company-citing-health-reasons-then-joined-openai/",
+      "label": "TechCrunch on Lilian Weng's move"
+    },
+    "answerAliases": [
+      "OpenAI",
+      "OpenAI, Inc."
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0021",
+    "text": "In August 2026, Nvidia's vice president of AI research left the company after eight years to found a Toronto startup building world models so robots can train inside simulation. Which researcher was that?",
+    "options": [
+      "Huan Ling",
+      "Zan Gojcic",
+      "David Silver",
+      "Sanja Fidler"
+    ],
+    "answer": "Sanja Fidler",
+    "category": "labs",
+    "tags": [
+      "veeda-ai",
+      "nvidia",
+      "world-models",
+      "leaves"
+    ],
+    "difficulty": 3,
+    "explanation": "Fidler ran Nvidia's Toronto spatial intelligence lab and was part of the team behind its Cosmos world model before announcing her departure. Her co-founders are Zan Gojcic, the former Nvidia research director in Zurich who is now CTO, and Huan Ling, her former doctoral student who is chief scientist. David Silver is the tempting wrong answer because he is the other ex-DeepMind founder with a billion-dollar lab, but his company is Ineffable Intelligence.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.therecursive.com/ex-nvidia-stars-from-slovenia-raise-90m-to-build-the-matrix-for-robots/",
+      "label": "The Recursive on Veeda AI's founding round"
+    },
+    "answerAliases": [
+      "Sanja Fidler",
+      "Fidler"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0022",
+    "text": "In August 2026, the researcher who led Alibaba's Qwen model family founded a new AI lab in Shanghai. Which lab did he start?",
+    "options": [
+      "Shanghai AI Laboratory",
+      "Pragmatik Labs",
+      "Zhipu AI",
+      "Moonshot AI"
+    ],
+    "answer": "Pragmatik Labs",
+    "category": "labs",
+    "tags": [
+      "qwen",
+      "alibaba",
+      "china",
+      "new-lab"
+    ],
+    "difficulty": 3,
+    "explanation": "Junyang Lin left Alibaba in March 2026 with a post reading 'Bye my beloved Qwen', then named his new Shanghai lab after pragmatics, the study of meaning in context, which is roughly what an agent has to do. Zhipu AI is the tempting wrong answer because it is one of the best-known Chinese labs shipping open-weight models, but it has nothing to do with Lin. The Shanghai AI Laboratory is a real institute too, but a state-backed research body rather than a founder-led startup.",
+    "source": {
+      "kind": "url",
+      "url": "https://runtimewire.com/article/junyang-lin-pragmatik-labs-ai-agents",
+      "label": "RuntimeWire on Junyang Lin's Pragmatik Labs"
+    },
+    "answerAliases": [
+      "Pragmatik Labs",
+      "Pragmatik"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0023",
+    "text": "In July 2026, Richard Sutton and his former student Khurram Javed left John Carmack's Keen Technologies to found a new lab in Toronto. What did they call it?",
+    "options": [
+      "Lanyon AI",
+      "Oak Lab",
+      "Skyfall AI",
+      "Waabi"
+    ],
+    "answer": "Oak Lab",
+    "category": "labs",
+    "tags": [
+      "oak-lab",
+      "reinforcement-learning",
+      "toronto",
+      "new-lab"
+    ],
+    "difficulty": 2,
+    "explanation": "Sutton, who shared the 2024 Turing Award for founding modern reinforcement learning, started Oak Lab to build agents that keep learning after deployment. His stated target is an agent with a trillion parameters that learns and plans in real time on about 20 watts, roughly human-brain power. Skyfall AI is the tempting wrong answer because it launched from Toronto in the same month, but it came from the Maluuba founders.",
+    "source": {
+      "kind": "url",
+      "url": "https://the-decoder.com/turing-award-winner-rich-sutton-founds-oak-lab-to-build-ai-agents-that-learn-on-their-own/",
+      "label": "The Decoder on Oak Lab's launch"
+    },
+    "answerAliases": [
+      "Oak Lab",
+      "Oak"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0024",
+    "text": "In August 2026, a Princeton-rooted research lab for scientific computing came out of stealth with a $10.6 million round led by Dimension. Which of its three founders had previously co-founded the Wolfram Physics Project?",
+    "options": [
+      "Jonathan Gorard",
+      "Khurram Javed",
+      "Ammar Hakim",
+      "Mark Pincus"
+    ],
+    "answer": "Jonathan Gorard",
+    "category": "labs",
+    "tags": [
+      "lanyon-ai",
+      "princeton",
+      "new-lab",
+      "scientific-ai"
+    ],
+    "difficulty": 2,
+    "explanation": "Gorard is an applied mathematician who co-founded the Wolfram Physics Project with Stephen Wolfram and now runs Lanyon as CEO. His co-founders are Ammar Hakim, the computational physicist who is CTO, and James Juno, the plasma physicist. Ammar Hakim is the tempting wrong answer because he is the better-known senior scientist of the pair, but the Wolfram connection is Gorard's.",
+    "source": {
+      "kind": "url",
+      "url": "https://physicalainews.com/lanyon-ai-emerges-from-stealth-to-advance-scientific-computing/",
+      "label": "Physical AI News on Lanyon AI's founding team"
+    },
+    "answerAliases": [
+      "Jonathan Gorard",
+      "Gorard"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0025",
+    "text": "In August 2026, which US chipmaker unveiled its own long-horizon research lab, headquartered in Boise, Idaho?",
+    "options": [
+      "Nvidia",
+      "Intel",
+      "Western Digital",
+      "Micron Technology"
+    ],
+    "answer": "Micron Technology",
+    "category": "labs",
+    "tags": [
+      "micron",
+      "memory",
+      "new-lab",
+      "hardware"
+    ],
+    "difficulty": 2,
+    "explanation": "Micron Research Labs is a planned ten billion dollar research campus in Boise that will host hundreds of researchers working on memory and AI, with construction slated to begin in 2027. Nvidia is the tempting wrong answer because it is by far the largest AI chip company, but this is the American memory maker building for its own next decade alongside its two new Boise fabs.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.enr.com/articles/63535-micron-plans-boise-research-facility-as-10b-semiconductor-initiative-takes-shape",
+      "label": "Engineering News-Record on Micron Research Labs"
+    },
+    "answerAliases": [
+      "Micron Technology",
+      "Micron"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "lab-0026",
+    "text": "In July 2026, the LinkedIn co-founder Reid Hoffman and the Zynga founder Mark Pincus were reported to be backing a new research lab focused on computer-use models. Which lab?",
+    "options": [
+      "Manas AI",
+      "Prentis",
+      "Inflection AI",
+      "Vercept"
+    ],
+    "answer": "Prentis",
+    "category": "labs",
+    "tags": [
+      "prentis",
+      "hoffman",
+      "computer-use",
+      "new-lab"
+    ],
+    "difficulty": 2,
+    "explanation": "Prentis launched in April 2026 with serial entrepreneur Ritankar Das as CEO and trains models inside real office workflows rather than on web-scale text. Manas AI is the tempting wrong answer because it is Hoffman's own drug-discovery startup, which he went into founder mode on after leaving Microsoft's board. Inflection AI is the other lab he co-founded, back in 2022.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/07/24/prentis-new-ai-lab-co-founded-by-reid-hoffman-mark-pincus-in-talks-to-raise-100m/",
+      "label": "TechCrunch on Prentis"
+    },
+    "answerAliases": [
+      "Prentis",
+      "Prentis AI"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

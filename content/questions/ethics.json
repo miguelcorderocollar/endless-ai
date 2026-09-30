@@ -606,5 +606,165 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "eth-0021",
+    "text": "The 2023 SAG-AFTRA agreement ended the longest actors' strike in Hollywood history. What did it require before a studio could scan a performer to make a digital replica?",
+    "options": [
+      "A one-time studio fee, with no approval from the performer",
+      "Informed consent from the performer, and payment for the scan",
+      "Union sign-off on a public list of every replica created",
+      "Permission from the performer's estate rather than the performer"
+    ],
+    "answer": "Informed consent from the performer, and payment for the scan",
+    "category": "ethics",
+    "tags": [
+      "sag-aftra",
+      "labour",
+      "digital-replica"
+    ],
+    "difficulty": 2,
+    "explanation": "Consent and money, written into a US entertainment contract for the first time: clear and express consent well before the scan, at least the day performer rate for being scanned, and a 'reasonably specific description' of what the replica will be used for. The one-time-fee option is the tempting miss because that was roughly the studios' own offer, and paying once for a scan was one of the union's red lines. Reuse is where it got looser: consent survives death unless a contract limits it, and a performer who objects has arbitration rather than a lawsuit.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.theverge.com/2023/11/18/23962349/sag-aftra-tentative-agreement-generative-artificial-intelligence-vote",
+      "label": "The Verge on the SAG-AFTRA AI provisions"
+    },
+    "answerAliases": [
+      "consent and compensation",
+      "clear and express consent",
+      "informed consent",
+      "day performer rate"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "eth-0022",
+    "text": "Ahead of GPT-4o's May 2024 launch, OpenAI kept offering Scarlett Johansson a deal to license her voice for ChatGPT. What was her answer?",
+    "options": [
+      "She signed on, then asked to be credited on the credits page",
+      "She recorded a demo herself, on condition of approval",
+      "She sued OpenAI over the 2013 film Her before replying",
+      "She turned the offer down, months before the voice shipped"
+    ],
+    "answer": "She turned the offer down, months before the voice shipped",
+    "category": "ethics",
+    "tags": [
+      "openai",
+      "consent",
+      "voice"
+    ],
+    "difficulty": 2,
+    "explanation": "She declined, and OpenAI kept going, which is what turned a casting note into a scandal: when the Sky voice shipped in May 2024 her closest friends and news outlets could not tell it from hers, and she said she was shocked, angered and in disbelief. Altman had tweeted a single word, her, the day before the demo, a reference to the 2013 film she starred in about falling for an operating system. OpenAI said Sky was a different professional actress using her own voice, and paused it days later.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-4o",
+      "label": "GPT-4o on Wikipedia"
+    },
+    "answerAliases": [
+      "a deal she rejected",
+      "gain permission to use her voice",
+      "rejected"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "eth-0023",
+    "text": "The Bletchley Declaration of November 2023 was short and non-binding. What did it actually commit its signatories to doing?",
+    "options": [
+      "Banning the training of the largest models above a compute limit",
+      "Creating a global regulator to license frontier systems",
+      "Paying into a shared fund for AI safety research institutes",
+      "Identifying shared AI safety risks and building risk-based policies"
+    ],
+    "answer": "Identifying shared AI safety risks and building risk-based policies",
+    "category": "ethics",
+    "tags": [
+      "bletchley",
+      "governance",
+      "summit"
+    ],
+    "difficulty": 2,
+    "explanation": "Naming the risks every signatory agreed were shared, then building risk-based policies at home, which is a much smaller promise than the headlines implied. The compute-limit ban is the tempting miss because that is what people assumed a Bletchley agreement did, and no threshold appears anywhere in it. The one concrete output was commissioning the International AI Safety Report, which is where the actual risk assessment work ended up.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI Safety Summit 2023",
+      "label": "AI Safety Summit 2023 on Wikipedia"
+    },
+    "answerAliases": [
+      "AI safety risks of shared concern",
+      "building respective risk-based policies",
+      "Bletchley Declaration",
+      "International AI Safety Report"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "eth-0024",
+    "text": "The 2024 AI Seoul Summit followed the Bletchley summit with a declaration of its own. What did the Seoul Declaration commit governments to building?",
+    "options": [
+      "A single global regulator with power over frontier model releases",
+      "AI governance frameworks that are interoperable across countries",
+      "A shared list of banned AI applications in education and hiring",
+      "A mandatory open release of every model's training data"
+    ],
+    "answer": "AI governance frameworks that are interoperable across countries",
+    "category": "ethics",
+    "tags": [
+      "seoul",
+      "governance",
+      "summit"
+    ],
+    "difficulty": 2,
+    "explanation": "Rules that work across borders, partly by folding in the Hiroshima Process code of conduct, which is the unglamorous way of saying: stop every country writing its own incompatible AI law. The single-regulator option is the tempting miss because that is what an international summit on AI safety usually implies, and no new body was created. The UK co-hosted the summit with South Korea in May 2024, which is why the people who wrote Bletchley were in the room.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI Seoul Summit 2024",
+      "label": "AI Seoul Summit 2024 on Wikipedia"
+    },
+    "answerAliases": [
+      "AI governance frameworks",
+      "interoperable",
+      "Hiroshima Process International Code of Conduct",
+      "Seoul Declaration"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "eth-0025",
+    "text": "California's SB 1047 passed both chambers in August 2024 and was vetoed by Governor Gavin Newsom a month later. What reason did he give?",
+    "options": [
+      "It would have stopped California firms training frontier models at all",
+      "It would have made California the only state with frontier model rules",
+      "It set the rules by compute size, not by how risky a model's use is",
+      "It would have handed the federal government power to license models"
+    ],
+    "answer": "It set the rules by compute size, not by how risky a model's use is",
+    "category": "ethics",
+    "tags": [
+      "sb1047",
+      "regulation",
+      "california"
+    ],
+    "difficulty": 3,
+    "explanation": "Newsom's objection was the trigger, not the goal. He vetoed the bill on 29 September 2024 because it applied the strictest rules to anything expensive to train, even when that model was doing something boring, while a small specialised model could be just as dangerous, which he said gives the public a false sense of security. He agreed with the bill's author that guardrails are needed. The bill had already cleared the Assembly and the Senate, and Silicon Valley split over it: Meta and OpenAI opposed, Elon Musk and xAI backed it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Safe and Secure Innovation for Frontier Artificial Intelligence Models Act",
+      "label": "SB 1047 on Wikipedia"
+    },
+    "answerAliases": [
+      "computational size",
+      "high-risk environments",
+      "false sense of security",
+      "Gavin Newsom",
+      "vetoed"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

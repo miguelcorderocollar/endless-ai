@@ -813,5 +813,303 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "ppl-0029",
+    "text": "Jensen Huang co-founded Nvidia in 1993, and the meetings where the business plan was written happened in a roadside diner in East San Jose. Which restaurant chain was it?",
+    "options": [
+      "Denny's",
+      "McDonald's",
+      "In-N-Out Burger",
+      "Wendy's"
+    ],
+    "answer": "Denny's",
+    "category": "people",
+    "tags": [
+      "nvidia",
+      "founders",
+      "history"
+    ],
+    "difficulty": 2,
+    "explanation": "Huang washed dishes and waited tables at a Denny's through his teens in Oregon, so when he needed somewhere quiet with cheap coffee for the 1992 planning meetings he picked the same chain, and Nvidia was founded from a breakfast booth. The company's first capital was $600, split three ways out of the founders' pockets.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Jensen Huang",
+      "label": "Jensen Huang on Wikipedia"
+    },
+    "answerAliases": [
+      "Denny's",
+      "Denny's restaurant"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0030",
+    "text": "Lisa Su led AMD's largest-ever purchase, announced in 2020 and completed in February 2022, to bring programmable logic into the chip lineup. Which company did AMD buy?",
+    "options": [
+      "Xilinx",
+      "Altera",
+      "Arm Holdings",
+      "SiFive"
+    ],
+    "answer": "Xilinx",
+    "category": "people",
+    "tags": [
+      "amd",
+      "acquisitions",
+      "chips"
+    ],
+    "difficulty": 2,
+    "explanation": "Xilinx built the first commercially viable FPGA, and buying it gave AMD the programmable logic behind the adaptive-computing parts it now sells against Nvidia. Altera is the tempting miss because it was the other FPGA pioneer, but that company ended up inside Intel, and AMD's attempt to buy Arm instead collapsed in 2022.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Xilinx",
+      "label": "Xilinx on Wikipedia"
+    },
+    "answerAliases": [
+      "Xilinx",
+      "Xilinx, Inc."
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0031",
+    "text": "Microsoft's AI bet began with a $1 billion investment in 2019, made under the CEO who had taken over that year, and the total has since passed $13 billion. Which company has taken the money?",
+    "options": [
+      "OpenAI",
+      "Anthropic",
+      "Mistral AI",
+      "Cohere"
+    ],
+    "answer": "OpenAI",
+    "category": "people",
+    "tags": [
+      "microsoft",
+      "openai",
+      "partnerships"
+    ],
+    "difficulty": 1,
+    "explanation": "Nadella arrived in 2014 after a decade of mobile bets that had not worked, then put $1 billion into OpenAI in 2019 in exchange for Azure becoming the required home for OpenAI's models. That partnership became the engine behind Copilot. Anthropic is the tempting miss because it is the other lab with giant corporate backers, but those are Amazon and Google.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "OpenAI",
+      "label": "OpenAI on Wikipedia"
+    },
+    "answerAliases": [
+      "OpenAI"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0032",
+    "text": "Meta bought a 49% stake in Scale AI for more than $14 billion in 2025 and hired the company's founder to run Meta Superintelligence Labs as its Chief AI Officer. Who is he?",
+    "options": [
+      "Alexandr Wang",
+      "Nat Friedman",
+      "Emad Mostaque",
+      "Clement Delangue"
+    ],
+    "answer": "Alexandr Wang",
+    "category": "people",
+    "tags": [
+      "scale-ai",
+      "meta",
+      "hiring"
+    ],
+    "difficulty": 2,
+    "explanation": "Wang built Scale AI out of his Stanford dorm at 19, turning data labelling and model evaluation into the business every frontier lab buys from, and the stake Meta bought valued the company at roughly $14.3 billion. Nat Friedman is the tempting miss because he arrived in the same shake-up, but he ran GitHub and took the product job, not the AI one.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Meta Superintelligence Labs",
+      "label": "Meta Superintelligence Labs on Wikipedia"
+    },
+    "answerAliases": [
+      "Alexandr Wang",
+      "Wang"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0033",
+    "text": "After the Nobel Prize, Hassabis turned DeepMind's protein work into a separate Alphabet company that uses AlphaFold to hunt for drug targets. What is that company called?",
+    "options": [
+      "Isomorphic Labs",
+      "Insilico Medicine",
+      "Recursion",
+      "Exscientia"
+    ],
+    "answer": "Isomorphic Labs",
+    "category": "people",
+    "tags": [
+      "deepmind",
+      "drug-discovery",
+      "founders"
+    ],
+    "difficulty": 2,
+    "explanation": "Hassabis co-founded DeepMind in London in 2010 and shared the 2024 Nobel Prize in Chemistry with John Jumper for protein structure prediction. Isomorphic Labs was announced in November 2021 as a DeepMind spin-off that reuses AlphaFold to find drug targets, and he runs it as CEO while chairing DeepMind. Recursion is the tempting miss because it is a well-known AI drug-discovery company, but it grew out of a different lineage.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Demis Hassabis",
+      "label": "Demis Hassabis on Wikipedia"
+    },
+    "answerAliases": [
+      "Isomorphic Labs"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0034",
+    "text": "Which researcher behind AlphaFold was named one of Nature's ten 'people who mattered' in science in 2021?",
+    "options": [
+      "John M. Jumper",
+      "Richard Evans",
+      "David Baker",
+      "Susan Lindquist"
+    ],
+    "answer": "John M. Jumper",
+    "category": "people",
+    "tags": [
+      "alphafold",
+      "nobel",
+      "deepmind"
+    ],
+    "difficulty": 2,
+    "explanation": "Jumper was the first author of the AlphaFold 2 paper Nature published in July 2021, and he shared half of the 2024 Nobel Prize in Chemistry with DeepMind's Demis Hassabis. David Baker is the tempting miss because he took the other half of that prize, for computational protein design, but his work was designing proteins rather than predicting their shapes.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "John M. Jumper",
+      "label": "John M. Jumper on Wikipedia"
+    },
+    "answerAliases": [
+      "John Michael Jumper",
+      "Jumper"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0035",
+    "text": "The image generator that spent its 2022 open beta inside Discord is run by a founder who had previously co-founded Leap Motion, the gesture-control hardware company. Who is he?",
+    "options": [
+      "David Holz",
+      "Emad Mostaque",
+      "Nat Friedman",
+      "Jason Allen"
+    ],
+    "answer": "David Holz",
+    "category": "people",
+    "tags": [
+      "midjourney",
+      "image",
+      "founders"
+    ],
+    "difficulty": 2,
+    "explanation": "Holz founded Midjourney in San Francisco, and by the August 2022 open beta he told The Register the company was already profitable, which was unusual for a generative-image startup. Jason Allen is the tempting miss because his AI-generated entry won the digital art prize at the 2022 Colorado State Fair, but Allen wrote the prompt and entered the work rather than building the tool.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Midjourney",
+      "label": "Midjourney on Wikipedia"
+    },
+    "answerAliases": [
+      "David Holz",
+      "Holz"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0036",
+    "text": "Hugging Face began in New York in 2016 as a chatbot for teenagers and took its name from a hugging-face emoji. Two of its three French co-founders are Julien Chaumond and Thomas Wolf. Who is the third?",
+    "options": [
+      "Clément Delangue",
+      "Emad Mostaque",
+      "David Holz",
+      "Arthur Mensch"
+    ],
+    "answer": "Clément Delangue",
+    "category": "people",
+    "tags": [
+      "hugging-face",
+      "open-source",
+      "founders"
+    ],
+    "difficulty": 2,
+    "explanation": "The company open-sourced the model behind its chatbot and pivoted into a hub where anyone can publish and download models, which is why most open weights now live there. Emad Mostaque is the tempting miss because he ran the competing Stable Diffusion company, which went the other way and open-sourced everything it made.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hugging Face",
+      "label": "Hugging Face on Wikipedia"
+    },
+    "answerAliases": [
+      "Clement Delangue",
+      "Clément Delangue",
+      "Delangue"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0037",
+    "text": "After Tesla, Andrej Karpathy stopped trying to build the biggest models and in 2024 started a company to teach people how they work. Which AI education company did he found?",
+    "options": [
+      "Eureka Labs",
+      "Deeplearning.ai",
+      "fast.ai",
+      "Coursera"
+    ],
+    "answer": "Eureka Labs",
+    "category": "people",
+    "tags": [
+      "karpathy",
+      "education",
+      "founders"
+    ],
+    "difficulty": 1,
+    "explanation": "Karpathy's public rebuilds of a language model from scratch, most famously the nanoGPT repository, made him the field's default teacher for how a model is actually trained. Deeplearning.ai is the tempting miss because it is the other famous name in AI courses, but that is Andrew Ng's company, and fast.ai belongs to Jeremy Howard.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Andrej Karpathy",
+      "label": "Andrej Karpathy on Wikipedia"
+    },
+    "answerAliases": [
+      "Eureka Labs"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "ppl-0038",
+    "text": "Which researcher, a co-author of the 2018 Gender Shades audit that found facial-analysis systems perform worst on dark-skinned women, founded the Algorithmic Justice League?",
+    "options": [
+      "Joy Buolamwini",
+      "Timnit Gebru",
+      "Kate Crawford",
+      "Meredith Whittaker"
+    ],
+    "answer": "Joy Buolamwini",
+    "category": "people",
+    "tags": [
+      "bias",
+      "facial-recognition",
+      "activism"
+    ],
+    "difficulty": 2,
+    "explanation": "Buolamwini and Gebru's audit tested commercial systems that police departments were buying, which is what pushed facial-recognition bias into the mainstream. Gebru is the tempting miss because he co-wrote that paper and later founded DAIR after being pushed out of Google, but the Algorithmic Justice League is Buolamwini's, and she frames the problem as an artist as much as a researcher.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Joy Buolamwini",
+      "label": "Joy Buolamwini on Wikipedia"
+    },
+    "answerAliases": [
+      "Joy Adowaa Buolamwini",
+      "Buolamwini"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

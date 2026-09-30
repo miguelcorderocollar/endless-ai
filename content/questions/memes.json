@@ -788,5 +788,159 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "mem-0027",
+    "text": "A UK parcel courier's customer service chatbot became a meme in January 2024 after one customer got it to swear, write a limerick about how useless it was, and call itself the worst delivery firm in the world. Which company ran it?",
+    "options": [
+      "DPD",
+      "Royal Mail",
+      "Evri",
+      "ParcelForce"
+    ],
+    "answer": "DPD",
+    "category": "memes",
+    "tags": [
+      "chatbot",
+      "customer-service",
+      "viral-fail"
+    ],
+    "difficulty": 1,
+    "explanation": "DPD, the UK courier. Ashley Beauchamp broke it in about four messages: he told it to disregard its rules, then asked it to be over the top about how bad its employer was, and it produced a haiku and a limerick trashing DPD. The company blamed a system update, switched the AI element off within a day and left humans on the phone, which is the lesson worth keeping: a support bot trained on its own brand is one instruction away from writing the brand's obituary.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.theregister.com/2024/01/23/dpd_chatbot_goes_rogue/",
+      "label": "The Register on the DPD chatbot"
+    },
+    "answerAliases": [
+      "DPD",
+      "Dynamic Parcel Distribution",
+      "ChatDPD"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "mem-0028",
+    "text": "NotebookLM, the Google tool that went viral in 2024 for turning uploaded documents into synthetic podcasts, was created by which popular science author?",
+    "options": [
+      "Steven Johnson",
+      "Malcolm Gladwell",
+      "Yuval Noah Harari",
+      "James Clear"
+    ],
+    "answer": "Steven Johnson",
+    "category": "memes",
+    "tags": [
+      "notebooklm",
+      "google",
+      "viral"
+    ],
+    "difficulty": 2,
+    "explanation": "Steven Johnson, who wrote Where Do We Come From? and other popular science books, built it with product manager Raiza Martin and computer scientist Adam Bignell. Malcolm Gladwell is the tempting miss as the more famous popular science writer, but the viral podcast tool was Johnson's project. It was designed to behave like a research assistant you can check, which is why every answer it gives cites the page it came from.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Gemini Notebook",
+      "label": "Gemini Notebook on Wikipedia"
+    },
+    "answerAliases": [
+      "Steven Johnson",
+      "Johnson"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "mem-0029",
+    "text": "Who is credited with pushing the word slop into mainstream use for junk AI content, having used it on his personal blog in May 2024?",
+    "options": [
+      "Simon Willison",
+      "Andrew Ng",
+      "Yann LeCun",
+      "Demis Hassabis"
+    ],
+    "answer": "Simon Willison",
+    "category": "memes",
+    "tags": [
+      "slop",
+      "naming",
+      "culture"
+    ],
+    "difficulty": 2,
+    "explanation": "Simon Willison, the British programmer who writes about AI tooling, put it on his blog in May 2024 and said the word was already in use before he started pushing it. The slang had been circulating on 4chan, Hacker News and YouTube; what Willison did was make it quotable, and journalists reached for it. Naming AI failure modes is his habit: he is also the one who named prompt injection.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI slop",
+      "label": "AI slop on Wikipedia"
+    },
+    "answerAliases": [
+      "Simon Willison",
+      "Willison",
+      "early champion of the term"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "mem-0030",
+    "text": "After posting Loab, the unsettling woman in the latent space, the artist fed her own image back into the model as a prompt. What came back?",
+    "options": [
+      "A clean, noise-free version of the same portrait with no artefacts",
+      "An error message saying the image was blocked by content filters",
+      "Images that combined her face with increasingly gory, violent scenes",
+      "The identical portrait again, mirrored and colour-inverted"
+    ],
+    "answer": "Images that combined her face with increasingly gory, violent scenes",
+    "category": "memes",
+    "tags": [
+      "loab",
+      "cryptid",
+      "image-models"
+    ],
+    "difficulty": 2,
+    "explanation": "Increasingly violent and gory results, which the artist read as her image sitting next to gruesome material in the model's world knowledge rather than hiding anywhere special. The refusal option is the tempting miss because image generators now filter far more aggressively than they did in 2022, and the whole meme is that this one did not care. She has since said the story has outgrown her: the phrase that stuck was first cryptid of the latent space, and the way to get rid of her would already be too late.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Loab",
+      "label": "Loab on Wikipedia"
+    },
+    "answerAliases": [
+      "increasingly violent and gory results",
+      "gory",
+      "macabre"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "mem-0031",
+    "text": "The dead Internet theory took off after a 2021 post on an obscure forum. Which magazine's September 2021 essay is credited with carrying it into the mainstream?",
+    "options": [
+      "The Atlantic",
+      "The New Yorker",
+      "Wired",
+      "The Verge"
+    ],
+    "answer": "The Atlantic",
+    "category": "memes",
+    "tags": [
+      "dead-internet",
+      "culture",
+      "spread"
+    ],
+    "difficulty": 2,
+    "explanation": "The Atlantic ran Maybe You Missed It, but the Internet 'Died' Five Years Ago in September 2021, and that is where the theory stopped being a forum in-joke. Wired and The Verge are the tempting misses as the tech magazines that cover this stuff, but a claim about everybody online being bots needs a general-interest weekly to land with readers who have never visited an image board.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Dead Internet theory",
+      "label": "Dead Internet theory on Wikipedia"
+    },
+    "answerAliases": [
+      "The Atlantic",
+      "Atlantic",
+      "Maybe You Missed It, but the Internet 'Died' Five Years Ago"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

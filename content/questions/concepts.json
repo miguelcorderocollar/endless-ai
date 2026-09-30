@@ -651,5 +651,309 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "con-0023",
+    "text": "When you use a chatbot day to day, does it learn from those conversations?",
+    "options": [
+      "Yes, each conversation is added to its training data",
+      "Yes, but only for the account you are signed into",
+      "No, the trained model is the same for every user",
+      "Yes, once a conversation gets long enough"
+    ],
+    "answer": "No, the trained model is the same for every user",
+    "category": "concepts",
+    "tags": [
+      "training",
+      "inference",
+      "fundamentals"
+    ],
+    "difficulty": 2,
+    "explanation": "Training is finished long before you open the app: the model was pretrained on text and then tuned to follow instructions, and your messages do not change it. Feedback is the tempting wrong answer, because companies really do collect thumbs up and thumbs down, but that goes into a future release rather than into the model you are talking to. Fine-tuning is a real thing, but it is a deliberate project with its own training run, not something that happens because you were rude to a chatbot.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Large language model",
+      "label": "Large language model on Wikipedia"
+    },
+    "answerAliases": [
+      "trained on a vast amount of text",
+      "pre-trained to predict the next word",
+      "fine-tuned to follow instructions and to behave as assistants"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0024",
+    "text": "You want a chatbot to answer using documents that change every week. What is the usual fix?",
+    "options": [
+      "Retrieval, which looks the documents up at question time",
+      "Fine-tuning, which retrains the model on the new documents",
+      "Prompting, which pastes the whole document set into every reply",
+      "Quantization, which shrinks the model so the documents fit"
+    ],
+    "answer": "Retrieval, which looks the documents up at question time",
+    "category": "concepts",
+    "tags": [
+      "rag",
+      "fine-tuning",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "Retrieval leaves the model alone and looks the documents up each time a question arrives, so a file edited on Tuesday is live on Tuesday. Fine-tuning is the tempting wrong answer, and it is a genuine tool, but it is the right one for changing how a model behaves rather than for keeping a fact list current, because refreshing it means another training run. The term came from a 2020 paper that paired a model with an external store of documents it could consult on every question.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Retrieval-augmented generation",
+      "label": "Retrieval-augmented generation on Wikipedia"
+    },
+    "answerAliases": [
+      "RAG also reduces the need to retrain LLMs with new data",
+      "refer to a specified set of documents, then respond to user queries",
+      "retrieval"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0025",
+    "text": "A lab publishes a model's weights so anyone can download them. What would open source additionally require?",
+    "options": [
+      "That the weights be published at no charge",
+      "That the training data and code be public too",
+      "That the model run on hardware anyone can buy",
+      "That every model the lab has built be public"
+    ],
+    "answer": "That the training data and code be public too",
+    "category": "concepts",
+    "tags": [
+      "open-weights",
+      "open-source",
+      "licensing"
+    ],
+    "difficulty": 3,
+    "explanation": "Open source asks for more than the numbers: the training data, the source code, the evaluation results and the documentation as well. Free to download is the tempting wrong answer, because price and openness are different axes, and a model can sit on a public server under terms that forbid commercial use. The word licence is where the argument usually lands, since whether you may modify, fine-tune or redistribute released weights is set by the terms rather than by the download.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Open weights",
+      "label": "Open weights on Wikipedia"
+    },
+    "answerAliases": [
+      "the model's source code, training data, evaluation results, intermediate checkpoints and technical documentation",
+      "permission to modify, fine-tune or redistribute it depends on its license"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0026",
+    "text": "Chatbots often have standing instructions the user never sees. What are those called?",
+    "options": [
+      "Hidden training data, added during pretraining",
+      "Model weights, rewritten for each new user",
+      "A secret API key the user must supply",
+      "System prompts, set by the app's maker"
+    ],
+    "answer": "System prompts, set by the app's maker",
+    "category": "concepts",
+    "tags": [
+      "system-prompt",
+      "prompting",
+      "foundations"
+    ],
+    "difficulty": 1,
+    "explanation": "A system prompt is text the app maker puts in front of the model before your message, telling it who it is and what it should refuse. The training data answer is the tempting wrong one, because the weights were fixed months earlier and are not rewritten per user. It is also why the same underlying model can be a travel helper, a coding tutor and a customer support agent on the same day without anyone retraining it.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Prompt engineering",
+      "label": "Prompt engineering on Wikipedia"
+    },
+    "answerAliases": [
+      "system instructions",
+      "role assignment",
+      "assigning roles to the model"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0027",
+    "text": "A chatbot seems to remember you between chats. Where is that actually kept?",
+    "options": [
+      "In a notes file the app re-reads, not in the model",
+      "Inside the model's weights, which it rewrites as we talk",
+      "In the training set, which it adds each message to",
+      "In the model's context window, which grows with the chat"
+    ],
+    "answer": "In a notes file the app re-reads, not in the model",
+    "category": "concepts",
+    "tags": [
+      "memory",
+      "chatbot",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "The model is unchanged, so whatever you told it last week lives in a notes file or summary the app keeps and pastes back in at the start of a conversation. The context window is the tempting wrong answer, but that is the current chat, and it empties when the chat ends, which is exactly why a new conversation starts blank. The layer that actually holds memory is the application wrapped around the model, the same layer that supplies its instructions and its tools.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "AI agent",
+      "label": "AI agent on Wikipedia"
+    },
+    "answerAliases": [
+      "memory components",
+      "memory"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0028",
+    "text": "Voice cloning lets you do which of these?",
+    "options": [
+      "Hear a specific person say words they never recorded",
+      "Hear a recorded voice cleaned up and denoised",
+      "Hear one person's voice translated into another language",
+      "Hear a synthetic voice read a script in a neutral accent"
+    ],
+    "answer": "Hear a specific person say words they never recorded",
+    "category": "concepts",
+    "tags": [
+      "voice-cloning",
+      "audio",
+      "foundations"
+    ],
+    "difficulty": 1,
+    "explanation": "It takes a sample of one person's voice and produces new sentences in it, including ones they never spoke. Ordinary text to speech is the tempting wrong answer, because that is what phone assistants have done for decades, and voice cloning is what makes the fake robocalls possible. The same technique is used to give a voice back to people who have lost their own, which is the one use nobody argues about.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Audio deepfake",
+      "label": "Audio deepfake on Wikipedia"
+    },
+    "answerAliases": [
+      "voice cloning",
+      "Audio deepfake technology",
+      "generate speech that convincingly mimics specific individuals"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0029",
+    "text": "When you describe a picture to an image generator, what is it actually doing?",
+    "options": [
+      "Building a new image from scratch to match the description",
+      "Searching a photo library for a picture that already matches",
+      "Editing a stock photo to add the things you described",
+      "Printing the description as text onto a blank canvas"
+    ],
+    "answer": "Building a new image from scratch to match the description",
+    "category": "concepts",
+    "tags": [
+      "text-to-image",
+      "images",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "Nothing is copied and nothing is searched for. The model has seen an enormous number of pictures with their captions and builds a new one out of what it learned, which is also why hands and written words so often come out wrong. The photo library idea is the most common misunderstanding, and it is the belief sitting behind most of the copyright fights. In 2022 the output of models like DALL-E 2 and Stable Diffusion was judged close enough to real photographs to be worth worrying about.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Text-to-image model",
+      "label": "Text-to-image model on Wikipedia"
+    },
+    "answerAliases": [
+      "takes an input natural language prompt and produces an image matching that description",
+      "trained on massive amounts of image and text data scraped from the web"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0030",
+    "text": "A chatbot asked about something it has never seen still gives a confident answer. Why?",
+    "options": [
+      "It has no way to tell a confident guess from a real fact",
+      "It checks a live database and picks the closest match",
+      "It was ordered by its creators to never admit doubt",
+      "It copies the nearest sentence it memorised in training"
+    ],
+    "answer": "It has no way to tell a confident guess from a real fact",
+    "category": "concepts",
+    "tags": [
+      "hallucination",
+      "reliability",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "Predicting the next word means always producing something, and there is no separate step inside the model that checks whether the something is true, so a fluent wrong answer is indistinguishable from a right one. The database answer is the tempting wrong one, because retrieval genuinely exists, but it is a bolt-on and it is not where a model's own mistakes come from. Meta's Galactica shipped with the warning 'Outputs may be unreliable!' and was pulled two weeks after launch in November 2021.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hallucination (artificial intelligence)",
+      "label": "Hallucination (artificial intelligence) on Wikipedia"
+    },
+    "answerAliases": [
+      "give a guess",
+      "even when they lack information"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0031",
+    "text": "A model is finished being pretrained. What does the next stage add?",
+    "options": [
+      "Instruction following and human preferences",
+      "More raw text, so it knows more vocabulary",
+      "Faster hardware, so it answers in less time",
+      "A bigger context window, so it reads more at once"
+    ],
+    "answer": "Instruction following and human preferences",
+    "category": "concepts",
+    "tags": [
+      "post-training",
+      "pretraining",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "Once a model can predict text, the second stage teaches it to take instructions and to answer the way people prefer, which is what turns a base model into a chatbot. More raw text is the tempting wrong answer, because that is the first stage rather than the second. Hardware and context window are engineering choices rather than training stages, and both can change without the model being retrained at all.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Large language model",
+      "label": "Large language model on Wikipedia"
+    },
+    "answerAliases": [
+      "fine-tuned to follow instructions and to behave as assistants",
+      "pre-trained to predict the next word"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "con-0032",
+    "text": "In plain English, what is an AI world model?",
+    "options": [
+      "A simulator the AI uses to predict what happens next",
+      "A map of every country and city on the planet",
+      "A model of the weather, trained on past forecasts",
+      "A 3D video game engine that renders fake worlds"
+    ],
+    "answer": "A simulator the AI uses to predict what happens next",
+    "category": "concepts",
+    "tags": [
+      "world-models",
+      "agents",
+      "foundations"
+    ],
+    "difficulty": 2,
+    "explanation": "It builds a working simulation of a situation so it can try an action in its head and predict the result, rather than pushing a robot into the world to find out. A globe or a weather forecast is the tempting wrong answer, because a world model is built for one environment and is about cause and effect rather than geography. The idea is old, dating to the 1990s, and modern versions are used in robots, self-driving cars and interactive video.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "World model (artificial intelligence)",
+      "label": "World model (artificial intelligence) on Wikipedia"
+    },
+    "answerAliases": [
+      "builds an internal representation of an environment",
+      "predicts how that environment changes over time in response to actions"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

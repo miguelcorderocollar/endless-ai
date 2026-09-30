@@ -418,5 +418,644 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "bus-0015",
+    "text": "In June 2026 the Commerce Department ordered Anthropic to cut off foreign nationals from its two newest Claude models. Why did that leave Fable 5 and Mythos 5 switched off for everybody?",
+    "options": [
+      "Anthropic could not check users' nationality in real time",
+      "The models needed retraining before anyone could run them",
+      "Amazon withdrew the compute both models were running on",
+      "The directive also banned Anthropic's US-based employees"
+    ],
+    "answer": "Anthropic could not check users' nationality in real time",
+    "category": "business",
+    "tags": [
+      "anthropic",
+      "export-controls",
+      "government"
+    ],
+    "difficulty": 3,
+    "explanation": "The directive landed at 5:21pm ET on 12 June 2026 and covered any foreign national anywhere, including Anthropic's own staff, so the only way to comply was to switch both models off for every customer; Commerce lifted it on 30 June. Retraining is the tempting miss because the models were fine, and Amazon is the tempting miss because an Amazon researcher's report about a safeguard bypass is what set the directive off.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.anthropic.com/news/redeploying-fable-5",
+      "label": "Anthropic on redeploying Claude Fable 5"
+    },
+    "answerAliases": [
+      "no reliable way to verify nationality in real-time",
+      "verify nationality",
+      "nationality",
+      "disable Fable 5 and Mythos 5"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0016",
+    "text": "In September 2026 Oracle sent a force majeure notice about Project Jupiter, a Stargate data center campus in New Mexico. What was Oracle trying to achieve?",
+    "options": [
+      "Delay payments if the campus slips past 2028",
+      "Buy extra capacity once the campus comes online",
+      "Cancel its lease as the campus's main tenant",
+      "Hand the campus to another Stargate partner"
+    ],
+    "answer": "Delay payments if the campus slips past 2028",
+    "category": "business",
+    "tags": [
+      "oracle",
+      "stargate",
+      "data-centers"
+    ],
+    "difficulty": 3,
+    "explanation": "A force majeure notice lets a tenant pause payments if the building is late, so Oracle was buying room on Project Jupiter rather than walking away from a 2.45 gigawatt campus it wants. The site is designed to run on Bloom Energy gas fuel cells, and the Energy Transfer pipeline meant to feed it slipped to February 2027 after regulators repeatedly denied permits.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/09/24/oracle-sends-force-majeure-notice-on-its-new-mexico-stargate-data-center/",
+      "label": "TechCrunch on Oracle's force majeure notice for Project Jupiter"
+    },
+    "answerAliases": [
+      "delay payments",
+      "force majeure",
+      "2028",
+      "Project Jupiter"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0017",
+    "text": "In August 2026 Nvidia licensed Poolside's Model Factory and made job offers to 109 of its engineers, in a deal the investor letter insisted was neither an acquisition nor an acquihire. Which open-weight model family would they work on?",
+    "options": [
+      "Llama",
+      "Qwen",
+      "Nemotron",
+      "Grok"
+    ],
+    "answer": "Nemotron",
+    "category": "business",
+    "tags": [
+      "nvidia",
+      "licensing",
+      "talent-deals"
+    ],
+    "difficulty": 3,
+    "explanation": "The engineers had built Poolside's Laguna code model, and Nvidia ships its own open-weight models under the Nemotron name, the same give-away-the-tools play as CUDA. Poolside's three founders stayed on and the investor letter stressed the deal was not an acquisition, which is how this kind of deal avoids the regulatory reviews a real takeover brings.",
+    "source": {
+      "kind": "url",
+      "url": "https://the-decoder.com/nvidia-is-acquiring-poolsides-model-factory-and-109-employees-for-6-billion/",
+      "label": "The Decoder on Nvidia licensing Poolside's Model Factory"
+    },
+    "answerAliases": [
+      "Nemotron",
+      "Nemotron line",
+      "Nemotron open-weight models",
+      "Model Factory"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0018",
+    "text": "In September 2026, which Beijing AI lab confidentially filed for a Hong Kong IPO, aiming to raise $3 billion in the offering?",
+    "options": [
+      "Zhipu AI",
+      "MiniMax",
+      "DeepSeek",
+      "Moonshot AI"
+    ],
+    "answer": "Moonshot AI",
+    "category": "business",
+    "tags": [
+      "china",
+      "ipo",
+      "markets"
+    ],
+    "difficulty": 2,
+    "explanation": "Moonshot AI, the developer of the Kimi models, filed confidentially on 3 September 2026 and is working with Goldman Sachs and CICC on the offering. Z.AI, formerly Zhipu, and MiniMax both listed in Hong Kong earlier in 2026, which makes them the tempting misses, while DeepSeek has never filed.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.businesstimes.com.sg/companies-markets/chinese-ai-firm-moonshot-files-confidentially-hong-kong-ipo-sources-say",
+      "label": "Business Times on Moonshot's confidential Hong Kong IPO filing"
+    },
+    "answerAliases": [
+      "Moonshot AI",
+      "Moonshot",
+      "Kimi",
+      "Moonshot AI (Beijing)"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0019",
+    "text": "In September 2026 AMD agreed to acquire the San Francisco lab behind Fei-Fei Li, which builds models that generate and simulate 3D worlds. Which company is it?",
+    "options": [
+      "Skild AI",
+      "World Labs",
+      "Anysphere",
+      "Cognition"
+    ],
+    "answer": "World Labs",
+    "category": "business",
+    "tags": [
+      "amd",
+      "acquisition",
+      "world-models"
+    ],
+    "difficulty": 2,
+    "explanation": "AMD bought the lab behind spatial-intelligence models that generate and simulate 3D worlds from text and video, and Fei-Fei Li joins as executive vice president and chief scientist reporting to Lisa Su. Cognition and Anysphere are the tempting misses because both sell AI coding agents; Skild AI builds robot foundation models, not world models.",
+    "source": {
+      "kind": "url",
+      "url": "https://newsroom.amd.com/news/amd-acquire-world-labs/",
+      "label": "AMD newsroom on the World Labs acquisition"
+    },
+    "answerAliases": [
+      "World Labs",
+      "WorldLabs",
+      "World Labs Inc"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0020",
+    "text": "In July 2026 Nvidia announced a long-term partnership with Ilya Sutskever's lab SSI, alongside an investment in it. Which Nvidia platform did the deal hand SSI access to?",
+    "options": [
+      "Hopper",
+      "Blackwell",
+      "Vera Rubin",
+      "Rubin CPX"
+    ],
+    "answer": "Vera Rubin",
+    "category": "business",
+    "tags": [
+      "nvidia",
+      "ssi",
+      "compute"
+    ],
+    "difficulty": 2,
+    "explanation": "SSI said access to the Vera Rubin platform would lift its compute by an order of magnitude, and Nvidia got rare access into the lab's research in return, a swap that moves frontier demand onto its own silicon. Hopper is the tempting miss because it is the architecture behind the H100, but SSI had been running on Google TPUs before this.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/07/27/ilya-sutskevers-safe-superintelligence-partners-with-nvidia-to-scale-its-ai-research/",
+      "label": "TechCrunch on the SSI and Nvidia partnership"
+    },
+    "answerAliases": [
+      "Vera Rubin",
+      "Vera Rubin platform",
+      "Rubin",
+      "Vera Rubin systems"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0021",
+    "text": "In September 2026 Anthropic signed a seven-year, $11.6 billion cloud contract with Akamai. Unusually for a frontier lab, what was the capacity for?",
+    "options": [
+      "General-purpose CPUs, not GPU clusters",
+      "Nvidia GPUs for large model training",
+      "Google TPU capacity in US regions",
+      "Custom Trainium accelerators"
+    ],
+    "answer": "General-purpose CPUs, not GPU clusters",
+    "category": "business",
+    "tags": [
+      "anthropic",
+      "akamai",
+      "cloud"
+    ],
+    "difficulty": 2,
+    "explanation": "Agent workloads are pulling demand for ordinary processors, which is how a CDN company could land a contract this size, and Akamai even handed Anthropic a warrant for up to about 5 percent of its stock. GPUs are the tempting answer because every earlier AI cloud deal sold accelerators, and Trainium is Amazon silicon, not Akamai's.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/",
+      "label": "TechCrunch on the Akamai and Anthropic cloud contract"
+    },
+    "answerAliases": [
+      "CPU capacity",
+      "CPUs",
+      "general-purpose chips",
+      "CPU workload"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0022",
+    "text": "In July 2026 Travis Kalanick's industrial AI company Atoms raised $1.7 billion led by Andreessen Horowitz. Which company put money into the round, having forced him out as CEO in 2017?",
+    "options": [
+      "Lyft",
+      "Grab",
+      "DoorDash",
+      "Uber"
+    ],
+    "answer": "Uber",
+    "category": "business",
+    "tags": [
+      "funding",
+      "uber",
+      "robotics"
+    ],
+    "difficulty": 2,
+    "explanation": "Uber ousted Kalanick as CEO in 2017 after harassment and discrimination complaints, then took a cheque in the company he rebuilt out of CloudKitchens and Pronto; he called the round unfinished business, with a16z's Ben Horowitz joining the board. Lyft is the tempting miss because it is the ride-hailing rival a player expects, and Grab is the other founder-oustering story.",
+    "source": {
+      "kind": "url",
+      "url": "https://techcrunch.com/2026/07/22/travis-kalanicks-robotics-company-raises-1-7b-led-by-a16z/",
+      "label": "TechCrunch on Atoms' $1.7B round"
+    },
+    "answerAliases": [
+      "Uber",
+      "Uber Technologies",
+      "Uber Technologies Inc"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0023",
+    "text": "The EU AI Act's duties for general-purpose AI models have applied since August 2025, but for a year no one could be fined for breaking them. From what date in 2026 did the Commission's enforcement powers start?",
+    "options": [
+      "1 August 2026",
+      "2 August 2026",
+      "2 February 2026",
+      "2 July 2026"
+    ],
+    "answer": "2 August 2026",
+    "category": "business",
+    "tags": [
+      "eu-ai-act",
+      "regulation",
+      "compliance"
+    ],
+    "difficulty": 2,
+    "explanation": "The GPAI obligations in Articles 53 to 55 applied from 2 August 2025, and the Commission's enforcement chapter arrived a year later on the same calendar date, so providers got one grace year to assemble documentation, a copyright policy and training-data summaries. The 2026 AI Omnibus pushed the high-risk rules to December 2027 but left this date untouched.",
+    "source": {
+      "kind": "url",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "label": "European Commission on the AI Act framework"
+    },
+    "answerAliases": [
+      "2 August 2026",
+      "August 2, 2026",
+      "2 August",
+      "August 2026"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0024",
+    "text": "In early 2026 the Pentagon designated Anthropic a supply-chain risk, and a federal judge set that designation aside in August 2026. What had Anthropic refused to allow?",
+    "options": [
+      "Any use of Claude by intelligence agencies",
+      "Sales of Claude to defence contractors",
+      "Deployment on allied military networks",
+      "Autonomous weapons and mass surveillance"
+    ],
+    "answer": "Autonomous weapons and mass surveillance",
+    "category": "business",
+    "tags": [
+      "anthropic",
+      "defense",
+      "lawsuit"
+    ],
+    "difficulty": 2,
+    "explanation": "The Defense Secretary wanted Claude for all lawful purposes and Anthropic held out against mass surveillance of Americans and fully autonomous weapons; Hegseth's designation was the first time a US company was publicly labelled a supply-chain risk, and Judge Rita Lin set it aside in August 2026. Intelligence agencies are the tempting miss because the demand was not agency-specific.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.nbcnews.com/business/business-news/anthropic-pentagon-blacklist-claude-judge-rcna594825",
+      "label": "NBC News on the judge blocking the Pentagon's Anthropic blacklisting"
+    },
+    "answerAliases": [
+      "autonomous weapons",
+      "mass surveillance",
+      "fully autonomous weapons",
+      "domestic surveillance"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0030",
+    "text": "Three Mile Island's Unit 1 had been shut since 2019 because cheap natural gas had made it unprofitable. In September 2024 Microsoft signed a deal about it. What did Microsoft actually agree to?",
+    "options": [
+      "A 20-year commitment to buy the plant's power once it restarts",
+      "Ownership of the reactor, which Constellation would run for it",
+      "Most of the $1.6 billion cost of restarting the plant",
+      "A share of Constellation Energy in exchange for the power"
+    ],
+    "answer": "A 20-year commitment to buy the plant's power once it restarts",
+    "category": "business",
+    "tags": [
+      "nuclear",
+      "microsoft",
+      "energy",
+      "power"
+    ],
+    "difficulty": 2,
+    "explanation": "Constellation shut Unit 1 in 2019 and said in September 2024 it would spend $1.6 billion to restart it by 2028, renaming it the Crane Clean Energy Center. Microsoft took no ownership and no equity; it signed a 20-year agreement to take as much of the plant's electricity as possible, because a data center wants power around the clock rather than only when the sun is up. Unit 2, the unit damaged in the 1979 accident, stays dormant.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Three Mile Island Nuclear Generating Station",
+      "label": "Three Mile Island Nuclear Generating Station on Wikipedia"
+    },
+    "answerAliases": [
+      "20-year agreement to purchase as much electricity as possible from the plant",
+      "20-year agreement",
+      "the entirety of the plant's energy output will be sold to Microsoft Corporation",
+      "Crane Clean Energy Center"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0031",
+    "text": "In 2024 Google agreed to take as much as 500 MW of power from Kairos Power, a company building a reactor design that has never yet run commercially. What is Kairos building?",
+    "options": [
+      "A large pressurized water reactor of the standard three-loop design",
+      "A gas-cooled reactor using ordinary light water as its coolant",
+      "A small modular high-temperature reactor cooled by molten fluoride salt",
+      "A molten salt reactor with the uranium dissolved straight into the fuel"
+    ],
+    "answer": "A small modular high-temperature reactor cooled by molten fluoride salt",
+    "category": "business",
+    "tags": [
+      "nuclear",
+      "smr",
+      "google",
+      "energy"
+    ],
+    "difficulty": 2,
+    "explanation": "The salt is a coolant, not the fuel: Kairos burns TRISO particles held in solid graphite pebbles, so what it is not is the classic liquid-fuel molten salt design. Google's 2024 agreement covers up to 500 MW from six or seven units, the first due around 2030, and none of them has Nuclear Regulatory Commission approval yet.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Kairos Power",
+      "label": "Kairos Power on Wikipedia"
+    },
+    "answerAliases": [
+      "fluoride salt-cooled high-temperature reactors",
+      "fluoride salt-cooled high-temperature reactor",
+      "small modular reactor",
+      "500 MW"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0032",
+    "text": "Vertiv has become one of the biggest winners of the AI buildout, even though it never trained a model or made a chip. What does it actually sell?",
+    "options": [
+      "The GPUs that train large models",
+      "Power and cooling gear for data centers",
+      "Ethernet switches that link the racks together",
+      "Lithography machines that print features on chips"
+    ],
+    "answer": "Power and cooling gear for data centers",
+    "category": "business",
+    "tags": [
+      "data-centers",
+      "infrastructure",
+      "cooling"
+    ],
+    "difficulty": 2,
+    "explanation": "Vertiv began in 1946 as Capitol Refrigeration Industries, and Ralph Liebert built the first computer-room precision air conditioner in his garage, so it is really a cooling company that also sells the electrical half of a data center. Its lineup now runs from racks and busbars to uninterruptible power supplies and thermal management, and in 2023 its share price rose 252 percent, more than any other company in the S&P 500.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Vertiv",
+      "label": "Vertiv on Wikipedia"
+    },
+    "answerAliases": [
+      "AC and DC power management, thermal management",
+      "power management",
+      "thermal management",
+      "uninterruptible power supplies (UPS)"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0033",
+    "text": "Arista Networks grew into Cisco's most annoying rival in data-center switches, and in December 2014 Cisco sued it for patent infringement. How did that fight end?",
+    "options": [
+      "Cisco sold Arista the patents outright in the end",
+      "An import ban that blocked Arista's switches in the US",
+      "A cross-licensing deal covering both product lines",
+      "Arista paid Cisco $400 million to settle in 2018"
+    ],
+    "answer": "Arista paid Cisco $400 million to settle in 2018",
+    "category": "business",
+    "tags": [
+      "arista",
+      "cisco",
+      "litigation",
+      "networking"
+    ],
+    "difficulty": 3,
+    "explanation": "The International Trade Commission upheld an import ban on some of Arista's switch features, which was a real threat to a company that had only listed in 2014. The ban came down in 2016 after Arista changed the products and two patents were overturned, but the fight ran on until August 2018, when Arista paid $400 million to end Cisco's claims, drop its own antitrust case and agree to a five-year stand-down.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Arista Networks",
+      "label": "Arista Networks on Wikipedia"
+    },
+    "answerAliases": [
+      "Arista agreed to pay Cisco US$400 million",
+      "Arista agreed to pay Cisco US$400 million as part of a settlement",
+      "US$400 million",
+      "5-year stand-down between the companies"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0034",
+    "text": "Signed into law in August 2022, the CHIPS and Science Act was the biggest federal push in decades to bring chip manufacturing back to the United States. What did its money pay for?",
+    "options": [
+      "Discounts on chips bought from the firms that dominate the industry",
+      "New chip fabs on US soil, plus chip research and training",
+      "A national stockpile of finished chips to release in a crisis",
+      "Higher tariffs on chips shipped in from Taiwan and South Korea"
+    ],
+    "answer": "New chip fabs on US soil, plus chip research and training",
+    "category": "business",
+    "tags": [
+      "chips-act",
+      "policy",
+      "semiconductors",
+      "regulation"
+    ],
+    "difficulty": 1,
+    "explanation": "Of the $52.7 billion set aside for chips, $39 billion went to subsidies for building fabs on US soil and $13 billion to semiconductor research and workforce training, on top of a 25 percent investment tax credit for manufacturing equipment. The bigger surprise is the rest of the bill, which authorised another $174 billion for public research from NASA to the NSF, so the CHIPS half is the smaller half.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "CHIPS and Science Act",
+      "label": "CHIPS and Science Act on Wikipedia"
+    },
+    "answerAliases": [
+      "39 billion in subsidies for chip manufacturing on U.S. soil",
+      "subsidies for chip manufacturing on U.S. soil",
+      "semiconductor research and workforce training"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0025",
+    "text": "By 2025 CoreWeave, Lambda, Crusoe and Nebius were routinely grouped together as neoclouds. What do those companies sell that sets them apart from the hyperscalers they compete with?",
+    "options": [
+      "They sell data center space to other operators to fill",
+      "They sell rented GPU compute as their main product",
+      "They sell custom-designed AI accelerator chips to clouds",
+      "They sell hosted frontier models as a pay-per-token API"
+    ],
+    "answer": "They sell rented GPU compute as their main product",
+    "category": "business",
+    "tags": [
+      "neocloud",
+      "cloud",
+      "infrastructure"
+    ],
+    "difficulty": 2,
+    "explanation": "AWS, Azure and Google Cloud sell dozens of product lines with GPUs as one item among many, while a neocloud sells GPU compute and little else, which is why the Uptime Institute measured an on-demand Nvidia DGX H100 at roughly a third of the hyperscaler price in 2025. CoreWeave even brands itself the AI Hyperscaler in its own press releases, which is the joke. Lambda, the smallest of the four, calls itself the AI developer cloud and sells one-click GPU clusters next to single-GPU instances.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.networkworld.com/article/4011187/neoclouds-roll-in-challenge-hyperscalers-for-ai-workloads.html",
+      "label": "Network World on neoclouds versus hyperscalers"
+    },
+    "answerAliases": [
+      "rented GPU compute",
+      "GPU processing-as-a-service",
+      "GPUaaS",
+      "GPU cloud",
+      "pure-play vendors"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0026",
+    "text": "CoreWeave, the Nvidia-powered GPU cloud, was a different company in 2017. What was it doing then?",
+    "options": [
+      "Renting GPUs to researchers, as a startup called Lambda",
+      "Trading bitcoin for clients, as an exchange called Coinbase",
+      "Trading natural gas futures, as a hedge fund called Hudson Ridge",
+      "Mining ethereum, as a crypto startup called Atlantic Crypto"
+    ],
+    "answer": "Mining ethereum, as a crypto startup called Atlantic Crypto",
+    "category": "business",
+    "tags": [
+      "coreweave",
+      "infrastructure",
+      "crypto"
+    ],
+    "difficulty": 2,
+    "explanation": "Founded in 2017 as Atlantic Crypto, it mined ethereum with the same graphics cards it now rents out, and when the 2018 crash made those cards cheap it renamed itself CoreWeave in 2019 and started leasing that inventory as cloud computing instead. Its founder Michael Intrator had been running Hudson Ridge, a natural gas hedge fund. Lambda is the tempting miss because it was already renting GPUs to researchers years earlier.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "CoreWeave",
+      "label": "CoreWeave on Wikipedia"
+    },
+    "answerAliases": [
+      "Atlantic Crypto",
+      "cryptocurrency mining",
+      "ethereum",
+      "crypto mining company"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0027",
+    "text": "In July 2025 CoreWeave agreed to buy a bitcoin mining company that had pivoted to AI data centers. Which company was it?",
+    "options": [
+      "Cipher Mining",
+      "Applied Digital",
+      "Core Scientific",
+      "Hut 8"
+    ],
+    "answer": "Core Scientific",
+    "category": "business",
+    "tags": [
+      "coreweave",
+      "data-centers",
+      "crypto"
+    ],
+    "difficulty": 2,
+    "explanation": "A Bitcoin miner that filed for Chapter 11 at the end of 2022 and emerged in January 2024, Core Scientific signed about $10 billion of data center contracts in 2025 and was agreed at US$9 billion. Cipher Mining and Hut 8 made the same pivot from bitcoin to AI hosting, which is why they are the tempting misses. What CoreWeave wanted was the buildings and the grid connections somebody else had already paid for.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Core Scientific",
+      "label": "Core Scientific on Wikipedia"
+    },
+    "answerAliases": [
+      "Core Scientific",
+      "Core Scientific, Inc"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0028",
+    "text": "Nebius, the Amsterdam-based AI infrastructure company that also owns Avride and TripleTen, was created by a forced sale in July 2024. Which company did it get separated from?",
+    "options": [
+      "Tinkoff",
+      "Avito",
+      "Yandex",
+      "Rambler"
+    ],
+    "answer": "Yandex",
+    "category": "business",
+    "tags": [
+      "nebius",
+      "yandex",
+      "sanctions"
+    ],
+    "difficulty": 3,
+    "explanation": "Nebius was the Dutch holding company that owned Yandex, the structure Russian law required for foreign ownership, until sanctions forced it to sell the Russian business to a consortium of Russian investors in July 2024 for a discounted US$5.3 billion. What stayed outside Russia, notably the Finland data center, was rebranded Nebius and pointed at AI infrastructure. Tinkoff and Avito are Russian finance and classifieds businesses that stayed inside Russia.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Yandex",
+      "label": "Yandex on Wikipedia"
+    },
+    "answerAliases": [
+      "Yandex",
+      "Yandex LLC"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "bus-0029",
+    "text": "Crusoe, one of the neoclouds now building AI data centers, was founded in 2018. What was its original business?",
+    "options": [
+      "Operating a bitcoin mining pool for retail investors",
+      "Selling natural gas to hyperscale data center campuses",
+      "Licensing AI accelerator designs to server makers",
+      "Capturing flared natural gas to power its own computing"
+    ],
+    "answer": "Capturing flared natural gas to power its own computing",
+    "category": "business",
+    "tags": [
+      "crusoe",
+      "data-centers",
+      "energy"
+    ],
+    "difficulty": 2,
+    "explanation": "The founding idea was to capture the natural gas that oil and gas sites burn off at the wellhead and run generators on it, which Crusoe calls Digital Flare Mitigation; bitcoin mining was the first way to spend that cheap power and the AI data centers came later. The mining pool and chip licensing options describe businesses that sit either side of Crusoe's actual one. It sold the bitcoin mining business to NYDIG in 2025 to concentrate on AI infrastructure.",
+    "source": {
+      "kind": "url",
+      "url": "https://www.crusoe.ai/about/company",
+      "label": "Crusoe's company history page"
+    },
+    "answerAliases": [
+      "Digital Flare Mitigation",
+      "wasted natural gas",
+      "flared gas",
+      "flare gas",
+      "energy-first"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]

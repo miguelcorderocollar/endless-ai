@@ -294,5 +294,160 @@
     ],
     "status": "published",
     "addedAt": "2026-09-29"
+  },
+  {
+    "id": "oss-0011",
+    "text": "You install a local tool for open models and it asks which model to fetch. Where do the model files come from?",
+    "options": [
+      "The GitHub Releases page",
+      "The Kaggle datasets site",
+      "The Hugging Face Hub",
+      "The TensorFlow Hub"
+    ],
+    "answer": "The Hugging Face Hub",
+    "category": "open-source",
+    "tags": [
+      "hugging-face",
+      "hub",
+      "open-weights"
+    ],
+    "difficulty": 2,
+    "explanation": "The Hub is where open model weights get published, which makes it the package registry for AI: install a tool, name a model, and the files come down from there. Hugging Face's own ecosystem list names Ollama, LM Studio and llama.cpp as tools that pull their models straight from it. That is also why who owns the platform gets treated as infrastructure policy rather than just a business.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Hugging Face",
+      "label": "Hugging Face on Wikipedia"
+    },
+    "answerAliases": [
+      "Hugging Face Hub",
+      "Hugging Face platform",
+      "models hosted on the Hugging Face Hub"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "oss-0012",
+    "text": "Someone says they run Llama locally instead of through a hosted API. What does that change in practice?",
+    "options": [
+      "Your prompts and files never leave your own machine",
+      "The model's weights were trained on your own computer",
+      "The answers are more accurate than a hosted model's",
+      "The model gets a larger context window than a hosted one"
+    ],
+    "answer": "Your prompts and files never leave your own machine",
+    "category": "open-source",
+    "tags": [
+      "local-llm",
+      "inference",
+      "privacy"
+    ],
+    "difficulty": 2,
+    "explanation": "The weights are downloaded once and inference happens on your own hardware, so nothing you type is sent to a provider and it keeps working with the network unplugged. The answers and the context window are exactly what the lab published, because it is the same file. What you buy is control: no per-token bill, and no vendor keeping a log. Fitting the model on the machine at all is a separate trick, storing the weights with fewer bits.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Llama.cpp",
+      "label": "Llama.cpp on Wikipedia"
+    },
+    "answerAliases": [
+      "local inference tools",
+      "local inference",
+      "run on just a CPU"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "oss-0013",
+    "text": "What does Ollama give you once it is installed?",
+    "options": [
+      "A hosted model that runs in someone else's data centre",
+      "A command that pulls a model and starts it locally",
+      "A trained model of its own, ready to fine-tune",
+      "A rented GPU cluster, billed by the hour"
+    ],
+    "answer": "A command that pulls a model and starts it locally",
+    "category": "open-source",
+    "tags": [
+      "ollama",
+      "local-llm",
+      "gguf"
+    ],
+    "difficulty": 1,
+    "explanation": "Ollama bundles the runtime and the weights behind one name you can pull, so the llama.cpp and GGUF plumbing stays out of sight, and it exposes a local REST API on port 11434 for your own programs to call. It does not train models: the weights come from elsewhere, usually the Hugging Face Hub. That is why it became the default answer to how you just run a model on your own machine.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Ollama",
+      "label": "Ollama on Wikipedia"
+    },
+    "answerAliases": [
+      "local REST API",
+      "model-management tools",
+      "running and managing large language models on local GPU infrastructure"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "oss-0014",
+    "text": "A permissive licence carries only minimal requirements. Which of these does it allow that copyleft does not?",
+    "options": [
+      "Publish your own source code under the same terms",
+      "Use the work only for non-commercial research",
+      "Use the work with no credit to the original author",
+      "Use, modify and ship the work inside a closed product"
+    ],
+    "answer": "Use, modify and ship the work inside a closed product",
+    "category": "open-source",
+    "tags": [
+      "licensing",
+      "permissive",
+      "copyleft"
+    ],
+    "difficulty": 2,
+    "explanation": "MIT and Apache 2.0 let you keep your own project closed, asking only for a warranty disclaimer and the notice. Copyleft is the mirror image: the GPL and AGPL require you to publish the source of derivative works, which is why they are described as carrying viral obligations. Model weights follow the same split, with Llama and BLOOM shipping bespoke terms rather than a plain MIT or Apache grant.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "Permissive software license",
+      "label": "Permissive software license on Wikipedia"
+    },
+    "answerAliases": [
+      "minimal requirements on how the software can be used, modified, and redistributed",
+      "BSD-like",
+      "MIT License"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
+  },
+  {
+    "id": "oss-0015",
+    "text": "EleutherAI shipped two open GPT-style model families in 2021. One was GPT-Neo. What was the other one?",
+    "options": [
+      "GPT-J",
+      "Pythia",
+      "BLOOM",
+      "OPT"
+    ],
+    "answer": "GPT-J",
+    "category": "open-source",
+    "tags": [
+      "eleutherai",
+      "gpt-j",
+      "open-models"
+    ],
+    "difficulty": 2,
+    "explanation": "GPT-J-6B arrived in June 2021 under Apache 2.0, six billion parameters, and it is the release that made fine-tuning an open model cheap for a small team. BLOOM is the tempting miss because it was the famous open model of the following year, but it came out of the BigScience workshop at 176 billion parameters. GPT-NeoX-20B followed in February 2022, and Pythia came later still.",
+    "source": {
+      "kind": "wikipedia",
+      "title": "GPT-J",
+      "label": "GPT-J on Wikipedia"
+    },
+    "answerAliases": [
+      "GPT-J-6B",
+      "GPT-J or GPT-J-6B",
+      "developed by EleutherAI in 2021"
+    ],
+    "status": "draft",
+    "addedAt": "2026-09-30"
   }
 ]
