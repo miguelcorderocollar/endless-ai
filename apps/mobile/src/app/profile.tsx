@@ -50,7 +50,8 @@ import {
   subscribeProgress,
   updateProgress,
 } from "@/lib/progress";
-import { Distribution, EloChart } from "@/components/Stats";
+import { PencilIcon, ResetIcon, SignOutIcon } from "@/components/icons";
+import { Distribution, EloChart, PANEL_HEIGHT } from "@/components/Stats";
 import { DoneList } from "@/components/DoneList";
 import type { Question } from "@shared/lib/questions/schema";
 import { tierFor } from "@shared/lib/quiz/elo";
@@ -263,7 +264,7 @@ export default function ProfileScreen() {
                     onPress={() => setPopup("name")}
                     hitSlop={12}
                   >
-                    <Text style={styles.pencil}>✎</Text>
+                    <PencilIcon stroke={colors.muted} />
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
@@ -271,7 +272,7 @@ export default function ProfileScreen() {
                     onPress={() => setPopup("reset")}
                     hitSlop={12}
                   >
-                    <Text style={styles.reset}>↺</Text>
+                    <ResetIcon stroke={colors.fail} />
                   </Pressable>
                   <Pressable
                     accessibilityRole="button"
@@ -279,16 +280,17 @@ export default function ProfileScreen() {
                     onPress={signOutAndLeave}
                     hitSlop={12}
                   >
-                    <Text style={styles.signOutIcon}>⏻</Text>
+                    <SignOutIcon stroke={colors.muted} />
                   </Pressable>
                 </View>
               </View>
-              <Text style={[label, styles.handle]}>
-                {displayMe?.handle ?? ""}
-                {displayMe?.role === "admin" ? (
-                  <Text style={styles.admin}> admin</Text>
-                ) : null}
-              </Text>
+              {/* No handle here. It is the account's internal id — a player
+                  recognises themselves by their name, and `handle` was noise
+                  between the name and the Elo. The role marker stays, because
+                  "admin" is something a reader needs and an opaque id is not. */}
+              {displayMe?.role === "admin" ? (
+                <Text style={[label, styles.handle]}>admin</Text>
+              ) : null}
               {anonymous ? (
                 <Pressable
                   accessibilityRole="button"

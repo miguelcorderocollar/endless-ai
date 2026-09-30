@@ -1,45 +1,22 @@
-import { useConvexAuth, useQuery } from "convex/react";
 import { router } from "expo-router";
-import { useEffect, useSyncExternalStore } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-import { me } from "@/lib/api";
-import { rememberProfile } from "@/lib/account";
-import { readProfileCache, subscribeCaches } from "@/lib/profileCache";
+import { GearIcon } from "@/components/icons";
 import { SyncStatus } from "@/components/SyncStatus";
 import { colors, fonts, label } from "@/theme";
 
 /**
- * The quiz masthead from `src/components/Quiz.tsx`, with the same affordances:
- * the wordmark home, the sync status, the live Elo, and a way into categories
- * and the profile. On the web the last two are text links and an inline SVG;
- * native needs a target area, so they get hit slop and the gear becomes a
- * labelled button.
+ * The quiz masthead from `src/components/Quiz.tsx`: the wordmark home, the sync
+ * status, the live Elo, `cats`, and the settings gear. Five things, the same
+ * five the web has.
  *
- * The account slot is the one addition the web does not need here: a PWA
- * already had a session by the time you noticed, whereas a fresh install is a
- * guest. It says "sign in" until there is an identity, then the handle, so the
- * state is never ambiguous.
- *
- * The name comes from the cache first, the way the web's does (`bankCache.ts`):
- * a returning player should not watch their own name flash to "sign in" while
- * `users.me` revalidates.
+ * The first pass of this added a sixth — the signed-in name, or "sign in" for a
+ * guest — on the reasoning that a fresh install is a guest and the state should
+ * never be ambiguous. It was not ambiguous on the web, because the profile
+ * carries the identity and the sign-in CTA, so the slot was a guess at a need
+ * nobody had. Dropping it is what makes the two mastheads the same object.
  */
 export function Masthead({ rating }: { rating: number }) {
-  const { isAuthenticated } = useConvexAuth();
-  const identity = useQuery(me, isAuthenticated ? {} : "skip");
-  const cached = useSyncExternalStore(
-    subscribeCaches,
-    readProfileCache,
-    readProfileCache,
-  );
-
-  useEffect(() => {
-    if (identity) rememberProfile(identity);
-  }, [identity]);
-
-  const name = cached?.displayName ?? cached?.handle ?? null;
-
   return (
     <View style={styles.bar}>
       <Pressable
@@ -68,25 +45,13 @@ export function Masthead({ rating }: { rating: number }) {
           <Text style={styles.link}>cats</Text>
         </Pressable>
         <Pressable
-          onPress={() => router.push(name ? "/profile" : "/account")}
-          hitSlop={12}
-          accessibilityRole="button"
-          accessibilityLabel={
-            name ? `Signed in as ${name}. Profile` : "Sign in"
-          }
-        >
-          <Text style={[styles.link, styles.account]}>
-            {isAuthenticated ? (name ?? "you") : "sign in"}
-          </Text>
-        </Pressable>
-        <Pressable
           onPress={() => router.push("/profile")}
           hitSlop={12}
           accessibilityRole="button"
           accessibilityLabel="Profile and stats"
+          style={styles.gearHit}
         >
-          {/* The web app's inline settings gear. */}
-          <Text style={styles.gear}>⚙</Text>
+          <GearIcon stroke={colors.muted} />
         </Pressable>
       </View>
     </View>
@@ -114,6 +79,7 @@ const styles = StyleSheet.create({
   elo: { ...label, color: colors.muted },
   eloValue: { fontFamily: fonts.mono, fontSize: 14, color: colors.paper },
   link: { ...label, color: colors.muted },
-  account: { color: colors.signal },
-  gear: { fontSize: 17, color: colors.muted, lineHeight: 20 },
+  // The web's gear sits on a bare button with no padding; hitSlop does the
+  // reaching, so the icon can be the web's 17px rather than a padded 44dp one.
+  gearHit: { paddingVertical: 2 },
 });

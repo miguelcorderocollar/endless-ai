@@ -22,7 +22,7 @@ import { startNetworkListener } from "@/lib/network";
 import { hydrateOutbox } from "@/lib/outbox";
 import { hydrateCaches } from "@/lib/profileCache";
 import { hydrateProgress } from "@/lib/progress";
-import { Ambient } from "@/components/Ambient";
+import { Grain } from "@/components/Grain";
 import { OutboxFlusher } from "@/components/SyncStatus";
 import { colors } from "@/theme";
 
@@ -129,12 +129,10 @@ export default function RootLayout() {
       ) : (
         <NoBackend />
       )}
-      {/* One backdrop for every screen, mounted in the root layout the way the
-          web mounts `AmbientBackground` in its own. It takes no touches, so it
-          can sit above the stack; the web puts its blobs behind the content and
-          its grain above it, and at these alphas the two are indistinguishable
-          from one overlay. */}
-      <Ambient />
+      {/* The film grain, over every screen, mounted here the way the web mounts
+          its own overlay in the root layout. It takes no touches, so it can sit
+          above the stack. */}
+      <Grain />
       {/* No `backgroundColor`: edge-to-edge is on, so Android draws the
           system bars over the app's own ink and the prop no longer applies. */}
       <StatusBar style="light" />
