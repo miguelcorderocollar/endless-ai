@@ -20,23 +20,31 @@
  * forging another player's history. Untagged events (no handle was known when
  * recorded) drain under whoever is signed in; the server attributes by auth
  * identity regardless.
+ *
+ * This module is the localStorage adapter. The rules — order, cap, sanitising,
+ * stop-at-first-failure, per-account attribution — are in `outboxCore.ts`,
+ * shared verbatim with the native app (`apps/mobile/src/lib/outbox.ts`), so
+ * the two stores cannot drift on the part the server actually depends on.
  */
+
+import {
+  appendQueued,
+  EMPTY_OUTBOX,
+  type OutboxState,
+  type QueuedAnswer,
+  type SendAnswer,
+  runDrain,
+  sanitizeQueue,
+  sendableEvents,
+  shouldReconcile,
+  withoutSent,
+} from "./outboxCore";
 
 const KEY = "endless-ai:answer-outbox:v1";
 
-/** Cap: hours of offline play. Bounded because localStorage is not. */
-export const OUTBOX_CAP = 1000;
-
-export type QueuedAnswer = {
-  /** Client UUID. Survives retries; the server treats it as the dedupe key. */
-  eventId: string;
-  questionId: string;
-  picked: string;
-  /** Signed-in handle at record time, or null. Attribution guard on drain. */
-  account: string | null;
-  /** Client clock at record time. Drain order, not server truth. */
-  at: number;
-};
+export { shouldReconcile };
+export type { QueuedAnswer, SendAnswer };
+export { OUTBOX_CAP } from "./outboxCore";
 
 export function newEventId(): string {
   const cryptoApi = globalThis.crypto as Crypto | undefined;
@@ -46,49 +54,18 @@ export function newEventId(): string {
   return `${Date.now().toString(36)}-${Math.floor(Math.random() * 2 ** 32).toString(36)}`;
 }
 
-function sanitize(list: unknown): QueuedAnswer[] {
-  if (!Array.isArray(list)) return [];
-  const out: QueuedAnswer[] = [];
-  for (const entry of list) {
-    if (typeof entry !== "object" || entry === null) continue;
-    const e = entry as Record<string, unknown>;
-    if (
-      typeof e.eventId !== "string" ||
-      e.eventId.length === 0 ||
-      typeof e.questionId !== "string" ||
-      e.questionId.length === 0 ||
-      typeof e.picked !== "string" ||
-      e.picked.length === 0
-    ) {
-      continue;
-    }
-    out.push({
-      eventId: e.eventId,
-      questionId: e.questionId,
-      picked: e.picked,
-      account:
-        typeof e.account === "string" && e.account.length > 0 ? e.account : null,
-      at: typeof e.at === "number" ? e.at : 0,
-    });
-  }
-  // Chronological drain. Entries without a clock sort first; they predate any
-  // clocked ones only by being unreadable, so this loses nothing.
-  out.sort((a, b) => a.at - b.at);
-  return out.slice(-OUTBOX_CAP);
-}
-
 function readOutbox(): QueuedAnswer[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = window.localStorage.getItem(KEY);
     if (!raw) return [];
-    return sanitize(JSON.parse(raw));
+    return sanitizeQueue(JSON.parse(raw));
   } catch {
     return [];
   }
 }
 
-function writeOutbox(pending: QueuedAnswer[]): void {
+function writeOutbox(pending: readonly QueuedAnswer[]): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(KEY, JSON.stringify(pending));
@@ -97,12 +74,6 @@ function writeOutbox(pending: QueuedAnswer[]): void {
   }
 }
 
-type OutboxState = { pending: readonly QueuedAnswer[] };
-
-const EMPTY: OutboxState = { pending: [] };
-
-let current: OutboxState = EMPTY;
-
 const listeners = new Set<() => void>();
 
 function set(pending: readonly QueuedAnswer[]) {
@@ -110,6 +81,8 @@ function set(pending: readonly QueuedAnswer[]) {
   writeOutbox([...pending]);
   for (const listener of listeners) listener();
 }
+
+let current: OutboxState = EMPTY_OUTBOX;
 
 export function subscribeOutbox(listener: () => void): () => void {
   listeners.add(listener);
@@ -144,7 +117,7 @@ export function startOutboxSync(): void {
 }
 
 export function getOutboxSnapshot(): OutboxState {
-  if (typeof window !== "undefined" && current === EMPTY) {
+  if (typeof window !== "undefined" && current === EMPTY_OUTBOX) {
     // Lazy-read localStorage on first render (#31), same as progress.ts: no
     // notify, because the render that triggered this read already holds the
     // fresh value and there is nothing to catch up on.
@@ -157,76 +130,33 @@ export function getOutboxSnapshot(): OutboxState {
 }
 
 export function getOutboxServerSnapshot(): OutboxState {
-  return EMPTY;
+  return EMPTY_OUTBOX;
 }
 
 export function enqueueAnswer(event: QueuedAnswer): void {
-  const pending = [...getOutboxSnapshot().pending, event];
-  set(pending.slice(-OUTBOX_CAP));
+  set(appendQueued(getOutboxSnapshot().pending, event));
 }
 
 function dropSent(ids: Set<string>): void {
-  const pending = getOutboxSnapshot().pending.filter((e) => !ids.has(e.eventId));
-  if (pending.length !== getOutboxSnapshot().pending.length) set(pending);
+  const before = getOutboxSnapshot().pending;
+  const pending = withoutSent(before, ids);
+  if (pending.length !== before.length) set(pending);
 }
 
-export type SendAnswer = (args: {
-  questionId: string;
-  picked: string;
-  eventId: string;
-}) => Promise<{ ratingAfter: number }>;
-
 /**
- * Sends the queue for the given account, head-first per account, and stops at
- * the first failure, leaving the rest — and everything behind it — parked.
- * Returns how many left the device, the server's rating after the last one,
- * and the newest record time sent, so the caller can reconcile the local Elo
- * to truth (see `shouldReconcile` — concurrent drains resolve in any order).
- *
- * Events tagged with another account are skipped, never sent: signing out
- * with pending events parks them until that account signs back in. Events
- * with no tag (`account: null`, recorded before any handle was known) are
- * always sendable — stranding them would be silent permanent loss, and the
- * server attributes by auth identity regardless, so there is no forgery in
- * sending them under whoever is signed in.
+ * Sends the queue for the given account and reports how many left the device.
+ * See `runDrain` in the core for what "head-first, stop at first failure" means;
+ * this is the localStorage half.
  */
 export async function drainOutbox(
   send: SendAnswer,
   account: string | null,
 ): Promise<{ sent: number; lastRating: number | null; maxAt: number | null }> {
-  const sent = new Set<string>();
-  let lastRating: number | null = null;
-  let maxAt: number | null = null;
-  for (const event of getOutboxSnapshot().pending) {
-    if (event.account !== null && event.account !== account) continue;
-    try {
-      const result = await send({
-        questionId: event.questionId,
-        picked: event.picked,
-        eventId: event.eventId,
-      });
-      lastRating = result.ratingAfter;
-      maxAt = maxAt === null ? event.at : Math.max(maxAt, event.at);
-      sent.add(event.eventId);
-    } catch {
-      break;
-    }
-  }
-  if (sent.size > 0) dropSent(sent);
-  return { sent: sent.size, lastRating, maxAt };
+  const before = getOutboxSnapshot().pending;
+  const { sent, lastRating, maxAt, sentIds } = await runDrain(before, send, account);
+  if (sentIds.size > 0) dropSent(sentIds);
+  return { sent, lastRating, maxAt };
 }
 
-/**
- * Guards the Elo reconcile against overlapping drains. Two drains in flight
- * resolve in arbitrary order; without this, an older drain resolving last
- * regresses the local rating and nothing re-triggers to repair it. The
- * newest-sent event wins; ties (`>=`) reconcile, last-writer-wins within a
- * millisecond, which is below the resolution anything here can order by.
- */
-let reconciledAt = -1;
-
-export function shouldReconcile(at: number | null): boolean {
-  if (at === null || at < reconciledAt) return false;
-  reconciledAt = at;
-  return true;
-}
+/** Re-exported for the tests and for callers that reason about the queue. */
+export { sanitizeQueue, sendableEvents };
