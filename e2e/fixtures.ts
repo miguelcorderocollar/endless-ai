@@ -101,7 +101,12 @@ type Options = {
   questions?: SeedQuestion[] | null;
   answered?: number;
   /** Raw outbox rows, for the sync chip and drain specs. */
-  outbox?: { questionId: string; picked: string; account: string | null; at: number }[];
+  outbox?: {
+    questionId: string;
+    picked: string;
+    account: string | null;
+    at: number;
+  }[];
 };
 
 /**
@@ -160,6 +165,51 @@ export async function seed(page: Page, options: Options = {}): Promise<void> {
       outboxRows: outbox,
     },
   );
+}
+
+/**
+ * Waits until the app is genuinely installed, not merely controlled.
+ *
+ * Those are different moments, and conflating them is a flake. The worker
+ * precaches `ROUTES` during `install`, and only when `activate` runs does it call
+ * `clients.claim()` — so `controller !== null` flips the moment the page is
+ * claimed, which is *before* `warmAssetCache()` has finished fetching the
+ * `/_next/static/...` chunks those routes reference.
+ *
+ * Cut the network in that window and a spec gets the cached HTML with no way to
+ * load its scripts: the document renders, React never hydrates, and the page
+ * sits on its server-rendered frame for the rest of the test. Nothing under
+ * test has failed — the spec cut the network before the app was ready. It is
+ * load-dependent too, so it shows up once every few runs on a busy machine and
+ * never on an idle one, which is exactly the shape of a bug you stop trusting.
+ *
+ * So this waits for the real postcondition: every chunk the shell documents
+ * reference is in a cache. That is what "installed" means to a player, and it is
+ * observable from the page without the app having to announce anything.
+ *
+ * Deliberately not `waitForTimeout`. A fixed wait is the same race with extra
+ * steps — it just fails less obviously.
+ */
+export async function installApp(page: Page): Promise<void> {
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+  // Read `/` from the cache: going to the network for it here would be fine
+  // online but is the one request this whole helper exists to avoid needing.
+  await page.waitForFunction(async () => {
+    const urls = [
+      ...new Set(
+        [
+          ...(
+            await (await fetch("/", { cache: "force-cache" })).text()
+          ).matchAll(/\/_next\/static\/[A-Za-z0-9._~%/-]+/g),
+        ].map((m) => m[0]),
+      ),
+    ];
+    if (urls.length === 0) return false;
+    for (const url of urls) {
+      if (!(await caches.match(url))) return false;
+    }
+    return true;
+  });
 }
 
 /**

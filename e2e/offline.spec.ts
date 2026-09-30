@@ -1,4 +1,4 @@
-import { expect, expectPlaying, seed, test } from "./fixtures";
+import { expect, expectPlaying, installApp, seed, test } from "./fixtures";
 
 /**
  * The offline half of #17: everything that has to be true with no network.
@@ -20,7 +20,7 @@ test.describe("offline", () => {
   }) => {
     await seed(page, { questions: null });
     await page.goto("/");
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    await installApp(page);
 
     await context.setOffline(true);
     await page.goto("/");
@@ -42,7 +42,7 @@ test.describe("offline", () => {
   }) => {
     await seed(page, { questions: null });
     await page.goto("/");
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    await installApp(page);
 
     await context.setOffline(true);
     await page.goto("/profile");
@@ -70,7 +70,7 @@ test.describe("offline", () => {
 
     await seed(page, { questions: null });
     await page.goto("/");
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    await installApp(page);
 
     const shell = await page.evaluate(async () => {
       const cache = await caches.open("endless-ai:shell:v1");
