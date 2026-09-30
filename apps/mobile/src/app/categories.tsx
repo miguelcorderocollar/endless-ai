@@ -1,6 +1,12 @@
 import { router } from "expo-router";
 import { useQuery } from "convex/react";
-import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -42,9 +48,14 @@ export default function CategoriesScreen() {
   const selected = useMemo(() => new Set(asCategoryKeys(filter)), [filter]);
 
   const rows = countRows ?? cachedCounts;
-  // Write through once the query lands, so the next visit paints the counts
-  // before the round trip.
-  if (countRows && countRows !== cachedCounts) writeCountsCache(countRows);
+
+  // Write-through, in an effect and never during render. `writeCountsCache`
+  // notifies the `useSyncExternalStore` that owns the mirror, so calling it
+  // while rendering is a render loop for the same reason the profile's is — see
+  // the note there.
+  useEffect(() => {
+    if (countRows) writeCountsCache(countRows);
+  }, [countRows]);
 
   const countByCategory = useMemo(() => {
     const byCategory = new Map<string, number>();

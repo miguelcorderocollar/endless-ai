@@ -127,14 +127,23 @@ export default function ProfileScreen() {
   // The bank, for the done list. The query first, the AsyncStorage snapshot
   // while it lands, and the bundled bank if neither is here — which is the
   // offline case, and the reason the app can show a done list on a plane.
-  const questions: Question[] = useMemo(() => {
-    const rows = bank ? toQuestions(bank) : null;
-    if (rows && rows.length > 0) {
-      if (rows !== cachedList) writeListCache(rows);
-      return rows;
-    }
-    return cachedList ?? localBank();
-  }, [bank, cachedList]);
+  //
+  // Parsing is memoised on `bank` alone and the cache write is an effect, which
+  // is the only shape that works here. Writing inside the memo looks
+  // equivalent and is not: `toQuestions` returns a *new* array every call, so
+  // writing it replaces the cached list with a fresh identity, which
+  // re-renders the `useSyncExternalStore` that owns it, which changes the memo's
+  // input, which recomputes, which writes again. The result is an unbounded
+  // render loop: the screen paints its first frame and then never responds to
+  // anything again, because React is too busy retrying it. The web puts the
+  // same write in an effect for the same reason.
+  const liveBank = useMemo(() => (bank ? toQuestions(bank) : null), [bank]);
+  const questions: Question[] =
+    liveBank && liveBank.length > 0 ? liveBank : (cachedList ?? localBank());
+
+  useEffect(() => {
+    if (liveBank) writeListCache(liveBank);
+  }, [liveBank]);
 
   // Server truth when signed in, device truth when not. `myStats` is null
   // before a player's first answer, so fall back to the device numbers for a
