@@ -1,8 +1,9 @@
 import { useConvexAuth } from "convex/react";
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { StyleSheet, Text } from "react-native";
 
 import { answer as answerRef } from "@/lib/api";
+import { syncOnSignIn } from "@/lib/account";
 import { convexClient } from "@/lib/backend";
 import {
   getNetworkServerSnapshot,
@@ -58,6 +59,37 @@ export function OutboxFlusher() {
       },
     );
   }, [isAuthenticated, network.online, client]);
+
+  return null;
+}
+
+/**
+ * Runs `syncOnSignIn` once per sign-in, for the lifetime of the app. It lives
+ * here, next to `OutboxFlusher`, for the same reason: a phone moves between
+ * four screens, and a claim that lived on one of them would miss a session
+ * restored straight into another — a cold start deep-linking to `/profile`
+ * with a stored session mounts no quiz screen, so a quiz-screen effect never
+ * fires and the device never reconciles. Mounted once in the root layout, it
+ * fires on every auth transition wherever the session lands.
+ */
+export function ClaimOnSignIn() {
+  const { isAuthenticated } = useConvexAuth();
+  const client = convexClient();
+  const claimed = useRef(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      claimed.current = false;
+      return;
+    }
+    if (!client || claimed.current) return;
+    claimed.current = true;
+    // Best-effort like the rest of account.ts; a failed claim leaves local
+    // progress standing, and the latch resets so the next transition retries.
+    void syncOnSignIn(client).then(() => {
+      claimed.current = false;
+    });
+  }, [isAuthenticated, client]);
 
   return null;
 }

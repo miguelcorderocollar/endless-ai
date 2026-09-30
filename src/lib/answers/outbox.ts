@@ -137,6 +137,16 @@ export function enqueueAnswer(event: QueuedAnswer): void {
   set(appendQueued(getOutboxSnapshot().pending, event));
 }
 
+/**
+ * Empties the queue, on disk as well as in memory. Called after a progress
+ * reset is confirmed server-side: events queued between the enqueue and the
+ * wipe would otherwise drain afterwards and resurrect the history that was
+ * just deleted.
+ */
+export function clearOutbox(): void {
+  set([]);
+}
+
 function dropSent(ids: Set<string>): void {
   const before = getOutboxSnapshot().pending;
   const pending = withoutSent(before, ids);

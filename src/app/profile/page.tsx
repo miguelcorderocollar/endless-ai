@@ -29,6 +29,7 @@ import {
   subscribeNetwork,
 } from "@/lib/pwa/network";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
+import { clearOutbox } from "@/lib/answers/outbox";
 import type { Question } from "@/lib/questions/schema";
 import { DoneList } from "@/components/DoneList";
 import { InstallRow } from "@/components/InstallPrompt";
@@ -415,6 +416,7 @@ export default function ProfilePage() {
           <ResetConfirm
             onCancel={() => setPopup(null)}
             onDone={() => {
+              clearOutbox();
               updateProgress({ ...EMPTY_PROGRESS });
               router.push("/");
             }}

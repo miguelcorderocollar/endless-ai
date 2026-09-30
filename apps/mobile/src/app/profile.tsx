@@ -58,6 +58,7 @@ import {
   startNetworkListener,
   subscribeNetwork,
 } from "@/lib/network";
+import { clearOutbox } from "@/lib/outbox";
 import type { Question } from "@shared/lib/questions/schema";
 import { tierFor } from "@shared/lib/quiz/elo";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
@@ -123,10 +124,38 @@ export default function ProfileScreen() {
   const history = useQuery(historyRef, isAuthenticated ? {} : "skip");
   const population = useQuery(populationRef, {});
   const bank = useQuery(listRef, {});
-  const recent = useQuery(
-    myRecentRef,
-    isAuthenticated ? { limit: 100 } : "skip",
-  );
+  // Defensive fetch, not useQuery: if the backend predates myRecent, a missing
+  // function would throw during render and take the whole screen down. The web
+  // page does the same manual fetch for the same reason. Manual fetch lets us
+  // fall back to the device-local ring instead of crashing.
+  const [recent, setRecent] = useState<
+    { questionId: string; correct: boolean; createdAt: number }[] | undefined
+  >(undefined);
+  const [recentUnsupported, setRecentUnsupported] = useState(false);
+  useEffect(() => {
+    if (!isAuthenticated || !client) {
+      setRecent(undefined);
+      setRecentUnsupported(false);
+      return;
+    }
+    let cancelled = false;
+    void client
+      .query(myRecentRef, { limit: 100 })
+      .then(
+        (rows) => {
+          if (!cancelled) setRecent(rows);
+        },
+        () => {
+          if (!cancelled) {
+            setRecent([]);
+            setRecentUnsupported(true);
+          }
+        },
+      );
+    return () => {
+      cancelled = true;
+    };
+  }, [client, isAuthenticated]);
 
   useEffect(() => {
     void hydrateProgress();
@@ -189,8 +218,6 @@ export default function ProfileScreen() {
   const name = displayMe?.displayName ?? displayMe?.handle ?? null;
   const guest = !isAuthenticated || anonymous;
 
-  const rate = answered === 0 ? 0 : correct / answered;
-
   /**
    * Recent attempts, oldest first — the order they happened in, which is what
    * the done list is sorted by. Signed in it is the server event stream (so it
@@ -202,18 +229,23 @@ export default function ProfileScreen() {
   const attempts = useMemo(() => {
     // Both sources arrive newest-first: `myRecent` is `.order("desc")` and the
     // ring is stored oldest-first. Flip each before the outer reverse, exactly
-    // like the web page, so `buildDoneList` always gets record order. Getting
-    // this wrong on one path shows guests the list backwards relative to
-    // signed-in players — which is what shipped here first.
+    // like the web page, so `buildDoneList` always gets record order.
+    //
+    // While the server stream is still loading (`recent === undefined`), use an
+    // empty array rather than the device ring: the web does `(serverRecent ??
+    // [])` for the same reason, so a signed-in player never flashes
+    // device-local misses that the server is about to contradict. A backend
+    // that predates `myRecent` sets `recentUnsupported`, and then the ring is
+    // the honest fallback rather than a crash.
     const source =
-      isAuthenticated && recent
-        ? recent.map((r) => ({ id: r.questionId, correct: r.correct }))
+      isAuthenticated && !recentUnsupported
+        ? (recent ?? []).map((r) => ({ id: r.questionId, correct: r.correct }))
         : local.recent
             .slice()
             .reverse()
             .map((r) => ({ id: r.id, correct: r.correct }));
     return source.reverse();
-  }, [isAuthenticated, recent, local.recent]);
+  }, [isAuthenticated, recentUnsupported, recent, local.recent]);
 
   const onPlot = useCallback((event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
@@ -460,6 +492,7 @@ export default function ProfileScreen() {
             onCancel={() => setPopup(null)}
             onDone={() => {
               setPopup(null);
+              clearOutbox();
               updateProgress({ ...EMPTY_PROGRESS });
               router.replace("/");
             }}
@@ -612,7 +645,10 @@ function DistributionSkeleton() {
     6,
   ];
   return (
-    <View>
+    // Same outer height as the real distribution, with the bars taking the
+    // remainder: the skeleton stands in for the panel, so it must be the
+    // panel's height or the swap-in shoves the done list down.
+    <View style={styles.skeletonPanel}>
       <View style={styles.skeletonHistogram}>
         {bars.map((h, i) => (
           <View
@@ -717,11 +753,12 @@ const styles = StyleSheet.create({
   skeletonBar: { height: 2, backgroundColor: "rgba(242,239,233,0.07)" },
   skeletonMedian: { height: 3, backgroundColor: "rgba(214,255,63,0.3)" },
   skeletonHistogram: {
-    height: PANEL_HEIGHT,
+    flex: 1,
     flexDirection: "row",
     alignItems: "flex-end",
     gap: 3,
   },
+  skeletonPanel: { height: PANEL_HEIGHT },
 
   primary: {
     alignSelf: "flex-start",

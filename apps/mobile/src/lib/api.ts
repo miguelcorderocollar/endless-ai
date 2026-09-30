@@ -3,7 +3,7 @@ import { makeFunctionReference } from "convex/server";
 import type { ConvexQuestionRow } from "./bank";
 
 /**
- * The two Convex functions this app calls, declared client-side.
+ * The Convex functions this app calls, declared client-side.
  *
  * The web app imports the generated `api` from `convex/_generated`, whose types
  * pull in every backend module. That does not survive crossing into React
@@ -20,7 +20,7 @@ import type { ConvexQuestionRow } from "./bank";
  *    `questionSchema`, so a changed return shape is dropped and reported rather
  *    than rendered.
  *
- * `npm run typecheck` at the repo root still owns the backend. If these two
+ * `npm run typecheck` at the repo root still owns the backend. If these
  * signatures ever need to change, that is the check that catches it.
  */
 export type DrawArgs = {

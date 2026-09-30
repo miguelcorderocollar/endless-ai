@@ -23,7 +23,7 @@ import { hydrateOutbox } from "@/lib/outbox";
 import { hydrateCaches } from "@/lib/profileCache";
 import { hydrateProgress } from "@/lib/progress";
 import { Grain } from "@/components/Grain";
-import { OutboxFlusher } from "@/components/SyncStatus";
+import { OutboxFlusher, ClaimOnSignIn } from "@/components/SyncStatus";
 import { colors } from "@/theme";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
@@ -125,6 +125,7 @@ export default function RootLayout() {
               mounts its flusher per route; a phone navigates between four of
               them and the queue has to outlive all of them. */}
           <OutboxFlusher />
+          <ClaimOnSignIn />
         </ConvexAuthProvider>
       ) : (
         <NoBackend />

@@ -113,6 +113,16 @@ export function enqueueAnswer(event: QueuedAnswer): void {
 }
 
 /**
+ * Empties the queue, on disk as well as in memory. Same contract as the web
+ * adapter's: called after a progress reset is confirmed server-side, so events
+ * queued between the enqueue and the wipe cannot drain afterwards and
+ * resurrect the history that was just deleted.
+ */
+export function clearOutbox(): void {
+  set([]);
+}
+
+/**
  * Sends the queue for the given account and reports how many left the device,
  * the server's rating after the last one, and the newest record time sent, so
  * the caller can reconcile the local Elo to truth.

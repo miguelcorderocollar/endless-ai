@@ -4,6 +4,7 @@ import {
   answer as answerRef,
   claimProgress as claimProgressRef,
   ensureProfile as ensureProfileRef,
+  me as meRef,
   myCompleted as myCompletedRef,
   myStats as myStatsRef,
   resetProgress as resetProgressRef,
@@ -40,8 +41,8 @@ import { getProgress, updateProgress } from "./progress";
 
 /**
  * Runs once per sign-in: make sure the profile row exists, then claim or
- * reconcile. Mirrors the web's one-shot effect, including the `claimed` guard
- * that stops a re-render from seeding twice.
+ * reconcile. Called from `ClaimOnSignIn` in the root layout, whose latch stops
+ * a re-render from seeding twice.
  */
 export async function syncOnSignIn(client: ConvexReactClient): Promise<void> {
   const local = getProgress();
@@ -50,6 +51,17 @@ export async function syncOnSignIn(client: ConvexReactClient): Promise<void> {
     await client.mutation(ensureProfileRef, {});
   } catch {
     // A missing profile row is not fatal; claim will reject and we keep local.
+  }
+
+  // Refresh the cached identity while we are here. The outbox tags answers
+  // with the last known handle, and without this it would keep the previous
+  // account's (or nobody's) until the first profile visit — an answer given
+  // right after signing in as somebody else would drain under the wrong tag.
+  try {
+    const identity = await client.query(meRef, {});
+    if (identity) rememberProfile(identity);
+  } catch {
+    /* best-effort: the stale cache stands */
   }
 
   try {

@@ -92,12 +92,13 @@ export default function AccountScreen() {
     // anyway, so the object is the reliable path on this platform. `flow` is
     // the field the web form supplies via a hidden input.
     //
-    // No claim here. Landing on `/` mounts the quiz screen, whose
-    // once-per-sign-in effect runs `syncOnSignIn` — the single place the claim
-    // happens, including for a session restored from storage. Claiming here as
-    // well ran it twice per sign-in; `claimProgress` is idempotent so the only
-    // symptom was a wasted round trip, but a check-then-insert run twice is a
-    // duplicate-`userStats` race waiting for a slow network.
+    // No claim here. Landing on `/` mounts the app shell, whose
+    // `ClaimOnSignIn` runs `syncOnSignIn` once per sign-in — the single place
+    // the claim happens, including for a session restored from storage.
+    // Claiming here as well ran it twice per sign-in; `claimProgress` is
+    // idempotent so the only symptom was a wasted round trip, but a
+    // check-then-insert run twice is a duplicate-`userStats` race waiting for
+    // a slow network.
     void signIn("password", { email: email.trim(), password, flow }).then(
       () => {
         setBusy(false);

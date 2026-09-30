@@ -23,7 +23,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useConvexAuth } from "convex/react";
 import { answer as answerRef, draw as drawRef } from "@/lib/api";
-import { currentHandle, syncOnSignIn } from "@/lib/account";
+import { currentHandle } from "@/lib/account";
 import { Masthead } from "@/components/Masthead";
 import { Rise, staggerDelay, usePrefersReducedMotion } from "@/components/rise";
 import { asCategoryKeys, toQuestions } from "@/lib/bank";
@@ -91,20 +91,6 @@ export default function QuizScreen() {
   const client = convexClient();
   const { isAuthenticated } = useConvexAuth();
 
-  // Claim or reconcile exactly once per sign-in. A new account is seeded from
-  // this device; an existing one overwrites it with server truth. See
-  // lib/account.ts for why that direction matters.
-  const synced = useRef(false);
-  useEffect(() => {
-    if (!isAuthenticated || !client) return;
-    if (synced.current) return;
-    synced.current = true;
-    void syncOnSignIn(client).then(() => {
-      // Signing out and back in must be able to claim again, so only clear the
-      // latch if we got far enough to be sure the transition happened.
-      synced.current = false;
-    });
-  }, [isAuthenticated, client]);
   const filterKey = filter.join(",");
   const categories = useMemo(
     () => new Set<CategoryKey>(asCategoryKeys(filter)),
