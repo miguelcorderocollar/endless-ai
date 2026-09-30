@@ -94,7 +94,9 @@ export default function ProfileScreen() {
   const client = convexClient();
   const [popup, setPopup] = useState<"name" | "reset" | null>(null);
   const [tab, setTab] = useState<Tab>("you");
-  const [width, setWidth] = useState(0);
+  // The measured plot box. Both tabs read it, so the chart and the histogram
+  // are drawn into the same rectangle rather than each assuming one.
+  const [plot, setPlot] = useState({ width: 0, height: 0 });
 
   const identity = useQuery(meRef, isAuthenticated ? {} : "skip");
   const stats = useQuery(myStatsRef, isAuthenticated ? {} : "skip");
@@ -337,15 +339,16 @@ export default function ProfileScreen() {
               ))}
             </View>
 
-            <View style={styles.chart} onLayout={onWidth}>
-              {width === 0 ? null : tab === "you" ? (
+            <View style={styles.chart} onLayout={onPlot}>
+              {plot.width === 0 ? null : tab === "you" ? (
                 history === undefined && isAuthenticated ? (
                   <ChartSkeleton />
                 ) : (
                   <EloChart
                     points={history ?? []}
                     median={population?.median ?? null}
-                    width={width}
+                    width={plot.width}
+                    height={plot.height}
                   />
                 )
               ) : population === undefined ? (
@@ -357,7 +360,7 @@ export default function ProfileScreen() {
                   median={population.median}
                   percentile={population.percentile}
                   rating={isAuthenticated ? (stats?.rating ?? null) : null}
-                  width={width}
+                  width={plot.width}
                 />
               )}
             </View>
@@ -633,11 +636,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   actions: { flexDirection: "row", alignItems: "center", gap: 16 },
-  pencil: { fontSize: 17, color: colors.muted },
-  reset: { fontSize: 18, color: colors.fail },
-  signOutIcon: { fontSize: 16, color: colors.muted },
   handle: { color: colors.muted, marginTop: 8 },
-  admin: { color: colors.signal },
   anonymousNote: { marginTop: 8, alignSelf: "flex-start", paddingVertical: 4 },
   anonymousLink: {
     fontFamily: fonts.sans,
@@ -672,10 +671,12 @@ const styles = StyleSheet.create({
   tabPressed: { borderColor: colors.signal },
   tabLabel: { color: colors.muted },
   tabLabelActive: { color: colors.ink },
-  chart: { marginTop: 12, minHeight: 300 },
+  // The max height both plots adapt to: the chart draws into this exact box,
+  // the histogram fills whatever its axis and caption leave of it.
+  chart: { marginTop: 12, height: PANEL_HEIGHT },
 
   skeletonFrame: {
-    height: 240,
+    height: PANEL_HEIGHT,
     borderWidth: 1,
     borderColor: colors.inkLine,
     padding: 16,

@@ -1,30 +1,74 @@
 import { StyleSheet, Text, View } from "react-native";
 import Svg, { G, Line, Polyline, Text as SvgText } from "react-native-svg";
 
-import { BOTTOM_INSET, colors, fonts, label } from "@/theme";
+import { colors, fonts, label } from "@/theme";
 
 /**
  * The Elo-over-time chart (`src/components/Stats.tsx` on the web), redrawn in
  * `react-native-svg` rather than a chart library.
  *
- * The geometry is deliberately the same arithmetic as the web's: same viewBox
- * proportions, same four gridlines at 15/40/65/90% of the value span, same
- * signal-coloured median line, same `Math.max(hi - lo, 40)` floor so a flat
- * rating does not get a wildly magnified axis. Two views of the same data that
- * disagree by a few pixels would read as a bug in the app, which is the thing
- * this whole pass exists to prevent.
+ * The geometry is deliberately the same arithmetic as the web's: same four
+ * gridlines at 15/40/65/90% of the value span, same signal-coloured median line,
+ * same `Math.max(hi - lo, 40)` floor so a flat rating does not get a wildly
+ * magnified axis. Two views of the same data that disagree by a few pixels would
+ * read as a bug in the app, which is the thing this whole pass exists to
+ * prevent.
  *
- * `preserveAspectRatio="none"` has no SVG meaning on native — the chart is laid
- * out by `onLayout` instead, so the same 560x220 design box is stretched to the
- * measured width. That is the one place the two implementations differ, and it
- * is a layout fact rather than a visual choice.
+ * It is drawn **1:1** — the viewBox is the panel in dp — and that is the third
+ * attempt at the sizing, so it is worth saying why the other two were wrong.
+ *
+ * The web stretches: a 560x220 viewBox in a 672x240 box with
+ * `preserveAspectRatio="none"`, which is 1.20x horizontally against 1.09x
+ * vertically. Mild. Copying that stretch onto a 372x300dp panel is 0.66x against
+ * 1.36x — a factor of two — so the gridline labels came out visibly squashed and
+ * elongated. Equal heights, wrong-looking numbers: the worst of both.
+ *
+ * Keeping the aspect ratio instead fixed the distortion and left the chart at
+ * 146dp in a 300dp panel, which is where the dead space came back from.
+ *
+ * So neither: the viewBox *is* the measured panel, everything inside is computed
+ * as a fraction of it, and the default uniform scale makes it fill the box with
+ * nothing scaled at all. Labels render at the 11 they ask for. The chart's shape
+ * changes with the panel rather than being stretched into it, which is what
+ * adapting to the space is supposed to mean.
  */
 
-const W = 560;
-const H = 220;
+/**
+ * The fixed height of the panel the two tabs share, and the rule that keeps them
+ * the same size.
+ *
+ * The web's mechanism is `min-h-[340px]` around each tab, so switching tabs
+ * never moves the done list. Copying that literally did not work here: the chart
+ * computed its height in raw pixels while the histogram hard-coded dp, so on a
+ * 420dpi phone the distribution came out about three times taller, and the
+ * panel then grew to fit it.
+ *
+ * So the panel is a fixed height and both visuals *fill* it — the chart's SVG is
+ * the full panel, and the histogram takes whatever the axis and caption leave
+ * over. That is the opposite of the web's `h-60`-in-`min-h-[340px]`, and
+ * deliberately: on a 672px column the web's 100px of slack under the chart is
+ * barely noticeable, while on a 372dp phone it was roughly 180dp of dead space
+ * under the chart and none at all under the histogram. Equal boxes with one of
+ * them mostly empty is not parity, it is the same bug wearing a fixed box.
+ *
+ * CSS px and dp are both device-independent units, so the web's numbers carry
+ * over; the height does not, because the phone's column is less than half as
+ * wide.
+ */
+export const PANEL_HEIGHT = 300;
+
+/**
+ * The web's padding as fractions of its viewBox height (28 and 22 of 220), so
+ * the margins scale with the panel instead of staying pinned to a 220 that no
+ * longer exists. `PAD_X` stays absolute: it is a horizontal inset and the web's
+ * 8px reads the same on a phone column.
+ */
 const PAD_X = 8;
-const PAD_TOP = 28;
-const PAD_BOTTOM = 22;
+const PAD_TOP_FRACTION = 28 / 220;
+const PAD_BOTTOM_FRACTION = 22 / 220;
+
+/** The web's label size, used directly because the drawing is 1:1. */
+const LABEL_SIZE = 11;
 
 export type EloPoint = { t: number; r: number };
 
@@ -32,11 +76,14 @@ export function EloChart({
   points,
   median,
   width,
+  height,
 }: {
   points: EloPoint[];
   median: number | null;
-  /** Measured by the caller; the design box is 560 wide. */
+  /** Measured by the caller. */
   width: number;
+  /** Measured by the caller, so both plots share one max height. */
+  height: number;
 }) {
   if (points.length < 2) {
     return (
@@ -50,22 +97,26 @@ export function EloChart({
   const lo = Math.min(...values, median ?? Infinity);
   const hi = Math.max(...values, median ?? -Infinity);
   const span = Math.max(hi - lo, 40);
-  const plotH = H - PAD_TOP - PAD_BOTTOM;
-  const x = (i: number) => PAD_X + (i / (points.length - 1)) * (W - PAD_X * 2);
-  const y = (r: number) => PAD_TOP + (1 - (r - lo) / span) * plotH;
+  const padTop = height * PAD_TOP_FRACTION;
+  const plotH = height * (1 - PAD_TOP_FRACTION - PAD_BOTTOM_FRACTION);
+  const x = (i: number) =>
+    PAD_X + (i / (points.length - 1)) * (width - PAD_X * 2);
+  const y = (r: number) => padTop + (1 - (r - lo) / span) * plotH;
   const line = points
     .map((p, i) => `${x(i).toFixed(1)},${y(p.r).toFixed(1)}`)
     .join(" ");
 
   return (
-    <Svg width={width} height={H * (width / W)} viewBox={`0 0 ${W} ${H}`}>
+    // viewBox == the panel, so the default uniform scale is 1:1 and nothing is
+    // distorted in either direction.
+    <Svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       {[0.15, 0.4, 0.65, 0.9].map((f) => {
         const v = Math.round(lo + span * f);
         return (
           <G key={f}>
             <Line
               x1={PAD_X}
-              x2={W - PAD_X}
+              x2={width - PAD_X}
               y1={y(v)}
               y2={y(v)}
               stroke={colors.inkLine}
@@ -75,7 +126,7 @@ export function EloChart({
               x={PAD_X + 2}
               y={y(v) - 4}
               fill={colors.muted}
-              fontSize={11}
+              fontSize={LABEL_SIZE}
               fontFamily={fonts.mono}
             >
               {String(v)}
@@ -87,7 +138,7 @@ export function EloChart({
         <G>
           <Line
             x1={PAD_X}
-            x2={W - PAD_X}
+            x2={width - PAD_X}
             y1={y(median)}
             y2={y(median)}
             stroke={colors.signal}
@@ -97,7 +148,7 @@ export function EloChart({
             x={PAD_X + 2}
             y={y(median) - 6}
             fill={colors.signal}
-            fontSize={11}
+            fontSize={LABEL_SIZE}
             fontFamily={fonts.mono}
           >
             {`median ${median}`}
@@ -127,6 +178,7 @@ export function Distribution({
   median: number | null;
   percentile: number | null;
   rating: number | null;
+  /** Measured by the caller, so both plots share one max height. */
   width: number;
 }) {
   if (count === 0) {
@@ -148,8 +200,11 @@ export function Distribution({
   );
 
   return (
-    <View>
-      <View style={[styles.histogram, { height: 240 }]}>
+    // Fixed height, with the histogram taking the remainder: whatever the axis
+    // and caption need, the bars absorb the rest. So the panel is the same
+    // height as the chart's no matter how the caption wraps.
+    <View style={styles.panel}>
+      <View style={styles.histogram}>
         {buckets.map((b, i) => (
           <View
             key={i}
@@ -196,7 +251,8 @@ const styles = StyleSheet.create({
     color: colors.muted,
     maxWidth: 380,
   },
-  histogram: { flexDirection: "row", alignItems: "flex-end" },
+  panel: { height: PANEL_HEIGHT },
+  histogram: { flex: 1, flexDirection: "row", alignItems: "flex-end" },
   axis: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -210,7 +266,6 @@ const styles = StyleSheet.create({
     color: colors.muted,
     marginTop: 16,
     maxWidth: 480,
-    paddingBottom: BOTTOM_INSET,
   },
   signal: { color: colors.signal },
 });
