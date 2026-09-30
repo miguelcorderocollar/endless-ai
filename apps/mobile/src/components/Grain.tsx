@@ -1,4 +1,5 @@
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
+import Svg, { Defs, Image as SvgImage, Pattern, Rect } from "react-native-svg";
 
 /**
  * The film grain from `body::after` in `globals.css`: a 120x120 noise tile,
@@ -9,44 +10,55 @@ import { Image, StyleSheet, View } from "react-native";
  * octaves at 0.9 base frequency, sampled on a torus so the tile repeats without
  * a seam — and baked into a PNG by `npm run assets:grain`.
  *
+ * Tiled with an SVG `<Pattern>`, not `resizeMode="repeat"`. Repeat rendered a
+ * single 315px tile at the origin and nothing anywhere else — outside that
+ * corner the pixels were exactly `(10,11,13)`, pure ink, so on a good screen
+ * the top-left showed a faint square that was not on any other part of the
+ * display. A pattern tiles by spec: the tile repeats every 120 user units over
+ * a rect measured in full-screen dp, so coverage is total by construction
+ * rather than by a resize mode that may or may not tile on a given build.
+ *
  * This file used to also draw the drifting blob backdrop from the web's
  * `AmbientBackground`. That is gone from both apps, and the reason is worth
  * recording: a soft radial ramp is exactly the case where 8-bit output bands,
- * and on a good screen it read as concentric rings rather than a soft glow. SVG
- * gradients filled their bounding boxes flat on a real device, and a baked
- * sprite with the banding dithered away still looked like rings. A backdrop
- * that cannot be made to look like nothing is worse than no backdrop, so the
- * blobs came out of the web layout too. The grain stayed: it is noise, so it
- * does not band, and it is the half that gave the dark areas their texture.
- *
- * Useful side effect: with no animation loop running, the app is idle when
- * nothing is happening, which is what lets `adb shell uiautomator dump` settle.
+ * and on a good screen it read as concentric rings rather than a soft glow. A
+ * backdrop that cannot be made to look like nothing is worse than no backdrop,
+ * so the blobs came out of the web layout too. The grain stayed: it is noise,
+ * so it does not band, and it is the half that gave the dark areas their
+ * texture.
  */
 export function Grain() {
+  const { width, height } = useWindowDimensions();
+
   return (
-    // Wrapped rather than given `pointerEvents`: this RN version does not take
-    // that prop on `Image`, and the wrapper does the same job for the whole
-    // subtree.
     <View style={StyleSheet.absoluteFill} pointerEvents="none">
-      <Image
-        source={require("../../assets/images/grain.png")}
-        // `resizeMode="repeat"` is what makes it a tile rather than one stretched
-        // square, which is the difference between noise and a smudge.
-        style={styles.grain}
-        resizeMode="repeat"
-        fadeDuration={0}
-      />
+      <Svg width={width} height={height}>
+        <Defs>
+          <Pattern
+            id="grain"
+            width={120}
+            height={120}
+            patternUnits="userSpaceOnUse"
+          >
+            <SvgImage
+              href={require("../../assets/images/grain.png")}
+              x={0}
+              y={0}
+              width={120}
+              height={120}
+              preserveAspectRatio="none"
+            />
+          </Pattern>
+        </Defs>
+        <Rect
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          fill="url(#grain)"
+          opacity={0.035}
+        />
+      </Svg>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  grain: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    opacity: 0.035,
-  },
-});
