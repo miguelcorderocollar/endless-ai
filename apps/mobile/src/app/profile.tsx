@@ -174,30 +174,26 @@ export default function ProfileScreen() {
   const rate = answered === 0 ? 0 : correct / answered;
 
   /**
-   * Misses: most-recent verdict per question wins, so a later correct clears
-   * the miss. Signed in: the server event stream (cross-device truth). Guest:
-   * the device-local recent ring. Capped for a cheap render.
+   * Recent attempts, oldest first — the order they happened in, which is what
+   * the done list is sorted by. Signed in it is the server event stream (so it
+   * crosses devices); a guest it is the device-local ring.
+   *
+   * Both sources arrive newest-first and are flipped here rather than in
+   * `buildDoneList`, so that function has one contract: record order.
    */
-  const missedIds = useMemo(() => {
-    const attempts: { id: string; correct: boolean }[] =
+  const attempts = useMemo(() => {
+    const source =
       isAuthenticated && recent
         ? recent.map((r) => ({ id: r.questionId, correct: r.correct }))
-        : local.recent
-            .slice()
-            .reverse()
-            .map((r) => ({ id: r.id, correct: r.correct }));
-    const seen = new Set<string>();
-    const missed: string[] = [];
-    for (const a of attempts) {
-      if (seen.has(a.id)) continue;
-      seen.add(a.id);
-      if (!a.correct) missed.push(a.id);
-    }
-    return missed.slice(0, 30);
+        : local.recent.map((r) => ({ id: r.id, correct: r.correct }));
+    return source.reverse();
   }, [isAuthenticated, recent, local.recent]);
 
-  const onWidth = useCallback((event: LayoutChangeEvent) => {
-    setWidth(event.nativeEvent.layout.width);
+  const onPlot = useCallback((event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    setPlot((prev) =>
+      prev.width === width && prev.height === height ? prev : { width, height },
+    );
   }, []);
 
   const signOutAndLeave = useCallback(() => {
@@ -375,7 +371,7 @@ export default function ProfileScreen() {
               <DoneList
                 bank={questions}
                 completedIds={doneList}
-                missedIds={missedIds}
+                attempts={attempts}
                 correct={correct}
                 answered={answered}
                 total={questions.length}
