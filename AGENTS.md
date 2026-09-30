@@ -15,6 +15,8 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 - `npm run build` builds the Next.js production app.
 - `npm run verify` runs validate, typecheck, lint, unit tests, build, and the browser suite.
 - `npm run rebalance` reports answer-slot balance; add `--write` only after reviewing the diff.
+- `npm run bundle:bank` regenerates `apps/mobile/assets/bank.json`, the bank baked into the APK. `npm run validate` fails when it drifts from `content/questions`, so a question change that does not reach the phone app fails the gate.
+- `npm run assets:grain` regenerates `apps/mobile/assets/images/grain.png`, the film grain baked into the APK. Rarely needed; it only changes if the noise parameters in `scripts/lib/grain.mts` do.
 - `npm run dupe` finds near-duplicate questions (embeddings + Jev, issue #38). Needs `OPENROUTER_API_KEY` in `.env`. Costs ~$0.005 for the current bank and re-runs are free from the verdict cache. Writes `data/dupe/report.md`. Local only, never in CI.
 - `npm run dupe:refresh` re-adjudicates every pair, ignoring the cache. Use after changing the definition or the pinned model.
 - `npm run dupe:score` scores the reporting threshold against the hand-labelled pairs in `data/dupe/labelled.json`.
@@ -32,19 +34,27 @@ Prototype of an endless AI quiz. Start here before changing code or questions.
 An Expo / React Native build of the same quiz, for issue #18. Read
 `apps/mobile/README.md` before changing it. Two rules keep it honest:
 
-- **The quiz logic is imported, never copied.** `src/lib/quiz/*` and
-  `src/lib/questions/schema.ts` are reached through the `@shared/*` alias, which
-  is declared in both `apps/mobile/tsconfig.json` and `metro.config.js`. If you
-  add a file under `src/lib/quiz` or `src/lib/questions`, the native app can
+- **The quiz logic is imported, never copied.** `src/lib/quiz/*`,
+  `src/lib/questions/*` and `src/lib/answers/outboxCore.ts` are reached through
+  the `@shared/*` alias, which is declared in both `apps/mobile/tsconfig.json` and
+  `metro.config.js`. If you add a file under one of those, the native app can
   import it — do not fork it into `apps/mobile`. Storage is the only thing
-  reimplemented, because localStorage and AsyncStorage are different stores.
+  reimplemented, because localStorage and AsyncStorage are different stores. The
+  replay rules are shared rather than ported on purpose: `outboxCore.ts` owns
+  ordering, the cap, stop-at-first-failure and per-account attribution, and the
+  two adapters only decide where the list lives.
 - **A release build bakes in its Convex URL.** `EXPO_PUBLIC_*` is inlined by
   Metro, so there is no runtime override: an APK pointed at the dev deployment
   is a public app reading disposable dev data. See `docs/deployment.md`.
 
-It is not finished. Offline play, the answer outbox, auth and server Elo are all
-absent, and `apps/mobile/README.md` lists them. Do not treat a passing native
-build as #18 being done.
+`docs/native-parity.md` is the gap list between the two apps, and it is current
+as of the parity pass. What is left: no automated UI coverage for the native
+screens, no Android app shortcuts, and the distribution chart waiting on a real
+population. Do not treat a passing native build as #18 being done.
+
+The two generated native assets are committed and checked, not built per build:
+`npm run bundle:bank` for the offline bank (and `npm run validate` fails when it
+drifts) and `npm run assets:grain` for the film grain.
 
 ## Before you commit
 
