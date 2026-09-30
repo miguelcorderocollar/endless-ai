@@ -30,15 +30,29 @@ export type DrawArgs = {
   ratingHint?: number;
 };
 
-export const draw = makeFunctionReference<"query", DrawArgs, ConvexQuestionRow[]>(
-  "questions:draw",
-);
+export const draw = makeFunctionReference<
+  "query",
+  DrawArgs,
+  ConvexQuestionRow[]
+>("questions:draw");
 
 export const counts = makeFunctionReference<
   "query",
   Record<string, never>,
   { category: string; count: number }[]
 >("questions:counts");
+
+/**
+ * The whole published bank, for the profile's done list. The web reads this
+ * instead of its own content files because the list has to reflect what is
+ * actually published; the offline copy here is the fallback when it cannot be
+ * reached, and the two agree by construction.
+ */
+export const list = makeFunctionReference<
+  "query",
+  Record<string, never>,
+  ConvexQuestionRow[]
+>("questions:list");
 
 /*
  * Auth and account (#2, and the part of #18 that was missing). The server side
@@ -111,3 +125,68 @@ export const myCompleted = makeFunctionReference<
   Record<string, never>,
   string[]
 >("answers:myCompleted");
+
+/**
+ * Recent verdicts, newest first, for the profile's misses list. The device-local
+ * `recent` ring holds ids and is capped at 100 attempts; this is the cross-device
+ * truth and the only way a later correct answer can clear an old miss.
+ */
+export const myRecent = makeFunctionReference<
+  "query",
+  { limit?: number },
+  { questionId: string; correct: boolean; createdAt: number }[]
+>("answers:myRecent");
+
+/**
+ * Builds the rollup for an account that has events but no `userStats` doc — an
+ * account created before the rollup shipped. Idempotent, so calling it when a
+ * row already exists is free.
+ */
+export const ensureStats = makeFunctionReference<
+  "mutation",
+  Record<string, never>,
+  { created: boolean }
+>("answers:ensureStats");
+
+/**
+ * Stats reads (#11). `history` is the caller's rating series for the Elo chart;
+ * `population` is the whole field's, for the distribution and the percentile.
+ * `population` is public on purpose — a percentile is only meaningful against
+ * everyone, and the web's profile renders it for signed-out visitors too.
+ */
+export const history = makeFunctionReference<
+  "query",
+  Record<string, never>,
+  { t: number; r: number }[]
+>("stats:history");
+
+export const population = makeFunctionReference<
+  "query",
+  Record<string, never>,
+  {
+    count: number;
+    median: number | null;
+    buckets: number[];
+    percentile: number | null;
+    capped: boolean;
+  }
+>("stats:population");
+
+/** Rename yourself. Throws on an empty name; trims and caps at 40 server-side. */
+export const setDisplayName = makeFunctionReference<
+  "mutation",
+  { displayName: string },
+  { ok: true }
+>("users:setDisplayName");
+
+/**
+ * Irreversible: deletes every answer event and the rollup, so Elo, streak,
+ * per-category accuracy and the done list all go. The account, handle and role
+ * stay. The web only offers this behind a "danger zone" confirmation, and so
+ * does this — see the profile.
+ */
+export const resetProgress = makeFunctionReference<
+  "mutation",
+  Record<string, never>,
+  { events: number; stats: number }
+>("users:resetProgress");
