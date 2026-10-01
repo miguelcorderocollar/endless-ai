@@ -60,6 +60,13 @@ import {
   subscribeNetwork,
 } from "@/lib/network";
 import { clearOutbox } from "@/lib/outbox";
+import {
+  readHistory,
+  readPopulation,
+  subscribeStats,
+  writeHistory,
+  writePopulation,
+} from "@/lib/statsCache";
 import type { Question } from "@shared/lib/questions/schema";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
 
@@ -121,9 +128,32 @@ export default function ProfileScreen() {
   const identity = useQuery(meRef, isAuthenticated ? {} : "skip");
   const stats = useQuery(myStatsRef, isAuthenticated ? {} : "skip");
   const completed = useQuery(myCompletedRef, isAuthenticated ? {} : "skip");
-  const history = useQuery(historyRef, isAuthenticated ? {} : "skip");
-  const population = useQuery(populationRef, {});
+  const liveHistory = useQuery(historyRef, isAuthenticated ? {} : "skip");
+  const livePopulation = useQuery(populationRef, {});
   const bank = useQuery(listRef, {});
+  // Stale-while-revalidate for the two chart queries: the mirrors paint on
+  // the first frame so a revisit never goes black-then-chart, and the live
+  // values overwrite them (and the disk) when they land. Skeletons are only
+  // for a true first run with nothing cached.
+  const cachedHistory = useSyncExternalStore(
+    subscribeStats,
+    readHistory,
+    readHistory,
+  );
+  const cachedPopulation = useSyncExternalStore(
+    subscribeStats,
+    readPopulation,
+    readPopulation,
+  );
+  const history = liveHistory ?? cachedHistory;
+  const population = livePopulation ?? cachedPopulation;
+
+  useEffect(() => {
+    if (liveHistory && liveHistory.length > 0) writeHistory(liveHistory);
+  }, [liveHistory]);
+  useEffect(() => {
+    if (livePopulation) writePopulation(livePopulation);
+  }, [livePopulation]);
   // Defensive fetch, not useQuery: if the backend predates myRecent, a missing
   // function would throw during render and take the whole screen down. The web
   // page does the same manual fetch for the same reason. Manual fetch lets us
@@ -281,10 +311,11 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
       <View style={styles.frame}>
+          {/* No title on this bar. The screen is the profile — announced by
+              the route, the Elo block and the done list — so a "Your profile"
+              label is clutter, not orientation. The bar keeps the sync status
+              and the way back, which are the two things that do something. */}
           <View style={styles.bar}>
-            <Text style={styles.title}>Your profile</Text>
-            {/* Same sync status as the quiz masthead and the categories bar:
-                the web carries it on every route. */}
             <View style={styles.barRight}>
               <SyncStatus />
               <Pressable
@@ -415,7 +446,17 @@ export default function ProfileScreen() {
             </View>
 
             <View style={styles.chart} onLayout={onPlot}>
-              {plot.width === 0 ? null : tab === "you" ? (
+              {/* Skeletons need no measurement — fixed heights — so they paint
+                  on the first frame instead of null. The old `width === 0`
+                  gate left the panel black until layout landed, which is the
+                  flash this whole cache exists to kill. */}
+              {plot.width === 0 ? (
+                tab === "you" ? (
+                  <ChartSkeleton />
+                ) : (
+                  <DistributionSkeleton />
+                )
+              ) : tab === "you" ? (
                 history === undefined && !offline ? (
                   isAuthenticated ? (
                     <ChartSkeleton />
@@ -691,13 +732,12 @@ const styles = StyleSheet.create({
   bar: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     paddingVertical: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.inkLine,
   },
   barRight: { flexDirection: "row", alignItems: "center", gap: 16 },
-  title: { fontFamily: fonts.display, fontSize: 26, color: colors.paper },
   close: { ...label, color: colors.muted },
   body: { paddingTop: 24, paddingBottom: 32 },
 

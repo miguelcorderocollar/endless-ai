@@ -153,23 +153,32 @@ export const ensureStats = makeFunctionReference<
  * `population` is the whole field's, for the distribution and the percentile.
  * `population` is public on purpose — a percentile is only meaningful against
  * everyone, and the web's profile renders it for signed-out visitors too.
+ *
+ * The result shapes are named types (not inline) because `lib/statsCache.ts`
+ * mirrors them: one source for what the server returns and what the cache
+ * holds, so a field added server-side is a type error in the cache rather
+ * than a silent drop.
  */
+export type HistoryPoint = { t: number; r: number };
+
+export type Population = {
+  count: number;
+  median: number | null;
+  buckets: number[];
+  percentile: number | null;
+  capped: boolean;
+};
+
 export const history = makeFunctionReference<
   "query",
   Record<string, never>,
-  { t: number; r: number }[]
+  HistoryPoint[]
 >("stats:history");
 
 export const population = makeFunctionReference<
   "query",
   Record<string, never>,
-  {
-    count: number;
-    median: number | null;
-    buckets: number[];
-    percentile: number | null;
-    capped: boolean;
-  }
+  Population
 >("stats:population");
 
 /** Rename yourself. Throws on an empty name; trims and caps at 40 server-side. */

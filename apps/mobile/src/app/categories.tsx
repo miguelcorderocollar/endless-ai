@@ -89,13 +89,11 @@ export default function CategoriesScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
       <View style={styles.frame}>
+        {/* No title on this bar. The selected count used to sit here, but the
+            play button below already says what will happen ("play everything"
+            vs "play selected"), so it was a label restating the obvious. The
+            bar keeps the sync status and the way back. */}
         <View style={styles.bar}>
-          <Text style={styles.title}>
-            {selected.size === 0 ? "Everything" : `${selected.size} selected`}
-          </Text>
-          {/* The web carries the sync status in its shell header on every
-              route; the quiz masthead has it here, so these bars carry it too.
-              Silent when everything has landed. */}
           <View style={styles.barRight}>
             <SyncStatus />
             <Pressable
@@ -226,13 +224,12 @@ const styles = StyleSheet.create({
   bar: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     paddingVertical: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.inkLine,
   },
   barRight: { flexDirection: "row", alignItems: "center", gap: 16 },
-  title: { fontFamily: fonts.display, fontSize: 26, color: colors.paper },
   close: { ...label, color: colors.muted },
   body: { paddingTop: 24, paddingBottom: 32 },
   kicker: { color: colors.muted },

@@ -15,6 +15,7 @@ import {
   readProfileCache,
   writeProfileCache,
 } from "./profileCache";
+import { clearStatsCaches } from "./statsCache";
 import { getProgress, updateProgress } from "./progress";
 
 /**
@@ -115,6 +116,7 @@ export function rememberProfile(profile: {
 /** On sign-out, so a guest never sees the previous account's name. */
 export function forgetProfile(): void {
   clearProfileCache();
+  clearStatsCaches();
 }
 
 /** The handle of the last signed-in identity, for tagging a queued answer. */

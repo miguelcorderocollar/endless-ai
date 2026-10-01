@@ -22,6 +22,7 @@ import { startNetworkListener } from "@/lib/network";
 import { hydrateOutbox } from "@/lib/outbox";
 import { hydrateCaches } from "@/lib/profileCache";
 import { hydrateProgress } from "@/lib/progress";
+import { hydrateStatsCaches } from "@/lib/statsCache";
 import { Grain } from "@/components/Grain";
 import { OutboxFlusher, ClaimOnSignIn } from "@/components/SyncStatus";
 import { colors } from "@/theme";
@@ -78,6 +79,7 @@ export default function RootLayout() {
       hydrateProgress(),
       hydrateOutbox(),
       hydrateCaches(),
+      hydrateStatsCaches(),
     ]).then(() => setHydrated(true));
   }, []);
 
