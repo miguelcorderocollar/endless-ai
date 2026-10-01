@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!--
+    Android 13+ themed icon (app.json `android.adaptiveIcon.monochromeImage`).
+    The platform tints this with the user's wallpaper palette, so it is pure
+    white on transparent: only the silhouette survives. Same inset safe zone
+    as adaptive-icon.svg, and the stroke is filled rather than outlined so it
+    does not thin out to nothing when tinted.
+  -->
+  <rect x="214" y="214" width="596" height="596" rx="150" fill="none" stroke="#ffffff" stroke-width="64"/>
+  <text x="512" y="512" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-weight="700" font-size="440" fill="#ffffff">?</text>
+</svg>

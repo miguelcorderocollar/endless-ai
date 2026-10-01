@@ -11,6 +11,7 @@ import {
   readCountsCache,
   writeCountsCache,
 } from "@/lib/quiz/bankCache";
+import { accuracyByCategory } from "@/lib/quiz/categoryAccuracy";
 import { readFilter, writeFilter } from "@/lib/quiz/filter";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
 import { Shell } from "@/components/QuizFromConvex";
@@ -45,12 +46,7 @@ export default function CategoriesPage() {
     if (counts && counts.length > 0) writeCountsCache(counts);
   }, [counts]);
 
-  const byCategory = new Map<string, { answered: number; correct: number }>(
-    (stats?.byCategory ?? []).map((c) => [
-      c.category,
-      { answered: c.answered, correct: c.correct },
-    ]),
-  );
+  const byCategory = accuracyByCategory(stats?.byCategory);
   const countByCategory = new Map(
     ((counts ?? cachedCounts) ?? []).map((c) => [c.category, c.count]),
   );
@@ -90,10 +86,7 @@ export default function CategoriesPage() {
           {CATEGORIES.map((cat) => {
             const count = countByCategory.get(cat.key);
               const perf = byCategory.get(cat.key);
-              const pct =
-                perf && perf.answered > 0
-                  ? Math.round((perf.correct / perf.answered) * 100)
-                  : null;
+              const pct = perf?.pct ?? null;
               const active = selected.includes(cat.key);
               return (
                 <li key={cat.key}>

@@ -6,6 +6,12 @@
  * "better than X%" marker. Pure SVG, no chart deps.
  */
 
+import {
+  bucketForRating,
+  CHART_MIN_SPAN,
+  GRID_FRACTIONS,
+} from "@/lib/quiz/histogram";
+
 const W = 560;
 const H = 220;
 const PAD_X = 8;
@@ -29,7 +35,7 @@ export function EloChart({
   const values = points.map((p) => p.r);
   const lo = Math.min(...values, median ?? Infinity);
   const hi = Math.max(...values, median ?? -Infinity);
-  const span = Math.max(hi - lo, 40);
+  const span = Math.max(hi - lo, CHART_MIN_SPAN);
   const plotH = H - PAD_TOP - PAD_BOTTOM;
   const x = (i: number) => PAD_X + (i / (points.length - 1)) * (W - PAD_X * 2);
   const y = (r: number) => PAD_TOP + (1 - (r - lo) / span) * plotH;
@@ -44,7 +50,7 @@ export function EloChart({
         role="img"
         aria-label="Elo over time"
       >
-        {[0.15, 0.4, 0.65, 0.9].map((f) => {
+        {GRID_FRACTIONS.map((f) => {
           const v = Math.round(lo + span * f);
           return (
             <g key={f}>
@@ -97,7 +103,7 @@ export function Distribution({
     );
   }
   const max = Math.max(...buckets, 1);
-  const marker = rating !== null ? Math.min(19, Math.max(0, Math.floor((rating - 600) / 80))) : null;
+  const marker = rating !== null ? bucketForRating(rating) : null;
 
   return (
     <div>

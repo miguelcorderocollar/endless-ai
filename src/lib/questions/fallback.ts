@@ -1,4 +1,5 @@
-import { questionSchema, type Question } from "./schema";
+import type { Question } from "./schema";
+import { parseBankFile } from "./bankFile";
 
 /**
  * The bundled fallback bank (#17): `public/bank.json`, a stable-URL snapshot
@@ -11,12 +12,10 @@ import { questionSchema, type Question } from "./schema";
  * precached by the service worker by name and always resolves. Fetched lazily,
  * only on the draw-failure-with-no-cache path; every online path never
  * touches it.
+ *
+ * The row check is `parseBankFile`, shared with the native app's baked-in bank,
+ * so a corrupt row is judged the same way on both sides.
  */
-type BankFile = {
-  version: string;
-  count: number;
-  questions: unknown;
-};
 
 /**
  * The URL the service worker precaches and this module fetches. A named
@@ -33,19 +32,8 @@ export async function loadFallbackBank(): Promise<Question[]> {
   try {
     const response = await fetch(BANK_JSON_URL);
     if (!response.ok) return [];
-    const file = (await response.json()) as BankFile;
-    if (!Array.isArray(file.questions)) return [];
-    // Full schema parse, not a shape check: a corrupt row (wrong option
-    // count, answer outside the options, non-numeric difficulty) would crash
-    // `Quiz` or poison Elo math downstream. Skipped rows are simply absent;
-    // the bank is hundreds of questions, so losing a broken one is invisible.
-    cached = [];
-    for (const row of file.questions) {
-      const parsed = questionSchema.safeParse(row);
-      if (parsed.success && parsed.data.status === "published") {
-        cached.push(parsed.data);
-      }
-    }
+    // Full schema parse, not a shape check; see `parseBankFile`.
+    cached = parseBankFile(await response.json());
     return cached;
   } catch {
     return [];

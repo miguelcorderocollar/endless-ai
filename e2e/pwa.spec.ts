@@ -1,6 +1,13 @@
 import type { Page } from "@playwright/test";
 
-import { expect, expectPlaying, offerInstall, seed, test } from "./fixtures";
+import {
+  expect,
+  expectPlaying,
+  installApp,
+  offerInstall,
+  seed,
+  test,
+} from "./fixtures";
 
 /** `exact`, because the dismiss button's label also contains "install". */
 const installButton = (page: Page) =>
@@ -92,7 +99,10 @@ test.describe("pwa", () => {
   test("plays offline from a cold boot", async ({ page, context }) => {
     await seed(page);
     await page.goto("/");
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    // Control is not the same as installed: `warmAssetCache()` runs after
+    // `clients.claim()`, so cutting the network the moment control flips hands
+    // back a document whose scripts were never cached.
+    await installApp(page);
 
     await context.setOffline(true);
     await page.goto("/");
@@ -111,7 +121,10 @@ test.describe("pwa", () => {
   test("navigates to other routes while offline", async ({ page, context }) => {
     await seed(page);
     await page.goto("/");
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    // Control is not the same as installed: `warmAssetCache()` runs after
+    // `clients.claim()`, so cutting the network the moment control flips hands
+    // back a document whose scripts were never cached.
+    await installApp(page);
 
     await context.setOffline(true);
 
@@ -134,7 +147,10 @@ test.describe("pwa", () => {
   }) => {
     await seed(page);
     await page.goto("/");
-    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    // Control is not the same as installed: `warmAssetCache()` runs after
+    // `clients.claim()`, so cutting the network the moment control flips hands
+    // back a document whose scripts were never cached.
+    await installApp(page);
 
     await context.setOffline(true);
 

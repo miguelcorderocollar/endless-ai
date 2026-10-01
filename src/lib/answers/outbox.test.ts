@@ -221,15 +221,56 @@ describe("shouldReconcile", () => {
     expect(firstResult).toMatchObject({ sent: 1, lastRating: 1010, maxAt: 100 });
 
     const applied: number[] = [];
-    if (shouldReconcile(second.maxAt)) applied.push(second.lastRating!);
-    if (shouldReconcile(firstResult.maxAt)) applied.push(firstResult.lastRating!);
+    if (shouldReconcile("atlas", second.maxAt)) applied.push(second.lastRating!);
+    if (shouldReconcile("atlas", firstResult.maxAt))
+      applied.push(firstResult.lastRating!);
     expect(applied).toEqual([1020]);
   });
 
   it("reconciles ties last-writer-wins", async () => {
     const { shouldReconcile } = await load();
-    expect(shouldReconcile(100)).toBe(true);
-    expect(shouldReconcile(100)).toBe(true);
-    expect(shouldReconcile(99)).toBe(false);
+    expect(shouldReconcile("atlas", 100)).toBe(true);
+    expect(shouldReconcile("atlas", 100)).toBe(true);
+    expect(shouldReconcile("atlas", 99)).toBe(false);
+  });
+
+  it("tracks accounts separately, so a new sign-in reconciles", async () => {
+    const { shouldReconcile } = await load();
+    // Atlas drains late events; Bruno signs in after, with an older watermark.
+    // A single global guard would suppress Bruno's reconcile and leave the
+    // device showing Atlas's rating under Bruno's name.
+    expect(shouldReconcile("atlas", 200)).toBe(true);
+    expect(shouldReconcile("bruno", 100)).toBe(true);
+    expect(shouldReconcile("bruno", 99)).toBe(false);
+  });
+
+  it("stops a drain overtaken by a reset instead of replaying behind it", async () => {
+    const { clearOutbox, drainOutbox, enqueueAnswer, getOutboxSnapshot } =
+      await load();
+    enqueueAnswer(event({ eventId: "e1", at: 1 }));
+    enqueueAnswer(event({ eventId: "e2", at: 2 }));
+
+    const sent: string[] = [];
+    const result = await drainOutbox(async (args) => {
+      sent.push(args.eventId);
+      // The reset lands while the drain is between sends. e1 was already on
+      // the wire and cannot be unsent; e2 must never leave the device.
+      if (args.eventId === "e1") clearOutbox();
+      return { ratingAfter: 1000 };
+    }, "atlas");
+
+    expect(sent).toEqual(["e1"]);
+    expect(result.sent).toBe(1);
+    expect(getOutboxSnapshot().pending).toEqual([]);
+  });
+
+  it("forgets reconcile watermarks on reset", async () => {
+    const { clearOutbox, shouldReconcile } = await load();
+    expect(shouldReconcile("atlas", 200)).toBe(true);
+    clearOutbox();
+    // Without the reset a stale in-flight drain resolving now would pass the
+    // tie-or-newer check and overwrite the fresh 1000 with its pre-reset
+    // rating.
+    expect(shouldReconcile("atlas", 100)).toBe(true);
   });
 });

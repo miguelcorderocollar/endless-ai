@@ -1,18 +1,20 @@
 import { query } from "./_generated/server";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
+import { bucketForRating, HISTOGRAM_BINS } from "../src/lib/quiz/histogram";
+
 /**
  * Stats reads (#11). Everything here derives from userStats (one doc per
  * user) or bounded event pages — never a global event scan. Population math
  * caps at 5000 ratings with `capped: true` past that; the aggregate component
  * (#8) takes over for exact global rank at real scale.
+ *
+ * The histogram geometry comes from `src/lib/quiz/histogram.ts`, shared with
+ * both charts: the server bins with the same constants the clients mark with.
  */
 
 const HISTORY_POINTS = 500;
 const POPULATION_CAP = 5000;
-const HISTOGRAM_BINS = 20;
-const HISTOGRAM_MIN = 600;
-const HISTOGRAM_MAX = 2200;
 
 /** Caller's rating series for the Elo-over-time chart, downsampled. */
 export const history = query({
@@ -70,13 +72,9 @@ export const population = query({
     const sorted = [...ratings].sort((a, b) => a - b);
     const median = sorted[Math.floor(sorted.length / 2)] ?? null;
 
-    const width = (HISTOGRAM_MAX - HISTOGRAM_MIN) / HISTOGRAM_BINS;
     const buckets = new Array(HISTOGRAM_BINS).fill(0) as number[];
     for (const r of ratings) {
-      const i = Math.min(
-        HISTOGRAM_BINS - 1,
-        Math.max(0, Math.floor((r - HISTOGRAM_MIN) / width)),
-      );
+      const i = bucketForRating(r);
       buckets[i] = (buckets[i] ?? 0) + 1;
     }
 

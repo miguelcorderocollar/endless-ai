@@ -3,6 +3,7 @@ import { createHash } from "crypto";
 import { type WikiIntroResult, fetchFullText, resolveIntros } from "./lib/wikipedia.mts";
 
 import { loadBank } from "../src/lib/questions/load";
+import { checkNativeBank } from "./lib/nativeBank.mts";
 import {
   CATEGORIES,
   CATEGORY_KEYS,
@@ -304,6 +305,19 @@ async function main() {
       id: fileError.file,
       rule: "schema",
       message: fileError.issues.join(" | "),
+    });
+  }
+
+  // The native app's committed bank (#18). A question change that does not
+  // reach `apps/mobile/assets/bank.json` ships a phone app that plays a
+  // different bank than the web, so it is an error here rather than a warning.
+  const nativeBankStale = checkNativeBank(new URL("..", import.meta.url).pathname);
+  if (nativeBankStale) {
+    issues.push({
+      level: "error",
+      id: "apps/mobile/assets/bank.json",
+      rule: "native-bank",
+      message: nativeBankStale,
     });
   }
 

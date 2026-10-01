@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Endless AI Quiz",
+    "slug": "endless-ai-quiz",
+    "version": "0.1.0",
+    "scheme": "endlessai",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "bundleIdentifier": "com.endlessai.quiz",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.endlessai.quiz",
+      "predictiveBackGestureEnabled": false,
+      "adaptiveIcon": {
+        "backgroundColor": "#0a0b0d",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "monochromeImage": "./assets/images/adaptive-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0a0b0d",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 160
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "131e7ccb-c6f5-47cd-89eb-4cdf7115cb33"
+      }
+    }
+  }
+}

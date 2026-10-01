@@ -29,6 +29,7 @@ import {
   subscribeNetwork,
 } from "@/lib/pwa/network";
 import { useIsomorphicLayoutEffect } from "@/lib/useIsomorphicLayoutEffect";
+import { clearOutbox } from "@/lib/answers/outbox";
 import type { Question } from "@/lib/questions/schema";
 import { DoneList } from "@/components/DoneList";
 import { InstallRow } from "@/components/InstallPrompt";
@@ -202,26 +203,28 @@ export default function ProfilePage() {
     : !isAuthenticated || !displayMe || displayMe.isAnonymous;
 
   /**
-   * Misses: most-recent verdict per question wins, so a later correct clears
-   * the miss. Signed in: server event stream (cross-device truth). Guest: the
-   * device-local recent ring. Capped for a cheap render.
+   * Recent attempts, oldest first — the order they happened in, which is what
+   * the done list is sorted by. Signed in it is the server event stream (so it
+   * crosses devices); a guest it is the device-local ring.
+   *
+   * Both sources arrive newest-first and are flipped here rather than in
+   * `buildDoneList`, so that function has one contract: record order.
    */
-  const missedIds = useMemo(() => {
-    const attempts: { id: string; correct: boolean }[] =
+  const attempts = useMemo(() => {
+    const source =
       isAuthenticated && !recentUnsupported
-        ? (serverRecent ?? []).map((r) => ({ id: r.questionId, correct: r.correct }))
+        ? (serverRecent ?? []).map((r) => ({
+            id: r.questionId,
+            correct: r.correct,
+          }))
         : progress.recent
             .slice()
             .reverse()
-            .map((r) => ({ id: r.id, correct: r.correct }));
-    const seen = new Set<string>();
-    const missed: string[] = [];
-    for (const a of attempts) {
-      if (seen.has(a.id)) continue;
-      seen.add(a.id);
-      if (!a.correct) missed.push(a.id);
-    }
-    return missed.slice(0, 30);
+            .map((r) => ({
+              id: r.id,
+              correct: r.correct,
+            }));
+    return source.reverse();
   }, [isAuthenticated, recentUnsupported, serverRecent, progress.recent]);
 
   return (
@@ -283,12 +286,13 @@ export default function ProfilePage() {
                 </button>
               </div>
             </div>
-            <p className="label mt-2 text-muted">
-              {displayMe?.handle ?? ""}
-              {displayMe?.role === "admin" ? (
-                <span className="ml-2 text-signal">admin</span>
-              ) : null}
-            </p>
+            {/* No handle here. It is the account's internal id — a player
+                recognises themselves by their name, and `handle` was noise
+                between the name and the Elo. The role marker stays, because
+                "admin" is something a reader needs and an opaque id is not. */}
+            {displayMe?.role === "admin" ? (
+              <p className="label mt-2 text-signal">admin</p>
+            ) : null}
           </>
         )}
 
@@ -365,7 +369,7 @@ export default function ProfilePage() {
                     ? (serverCompleted ?? progress.completed)
                     : progress.completed
                 }
-                missedIds={missedIds}
+                attempts={attempts}
                 correct={stats?.correct ?? progress.correct}
                 answered={stats?.answered ?? progress.answered}
                 total={questions.length}
@@ -412,6 +416,7 @@ export default function ProfilePage() {
           <ResetConfirm
             onCancel={() => setPopup(null)}
             onDone={() => {
+              clearOutbox();
               updateProgress({ ...EMPTY_PROGRESS });
               router.push("/");
             }}

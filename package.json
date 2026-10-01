@@ -22,7 +22,9 @@
     "dupe:score": "tsx scripts/dupe-score.mts",
     "probe": "tsx scripts/probe.mts",
     "review": "tsx scripts/review.mts",
-    "review:serve": "tsx scripts/review.mts --serve"
+    "review:serve": "tsx scripts/review.mts --serve",
+    "bundle:bank": "tsx scripts/bundle-bank.mts",
+    "assets:grain": "tsx scripts/grain.mts"
   },
   "dependencies": {
     "@auth/core": "^0.41.1",
