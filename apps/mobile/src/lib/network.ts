@@ -1,4 +1,3 @@
-import { useEffect, useSyncExternalStore } from "react";
 import NetInfo from "@react-native-community/netinfo";
 
 /**
@@ -52,9 +51,12 @@ function set(next: NetworkState): void {
 }
 
 /**
- * Idempotent, like the web's `startNetworkListener`: the root layout calls it
- * once so the value is live before anything reads it, and any component can
- * call it again without stacking subscriptions.
+ * Idempotent; safe from any component that renders on every route. The root
+ * layout calls it once so the value is live before anything reads it, and any
+ * component can call it again without stacking subscriptions.
+ *
+ * Screens read the store directly with `useSyncExternalStore`, the way the web
+ * page does — there is intentionally no hook wrapper here.
  */
 export function startNetworkListener(): void {
   if (unsubscribe) return;
@@ -63,22 +65,4 @@ export function startNetworkListener(): void {
     if (state.isConnected === null) return;
     set(state.isConnected === false ? OFFLINE : ONLINE);
   });
-}
-
-/** The masthead's sync chip: `offline`, `N unsynced`, or nothing. */
-export function useNetwork(): boolean {
-  return useSyncExternalStore(
-    subscribeNetwork,
-    getNetworkSnapshot,
-    getNetworkServerSnapshot,
-  ).online;
-}
-
-/** Starts listening on mount and stops on unmount, for a single screen. */
-export function useNetworkStarted(): boolean {
-  const online = useNetwork();
-  useEffect(() => {
-    startNetworkListener();
-  }, []);
-  return online;
 }

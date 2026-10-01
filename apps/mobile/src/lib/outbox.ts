@@ -6,6 +6,7 @@ import {
   type OutboxState,
   type QueuedAnswer,
   type SendAnswer,
+  resetReconcile,
   runDrain,
   sanitizeQueue,
   shouldReconcile,
@@ -55,6 +56,13 @@ export function newEventId(): string {
 
 let current: OutboxState = EMPTY_OUTBOX;
 const listeners = new Set<() => void>();
+
+/**
+ * Invalidates drains that are already in flight. `clearOutbox` bumps this;
+ * every drain captures the value it started under and stops before its next
+ * send once they differ.
+ */
+let generation = 0;
 
 function notify(): void {
   for (const listener of listeners) listener();
@@ -117,8 +125,13 @@ export function enqueueAnswer(event: QueuedAnswer): void {
  * adapter's: called after a progress reset is confirmed server-side, so events
  * queued between the enqueue and the wipe cannot drain afterwards and
  * resurrect the history that was just deleted.
+ *
+ * Bumps the drain generation and forgets the reconcile watermarks, for the
+ * in-flight drain and the stale result it would otherwise apply.
  */
 export function clearOutbox(): void {
+  generation += 1;
+  resetReconcile();
   set([]);
 }
 
@@ -131,10 +144,12 @@ export async function drainOutbox(
   send: SendAnswer,
   account: string | null,
 ): Promise<{ sent: number; lastRating: number | null; maxAt: number | null }> {
+  const gen = generation;
   const { sent, lastRating, maxAt, sentIds } = await runDrain(
     current.pending,
     send,
     account,
+    () => gen === generation,
   );
   if (sentIds.size > 0) {
     // Re-read the mirror rather than dropping from the list we drained: the

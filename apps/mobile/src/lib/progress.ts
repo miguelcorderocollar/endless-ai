@@ -1,6 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { RECENT_CAP, type SavedProgress } from "@shared/lib/progress";
+import {
+  EMPTY_PROGRESS as SHARED_EMPTY_PROGRESS,
+  RECENT_CAP,
+  type SavedProgress,
+} from "@shared/lib/progress";
 
 /**
  * Progress storage for the native app. The web app keeps this in localStorage
@@ -20,16 +24,12 @@ import { RECENT_CAP, type SavedProgress } from "@shared/lib/progress";
 const PROGRESS_KEY = "endless-ai:progress:v1";
 const FILTER_KEY = "endless-ai:filter:v1";
 
-/** Mirrors `EMPTY_PROGRESS` on the web, including the 1000 starting rating. */
-export const EMPTY_PROGRESS: SavedProgress = {
-  rating: 1000,
-  answered: 0,
-  correct: 0,
-  streak: 1,
-  lastPlayed: "",
-  completed: [],
-  recent: [],
-};
+/**
+ * The web's empty record, re-exported — not restated. A default changed in one
+ * place (the 1000 starting rating, the streak seed) is exactly how two apps
+ * start disagreeing about a fresh player, so there is one object.
+ */
+export const EMPTY_PROGRESS: SavedProgress = SHARED_EMPTY_PROGRESS;
 
 function sanitizeRecent(value: unknown): SavedProgress["recent"] {
   if (!Array.isArray(value)) return [];
@@ -129,9 +129,13 @@ export function hasHydrated(): boolean {
 
 /** Loads both keys once on mount. Same job as the web's `hydrateProgress`. */
 export async function hydrateProgress(): Promise<void> {
+  // Never overwrite a mirror that already has a value. The layout hydrates on
+  // launch and screens re-hydrate on mount; a slow disk resolving after the
+  // player has already answered would otherwise clobber optimistic in-memory
+  // progress with a stale snapshot. The web guards the same way.
   const [progress, filter] = await Promise.all([readProgress(), readFilter()]);
-  cached = progress;
-  filterCached = filter;
+  if (cached === null) cached = progress;
+  if (filterCached === null) filterCached = filter;
   notify();
 }
 

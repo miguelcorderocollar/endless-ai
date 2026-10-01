@@ -243,4 +243,34 @@ describe("shouldReconcile", () => {
     expect(shouldReconcile("bruno", 100)).toBe(true);
     expect(shouldReconcile("bruno", 99)).toBe(false);
   });
+
+  it("stops a drain overtaken by a reset instead of replaying behind it", async () => {
+    const { clearOutbox, drainOutbox, enqueueAnswer, getOutboxSnapshot } =
+      await load();
+    enqueueAnswer(event({ eventId: "e1", at: 1 }));
+    enqueueAnswer(event({ eventId: "e2", at: 2 }));
+
+    const sent: string[] = [];
+    const result = await drainOutbox(async (args) => {
+      sent.push(args.eventId);
+      // The reset lands while the drain is between sends. e1 was already on
+      // the wire and cannot be unsent; e2 must never leave the device.
+      if (args.eventId === "e1") clearOutbox();
+      return { ratingAfter: 1000 };
+    }, "atlas");
+
+    expect(sent).toEqual(["e1"]);
+    expect(result.sent).toBe(1);
+    expect(getOutboxSnapshot().pending).toEqual([]);
+  });
+
+  it("forgets reconcile watermarks on reset", async () => {
+    const { clearOutbox, shouldReconcile } = await load();
+    expect(shouldReconcile("atlas", 200)).toBe(true);
+    clearOutbox();
+    // Without the reset a stale in-flight drain resolving now would pass the
+    // tie-or-newer check and overwrite the fresh 1000 with its pre-reset
+    // rating.
+    expect(shouldReconcile("atlas", 100)).toBe(true);
+  });
 });

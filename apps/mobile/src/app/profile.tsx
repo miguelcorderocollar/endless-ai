@@ -52,6 +52,7 @@ import {
 import { PencilIcon, ResetIcon, SignOutIcon } from "@/components/icons";
 import { Distribution, EloChart, PANEL_HEIGHT } from "@/components/Stats";
 import { DoneList } from "@/components/DoneList";
+import { SyncStatus } from "@/components/SyncStatus";
 import {
   getNetworkServerSnapshot,
   getNetworkSnapshot,
@@ -60,7 +61,6 @@ import {
 } from "@/lib/network";
 import { clearOutbox } from "@/lib/outbox";
 import type { Question } from "@shared/lib/questions/schema";
-import { tierFor } from "@shared/lib/quiz/elo";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
 
 type Tab = "you" | "all";
@@ -217,6 +217,16 @@ export default function ProfileScreen() {
   const displayMe = identity ?? cachedProfile;
   const name = displayMe?.displayName ?? displayMe?.handle ?? null;
   const guest = !isAuthenticated || anonymous;
+  // Offline, auth never settles: `isLoading` stays true and the identity query
+  // hangs, so gating the header on loading alone would leave a signed-in
+  // player looking at a blank header for the whole flight. The web treats
+  // offline as settled — a cached identity renders, otherwise the guest frame —
+  // and this mirrors it exactly.
+  const mePending = isAuthenticated && identity === undefined;
+  const headerPending = !offline && (isLoading || mePending) && !displayMe;
+  const showGuest = isLoading
+    ? !displayMe || anonymous
+    : guest;
 
   /**
    * Recent attempts, oldest first — the order they happened in, which is what
@@ -236,7 +246,11 @@ export default function ProfileScreen() {
     // [])` for the same reason, so a signed-in player never flashes
     // device-local misses that the server is about to contradict. A backend
     // that predates `myRecent` sets `recentUnsupported`, and then the ring is
-    // the honest fallback rather than a crash.
+    // the honest fallback rather than a crash — with the caveat that the ring
+    // is device-local, so right after signing in on a new phone it still shows
+    // guest-era attempts until the server stream lands. The claim reconciles
+    // totals, not the ring, and that is deliberate: the ring is this device's
+    // history, not the account's.
     const source =
       isAuthenticated && !recentUnsupported
         ? (recent ?? []).map((r) => ({ id: r.questionId, correct: r.correct }))
@@ -267,19 +281,24 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
       <View style={styles.frame}>
-        <View style={styles.bar}>
-          <Text style={styles.title}>Your profile</Text>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Back to the quiz"
-            onPress={() =>
-              router.canGoBack() ? router.back() : router.replace("/")
-            }
-            hitSlop={12}
-          >
-            <Text style={styles.close}>close</Text>
-          </Pressable>
-        </View>
+          <View style={styles.bar}>
+            <Text style={styles.title}>Your profile</Text>
+            {/* Same sync status as the quiz masthead and the categories bar:
+                the web carries it on every route. */}
+            <View style={styles.barRight}>
+              <SyncStatus />
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel="Back to the quiz"
+                onPress={() =>
+                  router.canGoBack() ? router.back() : router.replace("/")
+                }
+                hitSlop={12}
+              >
+                <Text style={styles.close}>close</Text>
+              </Pressable>
+            </View>
+          </View>
 
         <ScrollView
           contentContainerStyle={styles.body}
@@ -287,7 +306,7 @@ export default function ProfileScreen() {
         >
           <Text style={[label, styles.kicker]}>profile</Text>
 
-          {isLoading ? null : guest ? (
+          {headerPending ? null : showGuest ? (
             <View>
               <Text style={styles.guestTitle}>Playing as guest</Text>
               <Text style={styles.note}>
@@ -367,7 +386,7 @@ export default function ProfileScreen() {
                   ? `${stats.answered} answered · streak ${stats.streak} · best ${bestStreak}`
                   : isAuthenticated && !offline
                     ? "no answers yet on this account"
-                    : `${tierFor(rating)} · on this device only · sign in to sync`}
+                    : "on this device only · sign in to sync"}
               </Text>
 
             <View style={styles.tabs}>
@@ -677,6 +696,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.inkLine,
   },
+  barRight: { flexDirection: "row", alignItems: "center", gap: 16 },
   title: { fontFamily: fonts.display, fontSize: 26, color: colors.paper },
   close: { ...label, color: colors.muted },
   body: { paddingTop: 24, paddingBottom: 32 },

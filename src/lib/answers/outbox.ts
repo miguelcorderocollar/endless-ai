@@ -33,6 +33,7 @@ import {
   type OutboxState,
   type QueuedAnswer,
   type SendAnswer,
+  resetReconcile,
   runDrain,
   sanitizeQueue,
   sendableEvents,
@@ -41,6 +42,13 @@ import {
 } from "./outboxCore";
 
 const KEY = "endless-ai:answer-outbox:v1";
+
+/**
+ * Invalidates drains that are already in flight. `clearOutbox` bumps this;
+ * every drain captures the value it started under and stops before its next
+ * send once they differ.
+ */
+let generation = 0;
 
 export { shouldReconcile };
 export type { QueuedAnswer, SendAnswer };
@@ -142,8 +150,14 @@ export function enqueueAnswer(event: QueuedAnswer): void {
  * reset is confirmed server-side: events queued between the enqueue and the
  * wipe would otherwise drain afterwards and resurrect the history that was
  * just deleted.
+ *
+ * Bumps the drain generation and forgets the reconcile watermarks, so a drain
+ * that was already in flight stops before its next send and a stale result
+ * resolving afterwards cannot overwrite the fresh 1000.
  */
 export function clearOutbox(): void {
+  generation += 1;
+  resetReconcile();
   set([]);
 }
 
@@ -163,7 +177,13 @@ export async function drainOutbox(
   account: string | null,
 ): Promise<{ sent: number; lastRating: number | null; maxAt: number | null }> {
   const before = getOutboxSnapshot().pending;
-  const { sent, lastRating, maxAt, sentIds } = await runDrain(before, send, account);
+  const gen = generation;
+  const { sent, lastRating, maxAt, sentIds } = await runDrain(
+    before,
+    send,
+    account,
+    () => gen === generation,
+  );
   if (sentIds.size > 0) dropSent(sentIds);
   return { sent, lastRating, maxAt };
 }

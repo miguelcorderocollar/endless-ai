@@ -4,7 +4,6 @@ import {
   useCallback,
   useEffect,
   useMemo,
-  useState,
   useSyncExternalStore,
 } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -21,6 +20,7 @@ import {
 } from "@/lib/profileCache";
 import { accuracyByCategory } from "@shared/lib/quiz/categoryAccuracy";
 import { CATEGORIES, type CategoryKey } from "@shared/lib/questions/schema";
+import { SyncStatus } from "@/components/SyncStatus";
 import { BOTTOM_INSET, colors, fonts, GUTTER, label } from "@/theme";
 
 /**
@@ -43,7 +43,6 @@ export default function CategoriesScreen() {
   const { isAuthenticated } = useConvexAuth();
   const countRows = useQuery(countsRef, {});
   const stats = useQuery(myStatsRef, isAuthenticated ? {} : "skip");
-  const [busy, setBusy] = useState(false);
 
   const selected = useMemo(() => new Set(asCategoryKeys(filter)), [filter]);
 
@@ -80,7 +79,10 @@ export default function CategoriesScreen() {
   const done = useCallback(() => {
     // The quiz keys its drawn stream on the filter, so returning to it has to
     // reset that screen rather than pop back onto a stale question.
-    setBusy(true);
+    // `dismissTo` is synchronous and idempotent — a second tap while the
+    // transition runs is a no-op, not a state to track — so there is no `busy`
+    // flag here. (One used to exist and was never reset; a failed navigation
+    // would have wedged the button disabled.)
     router.dismissTo("/");
   }, []);
 
@@ -91,14 +93,20 @@ export default function CategoriesScreen() {
           <Text style={styles.title}>
             {selected.size === 0 ? "Everything" : `${selected.size} selected`}
           </Text>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Back to the quiz"
-            onPress={() => router.back()}
-            hitSlop={12}
-          >
-            <Text style={styles.close}>close</Text>
-          </Pressable>
+          {/* The web carries the sync status in its shell header on every
+              route; the quiz masthead has it here, so these bars carry it too.
+              Silent when everything has landed. */}
+          <View style={styles.barRight}>
+            <SyncStatus />
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Back to the quiz"
+              onPress={() => router.back()}
+              hitSlop={12}
+            >
+              <Text style={styles.close}>close</Text>
+            </Pressable>
+          </View>
         </View>
 
         <ScrollView
@@ -186,7 +194,6 @@ export default function CategoriesScreen() {
                 selected.size === 0 ? "Play everything" : "Play selected"
               }
               onPress={done}
-              disabled={busy}
               style={({ pressed }) => [
                 styles.primary,
                 pressed && styles.primaryPressed,
@@ -224,6 +231,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.inkLine,
   },
+  barRight: { flexDirection: "row", alignItems: "center", gap: 16 },
   title: { fontFamily: fonts.display, fontSize: 26, color: colors.paper },
   close: { ...label, color: colors.muted },
   body: { paddingTop: 24, paddingBottom: 32 },

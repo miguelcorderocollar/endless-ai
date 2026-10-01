@@ -324,8 +324,9 @@ export default function QuizScreen() {
         filter,
         rating: progress.rating,
       });
+      const combined = [...queueRef.current, ...fresh];
       const next = pickNext(
-        [...queueRef.current, ...fresh],
+        combined,
         seenRef.current,
         categories,
         Math.random,
@@ -336,7 +337,11 @@ export default function QuizScreen() {
         setExhausted(true);
         return;
       }
+      // Keep the page remainder, not just the pick: dropping it costs a full
+      // redraw at the next buffer exhaustion for questions already on hand.
+      // `show` filters the stale mirror, so the leftovers go in after it.
       show(next);
+      setQueue(combined.filter((q) => q.id !== next.id));
     } catch (cause) {
       setError(
         cause instanceof Error

@@ -162,4 +162,22 @@ describe("drainOutbox on AsyncStorage", () => {
     expect(pending[0]?.eventId).toBe("e5");
     expect(pending.at(-1)?.eventId).toBe("e1004");
   });
+
+  it("stops a drain overtaken by a reset instead of replaying behind it", async () => {
+    const { clearOutbox, drainOutbox, enqueueAnswer, getOutboxSnapshot } =
+      await load();
+    enqueueAnswer(event({ eventId: "e1", at: 1 }));
+    enqueueAnswer(event({ eventId: "e2", at: 2 }));
+
+    const sent: string[] = [];
+    const result = await drainOutbox(async (args) => {
+      sent.push(args.eventId);
+      if (args.eventId === "e1") clearOutbox();
+      return { ratingAfter: 1000 };
+    }, "atlas");
+
+    expect(sent).toEqual(["e1"]);
+    expect(result.sent).toBe(1);
+    expect(getOutboxSnapshot().pending).toEqual([]);
+  });
 });

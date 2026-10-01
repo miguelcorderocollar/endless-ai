@@ -1,8 +1,8 @@
-import { useConvexAuth } from "convex/react";
+import { useConvexAuth, useQuery } from "convex/react";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { StyleSheet, Text } from "react-native";
 
-import { answer as answerRef } from "@/lib/api";
+import { answer as answerRef, me as meRef } from "@/lib/api";
 import { syncOnSignIn } from "@/lib/account";
 import { convexClient } from "@/lib/backend";
 import {
@@ -71,25 +71,31 @@ export function OutboxFlusher() {
  * with a stored session mounts no quiz screen, so a quiz-screen effect never
  * fires and the device never reconciles. Mounted once in the root layout, it
  * fires on every auth transition wherever the session lands.
+ *
+ * Keyed on the identity handle, not just the boolean: signing in as B while
+ * A's session is live keeps `isAuthenticated` true, so a boolean latch would
+ * never refire and the device would show A's totals under B's name. Waiting
+ * for the identity to resolve first also skips the claim entirely while
+ * offline, which the old latch could not do — a doomed mutation is worse than
+ * none, and the flusher owns the reconnect.
  */
 export function ClaimOnSignIn() {
   const { isAuthenticated } = useConvexAuth();
   const client = convexClient();
-  const claimed = useRef(false);
+  const identity = useQuery(meRef, isAuthenticated ? {} : "skip");
+  const claimedFor = useRef<string | null | undefined>(undefined);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      claimed.current = false;
+    if (!isAuthenticated || !client) {
+      claimedFor.current = undefined;
       return;
     }
-    if (!client || claimed.current) return;
-    claimed.current = true;
-    // Best-effort like the rest of account.ts; a failed claim leaves local
-    // progress standing, and the latch resets so the next transition retries.
-    void syncOnSignIn(client).then(() => {
-      claimed.current = false;
-    });
-  }, [isAuthenticated, client]);
+    if (identity === undefined) return;
+    const handle = identity?.handle ?? null;
+    if (claimedFor.current === handle) return;
+    claimedFor.current = handle;
+    void syncOnSignIn(client);
+  }, [isAuthenticated, client, identity]);
 
   return null;
 }

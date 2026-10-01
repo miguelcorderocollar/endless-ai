@@ -123,6 +123,13 @@ export function withoutSent(
  * The caller applies `withoutSent` with the returned ids and persists, so this
  * stays free of both storage and subscriptions.
  *
+ * `shouldContinue` is checked before every send. A progress reset wipes the
+ * queue while a drain is in flight; without this, the drain keeps sending what
+ * it snapshotted and re-creates server-side the history that was just deleted.
+ * The check cannot unsend what is already on the wire, but it bounds the
+ * damage to the sends already in flight instead of replaying the whole
+ * snapshot behind a wipe.
+ *
  * `lastRating` and `maxAt` exist so the caller can reconcile the local Elo to
  * truth (see `shouldReconcile` — concurrent drains resolve in any order).
  */
@@ -130,11 +137,13 @@ export async function runDrain(
   pending: readonly QueuedAnswer[],
   send: SendAnswer,
   account: string | null,
+  shouldContinue: () => boolean = () => true,
 ): Promise<DrainResult & { sentIds: Set<string> }> {
   const sentIds = new Set<string>();
   let lastRating: number | null = null;
   let maxAt: number | null = null;
   for (const event of sendableEvents(pending, account)) {
+    if (!shouldContinue()) break;
     try {
       const result = await send({
         questionId: event.questionId,
@@ -175,4 +184,15 @@ export function shouldReconcile(
   if (at < known) return false;
   reconciledAt.set(account, at);
   return true;
+}
+
+/**
+ * Forgets every watermark. Called from the outbox-clear path after a progress
+ * reset is confirmed: a drain that was in flight across the wipe resolves with
+ * a pre-reset `maxAt`, and without this the tie-or-newer check passes and the
+ * stale rating overwrites the fresh 1000. Clearing the whole map is correct
+ * because a reset means no drain's result is still meaningful.
+ */
+export function resetReconcile(): void {
+  reconciledAt.clear();
 }
